@@ -279,11 +279,11 @@ public class Player : MonoBehaviour
 
             tempPos.y = DefaultPos.y;
         }
-        if (Rb.position.y < 9)
+        if (Rb.position.y < 17.5f)
         {
             moveY = Mathf.Max(moveY, 0);
 
-            tempPos.y = 9;
+            tempPos.y = 17.5f;
         }
         transform.position = tempPos;
 
