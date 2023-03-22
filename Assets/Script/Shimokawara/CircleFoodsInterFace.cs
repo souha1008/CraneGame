@@ -33,6 +33,8 @@ public class CircleFoodsInterFace : MonoBehaviour
     Color DefaultColor;
     Color GlabColor;
 
+    Vector3 EscarateVector;
+
     // Start is called before the first frame update
     public void FoodsStart()
     {
@@ -135,7 +137,7 @@ public class CircleFoodsInterFace : MonoBehaviour
         if(isGround)
         {
             Vector3 tempPos = transform.position;
-            tempPos.z -= 0.05f;
+            tempPos += (EscarateVector * 0.05f);
             transform.position = tempPos;
         }
     }
@@ -190,7 +192,9 @@ public class CircleFoodsInterFace : MonoBehaviour
         if (Physics.Raycast(underRay, out underHit, 10.0f))
         {
             //あたったのがプラットフォームなら
-            if (underHit.collider.gameObject.tag == "PlatForm")
+            if (underHit.collider.gameObject.tag == "EscarateUp"||
+                underHit.collider.gameObject.tag == "EscarateRight"||
+                underHit.collider.gameObject.tag == "EscarateDown")
             {
                 float distance = underHit.distance; //レイの開始位置と当たったオブジェクトの距離を取得
                                                     //Debug.Log(distance);
@@ -201,9 +205,21 @@ public class CircleFoodsInterFace : MonoBehaviour
                     if (Vel.y < 0.0f)
                         Vel.y = 0.0f;
                 }
+
+                if (underHit.collider.gameObject.tag == "EscarateUp")
+                {
+                    EscarateVector = new Vector3(0, 0, 1);
+                }
+                if (underHit.collider.gameObject.tag == "EscarateRight")
+                {
+                    EscarateVector = new Vector3(1, 0, 0);
+                }
+                if (underHit.collider.gameObject.tag == "EscarateDown")
+                {
+                    EscarateVector = new Vector3(0, 0, -1);
+                }
+
             }
         }
     }
 }
-
-

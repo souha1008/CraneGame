@@ -62,11 +62,11 @@ public class UiColor : MonoBehaviour
 
     void UpdateAlpha()
     {
-        GameObject PlayerSan = GameObject.Find("Player");
-        Rigidbody PlayerBody = PlayerSan.GetComponent<Rigidbody>();
+       // GameObject PlayerSan = GameObject.Find("Player");
+        //Rigidbody PlayerBody = PlayerSan.GetComponent<Rigidbody>();
 
-        float PlayerYokoMove = PlayerBody.velocity.x;
-        float PlayerTateMove = PlayerBody.velocity.y;
+        //float PlayerYokoMove = PlayerBody.velocity.x;
+        //float PlayerTateMove = PlayerBody.velocity.y;
 
         //if (Mathf.Abs(PlayerYokoMove) < 1.0f && Mathf.Abs(PlayerTateMove) < 1.0f && Player.instance.touchFg == true)
         {
