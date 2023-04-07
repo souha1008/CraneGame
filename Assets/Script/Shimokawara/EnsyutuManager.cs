@@ -23,7 +23,7 @@ public class EnsyutuManager : MonoBehaviour
     void FixedUpdate()
     {
         PlayerOldPos = PlayerPos;
-        PlayerPos = Player.instance.transform.position;
+        PlayerPos = Player2.instance.transform.position;
 
         if (Vector3.Distance(PlayerPos, PlayerOldPos) < 0.2f)
         {

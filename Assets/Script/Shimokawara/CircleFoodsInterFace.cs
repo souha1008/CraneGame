@@ -41,7 +41,7 @@ public class CircleFoodsInterFace : MonoBehaviour
         FoodsArmState = FOODS_ARM_STATE.FREE;
         isGround = false;
         BallSize = transform.localScale.x/* * transform.lossyScale.x*/;
-        Debug.Log(transform.localScale.x);
+        //Debug.Log(transform.localScale.x);
 
         DefaultColor = this.GetComponent<Renderer>().material.color;
         GlabColor = this.GetComponent<Renderer>().material.color;

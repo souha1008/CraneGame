@@ -2,26 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum STICK_MOVE_TYPE
+
+
+
+public class Player2 : MonoBehaviour
 {
-    ZAHYOU_KIJUN,
-    KAMERA_KIJUN
-}
+    public enum STICK_MOVE_TYPE
+    {
+        ZAHYOU_KIJUN,
+        KAMERA_KIJUN
+    }
 
-public enum MOVE_INPUT_TYPE
-{
-    STICK_TYPE,
-    KEY_TYPE
-}
-
-
-public class Player : MonoBehaviour
-{
-
+    public enum MOVE_INPUT_TYPE
+    {
+        STICK_TYPE,
+        KEY_TYPE
+    }
 
     public float MAX_SPEED = 9;
 
-    static public Player instance;
+    
+    Attach MyAttach = new AttachCrane();
+    public Attach.AttachType NextAttachType;
+
+    static public Player2 instance;
     //カメラオブジェクト
     public GameObject cameraObj;
 
@@ -55,6 +59,11 @@ public class Player : MonoBehaviour
     float MIN_X;
     float MAX_X;
 
+    bool RTrigger = false;
+
+
+    public GameObject[] PrefabArray;
+
     //ジャンプキー
     //public KeyCode jumpKey = KeyCode.Space;
 
@@ -75,6 +84,7 @@ public class Player : MonoBehaviour
         MIN_X = LeftMax.transform.position.x;
         MAX_X = RightMax.transform.position.x;
 
+        NextAttachType = MyAttach.type;
     }
 
     void Update()
@@ -82,10 +92,29 @@ public class Player : MonoBehaviour
         Rb.velocity = new Vector3(moveX, moveY, moveZ);
 
         PositionMaxMin();
+
+        //Debug.Log(DefaultPos.y);
+
+        MyAttach.CustomUpdate();
+
+        if (Input.GetButtonDown("Rbutton"))
+        {
+            RTrigger = true;
+        }
     }
 
     void FixedUpdate() //FixedUpdateはUpdate(毎フレーム)と違って0.02秒毎に呼ばれる仕組みになっている※もちろん感覚は変更可
     {
+        if (RTrigger)
+        {
+            if (transform.position.y == DefaultPos.y)
+            {
+                NextAttach();
+            }
+            
+            RTrigger = false;
+        }
+
 
         moveX *= 0.85f;
         moveZ *= 0.85f;
@@ -139,9 +168,26 @@ public class Player : MonoBehaviour
 
         }
 
-        TakasaMove();
+        switch (MyAttach.type)
+        {
+            case Attach.AttachType.CRANE:
+                TakasaMove();
+                PositionMaxMin();
+                break;
+
+            case Attach.AttachType.KNIFE:
+                PositionMaxMin();
+                break;
+
+            case Attach.AttachType.HAMMER:
+                TakasaMove();
+                PositionMaxMin();
+                break;
+        }
 
 
+        MyAttach.CustomFixedUpdate();
+        ChangeAttach(NextAttachType);
     }
 
 
@@ -242,16 +288,23 @@ public class Player : MonoBehaviour
 
     void TakasaMove()
     {
+        Vector3 tempPos = transform.position;
+
         if (Input.GetButton("Lbutton"))
         {
             if (moveY > 0) moveY = 0;　//切り返し速く
-            moveY = Mathf.Max(moveY + ADD_VEL_Y_DOWN, MAX_VEL_Y_DOWN);
+            moveY = -1;
+            tempPos.y = 17.5f;
         }
         else
         {
             if (moveY < 0) moveY = 0;　//切り返し速く
-            moveY = Mathf.Min(moveY + ADD_VEL_Y_UP, MAX_VEL_Y_UP);
+            moveY = 1;
+            tempPos.y = DefaultPos.y;
+          
         }
+
+        transform.position = tempPos;
     }
 
     void PositionMaxMin()
@@ -273,23 +326,69 @@ public class Player : MonoBehaviour
         {
             tempPos.x = MIN_X;
         }
-        if (Rb.position.y >= DefaultPos.y)
-        {
-            moveY = Mathf.Min(moveY, 0);
+        //if (Rb.position.y >= DefaultPos.y)
+        //{
+        //    moveY = Mathf.Min(moveY, 0);
 
-            tempPos.y = DefaultPos.y;
-        }
-        if (Rb.position.y < 17.5f)
-        {
-            moveY = Mathf.Max(moveY, 0);
+        //    tempPos.y = DefaultPos.y;
+        //}
+        //if (Rb.position.y < 17.5f)
+        //{
+        //    moveY = Mathf.Max(moveY, 0);
 
-            tempPos.y = 17.5f;
-        }
+        //    tempPos.y = 17.5f;
+        //}
         transform.position = tempPos;
-
-       
 
         
     }
+
+    void ChangeAttach(Attach.AttachType Type)
+    {
+        if(MyAttach.type != Type)
+        {
+            //MyAttach.CustomUninit();
+            
+            for(int i = 0; i < PrefabArray.Length;i++)
+            {
+                if(i == (int) Type)
+                {
+                    PrefabArray[i].SetActive(true);
+
+                }
+                else
+                {
+                    PrefabArray[i].SetActive(false);    
+                }
+            }
+
+            //switch (Type)
+            //{
+            //    case Attach.AttachType.CRANE:
+            //        MyAttach = AttachCrane.instance;
+            //        MyAttach.CustomInit();
+            //        break;
+
+            //    case Attach.AttachType.KNIFE:
+            //        MyAttach = new AttachKnife();
+            //        MyAttach.CustomInit();
+            //        break;
+
+            //    case Attach.AttachType.HAMMER:
+            //        MyAttach = new AttachHammer();
+            //        MyAttach.CustomInit();
+            //        break;
+            //}
+            MyAttach.type = Type;
+
+        }
+    }
+
+    void NextAttach()
+    {
+        NextAttachType += 1;
+        NextAttachType = (Attach.AttachType)((int)NextAttachType % (int)Attach.AttachType.TYPE_MAX); ;
+    }
+
 }
 

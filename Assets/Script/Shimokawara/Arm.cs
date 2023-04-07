@@ -149,7 +149,7 @@ public class Arm : MonoBehaviour
     void ButtonPush()
     {
         if (Input.GetButton("Jump"))
-        //if (Input.GetButton("Rbutton"))
+        //if (Input.GetButton("Lbutton"))
         //if (true)
         {
             if (rAngleSpeed < 0) rAngleSpeed = 0;//Ø‚è•Ô‚µ‘¬‚­

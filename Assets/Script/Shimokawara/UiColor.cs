@@ -19,7 +19,7 @@ public enum BLACK_TYPE
 
 public class UiColor : MonoBehaviour
 {
-    public string KeyPures = "Rbutton";
+    public string KeyPures = "Lbutton";
 
     ALPHA_TYPE GoAlpha = ALPHA_TYPE.ALPHA_MAX;
     float[] GoalAlpha = new float[(int)(ALPHA_TYPE.OVER)] {1.0f,0.3f };

@@ -42,7 +42,7 @@ public class KansetsuBuraBuraB : MonoBehaviour
             this.transform.position = BuraBuraA.transform.position + NewPosVector;
 
             Vel = (this.transform.position - OldPos) /** 1.1f*/;
-            Debug.Log("ŠO");
+            //Debug.Log("ŠO");
         }
         else
         {
@@ -50,7 +50,7 @@ public class KansetsuBuraBuraB : MonoBehaviour
             this.transform.position = new Vector3(transform.position.x,
                 transform.position.y,
                 BuraBuraA.transform.position.z);
-            Debug.Log("‚È‚©");
+            //Debug.Log("‚È‚©");
         }
         
     }

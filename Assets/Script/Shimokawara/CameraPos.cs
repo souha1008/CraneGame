@@ -39,7 +39,7 @@ public class CameraPos : MonoBehaviour
     void FixedUpdate()
     {
         //プレイヤー座標
-        Vector3 PlayerPos = Player.instance.transform.position;
+        Vector3 PlayerPos = Player2.instance.transform.position;
 
         //進んだ量
         float TempVel = PlayerPos.x - OldPlayerPos.x;
@@ -52,7 +52,7 @@ public class CameraPos : MonoBehaviour
         if (TempVel > 0.1f)
         {
             //進行に応じて保存
-            RightSavePos = Player.instance.transform.position.x;
+            RightSavePos = Player2.instance.transform.position.x;
 
             if (PlayerPos.x > LeftSavePos + 4)
             {
@@ -62,7 +62,7 @@ public class CameraPos : MonoBehaviour
         if (TempVel < -0.1f)
         {
             //進行に応じて保存
-            LeftSavePos = Player.instance.transform.position.x;
+            LeftSavePos = Player2.instance.transform.position.x;
 
             if (PlayerPos.x < RightSavePos - 4)
             {
@@ -71,7 +71,7 @@ public class CameraPos : MonoBehaviour
             }
         }
 
-        OldPlayerPos = Player.instance.transform.position;
+        OldPlayerPos = Player2.instance.transform.position;
     }
 
     public void ManualUpdate()
