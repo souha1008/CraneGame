@@ -5,15 +5,19 @@ using UnityEngine;
 public class Effect_Buner : MonoBehaviour
 {
     
-    [SerializeField][Header("バーナーエフェクトを入れる")] ParticleSystem Buner;
+    [SerializeField][Tooltip("発生させたいパーティクルプレハブ")]ParticleSystem Buner;
     [SerializeField][Range(0.0f, 1.0f)] float BunerSize = 0.0f;
 
+    private ParticleSystem newBuner;
     private ParticleSystem.VelocityOverLifetimeModule Effect_VelocityOverLifetime;
 
     // Start is called before the first frame update
     void Start()
     {
-        Effect_VelocityOverLifetime = Buner.velocityOverLifetime;
+        // エフェクト生成
+        newBuner = Instantiate(Buner);
+        newBuner.Play();
+        Effect_VelocityOverLifetime = newBuner.velocityOverLifetime;
     }
 
     // Update is called once per frame
