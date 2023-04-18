@@ -7,6 +7,10 @@ public class SceneChange : MonoBehaviour
 {
     [SerializeField] string sceneName = "Test1";
 
+    [SerializeField] GameObject trasnsitionObject;
+
+    readonly float waitTime = 0.5f;
+
     public bool isFade;
 
     // Start is called before the first frame update
@@ -25,12 +29,16 @@ public class SceneChange : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            LoadScene();
+            StartCoroutine(nameof(LoadScene));
         }
     }
 
-    void LoadScene()
+    IEnumerator LoadScene()
     {
-        SceneManager.LoadSceneAsync(sceneName);
+        Instantiate(trasnsitionObject);
+
+        yield return new WaitForSeconds(waitTime);
+
+        SceneManager.LoadScene(sceneName);
     }
 }
