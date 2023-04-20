@@ -485,6 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5018664193685635795}
   - component: {fileID: 5018664193685635792}
+  - component: {fileID: 1068176533352653142}
   m_Layer: 0
   m_Name: FadeIn
   m_TagString: Untagged
@@ -530,3 +531,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1068176533352653142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5018664193685635793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460d763c4b894b64ea9b4e1df36f8320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraObject: {fileID: 2289031838145706617, guid: 720d221150ae89b419945ddb2ab36156,
+    type: 3}

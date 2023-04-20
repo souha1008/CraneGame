@@ -28,6 +28,7 @@ public class SceneChange : MonoBehaviour
 
         position.z = position.z + 1.0f;
 
+        Instantiate(cameraObject);
         Instantiate(FadeOutObject, position, cameraObject.transform.rotation);
     }
 
