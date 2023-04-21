@@ -5,14 +5,14 @@ using UnityEngine;
 public class Hummer : MonoBehaviour
 {
     public GameObject LockTex;
-    bool isUnLock = false;
+    //bool isUnLock = false;
 
     bool isUp = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        isUnLock = false;
+        //isUnLock = false;
         isUp = true;
     }
 
@@ -45,19 +45,19 @@ public class Hummer : MonoBehaviour
 
         if (length <= 0.7f)//¬‚³‚·‚¬‚ÄƒJƒbƒg
         {
-            isUnLock = false;
+            //isUnLock = false;
         }
 
         if (length > 0.85f &&
             (Mathf.Atan2(LeftStick.y, LeftStick.x) <= (-Mathf.PI / 2 + 0.2f)) &&
             (Mathf.Atan2(LeftStick.y, LeftStick.x) >= (-Mathf.PI / 2 - 0.2f)))
         {
-            isUnLock = true;
+            //isUnLock = true;
         }
 
 
 
-        if (isUnLock && LeftStick.y > 0)
+        if (/*isUnLock && */LeftStick.y > 0)
         {
             float temp = ((Input.GetAxis("RightY")) + 1) * 0.5f;
             //rAngle = temp * MAX_ANGLE;

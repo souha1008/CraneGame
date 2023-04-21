@@ -183,6 +183,10 @@ public class Player2 : MonoBehaviour
                 TakasaMove();
                 PositionMaxMin();
                 break;
+
+            case Attach.AttachType.FIRE:
+                PositionMaxMin();
+                break;
         }
 
 

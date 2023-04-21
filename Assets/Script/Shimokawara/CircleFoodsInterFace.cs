@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+//つかみのスケールどうする
+//
+
 public class CircleFoodsInterFace : MonoBehaviour
 {
     public enum FOODS_ARM_STATE
@@ -221,5 +224,33 @@ public class CircleFoodsInterFace : MonoBehaviour
 
             }
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject == LeftArm || other.gameObject == RightArm)
+        {
+            Debug.Log("Hit");
+
+            Vector3 PosVector = other.transform.position - transform.position;
+
+            if(LeftArm.transform.localScale.z / 2 > Mathf.Abs( PosVector.z))
+            {
+                if(PosVector.z > 0)//アームが奥
+                {
+                    Vector3 TempPos = transform.position;
+                    TempPos.z = other.gameObject.transform.position.z - LeftArm.transform.localScale.z;
+                    transform.position = TempPos;
+                }
+                else
+                {
+                    Vector3 TempPos = transform.position;
+                    TempPos.z = other.gameObject.transform.position.z +LeftArm.transform.localScale.z;
+                    transform.position = TempPos;
+                }
+            }
+
+        }
+
     }
 }

@@ -16,6 +16,7 @@ public class Knife : MonoBehaviour
     float rAngle;
     float MIN_ANGLE = 0;
     float MAX_ANGLE = Mathf.PI * 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +38,7 @@ public class Knife : MonoBehaviour
         {
             case KNIFE_STATE.Have:
 
-                RotateKnife();
+                //RotateKnife();
                 if (Input.GetButton("Lbutton"))
                 {
                     KnifeState = KNIFE_STATE.Cut;
@@ -50,6 +51,9 @@ public class Knife : MonoBehaviour
                 break;
 
             case KNIFE_STATE.Ground:
+                Vector3 tempPos = transform.position;
+                tempPos.z -= (0.05f);
+                transform.position = tempPos;
                 break;
 
         }
@@ -59,7 +63,6 @@ public class Knife : MonoBehaviour
             knifeHassya.instance.haveKnife = false;
             knifeHassya.instance.RespawnCnt = 0;
             Destroy(gameObject);
-
         }
 
     }
@@ -97,7 +100,7 @@ public class Knife : MonoBehaviour
             //if (isGo)
             {
                 Vector3 temp = transform.position;
-                temp.y -= 0.3f;
+                temp.y -= 0.9f;
                 transform.position = temp;
             }
         }
@@ -107,8 +110,13 @@ public class Knife : MonoBehaviour
         }
     }
 
+    void UpdateGround()
+    {
+
+    }
 
 
+#if false
     void RotateKnife()
     {
 
@@ -126,4 +134,5 @@ public class Knife : MonoBehaviour
 
         transform.rotation = rot;
     }
+#endif
 }
