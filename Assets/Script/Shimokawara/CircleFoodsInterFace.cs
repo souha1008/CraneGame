@@ -197,7 +197,8 @@ public class CircleFoodsInterFace : MonoBehaviour
             //あたったのがプラットフォームなら
             if (underHit.collider.gameObject.tag == "EscarateUp"||
                 underHit.collider.gameObject.tag == "EscarateRight"||
-                underHit.collider.gameObject.tag == "EscarateDown")
+                underHit.collider.gameObject.tag == "EscarateDown" ||
+                underHit.collider.gameObject.tag == "EscarateNone")
             {
                 float distance = underHit.distance; //レイの開始位置と当たったオブジェクトの距離を取得
                                                     //Debug.Log(distance);
@@ -221,36 +222,39 @@ public class CircleFoodsInterFace : MonoBehaviour
                 {
                     EscarateVector = new Vector3(0, 0, -1);
                 }
-
+                if (underHit.collider.gameObject.tag == "EscarateNone")
+                {
+                    EscarateVector = new Vector3(0, 0, 0);
+                }
             }
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.gameObject == LeftArm || other.gameObject == RightArm)
-        {
-            Debug.Log("Hit");
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if(other.gameObject == LeftArm || other.gameObject == RightArm)
+    //    {
+    //        Debug.Log("Hit");
 
-            Vector3 PosVector = other.transform.position - transform.position;
+    //        Vector3 PosVector = other.transform.position - transform.position;
 
-            if(LeftArm.transform.localScale.z / 2 > Mathf.Abs( PosVector.z))
-            {
-                if(PosVector.z > 0)//アームが奥
-                {
-                    Vector3 TempPos = transform.position;
-                    TempPos.z = other.gameObject.transform.position.z - LeftArm.transform.localScale.z;
-                    transform.position = TempPos;
-                }
-                else
-                {
-                    Vector3 TempPos = transform.position;
-                    TempPos.z = other.gameObject.transform.position.z +LeftArm.transform.localScale.z;
-                    transform.position = TempPos;
-                }
-            }
+    //        if(LeftArm.transform.localScale.z / 2 > Mathf.Abs( PosVector.z))
+    //        {
+    //            if(PosVector.z > 0)//アームが奥
+    //            {
+    //                Vector3 TempPos = transform.position;
+    //                TempPos.z = other.gameObject.transform.position.z - LeftArm.transform.localScale.z;
+    //                transform.position = TempPos;
+    //            }
+    //            else
+    //            {
+    //                Vector3 TempPos = transform.position;
+    //                TempPos.z = other.gameObject.transform.position.z +LeftArm.transform.localScale.z;
+    //                transform.position = TempPos;
+    //            }
+    //        }
 
-        }
+    //    }
 
-    }
+    //}
 }
