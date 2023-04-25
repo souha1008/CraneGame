@@ -8,7 +8,8 @@ public class Knife : MonoBehaviour
     {
         Have,
         Cut,
-        Ground
+        Ground,
+        NotCut
     }
 
     KNIFE_STATE KnifeState;
@@ -17,9 +18,24 @@ public class Knife : MonoBehaviour
     float MIN_ANGLE = 0;
     float MAX_ANGLE = Mathf.PI * 0.5f;
 
+    int Cnt = 0;
+
+    Vector3 BoundVector;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (Random.Range(0, 2) == 0)
+        {
+            BoundVector.x = 0.9f;
+        }
+        else
+        {
+            BoundVector.x = -0.9f;
+        }
+        BoundVector.y = 0.9f;
+        BoundVector.z = -0.9f;
+
         KnifeState = KNIFE_STATE.Have;
     }
 
@@ -51,9 +67,23 @@ public class Knife : MonoBehaviour
                 break;
 
             case KNIFE_STATE.Ground:
-                Vector3 tempPos = transform.position;
-                tempPos.z -= (0.05f);
-                transform.position = tempPos;
+                //Vector3 tempPos = transform.position;
+                //tempPos.z -= (0.05f);
+                //transform.position = tempPos;
+                Cnt++;
+                if(Cnt > 45)
+                {
+                    Destroy(this.gameObject);
+                }
+
+                break;
+
+            case KNIFE_STATE.NotCut:
+                Vector3 temp = transform.position;
+
+                transform.position += BoundVector;
+                transform.Rotate(140, 0, 0);
+
                 break;
 
         }
@@ -80,7 +110,8 @@ public class Knife : MonoBehaviour
             //あたったのがプラットフォームなら
             if (underHit.collider.gameObject.tag == "EscarateUp" ||
                 underHit.collider.gameObject.tag == "EscarateRight" ||
-                underHit.collider.gameObject.tag == "EscarateDown")
+                underHit.collider.gameObject.tag == "EscarateDown"||
+                underHit.collider.gameObject.tag == "EscarateNone" )
             {
                 float distance = underHit.distance; //レイの開始位置と当たったオブジェクトの距離を取得
                                                     //Debug.Log(distance);
@@ -113,6 +144,13 @@ public class Knife : MonoBehaviour
     void UpdateGround()
     {
 
+    }
+
+
+    public void NotCut()
+    {
+        KnifeState = KNIFE_STATE.NotCut;
+        //Destroy(this.gameObject);
     }
 
 

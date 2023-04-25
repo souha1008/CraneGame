@@ -7,6 +7,7 @@ public class Hummer : MonoBehaviour
     public GameObject LockTex;
     //bool isUnLock = false;
 
+
     bool isUp = true;
 
     // Start is called before the first frame update
@@ -76,6 +77,8 @@ public class Hummer : MonoBehaviour
             }
             isUp = false;
         }
+
+
 
         Update();
     }

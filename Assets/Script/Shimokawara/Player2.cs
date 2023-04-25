@@ -115,6 +115,8 @@ public class Player2 : MonoBehaviour
             RTrigger = false;
         }
 
+        MyAttach.CustomFixedUpdate();
+        ChangeAttach(NextAttachType);
 
         moveX *= 0.85f;
         moveZ *= 0.85f;
@@ -180,7 +182,7 @@ public class Player2 : MonoBehaviour
                 break;
 
             case Attach.AttachType.HAMMER:
-                TakasaMove();
+                //TakasaMove();
                 PositionMaxMin();
                 break;
 
@@ -190,8 +192,7 @@ public class Player2 : MonoBehaviour
         }
 
 
-        MyAttach.CustomFixedUpdate();
-        ChangeAttach(NextAttachType);
+        
     }
 
 

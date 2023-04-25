@@ -26,6 +26,8 @@ public class Mikan : CircleFoodsInterFace
     {
         FoodsFixedUpdate();
     }
+
+
     //public enum MIKAN_STATE
     //{
     //    FREE,
