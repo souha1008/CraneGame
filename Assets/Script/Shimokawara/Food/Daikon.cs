@@ -32,7 +32,7 @@ public class Daikon : CircleFoodsInterFace
 
     public override void Cut(Collider other)
     {
-        if(m_CutAction == CutAction.CAN)
+        if(m_CutAction == CutAction.CAN && isGround)
         {
             GameObject Cut1 = (GameObject)Resources.Load("CutDaikon");
             GameObject Cut2 = (GameObject)Resources.Load("CutDaikon");
