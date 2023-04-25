@@ -10,7 +10,7 @@ public class knifeHassya : MonoBehaviour
     public bool OldHaveKnife = true;
 
     public int RespawnCnt = 0;
-    int RESPAWN_TIME = 120;
+    public int RESPAWN_TIME = 120;
 
     
     public GameObject Knife;

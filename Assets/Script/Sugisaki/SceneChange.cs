@@ -9,11 +9,8 @@ public class SceneChange : MonoBehaviour
     [SerializeField] GameObject cameraObject;
 
     [SerializeField] GameObject FadeInObject;
-    [SerializeField] GameObject FadeOutObject;
 
     readonly float waitTime = 1.0f;
-
-    public float stopTime;
 
     public bool isFade;
 
@@ -28,7 +25,8 @@ public class SceneChange : MonoBehaviour
 
         position.z = position.z + 1.0f;
 
-        Instantiate(FadeOutObject, position, cameraObject.transform.rotation);
+        Instantiate(cameraObject);
+        //Instantiate(FadeOutObject, position, cameraObject.transform.rotation);
     }
 
     // Update is called once per frame
@@ -43,14 +41,14 @@ public class SceneChange : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            StartCoroutine(nameof(LoadScene));
+            StartCoroutine(nameof(Load));
 
             time = 0.0f;
         }
     }
 
 
-    IEnumerator LoadScene()
+    IEnumerator Load()
     {
         isFade = true;
 
@@ -62,7 +60,7 @@ public class SceneChange : MonoBehaviour
 
         yield return new WaitForSeconds(waitTime);
 
-        if (time > stopTime)
-            SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName);
     }
+
 }

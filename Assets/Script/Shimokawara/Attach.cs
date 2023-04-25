@@ -10,6 +10,7 @@ public class Attach : MonoBehaviour
         CRANE,
         KNIFE,
         HAMMER,
+        FIRE,
             TYPE_MAX
 
     };
