@@ -66,7 +66,6 @@ public class hummer2 : MonoBehaviour
 
         }
 
-        Debug.Log(tempPosY);
 
         Pusher.transform.position = new Vector3(transform.position.x, tempPosY,transform.position.z);
     }

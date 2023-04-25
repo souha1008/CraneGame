@@ -27,7 +27,7 @@ public class Nat : CircleFoodsInterFace
         FoodsFixedUpdate();
 
         float VectorLength = (transform.position - MotoRyouri.transform.position).magnitude;
-        if(VectorLength < 4)
+        if(VectorLength < 9)
         {
             isClear = false;
         }

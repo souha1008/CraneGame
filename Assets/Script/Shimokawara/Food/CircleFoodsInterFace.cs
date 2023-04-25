@@ -167,7 +167,7 @@ public class CircleFoodsInterFace : MonoBehaviour
                                                        // (rightDistance < BallSize / 2 + 0.1f)  //¦Unity‚¿‚á‚ñ‚Ìg’·‚Ìê‡0.04‚­‚ç‚¢‚Å’n–Ê‚ÉÚG‚µ‚½ó‘Ô
                     {
                         bRightHit = true;
-                        RightArmPosition = LeftHit.collider.transform.position;
+                        RightArmPosition = RightHit.collider.transform.position;
                         //Debug.Log("‚Ý‚¬");
                     }
                 }
