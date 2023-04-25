@@ -66,7 +66,6 @@ public class CameraPos : MonoBehaviour
 
             if (PlayerPos.x < RightSavePos - 4)
             {
-                Debug.Log("通った");
                 Difference = Mathf.Max(Difference + TempCameraMove, -MAX_DIFFERENCE);
             }
         }

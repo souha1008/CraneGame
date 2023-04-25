@@ -16,6 +16,7 @@ public class hummer2 : MonoBehaviour
 
     public PosY m_PosY;
 
+    
 
     static public int CHARGE_TIME = 30;
 
@@ -40,7 +41,21 @@ public class hummer2 : MonoBehaviour
         switch (m_PosY)
         {
             case PosY.UP:
-                tempPosY = 18;
+                int UpCnt = 0;
+                for(int i = 0;i < CHARGE_TIME;i++)
+                {
+                    if(oldPos[i] == PosY.UP)
+                    {
+                        UpCnt++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    
+                }
+                tempPosY = ((float)UpCnt / 30) * 3 + 15;
+                //tempPosY = 18;
                 break;
             case PosY.DEFAULT:
                 tempPosY = 15;
@@ -50,6 +65,8 @@ public class hummer2 : MonoBehaviour
                 break;
 
         }
+
+        Debug.Log(tempPosY);
 
         Pusher.transform.position = new Vector3(transform.position.x, tempPosY,transform.position.z);
     }

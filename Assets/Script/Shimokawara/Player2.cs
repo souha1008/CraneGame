@@ -153,21 +153,22 @@ public class Player2 : MonoBehaviour
                 break;
         }
 
-      
+        if(transform.position.y > 18)
+        {
+            switch (StickMoveType)
+            {
+                case STICK_MOVE_TYPE.ZAHYOU_KIJUN:
+                    ZahyouKijunMove();
+                    break;
 
-        switch (StickMoveType)
-        { 
-        case STICK_MOVE_TYPE.ZAHYOU_KIJUN:
-                ZahyouKijunMove();
-                break;
+                case STICK_MOVE_TYPE.KAMERA_KIJUN:
+                    CameraKijunMove();
+                    break;
 
-        case STICK_MOVE_TYPE.KAMERA_KIJUN:
-                CameraKijunMove();
-                break;
+                default:
+                    break;
 
-        default:
-                break;
-
+            }
         }
 
         switch (MyAttach.type)

@@ -15,6 +15,7 @@ public class Arm : MonoBehaviour
     }
 
     float rAngle;
+    float oldAngle;
     float MIN_ANGLE = 0;
     float MAX_ANGLE = Mathf.PI * 0.5f;
     float rAngleSpeed = 0;
@@ -27,6 +28,7 @@ public class Arm : MonoBehaviour
     public GameObject LockTex;
     bool isUnLock = false;
 
+    public bool HitFood;
 
     public GameObject playerObj;
     Vector3 PosVector;
@@ -62,7 +64,7 @@ public class Arm : MonoBehaviour
         transform.position = playerObj.transform.position + PosVector;
     }
 
-    public void custumFixedUpdate(ArmManager.ARM_STICK_TYPE armStickType)
+    public void custumFixedUpdate(ArmManager.ARM_STICK_TYPE armStickType , ARM_MOVE armMove)
     {
         switch (armStickType)
         {
@@ -70,7 +72,7 @@ public class Arm : MonoBehaviour
                 OokumaKimoi();
                 break;
             case ArmManager.ARM_STICK_TYPE.AKIYAMA_HANGETSU:
-                AkiyamaHangetsu();
+                AkiyamaHangetsu(armMove);
                 break;
             case ArmManager.ARM_STICK_TYPE.BUTTON_PUSH:
                 ButtonPush();
@@ -108,8 +110,10 @@ public class Arm : MonoBehaviour
 
         rAngle = temp * MAX_ANGLE;
     }
-    void AkiyamaHangetsu()
+    void AkiyamaHangetsu(ARM_MOVE armMove)
     {
+        oldAngle = rAngle;
+
         Vector2 LeftStick;
         LeftStick.x = Input.GetAxis("RightX");
         LeftStick.y = Input.GetAxis("RightY");
@@ -127,16 +131,45 @@ public class Arm : MonoBehaviour
         {
             isUnLock = true;
         }
-
+        //’÷‚ßˆ—
         if(isUnLock)
         {
             float temp = ((Input.GetAxis("RightY")) + 1) * 0.5f;
-            rAngle = temp * MAX_ANGLE;
-            if(LockTex)
+            float goAngle = temp * MAX_ANGLE;
+
+            switch (armMove)
+            {
+                case ARM_MOVE.MOVE:
+                    rAngle = goAngle;
+                    break;
+
+                case ARM_MOVE.SLOW:
+                    if (goAngle >= oldAngle)
+                    {
+                        rAngle = (goAngle - oldAngle) * 0.04f + oldAngle;
+                    }
+                    else
+                    {
+                        rAngle = goAngle;
+                    }
+                    
+                    break;
+
+                case ARM_MOVE.STOP:
+
+                    //float TeikouAngle = 
+                    rAngle = Mathf.Min(goAngle, oldAngle);
+                    break;
+
+            }
+
+
+            if (LockTex)
             {
                 LockTex.GetComponent<Renderer>().enabled = false;
             }
         }
+
         else
         {
             rAngle = 0;
@@ -190,4 +223,12 @@ public class Arm : MonoBehaviour
     }
 
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<CircleFoodsInterFace>())
+        {
+            HitFood = true;
+        }
+    }
 }

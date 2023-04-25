@@ -16,6 +16,9 @@ public class ArmManager : MonoBehaviour
     public ARM_STICK_TYPE ArmStickType;
     public Arm LeftArm;
     public Arm RightArm;
+    public CreanHitObj CenterHitObject;
+
+    bool DowbleHitArm = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +36,36 @@ public class ArmManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        LeftArm.custumFixedUpdate(ArmStickType);
-        RightArm.custumFixedUpdate(ArmStickType);
+        //Vector3 RayStart = (LeftArm.transform.position + RightArm.transform.position) / 2;
+        //RayStart.y += 20;
+
+
+        //if (LeftArm.HitFood && RightArm.HitFood)
+        //{
+        //    DowbleHitArm = true;
+        //}
+        //else
+        //{
+        //    DowbleHitArm = false;
+        //}
+
+        //LeftArm.HitFood = false;
+        //RightArm.HitFood = false;
+
+        //if(CenterHitObject.Hit)
+        //{
+        //    DowbleHitArm = true;
+        //}
+        //else
+        //{
+        //    DowbleHitArm = false;
+        //}
+        //CenterHitObject.Hit = false;
+
+        LeftArm.custumFixedUpdate(ArmStickType , CenterHitObject.Move);
+        RightArm.custumFixedUpdate(ArmStickType, CenterHitObject.Move);
+
+        CenterHitObject.Move = ARM_MOVE.MOVE;
+
     }
 }

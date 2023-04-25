@@ -8,7 +8,7 @@ using UnityEditor;
 [CustomEditor(typeof(CircleFoodsInterFace))]
 #endif
 
-public class Nat : CircleFoodsInterFace
+public class Kurumi : CircleFoodsInterFace
 {
 
     void Start()
@@ -27,11 +27,18 @@ public class Nat : CircleFoodsInterFace
         FoodsFixedUpdate();
     }
 
-    //public override void Hummer(Collider other)
-    //{
+    public override void Hummer(Collider other)
+    {
+        if(!isClear)
+        {
+            isClear = true;
+
+            m_HummerAction = HummerAction.STAY;
+        }
+        
 
 
-    //}
+    }
+
+
 }
-
-

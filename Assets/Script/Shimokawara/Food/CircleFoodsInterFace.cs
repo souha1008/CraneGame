@@ -48,23 +48,24 @@ public class CircleFoodsInterFace : MonoBehaviour
 
 
     //料理フラグ
-    public ChachAction     m_ChachAction;
-    public CutAction m_CutAction;
-    public HummerAction m_HummerAction;
-    public FireAction m_FireAction;
+    public ChachAction      m_ChachAction;
+    public CutAction        m_CutAction;
+    public HummerAction     m_HummerAction;
+    public FireAction       m_FireAction;
 
-   
+    public bool isClear = false;
 
-
+    Vector3 LeftArmPosition;
+    Vector3 RightArmPosition;
 
     float GLAVITY = 0.006f;
-    Vector3 Vel = Vector3.zero;
+    public Vector3 Vel = Vector3.zero;
 
     public bool isGround = false;
-    FOODS_ARM_STATE FoodsArmState;
+    public FOODS_ARM_STATE FoodsArmState;
 
-    public GameObject LeftArm;
-    public GameObject RightArm;
+    //public GameObject LeftArm;
+    //public GameObject RightArm;
 
     float BallSize;
     RaycastHit LeftHit; //当たった結果を代入する変数
@@ -90,20 +91,42 @@ public class CircleFoodsInterFace : MonoBehaviour
         GlabColor = this.GetComponent<Renderer>().material.color;
         GlabColor.b += 0.6f;
 
-        LeftArm = GameObject.Find("ArmBord1");
-        RightArm = GameObject.Find("ArmBord2");
+        //LeftArm = GameObject.Find("ArmBord1");
+        //RightArm = GameObject.Find("ArmBord2");
     }
 
     // Update is called once per frame
     public  void FoodsUpdate()
     {
+        if (isClear)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.black;
+        }
+        else
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.white;
+
+        }
+
+        if(FoodsArmState == FOODS_ARM_STATE.GLAB)
+        {
+            Vector3 temp = (RightHit.point + LeftHit.point) / 2;
+            temp.y = LeftArmPosition.y;
+            temp.z = LeftArmPosition.z;
+
+            this.transform.position = temp;
+        }
+
         //Debug.Log(transform.localScale.x);
     }
 
     public  void FoodsFixedUpdate()
     {
+        Vel.x *= 0.95f;
+
         if(m_ChachAction != ChachAction.CANNOT)
         {
+            
             //キャラクターから真左方向へのレイを作成する
             Ray LeftRay = new Ray(this.transform.position, new Vector3(-1, 0, 0.0f).normalized);
 
@@ -117,16 +140,17 @@ public class CircleFoodsInterFace : MonoBehaviour
 
             if (Physics.Raycast(LeftRay, out LeftHit, 10.0f))
             {
-
+                //Debug.Log(LeftArm);
                 //あたったのが
-                if (LeftHit.collider.gameObject == LeftArm)
+                if (LeftHit.collider.gameObject.tag == "LeftArm")
                 {
-
                     leftDistance = LeftHit.distance; //レイの開始位置と当たったオブジェクトの距離を取得
                                                      //Debug.Log(distance);
                                                      //if (leftDistance < BallSize / 2 + 0.1f)  //※Unityちゃんの身長の場合0.04くらいで地面に接触した状態
                     {
                         bLeftHit = true;
+                        LeftArmPosition = LeftHit.collider.transform.position;
+
                         //Debug.Log("ひだり");
                     }
                 }
@@ -135,7 +159,7 @@ public class CircleFoodsInterFace : MonoBehaviour
             {
 
                 //あたったのが
-                if (RightHit.collider.gameObject == RightArm)
+                if (RightHit.collider.gameObject.tag == "RightArm")
                 {
 
                     rightDistance = RightHit.distance; //レイの開始位置と当たったオブジェクトの距離を取得
@@ -143,6 +167,7 @@ public class CircleFoodsInterFace : MonoBehaviour
                                                        // (rightDistance < BallSize / 2 + 0.1f)  //※Unityちゃんの身長の場合0.04くらいで地面に接触した状態
                     {
                         bRightHit = true;
+                        RightArmPosition = LeftHit.collider.transform.position;
                         //Debug.Log("みぎ");
                     }
                 }
@@ -197,8 +222,8 @@ public class CircleFoodsInterFace : MonoBehaviour
         //Debug.Log("ぐらっぶ");
 
         Vector3 temp = (RightHit.point + LeftHit.point) / 2;
-        temp.y = LeftArm.transform.position.y;
-        temp.z = LeftArm.transform.position.z;
+        temp.y = LeftArmPosition.y;
+        temp.z = LeftArmPosition.z;
 
         this.transform.position = temp;
 
@@ -206,7 +231,8 @@ public class CircleFoodsInterFace : MonoBehaviour
         {
             if (Vector3.Distance(RightHit.point, LeftHit.point) < 0.5f * BallSize)
             {
-                GetComponent<Renderer>().enabled = false;
+               Destroy(gameObject);
+                    //GetComponent<Renderer>().enabled = false;
             }
 
             //小さくする
@@ -282,20 +308,20 @@ public class CircleFoodsInterFace : MonoBehaviour
 
     public virtual void Fire(Collider other)
     {
-        Debug.Log("炎");
+        //Debug.Log("炎");
     }
     public virtual void Hummer(Collider other)
     {
-        Debug.Log("ハンマー");
+        //Debug.Log("ハンマー");
 
     }
 
     public virtual void Cut(Collider other)
     {
-        Debug.Log("ｶｯﾄ");
+        //Debug.Log("ｶｯﾄ");
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter (Collider other)
     {
         if(other.gameObject.tag == "AttachHummer")
         {
@@ -310,13 +336,13 @@ public class CircleFoodsInterFace : MonoBehaviour
                 transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * 0.01f, transform.localScale.z);
 
                 //変更
-
-                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+                //移動も回転もしないようにする
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 m_HummerAction = HummerAction.STAY;
                 m_CutAction = CutAction.CANNOT;
                 m_FireAction = FireAction.STAY;
                 m_ChachAction = ChachAction.CANNOT;
-                Debug.Log("ハンマー2");
+                //Debug.Log("ハンマー2");
             }
         }
 
@@ -325,7 +351,11 @@ public class CircleFoodsInterFace : MonoBehaviour
             Cut(other);
             if (m_CutAction == CutAction.CANNOT)
             {
-                other.gameObject.GetComponent<Knife>().NotCut();
+                //if(!gameObject.GetComponent<CutDaikon>())
+                {
+                    other.gameObject.GetComponent<Knife>().NotCut();
+                }
+                
             }
 
         }
