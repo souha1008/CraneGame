@@ -229,7 +229,7 @@ public class CircleFoodsInterFace : MonoBehaviour
 
         if(m_ChachAction == ChachAction.SOFT)
         {
-            if (Vector3.Distance(RightHit.point, LeftHit.point) < 0.5f * BallSize)
+            if (Vector3.Distance(RightHit.point, LeftHit.point) < 0.2f * BallSize)
             {
                Destroy(gameObject);
                     //GetComponent<Renderer>().enabled = false;

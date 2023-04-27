@@ -8,7 +8,7 @@ using UnityEditor;
 [CustomEditor(typeof(CircleFoodsInterFace))]
 #endif
 
-public class Hamaguri : CircleFoodsInterFace
+public class Candle : CircleFoodsInterFace
 {
     public int FireCnt = 0;
     bool FireFlag;
@@ -26,13 +26,13 @@ public class Hamaguri : CircleFoodsInterFace
 
     void FixedUpdate()
     {
-        if(m_FireAction == FireAction.ACTION)
+        if (m_FireAction == FireAction.ACTION)
         {
-            if(FireFlag)
+            if (FireFlag)
             {
                 FireCnt++;
 
-                if(FireCnt > 40)
+                if (FireCnt > 2)
                 {
                     m_HummerAction = HummerAction.STAY;
                     isClear = true;
