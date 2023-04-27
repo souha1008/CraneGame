@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
 {
-    [SerializeField] string sceneName = "Test1";
-    [SerializeField] GameObject cameraObject;
+    [SerializeField] string sceneName;
 
     [SerializeField] GameObject FadeInObject;
 
@@ -19,14 +18,7 @@ public class SceneChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isFade = true;
 
-        Vector3 position = cameraObject.transform.position;
-
-        position.z = position.z + 1.0f;
-
-        Instantiate(cameraObject);
-        //Instantiate(FadeOutObject, position, cameraObject.transform.rotation);
     }
 
     // Update is called once per frame
@@ -34,12 +26,12 @@ public class SceneChange : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        if(time>waitTime)
+        if (time > waitTime) 
         {
             isFade = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && !isFade)
         {
             StartCoroutine(nameof(Load));
 
@@ -52,15 +44,16 @@ public class SceneChange : MonoBehaviour
     {
         isFade = true;
 
+        GameObject cameraObject = GameObject.Find("Main Camera");
+
         Vector3 position = cameraObject.transform.position;
+        Quaternion rotate = cameraObject.transform.rotation;
 
         position.z = position.z + 1.0f;
-
-        Instantiate(FadeInObject, position, cameraObject.transform.rotation);
+        Instantiate(FadeInObject, position, rotate);
 
         yield return new WaitForSeconds(waitTime);
 
         SceneManager.LoadScene(sceneName);
     }
-
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Transition : MonoBehaviour
 {
-    [SerializeField] GameObject cameraObject;
-
     private Animator animator;
+
+    public GameObject cameraObject;
 
     readonly float waitTime = 1.9f;
 
@@ -18,18 +18,27 @@ public class Transition : MonoBehaviour
         animator = GetComponent<Animator>();
 
         DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(cameraObject);
         StartCoroutine(nameof(Trans));
     }
     // Update is called once per frame
     void Update()
     {
+        cameraObject = GameObject.Find("Main Camera");
+        
+        Vector3 position = cameraObject.transform.position;
+        Quaternion rotate = cameraObject.transform.rotation;
+        Vector3 scale = cameraObject.transform.localScale;
 
+        position.z = position.z + 1.0f;
+
+        gameObject.transform.position = position;
+        gameObject.transform.rotation = rotate;
+        gameObject.transform.localScale = scale;
     }
 
     IEnumerator Trans()
     {
-        yield return new WaitForSeconds(waitTime / 2 +0.02f);
+        yield return new WaitForSeconds(waitTime / 2 + 0.03f);
 
         StartCoroutine((nameof(WaitAnim)));
 
@@ -45,5 +54,11 @@ public class Transition : MonoBehaviour
         yield return new WaitForSeconds(stopTime);
 
         animator.SetFloat("speed", 1.0f);
+    }
+
+    void TransAnim()
+    {
+        Debug.Log("trans");
+        StartCoroutine((nameof(WaitAnim)));
     }
 }
