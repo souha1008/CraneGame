@@ -39,6 +39,10 @@ public class SceneChange : MonoBehaviour
         }
     }
 
+    public void LoadScene(string scene)
+    {
+        StartCoroutine(nameof(scene));
+    }
 
     IEnumerator Load()
     {
