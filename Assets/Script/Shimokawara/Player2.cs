@@ -64,13 +64,18 @@ public class Player2 : MonoBehaviour
 
     public GameObject[] PrefabArray;
 
+    bool isChange = false;
+    int ChangeCnt = 0;
+
     //ジャンプキー
     //public KeyCode jumpKey = KeyCode.Space;
 
 
     void Start()
     {
+        isChange = false;
         instance = this;
+        ChangeCnt = 0;
 
         //カメラオブジェクトを取得
         cameraObj = GameObject.Find("Main Camera");
@@ -105,18 +110,44 @@ public class Player2 : MonoBehaviour
 
     void FixedUpdate() //FixedUpdateはUpdate(毎フレーム)と違って0.02秒毎に呼ばれる仕組みになっている※もちろん感覚は変更可
     {
-        if (RTrigger)
+        if(isChange)
         {
-            if (transform.position.y == DefaultPos.y)
+            if(ChangeCnt >= 30)
             {
-                NextAttach();
+                for (int i = 0; i < PrefabArray.Length; i++)
+                {
+                    if (i == (int)NextAttachType)
+                    {
+                        PrefabArray[i].SetActive(true);
+
+                    }
+                    else
+                    {
+                        //PrefabArray[i].SetActive(false);
+                    }
+                }
+                isChange = false;
             }
-            
-            RTrigger = false;
+            Debug.Log(isChange);
+            ChangeCnt++;
         }
 
-        MyAttach.CustomFixedUpdate();
-        ChangeAttach(NextAttachType);
+
+        if (!isChange)
+        {
+            if (RTrigger)
+            {
+                if (transform.position.y == DefaultPos.y)
+                {
+                    NextAttach();
+                }
+
+                RTrigger = false;
+            }
+
+            MyAttach.CustomFixedUpdate();
+            ChangeAttach(NextAttachType);
+        }
 
         moveX *= 0.85f;
         moveZ *= 0.85f;
@@ -153,7 +184,7 @@ public class Player2 : MonoBehaviour
                 break;
         }
 
-        if(transform.position.y > 18)
+        if (transform.position.y > 18)
         {
             switch (StickMoveType)
             {
@@ -171,29 +202,33 @@ public class Player2 : MonoBehaviour
             }
         }
 
-        switch (MyAttach.type)
+        if (!isChange)
         {
-            case Attach.AttachType.CRANE:
-                TakasaMove();
-                PositionMaxMin();
-                break;
+            switch (MyAttach.type)
+            {
+                case Attach.AttachType.CRANE:
+                    TakasaMove();
+                    PositionMaxMin();
+                    break;
 
-            case Attach.AttachType.KNIFE:
-                PositionMaxMin();
-                break;
+                case Attach.AttachType.KNIFE:
+                    PositionMaxMin();
+                    break;
 
-            case Attach.AttachType.HAMMER:
-                //TakasaMove();
-                PositionMaxMin();
-                break;
+                case Attach.AttachType.HAMMER:
+                    //TakasaMove();
+                    PositionMaxMin();
+                    break;
 
-            case Attach.AttachType.FIRE:
-                PositionMaxMin();
-                break;
+                case Attach.AttachType.FIRE:
+                    PositionMaxMin();
+                    break;
+            }
         }
-
-
-        
+        else
+        {
+            PositionMaxMin();
+        }
     }
 
 
@@ -359,7 +394,7 @@ public class Player2 : MonoBehaviour
             {
                 if(i == (int) Type)
                 {
-                    PrefabArray[i].SetActive(true);
+                    //PrefabArray[i].SetActive(true);
 
                 }
                 else
@@ -386,7 +421,8 @@ public class Player2 : MonoBehaviour
             //        break;
             //}
             MyAttach.type = Type;
-
+            isChange = true;
+            ChangeCnt = 0;
         }
     }
 
