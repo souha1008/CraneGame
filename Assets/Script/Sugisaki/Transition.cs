@@ -6,7 +6,7 @@ public class Transition : MonoBehaviour
 {
     private Animator animator;
 
-    public GameObject cameraObject;
+    private GameObject cameraObject;
 
     readonly float waitTime = 1.9f;
 
