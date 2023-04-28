@@ -6,27 +6,29 @@ using UnityEngine.UI;
 
 public class ResultBace : ResultUI
 {
-    private Image m_Image;
+    private Image image;
 
-    private Color m_ImageColor;
+    private Color imageColor;
 
     [SerializeField, Header("アルファ変更速度")]
-    private float m_AlphaVolum = 0.005f;
+    private float alphaVolum = 0.005f;
+    [SerializeField, Range(0.1f, 1.0f)]
+    private float alphaMax = 1;
 
-    private float m_Alpha = 0;
+    private float alpha = 0;
 
     void Start()
     {
-        m_Image      = gameObject.GetComponent<Image>();
-        m_ImageColor = m_Image.color;
+        image      = gameObject.GetComponent<Image>();
+        imageColor = image.color;
     }
 
     void Update()
     {
-        m_Alpha += m_AlphaVolum;
-        m_Image.color = new Color(m_ImageColor.r, m_ImageColor.g, m_ImageColor.b, m_Alpha);
+        alpha += alphaVolum;
+        image.color = new Color(imageColor.r, imageColor.g, imageColor.b, alpha);
 
-        if (m_Alpha >= 1)
+        if (alpha >= alphaMax)
         {
             GameObject.Find("ResultManager").GetComponent<ResultManager>().SetState(ResultStateEnum.STATE.SCORE);
             Destroy(this);
