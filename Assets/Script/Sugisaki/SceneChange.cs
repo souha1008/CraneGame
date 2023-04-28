@@ -33,7 +33,7 @@ public class SceneChange : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return) && !isFade)
         {
-            StartCoroutine(nameof(Load));
+            LoadScene(sceneName);
 
             time = 0.0f;
         }
