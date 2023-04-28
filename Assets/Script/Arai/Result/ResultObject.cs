@@ -4,5 +4,4 @@ using UnityEngine;
 
 public class ResultObject : MonoBehaviour
 {
-    protected bool useflag = true;
 }

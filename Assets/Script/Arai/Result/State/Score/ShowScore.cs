@@ -35,10 +35,8 @@ public class ShowScore : ResultUI
     void Update()
     {
         // スキップ
-        if (useflag && Input.GetButtonDown("Submit"))
+        if (Input.GetButtonDown("Submit"))
         {
-            useflag = false;
-
             CancelInvoke("Show");
 
             for (var i = m_Index; i < Co.Const.FAZE_NUM; ++i)
@@ -51,6 +49,7 @@ public class ShowScore : ResultUI
                 obj.transform.position = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * i);
             }
             GameObject.Find("ResultManager").GetComponent<ResultManager>().SetState(ResultStateEnum.STATE.METER);
+            Destroy(this);
         }
     }
 

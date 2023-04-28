@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Datas : MonoBehaviour
 {
+    [SerializeField]
     private float[] Score = new float[Co.Const.FAZE_NUM];
 
     /// <summary>
@@ -24,5 +25,21 @@ public class Datas : MonoBehaviour
     public float GetScore(int _index)
     {
         return Score[_index];
+    }
+
+    /// <summary>
+    /// 合計スコア取得
+    /// </summary>
+    /// <returns>スコア値</returns>
+    public float GetAddScore()
+    {
+        float score = 0;
+
+        foreach(var value in Score)
+        {
+            score += value;
+        }
+
+        return score;
     }
 }

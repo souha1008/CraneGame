@@ -23,15 +23,13 @@ public class ResultBace : ResultUI
 
     void Update()
     {
-        if (!useflag) return;
-
         m_Alpha += m_AlphaVolum;
         m_Image.color = new Color(m_ImageColor.r, m_ImageColor.g, m_ImageColor.b, m_Alpha);
 
         if (m_Alpha >= 1)
         {
             GameObject.Find("ResultManager").GetComponent<ResultManager>().SetState(ResultStateEnum.STATE.SCORE);
-            useflag = false;
+            Destroy(this);
         }
     }
 }

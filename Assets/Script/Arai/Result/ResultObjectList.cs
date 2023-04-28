@@ -29,7 +29,7 @@ public class ResultObjectList : MonoBehaviour
         }
     }
 
-    [SerializeField]
+    [SerializeField, Header("オブジェクトリスト")]
     private List<Object> m_Objects;
 
     /// <summary>
@@ -58,6 +58,11 @@ public class ResultObjectList : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// UIオブジェクト生成
+    /// </summary>
+    /// <param name="_obj">オブジェクトリスト</param>
+    /// <param name="_canvas">キャンバス</param>
     private void CreateUI(Object _obj, Canvas _canvas)
     {
         foreach(var ui in _obj.m_Ui)
@@ -67,6 +72,10 @@ public class ResultObjectList : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 3Dオブジェクト生成
+    /// </summary>
+    /// <param name="_obj">オブジェクトリスト</param>
     private void CreateObject(Object _obj)
     {
         foreach(var obj in _obj.m_Objects)
