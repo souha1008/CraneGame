@@ -19,6 +19,7 @@ public class ScoreMeter : ResultUI
 
     [SerializeField]
     private float waitTime = 1;
+    private float time = 0;
 
     void Start()
     {
@@ -33,10 +34,24 @@ public class ScoreMeter : ResultUI
     void Update()
     {
         // 終了確認
-        if (Input.GetButtonDown("Submit") || volum >= volumMax)
+        if (Input.GetButtonDown("Submit"))
         {
             meter.value = volumMax;
-            Invoke("NextState", waitTime);
+            Finish();
+            return;
+        }
+        
+        if (volum >= volumMax)
+        {
+            if (time <= 0) meter.value = volumMax;
+            else
+            {
+                if (time >= waitTime)
+                {
+                    Finish();
+                }
+            }
+            time += Time.deltaTime;
         }
         else
         {
@@ -45,10 +60,7 @@ public class ScoreMeter : ResultUI
         }
     }
 
-    /// <summary>
-    /// 次状態へ移行
-    /// </summary>
-    private void NextState()
+    private void Finish()
     {
         GameObject.Find("ResultManager").GetComponent<ResultManager>().SetState(ResultStateEnum.STATE.RESULT);
         Destroy(this);

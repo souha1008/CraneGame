@@ -14,10 +14,10 @@ public class Arm : MonoBehaviour
         Right
     }
 
-    float rAngle;
+    public float rAngle;
     float oldAngle;
-    float MIN_ANGLE = 0;
-    float MAX_ANGLE = Mathf.PI * 0.5f;
+    public float MIN_ANGLE = 0;
+    public float MAX_ANGLE = Mathf.PI * 0.5f;
     float rAngleSpeed = 0;
     float MAX_ANGLE_SPEED = Mathf.PI * 0.5f / 15;
     float ADD_ANGLE_SPEED = (Mathf.PI * 0.5f / 15) / 4;

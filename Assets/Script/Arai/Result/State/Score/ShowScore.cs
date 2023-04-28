@@ -23,7 +23,7 @@ public class ShowScore : ResultUI
 
     private int m_Index = 0;
 
-    private Datas m_Data;
+    private ScoreData m_Data;
 
     void Start()
     {
@@ -46,10 +46,9 @@ public class ShowScore : ResultUI
 
                 var offpos = this.transform.parent.transform.position;
 
-                obj.transform.position = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * i);
+                obj.rectTransform.anchoredPosition = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * i);
             }
-            GameObject.Find("ResultManager").GetComponent<ResultManager>().SetState(ResultStateEnum.STATE.METER);
-            Destroy(this);
+            Finish();
         }
     }
 
@@ -60,7 +59,7 @@ public class ShowScore : ResultUI
     {
         if (m_Index == Co.Const.FAZE_NUM)
         {
-            GameObject.Find("ResultManager").GetComponent<ResultManager>().SetState(ResultStateEnum.STATE.METER);
+            Finish();
             return;
         }
 
@@ -71,9 +70,15 @@ public class ShowScore : ResultUI
 
         var offpos = this.transform.parent.transform.position;
 
-        obj.transform.position = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * m_Index);
+        obj.rectTransform.anchoredPosition = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * m_Index);
 
         ++m_Index;
         Invoke("Show", interval);
+    }
+
+    private void Finish()
+    {
+        GameObject.Find("ResultManager").GetComponent<ResultManager>().SetState(ResultStateEnum.STATE.METER);
+        Destroy(this);
     }
 }
