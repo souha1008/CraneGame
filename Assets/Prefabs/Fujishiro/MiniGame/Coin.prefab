@@ -95,7 +95,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 30
+  m_CookingOptions: -1
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &8751776586759878097
 Rigidbody:
@@ -106,10 +106,10 @@ Rigidbody:
   m_GameObject: {fileID: 1642625232258070804}
   serializedVersion: 2
   m_Mass: 3
-  m_Drag: 0.2
+  m_Drag: 2
   m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
