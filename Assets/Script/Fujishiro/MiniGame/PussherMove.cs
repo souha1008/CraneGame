@@ -7,6 +7,7 @@ public class PussherMove : MonoBehaviour
     [SerializeField] Rigidbody Pussher_rb;
     [SerializeField] bool isPush = true;
     [SerializeField] float movement;
+    [SerializeField] Vector3 move_trans;
 
     [SerializeField] float max_push;
     [SerializeField] float max_pull;
@@ -22,15 +23,17 @@ public class PussherMove : MonoBehaviour
     {
         if (isPush)
         {
-            var pos = this.transform.position;
-            pos.z -= movement;
-            transform.position = pos;
+            //var pos = this.transform.position;
+            //pos.z -= movement;
+            //transform.position = pos;
+            transform.Translate(-move_trans);
         }
         if (!isPush)
         {
-            var pos = this.transform.position;
-            pos.z += movement;
-            transform.position = pos;
+            //var pos = this.transform.position;
+            //pos.z += movement;
+            //transform.position = pos;
+            transform.Translate(move_trans);
         }
         //if (isPush)
         //{
