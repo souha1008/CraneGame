@@ -123,6 +123,7 @@ public class CircleFoodsInterFace : MonoBehaviour
     public  void FoodsFixedUpdate()
     {
         Vel.x *= 0.95f;
+        Vel.z *= 0.95f;
 
         if(m_ChachAction != ChachAction.CANNOT)
         {
@@ -329,11 +330,11 @@ public class CircleFoodsInterFace : MonoBehaviour
             if (m_HummerAction == HummerAction.SCALE)
             {
                 Vector3 temp = transform.localScale;
-                Debug.Log("transform.localScale");
-                float Moving = temp.y * 0.45f;
+                //Debug.Log("transform.localScale");
+                float Moving = temp.y * 0.40f;
 
                 transform.position = new Vector3(transform.position.x, transform.position.y - Moving, transform.position.z);
-                transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * 0.01f, transform.localScale.z);
+                transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * 0.1f, transform.localScale.z);
 
                 //ïœçX
                 //à⁄ìÆÇ‡âÒì]Ç‡ÇµÇ»Ç¢ÇÊÇ§Ç…Ç∑ÇÈ

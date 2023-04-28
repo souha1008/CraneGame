@@ -8,7 +8,7 @@ using UnityEditor;
 [CustomEditor(typeof(CircleFoodsInterFace))]
 #endif
 
-public class Kurumi : CircleFoodsInterFace
+public class Pienuts : CircleFoodsInterFace
 {
     int Cnt = 0;
 
@@ -28,21 +28,24 @@ public class Kurumi : CircleFoodsInterFace
     {
         FoodsFixedUpdate();
 
-        if(Cnt >= 1 && m_HummerAction == HummerAction.ACTION)
+        if (Cnt >= 1 && m_HummerAction == HummerAction.ACTION)
         {
-            GameObject Kurumi = (GameObject)Resources.Load("KurumiNakami");
+            GameObject Cut1 = (GameObject)Resources.Load("PienutsiNakami 1");
+            GameObject Cut2 = (GameObject)Resources.Load("PienutsiNakami 1");
 
             Vector3 tempPos1 = transform.position;
+            Vector3 tempPos2 = transform.position;
+            tempPos1.x -= 2;
+            tempPos2.x += 2;
             // Cubeプレハブを元に、インスタンスを生成、
-            Instantiate(Kurumi, tempPos1, transform.rotation);
-            tempPos1.y += 2;
+            Instantiate(Cut1, tempPos1, transform.rotation);
+            Cut1.GetComponent<PienutsNakami>().Vel = new Vector3(0.3f, 0.1f, 0);
+            Instantiate(Cut2, tempPos2, transform.rotation);
+            Cut2.GetComponent<PienutsNakami>().Vel = new Vector3(-0.3f, 0.1f, 0);
 
-            Kurumi.GetComponent<KurumiNakami>().Vel = new Vector3(0.3f, 0.1f, 0);
-            //Debug.Log(Nakami.GetComponent<KurumiNakami>().Vel);
-            Destroy(Kurumi);
+            Destroy(gameObject);
 
             m_HummerAction = HummerAction.STAY;
-            Destroy(gameObject);
         }
     }
 
