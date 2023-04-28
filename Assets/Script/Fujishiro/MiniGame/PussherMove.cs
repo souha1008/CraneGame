@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PussherMove : MonoBehaviour
 {
+    [SerializeField] Rigidbody Pussher_rb;
     [SerializeField] bool isPush = true;
     [SerializeField] float movement;
 
@@ -19,7 +20,7 @@ public class PussherMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isPush)
+        if (isPush)
         {
             var pos = this.transform.position;
             pos.z -= movement;
@@ -31,19 +32,17 @@ public class PussherMove : MonoBehaviour
             pos.z += movement;
             transform.position = pos;
         }
+        //if (isPush)
+        //{
+        //    Pussher_rb.AddForce(new Vector3(0, 0, movement));
+        //}
+        //if (!isPush)
+        //{
+        //    Pussher_rb.AddForce(new Vector3(0, 0, -movement));
+        //}
         if (transform.position.z <= max_push) isPush = false;
         if (transform.position.z >= max_pull) isPush = true;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Coin")
-        other.gameObject.transform.parent = this.transform.transform;
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.tag == "Coin")
-        other.gameObject.transform.parent = null;
-    }
 }
