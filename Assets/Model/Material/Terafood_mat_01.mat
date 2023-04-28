@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6166399450691499314
+--- !u!114 &-1538304109955592475
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,63 +20,19 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Beltconvaytorcreangame_mat_03
-  m_Shader: {fileID: -6465566751694194690, guid: b2b1e8c228b8c6b46ad75df54484c552,
-    type: 3}
+  m_Name: Terafood_mat_01
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2DArray_f6f771d4125a48739d3c6892e6da6230:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_237c97978f484aca8ace84d2426adc8f:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_558757fa82ca433eaa49d9dfbe9ecb56:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_76a5bc0bca4c4d52afbffe13b8b094e3:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_a6e5bf0a1dd0481c9cfedcc132b24a70:
-        m_Texture: {fileID: 2800000, guid: ef0842fddfbbba740976cdb991cdba61, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_a6e5bf0a1dd0481c9cfedcc132b24a70_1:
-        m_Texture: {fileID: 2800000, guid: ce1b129d39644894db1f1c63b763a198, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_a6e5bf0a1dd0481c9cfedcc132b24a70_2:
-        m_Texture: {fileID: 2800000, guid: 06d6d4667b5152a4c80d313a1fe04fbf, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_a6e5bf0a1dd0481c9cfedcc132b24a70_3:
-        m_Texture: {fileID: 2800000, guid: d89e1f9318e3a01438d82a223e67623a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_b74c160b10d849b184003bbba7d36acf:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_c061e3e395734284a75ec180b56ca2ed:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_f56d050787fb40608a3a0aefb3c185e0:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -117,10 +73,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_0da239dbc9b64a3eae13bff4d29b1378_Texture_1:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -138,9 +90,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_1: 0
-    - Vector1_14a1a6e88f554f22aafb0bd802571e31: -0.5
-    - Vector1_6823c70a8bec4c57bbd6d6b5bfcd7c5b: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
