@@ -8,6 +8,8 @@ public class Select_Start : Select_UI
     protected override void PushAction()
     {
         // ステージセレクトへ
-        SceneManager.LoadScene("TitleTest");
+        GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("SampleScene");
+        
+        //SceneManager.LoadScene("TitleTest");
     }
 }
