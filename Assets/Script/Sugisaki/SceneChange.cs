@@ -41,7 +41,8 @@ public class SceneChange : MonoBehaviour
 
     public void LoadScene(string scene)
     {
-        StartCoroutine(nameof(scene));
+        sceneName = scene;
+        StartCoroutine(nameof(Load));
     }
 
     IEnumerator Load()
