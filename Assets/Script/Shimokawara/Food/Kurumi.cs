@@ -28,7 +28,7 @@ public class Kurumi : CircleFoodsInterFace
     {
         FoodsFixedUpdate();
 
-        if(Cnt >= 1 && m_HummerAction == HummerAction.ACTION)
+        if(Cnt >= 3 && m_HummerAction == HummerAction.ACTION)
         {
             GameObject Kurumi = (GameObject)Resources.Load("KurumiNakami");
 
@@ -39,7 +39,7 @@ public class Kurumi : CircleFoodsInterFace
 
             Kurumi.GetComponent<KurumiNakami>().Vel = new Vector3(0.3f, 0.1f, 0);
             //Debug.Log(Nakami.GetComponent<KurumiNakami>().Vel);
-            Destroy(Kurumi);
+            //Destroy(Kurumi);
 
             m_HummerAction = HummerAction.STAY;
             Destroy(gameObject);
