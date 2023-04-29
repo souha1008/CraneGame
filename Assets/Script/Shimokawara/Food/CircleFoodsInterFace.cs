@@ -100,11 +100,13 @@ public class CircleFoodsInterFace : MonoBehaviour
     {
         if (isClear)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.black;
+            //çï
+            //gameObject.GetComponent<Renderer>().material.color = Color.black;
         }
         else
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.white;
+            //îí
+            //gameObject.GetComponent<Renderer>().material.color = Color.white;
 
         }
 

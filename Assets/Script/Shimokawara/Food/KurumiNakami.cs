@@ -22,7 +22,7 @@ public class KurumiNakami : CircleFoodsInterFace
 
         FoodsStart();
 
-        Vel = new Vector3(0, 0.14f, -0.15f);
+        Vel = new Vector3(0.15f, 0.14f, 0);
     }
 
     // Update is called once per frame

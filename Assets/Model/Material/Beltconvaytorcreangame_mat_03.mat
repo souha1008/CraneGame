@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 4
+  version: 5
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -23,7 +23,8 @@ Material:
   m_Name: Beltconvaytorcreangame_mat_03
   m_Shader: {fileID: -6465566751694194690, guid: b2b1e8c228b8c6b46ad75df54484c552,
     type: 3}
-  m_ShaderKeywords: 
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -62,7 +63,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_a6e5bf0a1dd0481c9cfedcc132b24a70_3:
-        m_Texture: {fileID: 2800000, guid: 0ce441239e98eb840a8ff0f10cc71624, type: 3}
+        m_Texture: {fileID: 2800000, guid: e68d18afbba3e2c43bdd89611ea63e1d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_b74c160b10d849b184003bbba7d36acf:
@@ -137,10 +138,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
+    - Boolean_5bf8fc81f72040dbb7428b0045bbb9d0: 1
     - Vector1_1: 0
     - Vector1_14a1a6e88f554f22aafb0bd802571e31: -0.5
     - Vector1_6823c70a8bec4c57bbd6d6b5bfcd7c5b: 0
+    - Vector1_7cd7a608e2da43148c533d0e72d6e942: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -158,6 +162,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
