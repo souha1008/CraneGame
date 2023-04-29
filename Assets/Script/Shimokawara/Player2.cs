@@ -64,8 +64,8 @@ public class Player2 : MonoBehaviour
 
     public GameObject[] PrefabArray;
 
-    bool isChange = false;
-    int ChangeCnt = 0;
+    public bool isChange = false;
+    public int ChangeCnt = 0;
 
     //ジャンプキー
     //public KeyCode jumpKey = KeyCode.Space;
@@ -112,7 +112,7 @@ public class Player2 : MonoBehaviour
     {
         if(isChange)
         {
-            if(ChangeCnt >= 30)
+            if(ChangeCnt >= 6)
             {
                 for (int i = 0; i < PrefabArray.Length; i++)
                 {
@@ -420,6 +420,9 @@ public class Player2 : MonoBehaviour
             //        MyAttach.CustomInit();
             //        break;
             //}
+
+            RotateManager.instance.Rotate(MyAttach.type, Type);
+
             MyAttach.type = Type;
             isChange = true;
             ChangeCnt = 0;
