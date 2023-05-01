@@ -128,7 +128,7 @@ public class Player2 : MonoBehaviour
                 }
                 isChange = false;
             }
-            Debug.Log(isChange);
+            //Debug.Log(isChange);
             ChangeCnt++;
         }
 
