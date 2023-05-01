@@ -58,6 +58,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-#UserEditorSettingsはローカル情報なので無視
-UserSettings/
-
+# UserEditorSettingsはローカル情報なので無視
+git rm --cached UserSettings/
