@@ -10,11 +10,14 @@ public class CookMoveManager : MonoBehaviour
 
     public int FPS_Time = 0;
 
-    static int SYATTA_TIME = 30;
-
+    static int SYATTA_TIME = 20;
+    static int STOP_TIME = 14;
     public GameObject Syatta;
     float SyattaMax;
     float SyattaMin = 0.873f;
+
+    bool SyattaSleep = false;
+    int SleepCnt = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -39,19 +42,36 @@ public class CookMoveManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        FPS_Time++;
+        SleepCnt++;
+        if(SleepCnt > STOP_TIME)
+        {
+            SyattaSleep = false;
+        }
+
+
+
+        if (!SyattaSleep)
+        {
+            FPS_Time++;//時間加算
+        }
 
         if(FPS_Time > FadesTime * 60)
         {
+            SyattaSleep = true;
+            SleepCnt = 0;
+
             NextScene();
             FPS_Time = 0;
 
             Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, SyattaMin, Syatta.transform.localPosition.z);
         }
         //前後Nフレームで移動アニメーション
-        else if(Mathf.Abs(( FadesTime * 60 / 2) - FPS_Time)  > (FadesTime * 60 / 2) - SYATTA_TIME)
+        else if(Mathf.Abs(( FadesTime * 60 / 2) - FPS_Time)  > (FadesTime * 60 / 2) - SYATTA_TIME /*- STOP_TIME / 2*/)
         {
-            float PosY = (float)((FadesTime * 60 / 2) - Mathf.Abs((FadesTime * 60 / 2) - FPS_Time)) / SYATTA_TIME * (SyattaMax - SyattaMin) + SyattaMin;
+            float tempCnt = (FadesTime * 60 / 2) - Mathf.Abs((FadesTime * 60 / 2) - FPS_Time);//0への時間距離
+            float Wariai = tempCnt / SYATTA_TIME ;//割合
+
+            float PosY = Wariai * (SyattaMax - SyattaMin) + SyattaMin;
             Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, PosY, Syatta.transform.localPosition.z);
         }
 
