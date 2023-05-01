@@ -8,7 +8,7 @@ public class RightArm : MonoBehaviour
 
     public float myRotate;
 
-    float MAX_ANGLE = 45;
+    float MAX_ANGLE = 50;
 
     // Start is called before the first frame update
     void Start()
