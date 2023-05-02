@@ -18,7 +18,7 @@ public class SceneChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        isFade = false;
     }
 
     // Update is called once per frame
@@ -26,10 +26,10 @@ public class SceneChange : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        if (time > waitTime) 
-        {
-            isFade = false;
-        }
+        //if (time > waitTime) 
+        //{
+        //    isFade = false;
+        //}
 
         if (Input.GetKeyDown(KeyCode.Return) && !isFade)
         {
@@ -42,7 +42,8 @@ public class SceneChange : MonoBehaviour
     public void LoadScene(string scene)
     {
         sceneName = scene;
-        StartCoroutine(nameof(Load));
+        if (!isFade)
+            StartCoroutine(nameof(Load));
     }
 
     IEnumerator Load()

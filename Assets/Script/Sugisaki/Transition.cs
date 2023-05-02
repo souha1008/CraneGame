@@ -29,7 +29,7 @@ public class Transition : MonoBehaviour
         Quaternion rotate = cameraObject.transform.rotation;
         Vector3 scale = cameraObject.transform.localScale;
 
-        position.z = position.z + 1.0f;
+        //position.z = position.z + 1.0f;
 
         gameObject.transform.position = position;
         gameObject.transform.rotation = rotate;
