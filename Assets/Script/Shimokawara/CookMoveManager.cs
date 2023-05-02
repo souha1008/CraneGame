@@ -6,7 +6,7 @@ public class CookMoveManager : MonoBehaviour
 {
 
     public GameObject[] GameStage;//最初は本作業場
-    public int FadesTime = 20;
+    public int FazeTime = 20;
 
     public int FPS_Time = 0;
 
@@ -19,9 +19,15 @@ public class CookMoveManager : MonoBehaviour
     bool SyattaSleep = false;
     int SleepCnt = 0;
 
+    int FazeNum = 0;
+    public int MAX_FAZE_NUM;
+
+    ScoreData m_ScoreData;
+
     // Start is called before the first frame update
     void Start()
     {
+        m_ScoreData = GameObject.Find("Datas").GetComponent<ScoreData>();
         SyattaMax = Syatta.transform.localPosition.y;
         FPS_Time = 0;
     }
@@ -33,7 +39,7 @@ public class CookMoveManager : MonoBehaviour
 #if UNITY_EDITOR
         if(Input.GetButtonDown("Jump"))
         {
-            FPS_Time = FadesTime * 60 - SYATTA_TIME;
+            FPS_Time = FazeTime * 60 - SYATTA_TIME;
             //NextScene();
             //Debug.Log("呼ばれた");
         }
@@ -48,14 +54,22 @@ public class CookMoveManager : MonoBehaviour
             SyattaSleep = false;
         }
 
-
-
-        if (!SyattaSleep)
+        if(FazeNum >= MAX_FAZE_NUM)
         {
-            FPS_Time++;//時間加算
+            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
+        }
+        else
+        {
+            if (!SyattaSleep)
+            {
+                FPS_Time++;//時間加算
+            }
         }
 
-        if(FPS_Time > FadesTime * 60)
+
+        
+
+        if(FPS_Time > FazeTime * 60)
         {
             SyattaSleep = true;
             SleepCnt = 0;
@@ -66,13 +80,16 @@ public class CookMoveManager : MonoBehaviour
             Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, SyattaMin, Syatta.transform.localPosition.z);
         }
         //前後Nフレームで移動アニメーション
-        else if(Mathf.Abs(( FadesTime * 60 / 2) - FPS_Time)  > (FadesTime * 60 / 2) - SYATTA_TIME /*- STOP_TIME / 2*/)
+        else if(Mathf.Abs(( FazeTime * 60 / 2) - FPS_Time)  > (FazeTime * 60 / 2) - SYATTA_TIME /*- STOP_TIME / 2*/)
         {
-            float tempCnt = (FadesTime * 60 / 2) - Mathf.Abs((FadesTime * 60 / 2) - FPS_Time);//0への時間距離
-            float Wariai = tempCnt / SYATTA_TIME ;//割合
+            if (FazeNum < MAX_FAZE_NUM)
+            {
+                float tempCnt = (FazeTime * 60 / 2) - Mathf.Abs((FazeTime * 60 / 2) - FPS_Time);//0への時間距離
+                float Wariai = tempCnt / SYATTA_TIME;//割合
 
-            float PosY = Wariai * (SyattaMax - SyattaMin) + SyattaMin;
-            Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, PosY, Syatta.transform.localPosition.z);
+                float PosY = Wariai * (SyattaMax - SyattaMin) + SyattaMin;
+                Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, PosY, Syatta.transform.localPosition.z);
+            }
         }
 
         else
@@ -83,6 +100,8 @@ public class CookMoveManager : MonoBehaviour
 
     public void NextScene()
     {
+        
+
         GameObject[] Foods = GameObject.FindGameObjectsWithTag("Foods");
         for(int i = 0; i < Foods.Length;i++)//食べ物分
         {
@@ -103,6 +122,10 @@ public class CookMoveManager : MonoBehaviour
 
             if(nearIndex == 0)//消すべき
             {
+                if(Foods[i].GetComponent<CircleFoodsInterFace>().isClear)
+                {
+                    m_ScoreData.SetScore(FazeNum, m_ScoreData.GetScore(FazeNum) + 100);
+                }
                 Destroy(Foods[i]);
             }
 
@@ -144,5 +167,10 @@ public class CookMoveManager : MonoBehaviour
                 FoodsSupport[i].transform.position = GameStage[nearIndex - 1].transform.position + PosVector;
             }
         }
+
+
+        FazeNum++;
     }
 }
+
+    
