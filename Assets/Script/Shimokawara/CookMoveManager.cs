@@ -10,13 +10,15 @@ public class CookMoveManager : MonoBehaviour
 
     public int FPS_Time = 0;
 
+    public int START_STOP_FLAME;
+
     static int SYATTA_TIME = 20;
-    static int STOP_TIME = 14;
+    public   int SYATTA_STOP_FLAME = 14;
     public GameObject Syatta;
     float SyattaMax;
     float SyattaMin = 1.385f;
 
-    bool SyattaSleep = false;
+    bool SyattaSleep = true;
     int SleepCnt = 0;
 
     int FazeNum = 0;
@@ -27,6 +29,9 @@ public class CookMoveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SyattaSleep = true;
+
+        SleepCnt = -START_STOP_FLAME;
         m_ScoreData = GameObject.Find("Datas").GetComponent<ScoreData>();
         SyattaMax = Syatta.transform.localPosition.y;
         FPS_Time = 0;
@@ -49,7 +54,7 @@ public class CookMoveManager : MonoBehaviour
     private void FixedUpdate()
     {
         SleepCnt++;
-        if(SleepCnt > STOP_TIME)
+        if(SleepCnt > SYATTA_STOP_FLAME)
         {
             SyattaSleep = false;
         }

@@ -21,7 +21,8 @@ public class Player2 : MonoBehaviour
 
     public float MAX_SPEED = 9;
 
-    
+    public bool isSlow = false;
+
     Attach MyAttach = new AttachCrane();
     public Attach.AttachType NextAttachType;
 
@@ -228,6 +229,13 @@ public class Player2 : MonoBehaviour
         else
         {
             PositionMaxMin();
+        }
+
+        if(isSlow)
+        {
+            moveX *= 0.1f;
+            moveZ *= 0.1f;
+            Debug.Log("速度変更");
         }
     }
 
