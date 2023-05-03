@@ -14,7 +14,7 @@ public class CookMoveManager : MonoBehaviour
     static int STOP_TIME = 14;
     public GameObject Syatta;
     float SyattaMax;
-    float SyattaMin = 0.873f;
+    float SyattaMin = 1.385f;
 
     bool SyattaSleep = false;
     int SleepCnt = 0;

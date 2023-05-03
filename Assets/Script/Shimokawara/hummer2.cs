@@ -7,6 +7,8 @@ public class hummer2 : MonoBehaviour
     //bool isUnLock = false;
     public GameObject Pusher;
 
+    public GameObject Model;
+    float ModelDefaultY;
     public enum  PosY
         {
     UP,
@@ -25,6 +27,7 @@ public class hummer2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ModelDefaultY = Model.transform.position.y;
         //isUnLock = false;
         m_PosY = PosY.DEFAULT;
 
@@ -68,6 +71,7 @@ public class hummer2 : MonoBehaviour
 
 
         Pusher.transform.position = new Vector3(transform.position.x, tempPosY,transform.position.z);
+        Model.transform.position = new Vector3(Model.transform.position.x, ModelDefaultY + tempPosY - 15, Model.transform.position.z);
     }
 
     private void FixedUpdate()

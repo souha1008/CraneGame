@@ -6,6 +6,9 @@ public class Conveyor : MonoBehaviour
 {
     public float speed = 100f;
 
+    public float AkiDistance;
+    public float KadoDistance;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,14 @@ public class Conveyor : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        float X_Distance = Mathf.Abs(transform.position.x - other.transform.position.x);
+        float Z_Distance = Mathf.Abs(transform.position.z - other.transform.position.z);
+
+        if(X_Distance < AkiDistance && Z_Distance < AkiDistance)
+        {
+            return;
+        }
+
         if(other.gameObject.tag == "Foods" ||
         other.gameObject.tag == "FoodsSupport" )
         {
@@ -37,18 +48,34 @@ public class Conveyor : MonoBehaviour
             if(Mathf.PI * 0.25f < Angle && Mathf.PI * 0.75f > Angle)
             {
                 TempVel.x = -1;
+                if(KadoDistance < X_Distance && KadoDistance < Z_Distance)
+                {
+                    TempVel.z = -1;
+                }
             }
             else if(Mathf.PI * 0.25f > Angle && Mathf.PI * -0.25f < Angle)
             {
                 TempVel.z = 1;
+                if (KadoDistance < X_Distance && KadoDistance < Z_Distance)
+                {
+                    TempVel.x = -1;
+                }
             }
             else if((Mathf.PI * -0.25f > Angle && Mathf.PI * -0.75f < Angle))
             {
                 TempVel.x = 1;
+                if (KadoDistance < X_Distance && KadoDistance < Z_Distance)
+                {
+                    TempVel.z = 1;
+                }
             }
             else
             {
                 TempVel.z = -1;
+                if (KadoDistance < X_Distance && KadoDistance < Z_Distance)
+                {
+                    TempVel.x = 1;
+                }
             }
 
 
