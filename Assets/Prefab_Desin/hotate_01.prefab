@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1218772467140909493
+--- !u!1 &156665661433953756
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,155 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6905282035331270093}
-  - component: {fileID: 9212883884862992069}
+  - component: {fileID: 3194862708591573250}
   m_Layer: 0
-  m_Name: hotate
+  m_Name: hotate_jnt_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6905282035331270093
+--- !u!4 &3194862708591573250
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218772467140909493}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000014648437, y: -0.077267304, z: -0.0038406684}
+  m_GameObject: {fileID: 156665661433953756}
+  m_LocalRotation: {x: 0, y: 0.015425985, z: -0, w: 0.999881}
+  m_LocalPosition: {x: 0.018480359, y: -1.5360215e-16, z: -0.00561567}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1408144797802709002}
+  m_Father: {fileID: 3284452100891169174}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 1.7677575, z: 0}
+--- !u!1 &846560573837938044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 68757924591589318}
+  - component: {fileID: 68757924591589319}
+  m_Layer: 0
+  m_Name: hotate_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &68757924591589318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846560573837938044}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.0212574, y: 3.1749153, z: 5.966}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9124548123298882831}
+  - {fileID: 8963215476538205475}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &9212883884862992069
+--- !u!95 &68757924591589319
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846560573837938044}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2a1e809772dce74c89913a177ccd46c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1413375198660190530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3284452100891169174}
+  m_Layer: 0
+  m_Name: hotate_jnt_banebase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3284452100891169174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413375198660190530}
+  m_LocalRotation: {x: 0, y: 0.33697993, z: -0, w: 0.9415118}
+  m_LocalPosition: {x: 0.043590996, y: -0.00005493164, z: 0.00853281}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3194862708591573250}
+  m_Father: {fileID: 9124548123298882831}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 39.385963, z: 0}
+--- !u!1 &1971190523607640797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8963215476538205475}
+  - component: {fileID: 6464809020282298644}
+  m_Layer: 0
+  m_Name: hotate_mdl_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8963215476538205475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971190523607640797}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.019919997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 68757924591589318}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &6464809020282298644
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218772467140909493}
+  m_GameObject: {fileID: 1971190523607640797}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -77,19 +195,19 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -572656872135060395, guid: bb1c4a3dfea5d1347b0f4827f61587b7, type: 3}
+  m_Mesh: {fileID: 7069194154828480250, guid: 98524e36986dfd14aba7284a7b5a8163, type: 3}
   m_Bones:
-  - {fileID: 5465403776848520789}
-  - {fileID: 6054051763123803121}
-  - {fileID: 4397804644334602735}
-  - {fileID: 3592391902253615839}
+  - {fileID: 9124548123298882831}
+  - {fileID: 7123462719731815103}
+  - {fileID: 3284452100891169174}
+  - {fileID: 3194862708591573250}
   m_BlendShapeWeights: []
-  m_RootBone: {fileID: 5465403776848520789}
+  m_RootBone: {fileID: 9124548123298882831}
   m_AABB:
-    m_Center: {x: 0.02658797, y: -0.000014681369, z: 0.07620183}
-    m_Extent: {x: 0.12384709, y: 0.08827941, z: 0.092812195}
+    m_Center: {x: 0.11790351, y: -0.000026337802, z: 0.06450856}
+    m_Extent: {x: 0.1528796, y: 0.158903, z: 0.15006351}
   m_DirtyAABB: 0
---- !u!1 &3434494643833638611
+--- !u!1 &5273122374474981487
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,102 +215,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3592391902253615839}
-  m_Layer: 0
-  m_Name: hotate_jnt_end
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3592391902253615839
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3434494643833638611}
-  m_LocalRotation: {x: 0, y: 0.015425985, z: -0, w: 0.999881}
-  m_LocalPosition: {x: -0.05912492, y: -8.5334526e-17, z: -0.0031198168}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4397804644334602735}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5179050765317172255
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1408144797802709002}
-  m_Layer: 0
-  m_Name: hotate_01
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1408144797802709002
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5179050765317172255}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 0.088333964, z: 0.0038406684}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6905282035331270093}
-  - {fileID: 5465403776848520789}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6080560065417414710
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6054051763123803121}
-  m_Layer: 0
-  m_Name: hotate_jnt_open
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6054051763123803121
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6080560065417414710}
-  m_LocalRotation: {x: 0.19776522, y: 0.19776438, z: 0.67888826, w: 0.67888796}
-  m_LocalPosition: {x: -0.0062882686, y: 0.000000013969839, z: 0.0000000018626451}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5465403776848520789}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 32.482, z: 90}
---- !u!1 &6795013775527114437
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5465403776848520789}
+  - component: {fileID: 9124548123298882831}
   m_Layer: 0
   m_Name: hotate_jnt_root
   m_TagString: Untagged
@@ -200,24 +223,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5465403776848520789
+--- !u!4 &9124548123298882831
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6795013775527114437}
+  m_GameObject: {fileID: 5273122374474981487}
   m_LocalRotation: {x: -0.2867449, y: -0.2867449, z: -0.64635706, w: 0.64635706}
-  m_LocalPosition: {x: 0.000014648437, y: -0.038961638, z: -0.069223255}
+  m_LocalPosition: {x: -0, y: 0.08887019, z: -0.11768865}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4397804644334602735}
-  - {fileID: 6054051763123803121}
-  m_Father: {fileID: 1408144797802709002}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8840477629654130457
+  - {fileID: 3284452100891169174}
+  - {fileID: 7123462719731815103}
+  m_Father: {fileID: 68757924591589318}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -47.84725, y: 0, z: -90}
+--- !u!1 &5667421547021647379
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,27 +248,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4397804644334602735}
+  - component: {fileID: 7123462719731815103}
   m_Layer: 0
-  m_Name: hotate_jnt_banebase
+  m_Name: hotate_jnt_open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4397804644334602735
+--- !u!4 &7123462719731815103
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8840477629654130457}
-  m_LocalRotation: {x: 0, y: 0.33697993, z: -0, w: 0.9415118}
-  m_LocalPosition: {x: 0.024217222, y: -0.000030517578, z: 0.00474045}
+  m_GameObject: {fileID: 5667421547021647379}
+  m_LocalRotation: {x: 0.5811797, y: 0.5811797, z: 0.40277803, w: 0.40277803}
+  m_LocalPosition: {x: -0.0113188755, y: -5.0265905e-18, z: -9.992007e-19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3592391902253615839}
-  m_Father: {fileID: 5465403776848520789}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 9124548123298882831}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 110.55334, z: 90}
