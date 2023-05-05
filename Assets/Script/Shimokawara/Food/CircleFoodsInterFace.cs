@@ -28,7 +28,7 @@ public enum HummerAction
 
 public enum FireAction
 {
-    ACTION, 
+    ACTION,
     STAY,
     KOGE
 }
@@ -48,10 +48,10 @@ public class CircleFoodsInterFace : MonoBehaviour
 
 
     //料理フラグ
-    public ChachAction      m_ChachAction;
-    public CutAction        m_CutAction;
-    public HummerAction     m_HummerAction;
-    public FireAction       m_FireAction;
+    public ChachAction m_ChachAction;
+    public CutAction m_CutAction;
+    public HummerAction m_HummerAction;
+    public FireAction m_FireAction;
 
     public bool isClear = false;
 
@@ -96,7 +96,7 @@ public class CircleFoodsInterFace : MonoBehaviour
     }
 
     // Update is called once per frame
-    public  void FoodsUpdate()
+    public void FoodsUpdate()
     {
         if (isClear)
         {
@@ -110,7 +110,7 @@ public class CircleFoodsInterFace : MonoBehaviour
 
         }
 
-        if(FoodsArmState == FOODS_ARM_STATE.GLAB)
+        if (FoodsArmState == FOODS_ARM_STATE.GLAB)
         {
             Vector3 temp = (RightHit.point + LeftHit.point) / 2;
             temp.y = LeftArmPosition.y;
@@ -122,14 +122,14 @@ public class CircleFoodsInterFace : MonoBehaviour
         //Debug.Log(transform.localScale.x);
     }
 
-    public  void FoodsFixedUpdate()
+    public void FoodsFixedUpdate()
     {
         Vel.x *= 0.95f;
         Vel.z *= 0.95f;
 
-        if(m_ChachAction != ChachAction.CANNOT)
+        if (m_ChachAction != ChachAction.CANNOT)
         {
-            
+
             //キャラクターから真左方向へのレイを作成する
             Ray LeftRay = new Ray(this.transform.position, new Vector3(-1, 0, 0.0f).normalized);
 
@@ -193,29 +193,29 @@ public class CircleFoodsInterFace : MonoBehaviour
             {
                 FoodsArmState = FOODS_ARM_STATE.FREE;
             }
-
-
-            switch (FoodsArmState)
-            {
-                case FOODS_ARM_STATE.GLAB:
-                    GlabUpdate();
-                    break;
-
-                case FOODS_ARM_STATE.FREE:
-                    FreeUpdate();
-                    break;
-
-                default:
-                    break;
-            }
-            //エスカレート処理
-            if (isGround)
-            {
-                Vector3 tempPos = transform.position;
-                tempPos += (EscarateVector * 0.05f);
-                transform.position = tempPos;
-            }
         }
+
+        switch (FoodsArmState)
+        {
+            case FOODS_ARM_STATE.GLAB:
+                GlabUpdate();
+                break;
+
+            case FOODS_ARM_STATE.FREE:
+                FreeUpdate();
+                break;
+
+            default:
+                break;
+        }
+        //エスカレート処理
+        if (isGround)
+        {
+            Vector3 tempPos = transform.position;
+            tempPos += (EscarateVector * 0.05f);
+            transform.position = tempPos;
+        }
+
     }
     void GlabUpdate()
     {
@@ -230,12 +230,12 @@ public class CircleFoodsInterFace : MonoBehaviour
 
         this.transform.position = temp;
 
-        if(m_ChachAction == ChachAction.SOFT)
+        if (m_ChachAction == ChachAction.SOFT)
         {
             if (Vector3.Distance(RightHit.point, LeftHit.point) < 0.2f * BallSize)
             {
-               Destroy(gameObject);
-                    //GetComponent<Renderer>().enabled = false;
+                Destroy(gameObject);
+                //GetComponent<Renderer>().enabled = false;
             }
 
             //小さくする
@@ -248,7 +248,7 @@ public class CircleFoodsInterFace : MonoBehaviour
             }
         }
 
-        
+
 
         Vel = Vector3.zero;
     }
@@ -274,14 +274,14 @@ public class CircleFoodsInterFace : MonoBehaviour
         if (Physics.Raycast(underRay, out underHit, 10.0f))
         {
             //あたったのがプラットフォームなら
-            if (underHit.collider.gameObject.tag == "EscarateUp"||
-                underHit.collider.gameObject.tag == "EscarateRight"||
+            if (underHit.collider.gameObject.tag == "EscarateUp" ||
+                underHit.collider.gameObject.tag == "EscarateRight" ||
                 underHit.collider.gameObject.tag == "EscarateDown" ||
                 underHit.collider.gameObject.tag == "EscarateNone")
             {
                 float distance = underHit.distance; //レイの開始位置と当たったオブジェクトの距離を取得
                                                     //Debug.Log(distance);
-                if (distance < BallSize / 2 + 0.1f)  //※Unityちゃんの身長の場合0.04くらいで地面に接触した状態
+                if (distance < (BallSize / 2) * 1.2f)  //※Unityちゃんの身長の場合0.04くらいで地面に接触した状態
                 {
                     isGround = true; //地面に接触している
 
@@ -324,9 +324,9 @@ public class CircleFoodsInterFace : MonoBehaviour
         //Debug.Log("ｶｯﾄ");
     }
 
-    private void OnTriggerEnter (Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "AttachHummer")
+        if (other.gameObject.tag == "AttachHummer")
         {
             Hummer(other);
             if (m_HummerAction == HummerAction.SCALE)
@@ -358,7 +358,7 @@ public class CircleFoodsInterFace : MonoBehaviour
                 {
                     other.gameObject.GetComponent<Knife>().NotCut();
                 }
-                
+
             }
 
         }
