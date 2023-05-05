@@ -34,6 +34,30 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - AO:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Color_base:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Color_mask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Emmisive:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Nomal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Smoothness:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_0e5abdc3be3b40ddb7f21b8d9467f703:
         m_Texture: {fileID: 2800000, guid: dd4c160ca6a8fa24f9acb5f9aacb5422, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -58,12 +82,24 @@ Material:
         m_Texture: {fileID: 2800000, guid: 0407d9d18d33ca04885377cdc0ecc5c8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _AO:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: de7d005a1a3696f4fb6ac941087ed325, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 489d4290ae7030747ac91417ea5de61f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Color_base:
+        m_Texture: {fileID: 2800000, guid: de7d005a1a3696f4fb6ac941087ed325, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Color_mask:
+        m_Texture: {fileID: 2800000, guid: 0407d9d18d33ca04885377cdc0ecc5c8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -82,6 +118,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: dd4c160ca6a8fa24f9acb5f9aacb5422, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Emmisive:
+        m_Texture: {fileID: 2800000, guid: dd4c160ca6a8fa24f9acb5f9aacb5422, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: de7d005a1a3696f4fb6ac941087ed325, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -90,12 +130,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: b08eee36f5e76284999b6170d74642f5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Nomal:
+        m_Texture: {fileID: 2800000, guid: 489d4290ae7030747ac91417ea5de61f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Smoothness:
+        m_Texture: {fileID: 2800000, guid: b08eee36f5e76284999b6170d74642f5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -116,8 +164,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - Emmisibe_off: 0
+    - Hue: 1
+    - RoughnessNum: 1
+    - Saturation: 1
     - Vector1_63413df6c5f0404daa3ab7086870d5ef: 1
-    - Vector1_a72cb3c5e1af4ece8e495635f9c271ff: 1
+    - Vector1_a72cb3c5e1af4ece8e495635f9c271ff: 10.33
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -133,6 +185,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Hue: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -140,6 +193,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RoughnessNum: 0.702
+    - _Saturation: 1
     - _Smoothness: 0.713
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -148,10 +202,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Emmisive_multi: {r: 0, g: 0, b: 0, a: 0}
+    - Luminance: {r: 0, g: 0, b: 0, a: 0}
     - Vector3_d2da5b03564a40c1a29439b7c674958f: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1.4142135, g: 1.4142135, b: 1.4142135, a: 1}
-    - _Emmisive_multi: {r: 4, g: 3.764706, b: 3.764706, a: 0}
+    - _Emmisive_multi: {r: 63.309086, g: 63.309086, b: 63.309086, a: 0}
+    - _Luminance: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
