@@ -13,7 +13,7 @@ public class PauseCoroutine : MonoBehaviour
 
     [SerializeField][Tooltip("押したらポーズする画面")] KeyCode pauseKey = KeyCode.P;
 
-    [SerializeField][Tooltip("選択中の色")] Color nowSelect;
+    [SerializeField][Tooltip("選択中の色")] Color nowSelectColor;
 
     [Header("UI系")]
     [SerializeField] Canvas Pause_Canvas = null;
@@ -23,6 +23,8 @@ public class PauseCoroutine : MonoBehaviour
 
     [SerializeField, ReadOnly] int SelectCount = 0;
 
+    [SerializeField] Animator animator_Pause;
+    [SerializeField] string UI_anim_paramator;
 
     // プライベート変数
 
@@ -67,12 +69,12 @@ public class PauseCoroutine : MonoBehaviour
     {
         if (mPaused)
         {
-            mPauseCooldown += Time.deltaTime;
-            if (mPauseCooldown > 1.0f) mPauseCooldown = 1.0f;
+            mPauseCooldown += 1;
+            if (mPauseCooldown > pauseCoolTime) mPauseCooldown = pauseCoolTime;
         }
         if (!mPaused)
         {
-            mPauseCooldown -= Time.deltaTime;
+            mPauseCooldown -= 1;
             if (mPauseCooldown < 0.0f) mPauseCooldown = 0.0f;
         }
     }
@@ -83,7 +85,7 @@ public class PauseCoroutine : MonoBehaviour
         Debug.Log("ポーズしたYO");
         Pause_Canvas.gameObject.SetActive(true);
         Time.timeScale = 0;
-        Time.fixedDeltaTime = 0;
+        
         StartCoroutine("PauseStart");
     }
 
@@ -98,7 +100,7 @@ public class PauseCoroutine : MonoBehaviour
         mPaused = false;
         Pause_Canvas.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
-        Time.fixedDeltaTime = 1.0f;
+        
     }
     IEnumerator PauseMenu()
     {
@@ -121,21 +123,22 @@ public class PauseCoroutine : MonoBehaviour
             switch(SelectCount)
             {
                 case (int)SelectCorsor.Option:
-                    Option.color = nowSelect;
+                    Option.color = nowSelectColor;
                     Retry.color = Color.blue;
                     StageSelect.color = Color.blue;
+                    if (Input.GetKeyDown(KeyCode.Space)) CallOption();
                     break;
 
                 case (int)SelectCorsor.Retry:
                     Option.color = Color.blue;
-                    Retry.color = nowSelect;
+                    Retry.color = nowSelectColor;
                     StageSelect.color = Color.blue;
                     break;
 
                 case (int)SelectCorsor.StageSelect:
                     Option.color = Color.blue;
                     Retry.color = Color.blue;
-                    StageSelect.color = nowSelect;
+                    StageSelect.color = nowSelectColor;
                     break;
             }
             yield return null;
@@ -144,7 +147,8 @@ public class PauseCoroutine : MonoBehaviour
 
     IEnumerator CoolDown()
     {
-        while (true) { 
+        while (true)
+        {
             if (mPaused)
             {
                 mPauseCooldown += 1;
@@ -157,5 +161,30 @@ public class PauseCoroutine : MonoBehaviour
             }
             yield return null;
         }
+    }
+
+    IEnumerator C_Option()
+    {
+        while (true)
+        {
+
+
+            // ポーズメニューへ戻る
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                StartCoroutine("PauseMenu");
+                StartCoroutine("CoolDown");
+                animator_Pause.SetBool(UI_anim_paramator, false);
+                yield return null;
+            }
+        }
+    }
+
+    void CallOption()
+    {
+        animator_Pause.SetBool(UI_anim_paramator, true);
+        StopCoroutine("PauseMenu");
+        StopCoroutine("CoolDown");
+        StartCoroutine("C_Option");
     }
 }
