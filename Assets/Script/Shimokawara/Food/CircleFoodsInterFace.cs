@@ -53,6 +53,8 @@ public class CircleFoodsInterFace : MonoBehaviour
     public HummerAction m_HummerAction;
     public FireAction m_FireAction;
 
+    public bool isNoAction = false;
+
     public bool isClear = false;
 
     Vector3 LeftArmPosition;
@@ -64,9 +66,6 @@ public class CircleFoodsInterFace : MonoBehaviour
     public bool isGround = false;
     public FOODS_ARM_STATE FoodsArmState;
 
-    //public GameObject LeftArm;
-    //public GameObject RightArm;
-
     float BallSize;
     RaycastHit LeftHit; //当たった結果を代入する変数
     RaycastHit RightHit; //当たった結果を代入する変数
@@ -74,10 +73,6 @@ public class CircleFoodsInterFace : MonoBehaviour
     float leftDistance = 0;
     float rightDistance = 0;
 
-    Color DefaultColor;
-    Color GlabColor;
-
-    Vector3 EscarateVector;
 
     // Start is called before the first frame update
     public void FoodsStart()
@@ -87,9 +82,6 @@ public class CircleFoodsInterFace : MonoBehaviour
         BallSize = transform.localScale.x/* * transform.lossyScale.x*/;
         //Debug.Log(transform.localScale.x);
 
-        DefaultColor = this.GetComponent<Renderer>().material.color;
-        GlabColor = this.GetComponent<Renderer>().material.color;
-        GlabColor.b += 0.6f;
 
         //LeftArm = GameObject.Find("ArmBord1");
         //RightArm = GameObject.Find("ArmBord2");
@@ -208,21 +200,14 @@ public class CircleFoodsInterFace : MonoBehaviour
             default:
                 break;
         }
-        //エスカレート処理
-        if (isGround)
-        {
-            Vector3 tempPos = transform.position;
-            tempPos += (EscarateVector * 0.05f);
-            transform.position = tempPos;
-        }
+       
 
     }
     void GlabUpdate()
     {
         isGround = false;
 
-        this.GetComponent<Renderer>().material.color = GlabColor;
-        //Debug.Log("ぐらっぶ");
+        
 
         Vector3 temp = (RightHit.point + LeftHit.point) / 2;
         temp.y = LeftArmPosition.y;
@@ -255,10 +240,12 @@ public class CircleFoodsInterFace : MonoBehaviour
 
     void FreeUpdate()
     {
-        Vector3 tempScale = new Vector3(BallSize, BallSize, BallSize);
-        transform.localScale = tempScale;
-
-        this.GetComponent<Renderer>().material.color = DefaultColor;
+        if(isNoAction == false)
+        {
+            Vector3 tempScale = new Vector3(BallSize, BallSize, BallSize);
+            transform.localScale = tempScale;
+        }
+    
 
         transform.position += Vel;
 
@@ -289,22 +276,7 @@ public class CircleFoodsInterFace : MonoBehaviour
                         Vel.y = 0.0f;
                 }
 
-                if (underHit.collider.gameObject.tag == "EscarateUp")
-                {
-                    EscarateVector = new Vector3(0, 0, 1);
-                }
-                if (underHit.collider.gameObject.tag == "EscarateRight")
-                {
-                    EscarateVector = new Vector3(1, 0, 0);
-                }
-                if (underHit.collider.gameObject.tag == "EscarateDown")
-                {
-                    EscarateVector = new Vector3(0, 0, -1);
-                }
-                if (underHit.collider.gameObject.tag == "EscarateNone")
-                {
-                    EscarateVector = new Vector3(0, 0, 0);
-                }
+               
             }
         }
     }
@@ -345,6 +317,9 @@ public class CircleFoodsInterFace : MonoBehaviour
                 m_CutAction = CutAction.CANNOT;
                 m_FireAction = FireAction.STAY;
                 m_ChachAction = ChachAction.CANNOT;
+
+                isNoAction = true;
+
                 //Debug.Log("ハンマー2");
             }
         }

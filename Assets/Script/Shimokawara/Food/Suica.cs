@@ -37,29 +37,33 @@ public class Suica: CircleFoodsInterFace
     {
         FoodsFixedUpdate();
 
-        if (isGround)
+        if (!isNoAction)
         {
-            OldAngle = Angle;
-
-            Angle += AngleVel;
-            if (Angle > MAX_ANGLE)
+            if (isGround)
             {
-                Angle = MAX_ANGLE;
-                AngleVel = -1;
+                OldAngle = Angle;
+
+                Angle += AngleVel;
+                if (Angle > MAX_ANGLE)
+                {
+                    Angle = MAX_ANGLE;
+                    AngleVel = -1;
+                }
+                if (Angle < MIN_ANGLE)
+                {
+                    Angle = MIN_ANGLE;
+                    AngleVel = 1;
+                }
+
+
+                float VelX = (OldAngle - Angle) / 360 * Size * Mathf.PI;
+
+                transform.position = new Vector3(transform.position.x + VelX, transform.position.y, transform.position.z);
             }
-            if (Angle < MIN_ANGLE)
-            {
-                Angle = MIN_ANGLE;
-                AngleVel = 1;
-            }
 
-
-            float VelX = (OldAngle - Angle) / 360 * Size * Mathf.PI;
-
-            transform.position = new Vector3(transform.position.x + VelX, transform.position.y, transform.position.z);
+            transform.eulerAngles = new Vector3(0, 0, Angle);
         }
-
-        transform.eulerAngles = new Vector3(0, 0, Angle);
+       
       
     }
 
@@ -68,14 +72,13 @@ public class Suica: CircleFoodsInterFace
         if (m_CutAction == CutAction.CAN && isGround)
         {
             float SizeX = transform.localScale.x;
-            Debug.Log(SizeX);
 
             float Distance = Mathf.Abs(transform.position.x - other.transform.position.x);
 
             if (Distance < SizeX * 0.25f && Mathf.Abs(Angle) < 20)
             {
-                GameObject Cut1 = (GameObject)Resources.Load("CutTomato");
-                GameObject Cut2 = (GameObject)Resources.Load("CutTomato");
+                GameObject Cut1 = (GameObject)Resources.Load("CutSuica");
+                GameObject Cut2 = (GameObject)Resources.Load("CutSuica");
 
                 Vector3 tempPos1 = transform.position;
                 Vector3 tempPos2 = transform.position;
@@ -83,10 +86,10 @@ public class Suica: CircleFoodsInterFace
                 tempPos2.x -= 3;
                 // Cubeプレハブを元に、インスタンスを生成、
 
-                Instantiate(Cut1, tempPos1, transform.rotation);
-                Cut1.GetComponent<CutTomato>().Vel = new Vector3(-0.3f, 0.1f, 0);
+                Instantiate(Cut1, tempPos1, Quaternion.Euler(0f, 0f, 0.0f));
+                Cut1.GetComponent<CutSuica>().Vel = new Vector3(-0.3f, 0.1f, 0);
                 Instantiate(Cut2, tempPos2, Quaternion.Euler(0f, 180f, 0.0f));
-                Cut2.GetComponent<CutTomato>().Vel = new Vector3(0.3f, 0.1f, 0);
+                Cut2.GetComponent<CutSuica>().Vel = new Vector3(0.3f, 0.1f, 0);
 
                 Destroy(gameObject);
             }

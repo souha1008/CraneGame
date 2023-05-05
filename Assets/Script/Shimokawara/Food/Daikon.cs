@@ -32,23 +32,58 @@ public class Daikon : CircleFoodsInterFace
 
     public override void Cut(Collider other)
     {
-        if(m_CutAction == CutAction.CAN && isGround)
+        if(!isNoAction && isGround)
         {
-            GameObject Cut1 = (GameObject)Resources.Load("CutDaikon");
-            GameObject Cut2 = (GameObject)Resources.Load("CutDaikon");
+            float SizeX = transform.localScale.x;
 
-            Vector3 tempPos1 = transform.position;
-            Vector3 tempPos2 = transform.position;
-            tempPos1.x -= 2;
-            tempPos2.x += 2;
-            // Cubeプレハブを元に、インスタンスを生成、
-            Instantiate(Cut1, tempPos1, transform.rotation);
-            Cut1.GetComponent<CutDaikon>().Vel = new Vector3(0.3f, 0.1f, 0);
-            Instantiate(Cut2, tempPos2, transform.rotation);
-            Cut2.GetComponent<CutDaikon>().Vel = new Vector3(-0.3f, 0.1f, 0);
+            float X_Vector= (other.transform.position.x - transform.position.x);
+
+            if(X_Vector > SizeX / 8 && X_Vector < SizeX / 8 * 3)
+            {
+                GameObject Cut1 = (GameObject)Resources.Load("DaikonLeftDowble");
+                GameObject Cut2 = (GameObject)Resources.Load("DaikonRightSingle");
+
+                Vector3 tempPos1 = transform.position;
+                Vector3 tempPos2 = transform.position;
+                tempPos1.x -= 3;
+                tempPos2.x += 3;//右
+                                // Cubeプレハブを元に、インスタンスを生成、
+                Instantiate(Cut1, tempPos1, transform.rotation);
+                Cut1.GetComponent<DaikonLeftDowble>().Vel = new Vector3(-0.3f, 0.1f, 0);
+                Instantiate(Cut2, tempPos2, transform.rotation);
+                Cut2.GetComponent<DaikonRightSingle>().Vel = new Vector3(0.3f, 0.1f, 0);
+
+                Destroy(gameObject);
+
+                Debug.Log("右切");
+            }
+
+            else if (X_Vector < -SizeX / 8 && X_Vector > - SizeX / 8 * 3)
+            {
+
+                GameObject Cut1 = (GameObject)Resources.Load("DaikonLeftSingle");
+                GameObject Cut2 = (GameObject)Resources.Load("DaikonRightDowble");
+
+                Vector3 tempPos1 = transform.position;
+                Vector3 tempPos2 = transform.position;
+                tempPos1.x -= 3;
+                tempPos2.x += 3;//右
+                                // Cubeプレハブを元に、インスタンスを生成、
+                Instantiate(Cut1, tempPos1, transform.rotation);
+                Cut1.GetComponent<DaikonLeftSingle>().Vel = new Vector3(-0.3f, 0.1f, 0);
+                Instantiate(Cut2, tempPos2, transform.rotation);
+                Cut2.GetComponent<DaikonRightDowble>().Vel = new Vector3(0.3f, 0.1f, 0);
+
+                Destroy(gameObject);
+
+                Debug.Log("左切");
+            }
+            else
+            {
+                other.GetComponent<Knife>().NotCut();
+            }
+            
         }
-
-        Destroy(gameObject);
     }
 
 

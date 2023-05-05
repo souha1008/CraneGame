@@ -26,7 +26,7 @@ public class Candle : CircleFoodsInterFace
 
     void FixedUpdate()
     {
-        if (m_FireAction == FireAction.ACTION)
+        if (!isNoAction)
         {
             if (FireFlag)
             {

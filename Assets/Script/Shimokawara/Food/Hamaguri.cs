@@ -12,6 +12,7 @@ public class Hamaguri : CircleFoodsInterFace
 {
     public int FireCnt = 0;
     bool FireFlag;
+    public bool Open = false;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class Hamaguri : CircleFoodsInterFace
 
     void FixedUpdate()
     {
-        if(m_FireAction == FireAction.ACTION)
+        if(!isNoAction)
         {
             if(FireFlag)
             {
@@ -35,7 +36,7 @@ public class Hamaguri : CircleFoodsInterFace
                 if(FireCnt > 40)
                 {
                     m_HummerAction = HummerAction.STAY;
-                    isClear = true;
+                    Open = true;
                 }
             }
             FireFlag = false;

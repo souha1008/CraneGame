@@ -8,13 +8,19 @@ using UnityEditor;
 [CustomEditor(typeof(CircleFoodsInterFace))]
 #endif
 
-public class Tomato : CircleFoodsInterFace
+public class DaikonLeftDowble : CircleFoodsInterFace
 {
+
+    int Cnt = 0;
     void Start()
     {
+        m_ChachAction = ChachAction.HARD;
+        m_CutAction = CutAction.CAN;//貫通してほしいだけ
+        m_HummerAction = HummerAction.SCALE;
+        m_FireAction = FireAction.STAY;
+
+
         FoodsStart();
-
-
     }
 
     // Update is called once per frame
@@ -25,6 +31,13 @@ public class Tomato : CircleFoodsInterFace
 
     void FixedUpdate()
     {
+        Cnt++;
+
+        if (Cnt > 15)
+        {
+            //m_CutAction = CutAction.CANNOT;//貫通おわり
+        }
+
         FoodsFixedUpdate();
     }
 
@@ -36,21 +49,21 @@ public class Tomato : CircleFoodsInterFace
 
             float Distance = Mathf.Abs(transform.position.x - other.transform.position.x);
 
-            if(Distance< SizeX * 0.25f)
+            if (Distance < SizeX * 0.25f)
             {
-                GameObject Cut1 = (GameObject)Resources.Load("CutTomato");
-                GameObject Cut2 = (GameObject)Resources.Load("CutTomato");
+                GameObject Cut1 = (GameObject)Resources.Load("DaikonCenterSingle");
+                GameObject Cut2 = (GameObject)Resources.Load("DaikonLeftSingle");
 
                 Vector3 tempPos1 = transform.position;
                 Vector3 tempPos2 = transform.position;
                 tempPos1.x += 3;//右
                 tempPos2.x -= 3;
                 // Cubeプレハブを元に、インスタンスを生成、
-                
+
                 Instantiate(Cut1, tempPos1, transform.rotation);
-                Cut1.GetComponent<CutTomato>().Vel = new Vector3(-0.3f, 0.1f, 0);
+                Cut1.GetComponent<DaikonCenterSingle>().Vel = new Vector3(-0.3f, 0.1f, 0);
                 Instantiate(Cut2, tempPos2, Quaternion.Euler(0f, 180f, 0.0f));
-                Cut2.GetComponent<CutTomato>().Vel = new Vector3(0.3f, 0.1f, 0);
+                Cut2.GetComponent<DaikonLeftSingle>().Vel = new Vector3(0.3f, 0.1f, 0);
 
                 Destroy(gameObject);
             }
@@ -58,12 +71,10 @@ public class Tomato : CircleFoodsInterFace
             {
                 other.GetComponent<Knife>().NotCut();
             }
-            
+
         }
 
-        
+
     }
-
-
 
 }
