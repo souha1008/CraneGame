@@ -27,6 +27,7 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] string UI_anim_paramator;
 
     // プライベート変数
+    private bool isPauseMenu = false;
 
     enum SelectCorsor
     {
@@ -35,6 +36,15 @@ public class PauseCoroutine : MonoBehaviour
         StageSelect = 2,
         max
     };
+
+    void SetIsPauseMenu(bool set)
+    {
+        isPauseMenu = set;
+    }
+    void SetPause(bool set)
+    {
+        mPaused = set;
+    }
 
     private void Awake()
     {
@@ -61,43 +71,27 @@ public class PauseCoroutine : MonoBehaviour
         {
             Pause();
         }
-
-        //Cooldown();
-    }
-
-    void Cooldown()
-    {
-        if (mPaused)
-        {
-            mPauseCooldown += 1;
-            if (mPauseCooldown > pauseCoolTime) mPauseCooldown = pauseCoolTime;
-        }
-        if (!mPaused)
-        {
-            mPauseCooldown -= 1;
-            if (mPauseCooldown < 0.0f) mPauseCooldown = 0.0f;
-        }
     }
 
     void Pause()
     {
-        mPaused = true;
+        SetPause(true);
         Debug.Log("ポーズしたYO");
         Pause_Canvas.gameObject.SetActive(true);
         Time.timeScale = 0;
-        
-        StartCoroutine("PauseStart");
+        SetIsPauseMenu(true);
+        StartCoroutine(PauseStart());
     }
 
     IEnumerator PauseStart()
     {
         Debug.Log("ポーズ中");
-        StartCoroutine("PauseMenu");
+        StartCoroutine(PauseMenu());
         yield return new WaitUntil(() => Input.GetKeyDown(pauseKey) && mPauseCooldown >= pauseCoolTime);
 
         Debug.Log("ポーズ解除");
-        StopCoroutine("PauseMenu");
-        mPaused = false;
+        StopCoroutine(PauseMenu());
+        SetPause(false);
         Pause_Canvas.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
         
@@ -106,19 +100,21 @@ public class PauseCoroutine : MonoBehaviour
     {
         while (true)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (isPauseMenu)
             {
-                Debug.Log("上");
-                SelectCount--;
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    Debug.Log("上");
+                    SelectCount--;
+                }
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    Debug.Log("下");
+                    SelectCount++;
+                }
+                if (SelectCount > 2) SelectCount = 0;   // 上にいく
+                if (SelectCount < 0) SelectCount = 2;   // 下に行く
             }
-            if(Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                Debug.Log("下");
-                SelectCount++;
-            }
-            if (SelectCount > 2) SelectCount = 0;   // 上にいく
-            if (SelectCount < 0) SelectCount = 2;   // 下に行く
-
 
             switch(SelectCount)
             {
@@ -126,7 +122,14 @@ public class PauseCoroutine : MonoBehaviour
                     Option.color = nowSelectColor;
                     Retry.color = Color.blue;
                     StageSelect.color = Color.blue;
-                    if (Input.GetKeyDown(KeyCode.Space)) CallOption();
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        animator_Pause.SetBool(UI_anim_paramator, true);
+                        SetIsPauseMenu(false);
+                        StartCoroutine(C_Option());
+                        //StopCoroutine(CoolDown());
+                        //StopCoroutine(PauseMenu());
+                    }
                     break;
 
                 case (int)SelectCorsor.Retry:
@@ -167,24 +170,16 @@ public class PauseCoroutine : MonoBehaviour
     {
         while (true)
         {
-
-
             // ポーズメニューへ戻る
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                StartCoroutine("PauseMenu");
-                StartCoroutine("CoolDown");
+                StartCoroutine(PauseMenu());
+                StartCoroutine(CoolDown());
                 animator_Pause.SetBool(UI_anim_paramator, false);
-                yield return null;
+                SetIsPauseMenu(true);
+                StopCoroutine(C_Option());
             }
+            yield return null;
         }
-    }
-
-    void CallOption()
-    {
-        animator_Pause.SetBool(UI_anim_paramator, true);
-        StopCoroutine("PauseMenu");
-        StopCoroutine("CoolDown");
-        StartCoroutine("C_Option");
     }
 }
