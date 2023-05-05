@@ -26,6 +26,11 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] Animator animator_Pause;
     [SerializeField] string UI_anim_paramator;
 
+    [Header("コルーチン用変数")]
+    [SerializeField] float C_Option_WaitTime;
+    [SerializeField] float C_Option_WaitFrame;
+    [SerializeField] float UpdateModeChange_WaitTime;
+
     // プライベート変数
     private bool isPauseMenu = false;
 
@@ -61,7 +66,6 @@ public class PauseCoroutine : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
 
     }
 
@@ -114,35 +118,35 @@ public class PauseCoroutine : MonoBehaviour
                 }
                 if (SelectCount > 2) SelectCount = 0;   // 上にいく
                 if (SelectCount < 0) SelectCount = 2;   // 下に行く
-            }
 
-            switch(SelectCount)
-            {
-                case (int)SelectCorsor.Option:
-                    Option.color = nowSelectColor;
-                    Retry.color = Color.blue;
-                    StageSelect.color = Color.blue;
-                    if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        animator_Pause.SetBool(UI_anim_paramator, true);
-                        SetIsPauseMenu(false);
-                        StartCoroutine(C_Option());
-                        //StopCoroutine(CoolDown());
-                        //StopCoroutine(PauseMenu());
-                    }
-                    break;
 
-                case (int)SelectCorsor.Retry:
-                    Option.color = Color.blue;
-                    Retry.color = nowSelectColor;
-                    StageSelect.color = Color.blue;
-                    break;
+                switch (SelectCount)
+                {
+                    case (int)SelectCorsor.Option:
+                        Option.color = nowSelectColor;
+                        Retry.color = Color.blue;
+                        StageSelect.color = Color.blue;
+                        if (Input.GetKeyDown(KeyCode.Space))
+                        {
+                            StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.UnscaledTime));
+                            animator_Pause.SetBool(UI_anim_paramator, true);
+                            SetIsPauseMenu(false);
+                            StartCoroutine(C_Option());
+                        }
+                        break;
 
-                case (int)SelectCorsor.StageSelect:
-                    Option.color = Color.blue;
-                    Retry.color = Color.blue;
-                    StageSelect.color = nowSelectColor;
-                    break;
+                    case (int)SelectCorsor.Retry:
+                        Option.color = Color.blue;
+                        Retry.color = nowSelectColor;
+                        StageSelect.color = Color.blue;
+                        break;
+
+                    case (int)SelectCorsor.StageSelect:
+                        Option.color = Color.blue;
+                        Retry.color = Color.blue;
+                        StageSelect.color = nowSelectColor;
+                        break;
+                }
             }
             yield return null;
         }
@@ -166,18 +170,34 @@ public class PauseCoroutine : MonoBehaviour
         }
     }
 
+    IEnumerator Animator_UpdateModeChange(AnimatorUpdateMode mode)
+    {
+        animator_Pause.updateMode = mode;
+
+        yield return new WaitForSecondsRealtime(UpdateModeChange_WaitTime);
+    }
+
     IEnumerator C_Option()
     {
+        //int count = 0;
+        //while(count < C_Option_WaitFrame)
+        //{
+        //    count++;
+        //    yield return null;
+        //}
+
+        yield return new WaitForSecondsRealtime(1.5f);
+        
         while (true)
         {
             // ポーズメニューへ戻る
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                StartCoroutine(PauseMenu());
-                StartCoroutine(CoolDown());
                 animator_Pause.SetBool(UI_anim_paramator, false);
+                yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
-                StopCoroutine(C_Option());
+                StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.AnimatePhysics));
+                yield break;
             }
             yield return null;
         }
