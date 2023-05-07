@@ -24,17 +24,26 @@ public class CookMoveManager : MonoBehaviour
     int FazeNum = 0;
     public int MAX_FAZE_NUM;
 
+    public GameObject ConvayorObj;
+    public GameObject ConvayorModel;
+    public GameObject PlaneModel;
+    public bool[] isConvayor;
+
+    float ConvayorModelPosY;
+
     ScoreData m_ScoreData;
 
     // Start is called before the first frame update
     void Start()
     {
+        ConvayorModelPosY = ConvayorModel.transform.localPosition.y;
         SyattaSleep = true;
 
         SleepCnt = -START_STOP_FLAME;
         m_ScoreData = GameObject.Find("Datas").GetComponent<ScoreData>();
         SyattaMax = Syatta.transform.localPosition.y;
         FPS_Time = 0;
+        CovayorChange(isConvayor[0]);
     }
 
     // Update is called once per frame
@@ -105,7 +114,7 @@ public class CookMoveManager : MonoBehaviour
 
     public void NextScene()
     {
-        
+     
 
         GameObject[] Foods = GameObject.FindGameObjectsWithTag("Foods");
         for(int i = 0; i < Foods.Length;i++)//H‚×•¨•ª
@@ -175,6 +184,39 @@ public class CookMoveManager : MonoBehaviour
 
 
         FazeNum++;
+        if(FazeNum < isConvayor.Length)
+        {
+            CovayorChange(isConvayor[FazeNum]);
+        }
+        
+    }
+
+    void ConvayorOn()
+    {
+        ConvayorObj.SetActive(true);
+        ConvayorModel.transform.position = new Vector3(ConvayorModel.transform.position.x, ConvayorModelPosY, ConvayorModel.transform.position.z);
+        PlaneModel.transform.position = new Vector3(PlaneModel.transform.position.x, ConvayorModelPosY - 20, PlaneModel.transform.position.z);
+    }
+
+    void ConvayorOff()
+    {
+        ConvayorObj.SetActive(false);
+        ConvayorModel.transform.position = new Vector3(ConvayorModel.transform.position.x, ConvayorModelPosY - 20, ConvayorModel.transform.position.z);
+        PlaneModel.transform.position = new Vector3(PlaneModel.transform.position.x, ConvayorModelPosY , PlaneModel.transform.position.z);
+    }
+    
+
+    void CovayorChange(bool flag)
+    {
+        if(flag)
+        {
+            ConvayorOn();
+        }
+        else
+        {
+            ConvayorOff();
+        }
+
     }
 }
 

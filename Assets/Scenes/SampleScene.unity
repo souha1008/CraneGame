@@ -2153,6 +2153,10 @@ MonoBehaviour:
   SYATTA_STOP_FLAME: 14
   Syatta: {fileID: 585085348}
   MAX_FAZE_NUM: 5
+  ConvayorObj: {fileID: 1510612411}
+  ConvayorModel: {fileID: 1992587413}
+  PlaneModel: {fileID: 1215882831}
+  isConvayor: 0100010001
 --- !u!4 &244182721
 Transform:
   m_ObjectHideFlags: 0
@@ -10225,6 +10229,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KeyPures: 
+--- !u!1 &1215882831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2893852434682185745, guid: 748adcbf7e913b24c8252f6a284df870,
+    type: 3}
+  m_PrefabInstance: {fileID: 1686096301}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1222984670
 GameObject:
   m_ObjectHideFlags: 0
@@ -12593,7 +12603,7 @@ GameObject:
   - component: {fileID: 1510612412}
   m_Layer: 2
   m_Name: Conveyor (1)
-  m_TagString: FoodsSupport
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13505,6 +13515,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 5671200055390035848, guid: 748adcbf7e913b24c8252f6a284df870,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.025
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 748adcbf7e913b24c8252f6a284df870, type: 3}
@@ -15108,7 +15123,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67d1ee60b35afac4397ad3195c9b86d8, type: 2}
+  - {fileID: 2100000, guid: 1c6c2878e20f812439df71f7697a6a1e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15628,6 +15643,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985844520}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1992587413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2662860372532383130, guid: 748adcbf7e913b24c8252f6a284df870,
+    type: 3}
+  m_PrefabInstance: {fileID: 1686096301}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1998684405
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,19 @@ using UnityEngine;
 
 public class Player2 : MonoBehaviour
 {
+    //public enum ATTACH_TYPE
+    //{
+    //    CHATHHER,
+    //    KNIFE,
+    //    HUMMER,
+    //    FIRE
+    //}
+
+    public bool UseChatcher;
+    public bool UseKnife;
+    public bool UseHammer;
+    public bool UseFire;
+
     public enum STICK_MOVE_TYPE
     {
         ZAHYOU_KIJUN,
@@ -60,8 +73,11 @@ public class Player2 : MonoBehaviour
     float MIN_X;
     float MAX_X;
 
-    bool RTrigger = false;
-
+    //bool RTrigger = false;
+    bool JuujiUp = false;
+    bool JuujiDown = false;
+    bool JuujiRight = false;
+    bool JuujiLeft = false;
 
     public GameObject[] PrefabArray;
 
@@ -103,14 +119,36 @@ public class Player2 : MonoBehaviour
 
         MyAttach.CustomUpdate();
 
-        if (Input.GetButtonDown("Rbutton"))
+        float Yoko = Input.GetAxis("JuujiKeyX");
+        float Tate = Input.GetAxis("JuujiKeyY");
+
+
+        if (Yoko >= 0.8f)
         {
-            RTrigger = true;
+            JuujiRight = true;
         }
+        else if( Yoko <= -0.8f)
+        {
+            JuujiLeft = true;
+        }
+        else if(Tate >= 0.8f )
+        {
+            JuujiUp = true;
+        }
+        else if( Tate <= -0.8f)
+        {
+            JuujiDown = true;
+        }
+
+        //if (Input.GetButtonDown("Rbutton"))
+        //{
+        //    RTrigger = true;
+        //}
     }
 
     void FixedUpdate() //FixedUpdateはUpdate(毎フレーム)と違って0.02秒毎に呼ばれる仕組みになっている※もちろん感覚は変更可
     {
+        //変更中なら
         if(isChange)
         {
             if(ChangeCnt >= 6)
@@ -133,17 +171,45 @@ public class Player2 : MonoBehaviour
             ChangeCnt++;
         }
 
-
+        //変更中じゃなければ
         if (!isChange)
         {
-            if (RTrigger)
+            //応じた変更処理
+            if (JuujiRight)
             {
                 if (transform.position.y == DefaultPos.y)
                 {
-                    NextAttach();
+                    if(UseFire)
+                        NextAttachType = Attach.AttachType.FIRE;
                 }
-
-                RTrigger = false;
+                JuujiRight = false;
+            }
+            if(JuujiLeft)
+            {
+                if (transform.position.y == DefaultPos.y)
+                {
+                    if (UseHammer)
+                        NextAttachType = Attach.AttachType.HAMMER;
+                }
+                JuujiLeft = false;
+            }
+            if(JuujiUp)
+            {
+                if (transform.position.y == DefaultPos.y)
+                {
+                    if (UseKnife)
+                        NextAttachType = Attach.AttachType.KNIFE;
+                }
+                JuujiUp = false;
+            }
+            if (JuujiDown)
+            {
+                if (transform.position.y == DefaultPos.y)
+                {
+                    if (UseChatcher)
+                        NextAttachType = Attach.AttachType.CRANE;
+                }
+                JuujiDown = false;
             }
 
             MyAttach.CustomFixedUpdate();
@@ -437,11 +503,11 @@ public class Player2 : MonoBehaviour
         }
     }
 
-    void NextAttach()
-    {
-        NextAttachType += 1;
-        NextAttachType = (Attach.AttachType)((int)NextAttachType % (int)Attach.AttachType.TYPE_MAX); ;
-    }
+    //void NextAttach()
+    //{
+    //    NextAttachType += 1;
+    //    NextAttachType = (Attach.AttachType)((int)NextAttachType % (int)Attach.AttachType.TYPE_MAX); ;
+    //}
 
 }
 
