@@ -340,9 +340,33 @@ public class CircleFoodsInterFace : MonoBehaviour
         else if (other.gameObject.tag == "AttachFire")
         {
             Fire(other);
+
+            if (m_FireAction == FireAction.KOGE)
+            {
+
+                GetComponent<Renderer>().material.color = Color.black;
+
+                //変更
+                //移動も回転もしないようにする
+                //GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                m_HummerAction = HummerAction.STAY;
+                m_CutAction = CutAction.CANNOT;
+                m_FireAction = FireAction.STAY;
+                m_ChachAction = ChachAction.HARD;
+
+                isNoAction = true;
+
+                //Debug.Log("ハンマー2");
+            }
         }
     }
 
+
+    public void ResetUnderVel()
+    {
+        if (Vel.y < 0.0f)
+            Vel.y = 0.0f;
+    }
 
     //private void OnTriggerStay(Collider other)
     //{
