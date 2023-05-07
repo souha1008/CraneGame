@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7, y: 5, z: 1}
   m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,6 +55,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -128,7 +130,8 @@ MonoBehaviour:
   m_ChachAction: 0
   m_CutAction: 1
   m_HummerAction: 2
-  m_FireAction: 1
+  m_FireAction: 2
+  isNoAction: 0
   isClear: 0
   Vel: {x: -0.3, y: 0.1, z: 0}
   isGround: 0

@@ -6,6 +6,8 @@ public class HamaguriAnim : MonoBehaviour
 {
 
     public GameObject Uwabuta;
+
+    int AnimCnt = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +21,29 @@ public class HamaguriAnim : MonoBehaviour
         {
             if (this.gameObject.GetComponent<Hamaguri>().Open)
             {
-                Uwabuta.transform.localRotation = Quaternion.Euler(0, -15, 90.0f);
-            }
+                switch (AnimCnt)
+                {
+                    case 0:
+                        Uwabuta.transform.localRotation = Quaternion.Euler(0, 110, 90.0f);
+                        break;
 
+                    case 1:
+                        Uwabuta.transform.localRotation = Quaternion.Euler(0, 65, 90.0f);
+                        break;
+
+                    case 2:
+                        Uwabuta.transform.localRotation = Quaternion.Euler(0, 20, 90.0f);
+                        break;
+
+                    default:
+                        Uwabuta.transform.localRotation = Quaternion.Euler(0, -15, 90.0f);
+                        break;
+
+
+
+                }
+                AnimCnt++;
+            }            
         }
         else
         {
