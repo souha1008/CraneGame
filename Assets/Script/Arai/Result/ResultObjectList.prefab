@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6994428140037562106}
   - component: {fileID: 5666433755997113113}
-  - component: {fileID: -6031082932148624717}
   m_Layer: 0
   m_Name: ResultObjectList
   m_TagString: Untagged
@@ -28,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
     m_objects: []
   - m_state: 2
     m_ui:
-    - {fileID: 6938359413415428141, guid: dc0aae5837888f44aa945cc51ab595ee, type: 3}
+    - {fileID: 3186276134649792913, guid: 50575a846fcbd5d43a9a71ec17763a8b, type: 3}
     m_objects: []
   - m_state: 3
     m_ui:
@@ -65,16 +65,4 @@ MonoBehaviour:
   - m_state: 4
     m_ui: []
     m_objects:
-    - {fileID: -6031082932148624717}
---- !u!114 &-6031082932148624717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2609814104689609891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 302047311f69ad74f9372d82ab4637be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+    - {fileID: 7817740278045407787, guid: 54feb7f5d15b9264e953fe482d36e1b2, type: 3}

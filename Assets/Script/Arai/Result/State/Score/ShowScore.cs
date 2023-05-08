@@ -21,6 +21,9 @@ public class ShowScore : ResultUI
     [SerializeField]
     private float interval;
 
+    [SerializeField]
+    private float delay;
+
     private int m_Index = 0;
 
     private ScoreData m_Data;
@@ -59,7 +62,7 @@ public class ShowScore : ResultUI
     {
         if (m_Index == Co.Const.FAZE_NUM)
         {
-            Finish();
+            Invoke("Finish", delay);
             return;
         }
 
