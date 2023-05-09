@@ -71,9 +71,61 @@ public class PauseCoroutine : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(pauseKey) && mPauseCooldown <= 0.0f)
+        if (Input.GetKeyDown(pauseKey) && mPauseCooldown <= 0.0f && mPaused == false)
         {
             Pause();
+        }
+
+        //if (isPauseMenu == true)
+        //{
+        //    switch (SelectCount)
+        //    {
+        //        case (int)SelectCorsor.Option:
+        //            if (Input.GetKeyDown(KeyCode.Space))
+        //            {
+        //                animator_Pause.SetBool(UI_anim_paramator, true);
+        //                SetIsPauseMenu(false);
+        //                StartCoroutine(C_Option());
+        //            }
+        //            break;
+
+        //        case (int)SelectCorsor.Retry:
+ 
+        //            break;
+
+        //        case (int)SelectCorsor.StageSelect:
+
+        //            break;
+        //    }
+        //}
+
+    }
+
+    private void LateUpdate()
+    {
+        if (isPauseMenu == true)
+        {
+            switch (SelectCount)
+            {
+                case (int)SelectCorsor.Option:
+                    Option.color = nowSelectColor;
+                    Retry.color = Color.blue;
+                    StageSelect.color = Color.blue;
+
+                    break;
+
+                case (int)SelectCorsor.Retry:
+                    Option.color = Color.blue;
+                    Retry.color = nowSelectColor;
+                    StageSelect.color = Color.blue;
+                    break;
+
+                case (int)SelectCorsor.StageSelect:
+                    Option.color = Color.blue;
+                    Retry.color = Color.blue;
+                    StageSelect.color = nowSelectColor;
+                    break;
+            }
         }
     }
 
@@ -91,7 +143,7 @@ public class PauseCoroutine : MonoBehaviour
     {
         Debug.Log("ポーズ中");
         StartCoroutine(PauseMenu());
-        yield return new WaitUntil(() => Input.GetKeyDown(pauseKey) && mPauseCooldown >= pauseCoolTime);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z) && isPauseMenu == true && mPauseCooldown >= pauseCoolTime);
 
         Debug.Log("ポーズ解除");
         StopCoroutine(PauseMenu());
@@ -123,12 +175,9 @@ public class PauseCoroutine : MonoBehaviour
                 switch (SelectCount)
                 {
                     case (int)SelectCorsor.Option:
-                        Option.color = nowSelectColor;
-                        Retry.color = Color.blue;
-                        StageSelect.color = Color.blue;
                         if (Input.GetKeyDown(KeyCode.Space))
                         {
-                            StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.UnscaledTime));
+                            //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.UnscaledTime));
                             animator_Pause.SetBool(UI_anim_paramator, true);
                             SetIsPauseMenu(false);
                             StartCoroutine(C_Option());
@@ -136,15 +185,11 @@ public class PauseCoroutine : MonoBehaviour
                         break;
 
                     case (int)SelectCorsor.Retry:
-                        Option.color = Color.blue;
-                        Retry.color = nowSelectColor;
-                        StageSelect.color = Color.blue;
+
                         break;
 
                     case (int)SelectCorsor.StageSelect:
-                        Option.color = Color.blue;
-                        Retry.color = Color.blue;
-                        StageSelect.color = nowSelectColor;
+
                         break;
                 }
             }
@@ -179,14 +224,7 @@ public class PauseCoroutine : MonoBehaviour
 
     IEnumerator C_Option()
     {
-        //int count = 0;
-        //while(count < C_Option_WaitFrame)
-        //{
-        //    count++;
-        //    yield return null;
-        //}
-
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(C_Option_WaitTime);
         
         while (true)
         {
@@ -196,7 +234,7 @@ public class PauseCoroutine : MonoBehaviour
                 animator_Pause.SetBool(UI_anim_paramator, false);
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
-                StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.AnimatePhysics));
+                //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.AnimatePhysics));
                 yield break;
             }
             yield return null;
