@@ -16,6 +16,9 @@ public class StageSelectManager : MonoBehaviour
     private List<Sprite> bg;
 
     [SerializeField]
+    private Image bgbase;
+
+    [SerializeField]
     private StageSpriteManager ssManager;
 
     private StageSpriteManager nowManager;

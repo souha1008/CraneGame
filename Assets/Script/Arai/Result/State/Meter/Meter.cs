@@ -37,6 +37,9 @@ public class Meter : ResultUI
     private float waitTime = 0.8f;   // 待機時間
     private float time = 0;
 
+    [SerializeField]
+    private float testscore;
+
     void Start()
     {
         body_tf     = body.GetComponent<RectTransform>();
@@ -47,7 +50,7 @@ public class Meter : ResultUI
         ++pctIndex;
 
         // test
-        volumMax = 0.85f;
+        volumMax = testscore;
         // testend
         // スコア割合確認
     }

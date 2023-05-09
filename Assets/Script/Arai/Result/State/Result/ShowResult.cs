@@ -14,6 +14,15 @@ public class ShowResult : MonoBehaviour
     [SerializeField]
     private ResultText textMotion;
 
+    [SerializeField]
+    private float excellentScore;
+
+    [SerializeField]
+    private float goodScore;
+
+    [SerializeField]
+    private float testscore;
+
     void Start()
     {
         image = gameObject.GetComponent<Image>();
@@ -27,6 +36,12 @@ public class ShowResult : MonoBehaviour
         if (score > 2)
             result = RESULT.B;
 */
+        // リザルト分岐
+        if (testscore >= excellentScore)
+            result = ResultEnum.RESULT.EXCELLENT;
+        else if (testscore >= goodScore)
+            result = ResultEnum.RESULT.B;
+
         image.sprite = resultSprites[(int)result];
 
         textMotion.Action(result);
