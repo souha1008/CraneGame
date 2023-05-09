@@ -11,7 +11,9 @@ using UnityEditor;
 public class Candle : CircleFoodsInterFace
 {
     public int FireCnt = 0;
-    bool FireFlag;
+    bool FireAburareFlag;
+
+    public bool isFire = false;
 
     void Start()
     {
@@ -28,17 +30,17 @@ public class Candle : CircleFoodsInterFace
     {
         if (!isNoAction)
         {
-            if (FireFlag)
+            if (FireAburareFlag)
             {
                 FireCnt++;
 
                 if (FireCnt > 2)
                 {
                     m_HummerAction = HummerAction.STAY;
-                    isClear = true;
+                    isFire = true;
                 }
             }
-            FireFlag = false;
+            FireAburareFlag = false;
         }
 
         FoodsFixedUpdate();
@@ -47,6 +49,6 @@ public class Candle : CircleFoodsInterFace
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "AttachFire")
-            FireFlag = true;
+            FireAburareFlag = true;
     }
 }
