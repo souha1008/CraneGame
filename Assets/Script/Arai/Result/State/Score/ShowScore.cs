@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class ShowScore : ResultUI
 {
     [SerializeField]
-    private Image m_Image;
+    private Image image;
 
     [SerializeField]
-    private List<Sprite> m_Sprites;
+    private List<Sprite> sprites;
 
     [SerializeField]
     private Vector2 defaultPos;
@@ -24,9 +24,9 @@ public class ShowScore : ResultUI
     [SerializeField]
     private float delay;
 
-    private int m_Index = 0;
+    private int index = 0;
 
-    private ScoreData m_Data;
+    private ScoreData data;
 
     void Start()
     {
@@ -42,9 +42,9 @@ public class ShowScore : ResultUI
         {
             CancelInvoke("Show");
 
-            for (var i = m_Index; i < Co.Const.FAZE_NUM; ++i)
+            for (var i = index; i < Co.Const.FAZE_NUM; ++i)
             {
-                var obj = Instantiate(m_Image);
+                var obj = Instantiate(image);
                 obj.transform.SetParent(this.transform.parent, false);
 
                 var offpos = this.transform.parent.transform.position;
@@ -60,22 +60,22 @@ public class ShowScore : ResultUI
     /// </summary>
     private void Show()
     {
-        if (m_Index == Co.Const.FAZE_NUM)
+        if (index == Co.Const.FAZE_NUM)
         {
             Invoke("Finish", delay);
             return;
         }
 
-        var obj = Instantiate(m_Image);
+        var obj = Instantiate(image);
         obj.transform.SetParent(this.transform.parent, false);
 
         // スコアのスプライトに切り替え
 
         var offpos = this.transform.parent.transform.position;
 
-        obj.rectTransform.anchoredPosition = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * m_Index);
+        obj.rectTransform.anchoredPosition = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * index);
 
-        ++m_Index;
+        ++index;
         Invoke("Show", interval);
     }
 

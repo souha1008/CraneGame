@@ -12,5 +12,8 @@ namespace Co
 
         public const float TITLEOBJ_OFFSET_Y = 1;
         public const float TITLEOBJ_MOVEVOLUM = 0.05f;
+
+        public const int WORLD_NUM = 4;
+        public const int STAGE_NUM = 6;
     }
 }
