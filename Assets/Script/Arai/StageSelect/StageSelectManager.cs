@@ -10,26 +10,20 @@ public class StageSelectManager : MonoBehaviour
     private Canvas canvas;
 
     [SerializeField]
-    private StageSprite stageSprite;
-
-    [SerializeField]
     private List<Sprite> bg;
 
     [SerializeField]
     private Image bgbase;
 
     [SerializeField]
-    private StageSpriteManager ssManager;
+    private WorldManager worldManager;
+    private WorldManager manager;
 
-    private StageSpriteManager nowManager;
+    [SerializeField]
+    private IconManager iconManager;
 
     private int worldIndex = 0;
     private int stageIndex = 0;
-
-    [SerializeField]
-    private Vector2 pivotPos;
-    [SerializeField]
-    private float offsetX;
 
     private bool active = true;
     public bool Active
@@ -40,7 +34,7 @@ public class StageSelectManager : MonoBehaviour
     void Start()
     {
         CreateSelectWorld(Vector2.zero);
-        nowManager.Active = true;
+        manager.Active = true;
     }
 
     void Update()
@@ -51,9 +45,8 @@ public class StageSelectManager : MonoBehaviour
         {
             if (worldIndex+1 < Co.Const.WORLD_NUM)
             {
-                nowManager.Active = false;
-                CreateSelectWorld(new Vector2(1920, 0));
                 ++worldIndex;
+                CreateSelectWorld(new Vector2(1920, 0));
                 active = false;
             }
         }
@@ -61,9 +54,8 @@ public class StageSelectManager : MonoBehaviour
         {
             if (worldIndex > 0)
             {
-                nowManager.Active = false;
-                CreateSelectWorld(new Vector2(-1920, 0));
                 --worldIndex;
+                CreateSelectWorld(new Vector2(-1920, 0));
                 active = false;
             }
         }
@@ -71,24 +63,29 @@ public class StageSelectManager : MonoBehaviour
 
     private void CreateSelectWorld(Vector2 pos)
     {
+        var obj = Instantiate(worldManager, canvas.transform);
+        obj.GetComponent<RectTransform>().anchoredPosition = pos;
+        obj.Parent = this;
+
         // 画面生成
-        //var bgobj = Instantiate(bg);
+        // 背景
+        var bgobj = Instantiate(bgbase, obj.transform);
+        bgobj.sprite = bg[worldIndex];
 
-        var mng = Instantiate(ssManager);
-        mng.transform.SetParent(canvas.transform, false);
-        mng.GetComponent<RectTransform>().anchoredPosition = pos;
-        mng.CreateButton();
-        mng.Parent = this;
+        // アイコン
+        var icon = Instantiate(iconManager, obj.transform);
+        icon.CreateButton();
 
-
-        if (nowManager)
+        obj.IconManager = icon;
+        if (manager)
         {
-            nowManager.Inactivate(new Vector2(-pos.x, pos.y));
-            mng.Activate();
+            manager.Inactivate(new Vector2(-pos.x, pos.y));
+            obj.Activate();
         }
         else
-            mng.Activate(true);
-
-        nowManager = mng;
+        {
+            obj.Activate(true);
+        }
+        manager = obj;
     }
 }
