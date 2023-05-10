@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transition : MonoBehaviour
+public class TransitionTex : MonoBehaviour
 {
     private Animator animator;
-
-    private GameObject cameraObject;
 
     readonly float waitTime = 1.9f;
 
@@ -23,20 +21,11 @@ public class Transition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cameraObject = GameObject.Find("Main Camera");
-        
-        Vector3 position = cameraObject.transform.position;
-        Quaternion rotate = cameraObject.transform.rotation;
-        Vector3 scale = cameraObject.transform.localScale;
-        
-        gameObject.transform.position = position;
-        gameObject.transform.rotation = rotate;
-        gameObject.transform.localScale = scale;
     }
 
     IEnumerator Trans()
     {
-        yield return new WaitForSeconds(waitTime / 2 + 0.03f);
+        yield return new WaitForSeconds(waitTime / 2);
 
         StartCoroutine((nameof(WaitAnim)));
 

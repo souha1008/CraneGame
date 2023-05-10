@@ -10,7 +10,7 @@ using UnityEditor;
 
 public class Lemon : CircleFoodsInterFace
 {
-    public Karaage TarasuObj;
+   // public Karaage TarasuObj;
 
     int Cnt = 0;
 
@@ -27,10 +27,10 @@ public class Lemon : CircleFoodsInterFace
     {
         FoodsUpdate();
 
-        if(TarasuObj.isClear)
-        {
-            isClear = true;
-        }
+        //if(TarasuObj.isClear)
+        //{
+        //    isClear = true;
+        //}
     }
 
     void FixedUpdate()

@@ -26,15 +26,15 @@ public class Nat : CircleFoodsInterFace
     {
         FoodsFixedUpdate();
 
-        float VectorLength = (transform.position - MotoRyouri.transform.position).magnitude;
-        if(VectorLength < 9)
-        {
-            isClear = false;
-        }
-        else
-        {
-            isClear = true;
-        }
+        //float VectorLength = (transform.position - MotoRyouri.transform.position).magnitude;
+        //if(VectorLength < 7)
+        //{
+        //    isClear = false;
+        //}
+        //else
+        //{
+        //    isClear = true;
+        //}
     }
 
     private void OnTriggerStay(Collider other)
