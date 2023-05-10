@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodsSupportInterFace : MonoBehaviour
+public class DeleteObject : MonoBehaviour
 {
-    public bool isClear = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +14,10 @@ public class FoodsSupportInterFace : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

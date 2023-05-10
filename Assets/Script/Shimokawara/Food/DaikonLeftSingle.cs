@@ -37,10 +37,7 @@ public class DaikonLeftSingle : CircleFoodsInterFace
         {
             m_CutAction = CutAction.CANNOT;//ŠÑ’Ê‚¨‚í‚è
         }
-        if (transform.position.x < ShikiriX)
-        {
-            isClear = true;
-        }
+
         FoodsFixedUpdate();
     }
 

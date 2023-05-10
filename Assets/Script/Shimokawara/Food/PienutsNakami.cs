@@ -37,10 +37,7 @@ public class PienutsNakami : CircleFoodsInterFace
         {
             m_HummerAction = HummerAction.SCALE;//ŠÑ’Ê‚µ‚Ä‚Ù‚µ‚¢‚¾‚¯
         }
-        if (transform.position.x < ShikiriX)
-        {
-            isClear = true;
-        }
+
         FoodsFixedUpdate();
     }
 

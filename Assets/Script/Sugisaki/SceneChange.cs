@@ -26,6 +26,11 @@ public class SceneChange : MonoBehaviour
     {
         time += Time.deltaTime;
 
+        //if (time > waitTime) 
+        //{
+        //    isFade = false;
+        //}
+
         if (Input.GetKeyDown(KeyCode.Return) && !isFade)
         {
             LoadScene(sceneName);
