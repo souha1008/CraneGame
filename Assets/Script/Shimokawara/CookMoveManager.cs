@@ -114,19 +114,59 @@ public class CookMoveManager : MonoBehaviour
 
     public void NextScene()
     {
-     
 
+        AddScore();
+        MoveObject();
+
+        FazeNum++;
+        if(FazeNum < isConvayor.Length)
+        {
+            CovayorChange(isConvayor[FazeNum]);
+        }
+        
+    }
+
+    void ConvayorOn()
+    {
+        ConvayorObj.SetActive(true);
+        ConvayorModel.transform.position = new Vector3(ConvayorModel.transform.position.x, ConvayorModelPosY, ConvayorModel.transform.position.z);
+        PlaneModel.transform.position = new Vector3(PlaneModel.transform.position.x, ConvayorModelPosY - 20, PlaneModel.transform.position.z);
+    }
+
+    void ConvayorOff()
+    {
+        ConvayorObj.SetActive(false);
+        ConvayorModel.transform.position = new Vector3(ConvayorModel.transform.position.x, ConvayorModelPosY - 20, ConvayorModel.transform.position.z);
+        PlaneModel.transform.position = new Vector3(PlaneModel.transform.position.x, ConvayorModelPosY , PlaneModel.transform.position.z);
+    }
+    
+
+    void CovayorChange(bool flag)
+    {
+        if(flag)
+        {
+            ConvayorOn();
+        }
+        else
+        {
+            ConvayorOff();
+        }
+
+    }
+
+    void AddScore()
+    {
         GameObject[] Foods = GameObject.FindGameObjectsWithTag("Foods");
-        for(int i = 0; i < Foods.Length;i++)//食べ物分
+        for (int i = 0; i < Foods.Length; i++)//食べ物分
         {
             float thisNearMagni = 999999;//現状の最短距離
             int nearIndex = 0;
             Vector3 PosVector = Vector3.zero;//位置ベクトル
 
-            for(int j =0; j < GameStage.Length; j++)//ステージ数分
+            for (int j = 0; j < GameStage.Length; j++)//ステージ数分
             {
                 float Magni = (Foods[i].transform.position - GameStage[j].transform.position).magnitude;
-                if (thisNearMagni > Magni )
+                if (thisNearMagni > Magni)
                 {
                     thisNearMagni = Magni;
                     nearIndex = j;
@@ -134,12 +174,90 @@ public class CookMoveManager : MonoBehaviour
                 }
             }
 
-            if(nearIndex == 0)//消すべき
+            if (nearIndex == 0)//消すべき
             {
-                if(Foods[i].GetComponent<CircleFoodsInterFace>().isClear)
+                if (Foods[i].GetComponent<CircleFoodsInterFace>().isClear)
                 {
                     m_ScoreData.SetScore(FazeNum, m_ScoreData.GetScore(FazeNum) + 100);
                 }
+                //Destroy(Foods[i]);
+            }
+
+            //else//次の箇所へ行くべき
+            //{
+            //    Foods[i].transform.position = GameStage[nearIndex - 1].transform.position + PosVector;
+            //}
+        }
+
+
+
+
+
+        GameObject[] FoodsSupport = GameObject.FindGameObjectsWithTag("FoodsSupport");
+        for (int i = 0; i < FoodsSupport.Length; i++)//食べ物分
+        {
+            float thisNearMagni = 999999;//現状の最短距離
+            int nearIndex = 0;
+            Vector3 PosVector = Vector3.zero;//位置ベクトル
+
+            for (int j = 0; j < GameStage.Length; j++)//ステージ数分
+            {
+                float Magni = (FoodsSupport[i].transform.position - GameStage[j].transform.position).magnitude;
+                if (thisNearMagni > Magni)
+                {
+                    thisNearMagni = Magni;
+                    nearIndex = j;
+                    PosVector = FoodsSupport[i].transform.position - GameStage[j].transform.position;
+                }
+            }
+
+            if (nearIndex == 0)//消すべき
+            {
+                if(FoodsSupport[i].GetComponent<FoodsSupportInterFace>())
+                {
+                    if (FoodsSupport[i].GetComponent<FoodsSupportInterFace>().isClear)
+                    {
+                        m_ScoreData.SetScore(FazeNum, m_ScoreData.GetScore(FazeNum) + 100);
+                    }
+
+                }
+                
+                //Destroy(FoodsSupport[i]);
+            }
+
+            //else//次の箇所へ行くべき
+            //{
+            //    FoodsSupport[i].transform.position = GameStage[nearIndex - 1].transform.position + PosVector;
+            //}
+        }
+    }
+
+    void MoveObject()
+    {
+        GameObject[] Foods = GameObject.FindGameObjectsWithTag("Foods");
+        for (int i = 0; i < Foods.Length; i++)//食べ物分
+        {
+            float thisNearMagni = 999999;//現状の最短距離
+            int nearIndex = 0;
+            Vector3 PosVector = Vector3.zero;//位置ベクトル
+
+            for (int j = 0; j < GameStage.Length; j++)//ステージ数分
+            {
+                float Magni = (Foods[i].transform.position - GameStage[j].transform.position).magnitude;
+                if (thisNearMagni > Magni)
+                {
+                    thisNearMagni = Magni;
+                    nearIndex = j;
+                    PosVector = Foods[i].transform.position - GameStage[j].transform.position;
+                }
+            }
+
+            if (nearIndex == 0)//消すべき
+            {
+                //if (Foods[i].GetComponent<CircleFoodsInterFace>().isClear)
+                //{
+                //    m_ScoreData.SetScore(FazeNum, m_ScoreData.GetScore(FazeNum) + 100);
+                //}
                 Destroy(Foods[i]);
             }
 
@@ -181,42 +299,6 @@ public class CookMoveManager : MonoBehaviour
                 FoodsSupport[i].transform.position = GameStage[nearIndex - 1].transform.position + PosVector;
             }
         }
-
-
-        FazeNum++;
-        if(FazeNum < isConvayor.Length)
-        {
-            CovayorChange(isConvayor[FazeNum]);
-        }
-        
-    }
-
-    void ConvayorOn()
-    {
-        ConvayorObj.SetActive(true);
-        ConvayorModel.transform.position = new Vector3(ConvayorModel.transform.position.x, ConvayorModelPosY, ConvayorModel.transform.position.z);
-        PlaneModel.transform.position = new Vector3(PlaneModel.transform.position.x, ConvayorModelPosY - 20, PlaneModel.transform.position.z);
-    }
-
-    void ConvayorOff()
-    {
-        ConvayorObj.SetActive(false);
-        ConvayorModel.transform.position = new Vector3(ConvayorModel.transform.position.x, ConvayorModelPosY - 20, ConvayorModel.transform.position.z);
-        PlaneModel.transform.position = new Vector3(PlaneModel.transform.position.x, ConvayorModelPosY , PlaneModel.transform.position.z);
-    }
-    
-
-    void CovayorChange(bool flag)
-    {
-        if(flag)
-        {
-            ConvayorOn();
-        }
-        else
-        {
-            ConvayorOff();
-        }
-
     }
 }
 

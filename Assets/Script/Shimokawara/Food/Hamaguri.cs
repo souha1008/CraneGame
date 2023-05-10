@@ -42,6 +42,14 @@ public class Hamaguri : CircleFoodsInterFace
             FireFlag = false;
         }
 
+        if(Open )
+        {
+            if (transform.position.x < ShikiriX)
+            {
+                isClear = true;
+            }
+        }
+
         FoodsFixedUpdate();
     }
 
