@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7971752190083643816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7971752190083643818}
+  - component: {fileID: 7971752190083643819}
+  m_Layer: 0
+  m_Name: PauseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7971752190083643818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7971752190083643816}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7971752190083643819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7971752190083643816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e9a48a754d0a24aa365a54811d4a6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mPaused: 0
+  mPauseCooldown: 0
+  pauseCoolTime: 120
+  pauseKey: 112
+  nowSelectColor: {r: 0, g: 1, b: 1, a: 1}
+  Pause_Canvas: {fileID: 0}
+  Option: {fileID: 0}
+  Retry: {fileID: 0}
+  StageSelect: {fileID: 0}
+  SelectCount: 0
+  animator_Pause: {fileID: 0}
+  animator_Oshinagaki: {fileID: 0}
+  UI_anim_paramator: StartAnim
+  C_Option_WaitTime: 1.5
+  C_Option_WaitFrame: 180
+  UpdateModeChange_WaitTime: 5
