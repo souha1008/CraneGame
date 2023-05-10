@@ -38,7 +38,7 @@ public class Daikon : CircleFoodsInterFace
 
             float X_Vector= (other.transform.position.x - transform.position.x);
 
-            if(X_Vector > SizeX / 8 && X_Vector < SizeX / 8 * 3)
+            if(X_Vector > SizeX / 12 && X_Vector < SizeX / 12 * 4)
             {
                 GameObject Cut1 = (GameObject)Resources.Load("DaikonLeftDowble");
                 GameObject Cut2 = (GameObject)Resources.Load("DaikonRightSingle");
@@ -58,7 +58,7 @@ public class Daikon : CircleFoodsInterFace
                 Debug.Log("‰EØ");
             }
 
-            else if (X_Vector < -SizeX / 8 && X_Vector > - SizeX / 8 * 3)
+            else if (X_Vector < -SizeX / 12 && X_Vector > - SizeX / 12 * 4)
             {
 
                 GameObject Cut1 = (GameObject)Resources.Load("DaikonLeftSingle");

@@ -28,9 +28,7 @@ public class Transition : MonoBehaviour
         Vector3 position = cameraObject.transform.position;
         Quaternion rotate = cameraObject.transform.rotation;
         Vector3 scale = cameraObject.transform.localScale;
-
-        //position.z = position.z + 1.0f;
-
+        
         gameObject.transform.position = position;
         gameObject.transform.rotation = rotate;
         gameObject.transform.localScale = scale;
@@ -54,11 +52,5 @@ public class Transition : MonoBehaviour
         yield return new WaitForSeconds(stopTime);
 
         animator.SetFloat("speed", 1.0f);
-    }
-
-    void TransAnim()
-    {
-        Debug.Log("trans");
-        StartCoroutine((nameof(WaitAnim)));
     }
 }

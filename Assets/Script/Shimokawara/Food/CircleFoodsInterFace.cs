@@ -73,6 +73,7 @@ public class CircleFoodsInterFace : MonoBehaviour
     float leftDistance = 0;
     float rightDistance = 0;
 
+    protected static float ShikiriX = -10;
 
     // Start is called before the first frame update
     public void FoodsStart()

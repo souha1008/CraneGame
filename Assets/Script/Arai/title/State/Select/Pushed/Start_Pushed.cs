@@ -7,7 +7,7 @@ public class Start_Pushed : MonoBehaviour
     public void PushAction()
     {
         // ステージセレクトへ
-        GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
+        GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
         //GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("SampleScene");
         //SceneManager.LoadScene("ResultTest");
     }
