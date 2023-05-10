@@ -230,9 +230,9 @@ public class CircleFoodsInterFace : MonoBehaviour
     }
     void GlabUpdate()
     {
+        GetComponent<SphereCollider>().isTrigger = true;
+
         isGround = false;
-
-
 
         Vector3 temp = (LeftArmBord.transform.position + RightArmBord.transform.position) / 2;
         temp.y = LeftArmBord.transform.position.y;
@@ -268,7 +268,9 @@ public class CircleFoodsInterFace : MonoBehaviour
 
     void FreeUpdate()
     {
-        if(isNoAction == false)
+        GetComponent<SphereCollider>().isTrigger = false;
+
+        if (isNoAction == false)
         {
             Vector3 tempScale = new Vector3(BallSize, BallSize, BallSize);
             transform.localScale = tempScale;
