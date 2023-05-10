@@ -29,26 +29,30 @@ public class Basket : FoodsSupportInterFace
 
         for (int i = 0; i < MikanArray.Length; i++)
         {
-            Vector2 Max;
-            Max.x = transform.position.x + transform.localScale.x / 2;
-            Max.y = transform.position.z + transform.localScale.z / 2;
-
-            Vector2 Min;
-            Min.x = transform.position.x - transform.localScale.x / 2;
-            Min.y = transform.position.z - transform.localScale.z / 2;
-
-            if(MikanArray[i].transform.position.x > Min.x &&
-                MikanArray[i].transform.position.x < Max.x &&
-                MikanArray[i].transform.position.z > Min.y &&
-                MikanArray[i].transform.position.z < Max.y &&
-                !MikanArray[i].isNoAction)
+            if(MikanArray[i])
             {
-                MikanArray[i].isClear = true;
+                Vector2 Max;
+                Max.x = transform.position.x + transform.localScale.x / 2;
+                Max.y = transform.position.z + transform.localScale.z / 2;
+
+                Vector2 Min;
+                Min.x = transform.position.x - transform.localScale.x / 2;
+                Min.y = transform.position.z - transform.localScale.z / 2;
+
+                if (MikanArray[i].transform.position.x > Min.x &&
+                    MikanArray[i].transform.position.x < Max.x &&
+                    MikanArray[i].transform.position.z > Min.y &&
+                    MikanArray[i].transform.position.z < Max.y &&
+                    !MikanArray[i].isNoAction)
+                {
+                    MikanArray[i].isClear = true;
+                }
+                else
+                {
+                    MikanArray[i].isClear = false; ;
+                }
             }
-            else
-            {
-                MikanArray[i].isClear = false; ;
-            }
+            
         }
     }
 

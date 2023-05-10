@@ -57,8 +57,11 @@ public class CircleFoodsInterFace : MonoBehaviour
 
     public bool isClear = false;
 
-    Vector3 LeftArmPosition;
-    Vector3 RightArmPosition;
+    //Vector3 LeftArmPosition;
+    //Vector3 RightArmPosition;
+
+     public GameObject RightArmBord;
+     public GameObject LeftArmBord;
 
     float GLAVITY = 0.006f;
     public Vector3 Vel = Vector3.zero;
@@ -83,6 +86,9 @@ public class CircleFoodsInterFace : MonoBehaviour
         BallSize = transform.localScale.x/* * transform.lossyScale.x*/;
         //Debug.Log(transform.localScale.x);
 
+        RightArmBord = GameObject.Find("ArmBord2");
+        LeftArmBord = GameObject.Find("ArmBord1");
+
 
         //LeftArm = GameObject.Find("ArmBord1");
         //RightArm = GameObject.Find("ArmBord2");
@@ -91,6 +97,16 @@ public class CircleFoodsInterFace : MonoBehaviour
     // Update is called once per frame
     public void FoodsUpdate()
     {
+
+        if (LeftArmBord == null)
+        {
+            LeftArmBord = GameObject.Find("ArmBord1");
+        }
+        if (RightArmBord == null)
+        {
+            RightArmBord = GameObject.Find("ArmBord2");
+        }
+
         if (isClear)
         {
             //çï
@@ -105,9 +121,9 @@ public class CircleFoodsInterFace : MonoBehaviour
 
         if (FoodsArmState == FOODS_ARM_STATE.GLAB)
         {
-            Vector3 temp = (RightHit.point + LeftHit.point) / 2;
-            temp.y = LeftArmPosition.y;
-            temp.z = LeftArmPosition.z;
+            Vector3 temp = (LeftArmBord.transform.position + RightArmBord.transform.position) / 2;
+            temp.y = LeftArmBord.transform.position.y;
+            temp.z = LeftArmBord.transform.position.z;
 
             this.transform.position = temp;
         }
@@ -117,6 +133,20 @@ public class CircleFoodsInterFace : MonoBehaviour
 
     public void FoodsFixedUpdate()
     {
+        switch (FoodsArmState)
+        {
+            case FOODS_ARM_STATE.GLAB:
+                GlabUpdate();
+                break;
+
+            case FOODS_ARM_STATE.FREE:
+                FreeUpdate();
+                break;
+
+            default:
+                break;
+        }
+
         Vel.x *= 0.95f;
         Vel.z *= 0.95f;
 
@@ -145,7 +175,7 @@ public class CircleFoodsInterFace : MonoBehaviour
                                                      //if (leftDistance < BallSize / 2 + 0.1f)  //Å¶UnityÇøÇ·ÇÒÇÃêgí∑ÇÃèÍçá0.04Ç≠ÇÁÇ¢Ç≈ínñ Ç…ê⁄êGÇµÇΩèÛë‘
                     {
                         bLeftHit = true;
-                        LeftArmPosition = LeftHit.collider.transform.position;
+                        //LeftArmPosition = LeftHit.collider.transform.position;
 
                         //Debug.Log("Ç–ÇæÇË");
                     }
@@ -163,44 +193,38 @@ public class CircleFoodsInterFace : MonoBehaviour
                                                        // (rightDistance < BallSize / 2 + 0.1f)  //Å¶UnityÇøÇ·ÇÒÇÃêgí∑ÇÃèÍçá0.04Ç≠ÇÁÇ¢Ç≈ínñ Ç…ê⁄êGÇµÇΩèÛë‘
                     {
                         bRightHit = true;
-                        RightArmPosition = RightHit.collider.transform.position;
+                        //RightArmPosition = RightHit.collider.transform.position;
                         //Debug.Log("Ç›Ç¨");
                     }
                 }
             }
-
-            if (bLeftHit && bRightHit && (Vector3.Distance(RightHit.point, LeftHit.point) <= BallSize))
+            if(FoodsArmState == FOODS_ARM_STATE.FREE)
             {
-                FoodsArmState = FOODS_ARM_STATE.GLAB;
-                // Debug.Log("GLAB");
+                if (bLeftHit && bRightHit && (Vector3.Distance(RightHit.point, LeftHit.point) <= BallSize))
+                {
+                    FoodsArmState = FOODS_ARM_STATE.GLAB;
+                    // Debug.Log("GLAB");
+                }
             }
-            //else if(bLeftHit)
-            //{
-            //    MikanState = MIKAN_STATE.HIT_LEFT;
-            //}
-            //else if(bRightHit)
-            //{
-            //    MikanState = MIKAN_STATE.HIT_RIGHT;
-            //}
-            else
+            else if(FoodsArmState == FOODS_ARM_STATE.GLAB)
             {
-                FoodsArmState = FOODS_ARM_STATE.FREE;
+                if(Mathf.Abs( LeftArmBord.transform.position.x - RightArmBord.transform.position.x) > BallSize)
+                {
+                    FoodsArmState = FOODS_ARM_STATE.FREE;
+                }
             }
+            //if (bLeftHit && bRightHit && (Vector3.Distance(RightHit.point, LeftHit.point) <= BallSize))
+            //{
+            //    FoodsArmState = FOODS_ARM_STATE.GLAB;
+            //    // Debug.Log("GLAB");
+            //}
+            //else
+            //{
+            //    FoodsArmState = FOODS_ARM_STATE.FREE;
+            //}
         }
 
-        switch (FoodsArmState)
-        {
-            case FOODS_ARM_STATE.GLAB:
-                GlabUpdate();
-                break;
-
-            case FOODS_ARM_STATE.FREE:
-                FreeUpdate();
-                break;
-
-            default:
-                break;
-        }
+       
        
 
     }
@@ -208,17 +232,17 @@ public class CircleFoodsInterFace : MonoBehaviour
     {
         isGround = false;
 
-        
 
-        Vector3 temp = (RightHit.point + LeftHit.point) / 2;
-        temp.y = LeftArmPosition.y;
-        temp.z = LeftArmPosition.z;
+
+        Vector3 temp = (LeftArmBord.transform.position + RightArmBord.transform.position) / 2;
+        temp.y = LeftArmBord.transform.position.y;
+        temp.z = LeftArmBord.transform.position.z;
 
         this.transform.position = temp;
 
         if (m_ChachAction == ChachAction.SOFT)
         {
-            if (Vector3.Distance(RightHit.point, LeftHit.point) < 0.2f * BallSize)
+            if (Vector3.Distance(RightArmBord.transform.position,LeftArmBord.transform.position) < 0.2f * BallSize)
             {
                 Destroy(gameObject);
                 //GetComponent<Renderer>().enabled = false;
@@ -229,6 +253,9 @@ public class CircleFoodsInterFace : MonoBehaviour
             {
                 Vector3 tempScale = transform.localScale;
                 tempScale.x = BallSize * (Vector3.Distance(RightHit.point, LeftHit.point) / BallSize);
+
+                //é·ä±Ç≈Ç©Ç≠Ç∑ÇÈ
+                tempScale.x *= 1.1f;
 
                 transform.localScale = tempScale;
             }
