@@ -13,7 +13,7 @@ public class PauseCoroutine : MonoBehaviour
 
     [SerializeField][Tooltip("押したらポーズする画面")] KeyCode pauseKey = KeyCode.P;
 
-    [SerializeField][Tooltip("選択中の色")] Color nowSelectColor;
+    [SerializeField][Tooltip("選択中の色")] Color nowSelectColor = new Color(0, 255, 255);
 
     [Header("UI系")]
     [SerializeField] Canvas Pause_Canvas = null;
@@ -24,12 +24,13 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField, ReadOnly] int SelectCount = 0;
 
     [SerializeField] Animator animator_Pause;
+    [SerializeField] Animator animator_Oshinagaki;
     [SerializeField] string UI_anim_paramator;
 
     [Header("コルーチン用変数")]
-    [SerializeField] float C_Option_WaitTime;
-    [SerializeField] float C_Option_WaitFrame;
-    [SerializeField] float UpdateModeChange_WaitTime;
+    [SerializeField] float C_Option_WaitTime = 1.5f;
+    [SerializeField] float C_Option_WaitFrame = 180;
+    [SerializeField] float UpdateModeChange_WaitTime = 5;
 
     // プライベート変数
     private bool isPauseMenu = false;
@@ -75,29 +76,6 @@ public class PauseCoroutine : MonoBehaviour
         {
             Pause();
         }
-
-        //if (isPauseMenu == true)
-        //{
-        //    switch (SelectCount)
-        //    {
-        //        case (int)SelectCorsor.Option:
-        //            if (Input.GetKeyDown(KeyCode.Space))
-        //            {
-        //                animator_Pause.SetBool(UI_anim_paramator, true);
-        //                SetIsPauseMenu(false);
-        //                StartCoroutine(C_Option());
-        //            }
-        //            break;
-
-        //        case (int)SelectCorsor.Retry:
- 
-        //            break;
-
-        //        case (int)SelectCorsor.StageSelect:
-
-        //            break;
-        //    }
-        //}
 
     }
 
@@ -179,6 +157,7 @@ public class PauseCoroutine : MonoBehaviour
                         {
                             //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.UnscaledTime));
                             animator_Pause.SetBool(UI_anim_paramator, true);
+                            animator_Oshinagaki.SetBool(UI_anim_paramator, true);
                             SetIsPauseMenu(false);
                             StartCoroutine(C_Option());
                         }
@@ -232,6 +211,7 @@ public class PauseCoroutine : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 animator_Pause.SetBool(UI_anim_paramator, false);
+                animator_Oshinagaki.SetBool(UI_anim_paramator, false);
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
                 //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.AnimatePhysics));
