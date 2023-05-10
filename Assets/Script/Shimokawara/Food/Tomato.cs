@@ -49,8 +49,10 @@ public class Tomato : CircleFoodsInterFace
                 
                 Instantiate(Cut1, tempPos1, transform.rotation);
                 Cut1.GetComponent<CutTomato>().Vel = new Vector3(-0.3f, 0.1f, 0);
+                Cut1.GetComponent<CutTomato>().FoodsStart();
                 Instantiate(Cut2, tempPos2, Quaternion.Euler(0f, 180f, 0.0f));
                 Cut2.GetComponent<CutTomato>().Vel = new Vector3(0.3f, 0.1f, 0);
+                Cut2.GetComponent<CutTomato>().FoodsStart();
 
                 Destroy(gameObject);
             }

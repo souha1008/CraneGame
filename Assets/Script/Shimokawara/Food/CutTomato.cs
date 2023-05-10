@@ -22,10 +22,26 @@ public class CutTomato : CircleFoodsInterFace
 
         FoodsStart();
     }
+    //private void OnEnable()
+    //{
+    //    m_ChachAction = ChachAction.HARD;
+    //    m_CutAction = CutAction.CAN;//ŠÑ’Ê‚µ‚Ä‚Ù‚µ‚¢‚¾‚¯
+    //    m_HummerAction = HummerAction.SCALE;
+    //    m_FireAction = FireAction.STAY;
+
+
+    //    FoodsStart();
+    //}
+
 
     // Update is called once per frame
     void Update()
     {
+        //if(LeftArmBord == null)
+        //{
+        //    LeftArmBord = GameObject.Find("ArmBord1");
+        //}
+
         FoodsUpdate();
     }
 
@@ -37,7 +53,10 @@ public class CutTomato : CircleFoodsInterFace
         {
             m_CutAction = CutAction.CANNOT;//ŠÑ’Ê‚¨‚í‚è
         }
-
+        if (transform.position.x < ShikiriX)
+        {
+            isClear = true;
+        }
         FoodsFixedUpdate();
     }
 
