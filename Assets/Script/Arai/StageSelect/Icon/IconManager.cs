@@ -5,7 +5,7 @@ using UnityEngine;
 public class IconManager : MonoBehaviour
 {
     [SerializeField]
-    private StageSprite stageSprite;
+    private StageSprite icon;
     
     private List<StageSprite> sprites = new List<StageSprite>();
 
@@ -40,7 +40,7 @@ public class IconManager : MonoBehaviour
     {
         for(int i = 0; i < Co.Const.STAGE_NUM; ++i)
         {
-            var obj = Instantiate(stageSprite);
+            var obj = Instantiate(icon);
             obj.transform.SetParent(transform, false);
             obj.GetComponent<RectTransform>().anchoredPosition
              = new Vector2(pivotPos.x + offsetX * i , pivotPos.y);

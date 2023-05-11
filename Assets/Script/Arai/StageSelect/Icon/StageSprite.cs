@@ -8,18 +8,25 @@ public class StageSprite : MonoBehaviour
 {
     private Image image;
 
+    [SerializeField]
+    private Sprite activeSprite;
+
+    [SerializeField]
+    private Sprite inactiveSprite;
+
     void Awake()
     {
         image = gameObject.GetComponent<Image>();
+        image.sprite = inactiveSprite;
     }
 
     public void Activate()
     {
-        image.color = Color.red;
+        image.sprite = activeSprite;
     }
     
     public void Inactivate()
     {
-        image.color = Color.blue;
+        image.sprite = inactiveSprite;
     }
 }

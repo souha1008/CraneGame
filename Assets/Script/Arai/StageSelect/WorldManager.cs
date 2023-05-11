@@ -26,6 +26,9 @@ public class WorldManager : MonoBehaviour
     {
         set => iconManager = value;
     }
+
+    [SerializeField]
+    private float movePct = 0.01f;
     
     void Awake()
     {
@@ -71,11 +74,11 @@ public class WorldManager : MonoBehaviour
             param = 0;
             active = true;
             iconManager.Activate();
-            parent.Active = true;
+            parent.Activate();
         }
         else
         {
-            param += 0.01f;
+            param += movePct;
             Invoke("SlideIn", 0.01f);
         }
     }
@@ -90,7 +93,7 @@ public class WorldManager : MonoBehaviour
         }
         else
         {
-            param += 0.01f;
+            param += movePct;
             Invoke("SlideOut", 0.01f);
         }
     }

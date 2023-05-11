@@ -16,6 +16,20 @@ public class StageSelectManager : MonoBehaviour
     private Image bgbase;
 
     [SerializeField]
+    private Sprite bgflame;
+    
+    [SerializeField, Header("UI")]
+    private Image worldText;
+
+    [SerializeField]
+    private Image moveL;
+
+    [SerializeField]
+    private Image moveR;
+
+    private List<Image> UIs = new List<Image>();
+
+    [SerializeField, Header("Manager")]
     private WorldManager worldManager;
     private WorldManager manager;
 
@@ -26,14 +40,11 @@ public class StageSelectManager : MonoBehaviour
     private int stageIndex = 0;
 
     private bool active = true;
-    public bool Active
-    {
-        set => active = value;
-    }
 
     void Start()
     {
         CreateSelectWorld(Vector2.zero);
+        CreateUI();
         manager.Active = true;
     }
 
@@ -47,7 +58,7 @@ public class StageSelectManager : MonoBehaviour
             {
                 ++worldIndex;
                 CreateSelectWorld(new Vector2(1920, 0));
-                active = false;
+                Inactivate();
             }
         }
         else if (Input.GetKeyDown(KeyCode.A))
@@ -56,21 +67,25 @@ public class StageSelectManager : MonoBehaviour
             {
                 --worldIndex;
                 CreateSelectWorld(new Vector2(-1920, 0));
-                active = false;
+                Inactivate();
             }
         }
     }
 
     private void CreateSelectWorld(Vector2 pos)
     {
+        // 管理者
         var obj = Instantiate(worldManager, canvas.transform);
         obj.GetComponent<RectTransform>().anchoredPosition = pos;
         obj.Parent = this;
+        obj.transform.SetAsFirstSibling();
 
-        // 画面生成
         // 背景
         var bgobj = Instantiate(bgbase, obj.transform);
         bgobj.sprite = bg[worldIndex];
+        var flame = Instantiate(bgbase, obj.transform);
+        flame.name = "flame";
+        flame.sprite = bgflame;
 
         // アイコン
         var icon = Instantiate(iconManager, obj.transform);
@@ -87,5 +102,35 @@ public class StageSelectManager : MonoBehaviour
             obj.Activate(true);
         }
         manager = obj;
+    }
+
+    private void CreateUI()
+    {
+        worldText   = Instantiate(worldText, canvas.transform);
+        moveL       = Instantiate(moveL, canvas.transform);
+        moveR       = Instantiate(moveR, canvas.transform);
+
+        UIActive(false);
+        UIActive(true);
+    }
+
+    private void UIActive(bool _active)
+    {
+        worldText.gameObject.SetActive(_active);
+
+        if (!_active || (_active && worldIndex != 0))
+            moveL.gameObject.SetActive(_active);
+            
+        if (!_active || (_active && worldIndex != Co.Const.WORLD_NUM - 1))
+            moveR.gameObject.SetActive(_active);
+    }
+
+    public void Activate()
+    {
+        UIActive(active = true);
+    }
+    public void Inactivate()
+    {
+        UIActive(active = false);
     }
 }
