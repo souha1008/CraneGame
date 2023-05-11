@@ -15,9 +15,11 @@ public class Candle : CircleFoodsInterFace
 
     public bool isFire = false;
 
+    public GameObject Effect;
     void Start()
     {
         FoodsStart();
+        Effect.SetActive(false);
     }
 
     // Update is called once per frame
@@ -44,6 +46,12 @@ public class Candle : CircleFoodsInterFace
         }
 
         FoodsFixedUpdate();
+
+        if(isFire)
+        {
+            Effect.SetActive(true);
+        }
+
     }
 
     private void OnTriggerStay(Collider other)

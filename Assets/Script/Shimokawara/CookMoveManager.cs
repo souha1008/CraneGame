@@ -6,7 +6,8 @@ public class CookMoveManager : MonoBehaviour
 {
 
     public GameObject[] GameStage;//最初は本作業場
-    public int FazeTime = 20;
+    //public int FazeTime = 20;
+    public int[] FazeTimeArray;
 
     public int FPS_Time = 0;
 
@@ -53,7 +54,7 @@ public class CookMoveManager : MonoBehaviour
 #if UNITY_EDITOR
         if(Input.GetButtonDown("Jump"))
         {
-            FPS_Time = FazeTime * 60 - SYATTA_TIME;
+            FPS_Time = FazeTimeArray[FazeNum] * 60 - SYATTA_TIME;
             //NextScene();
             //Debug.Log("呼ばれた");
         }
@@ -83,7 +84,7 @@ public class CookMoveManager : MonoBehaviour
 
         
 
-        if(FPS_Time > FazeTime * 60)
+        if(FPS_Time > FazeTimeArray[FazeNum] * 60)
         {
             SyattaSleep = true;
             SleepCnt = 0;
@@ -94,11 +95,11 @@ public class CookMoveManager : MonoBehaviour
             Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, SyattaMin, Syatta.transform.localPosition.z);
         }
         //前後Nフレームで移動アニメーション
-        else if(Mathf.Abs(( FazeTime * 60 / 2) - FPS_Time)  > (FazeTime * 60 / 2) - SYATTA_TIME /*- STOP_TIME / 2*/)
+        else if(Mathf.Abs((FazeTimeArray[FazeNum] * 60 / 2) - FPS_Time)  > (FazeTimeArray[FazeNum] * 60 / 2) - SYATTA_TIME /*- STOP_TIME / 2*/)
         {
             if (FazeNum < MAX_FAZE_NUM)
             {
-                float tempCnt = (FazeTime * 60 / 2) - Mathf.Abs((FazeTime * 60 / 2) - FPS_Time);//0への時間距離
+                float tempCnt = (FazeTimeArray[FazeNum] * 60 / 2) - Mathf.Abs((FazeTimeArray[FazeNum] * 60 / 2) - FPS_Time);//0への時間距離
                 float Wariai = tempCnt / SYATTA_TIME;//割合
 
                 float PosY = Wariai * (SyattaMax - SyattaMin) + SyattaMin;
