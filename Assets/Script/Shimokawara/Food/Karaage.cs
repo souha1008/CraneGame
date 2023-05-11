@@ -9,12 +9,15 @@ using UnityEditor;
 
 
 public class Karaage : FoodsSupportInterFace
-{ 
+{
+
+    public GameObject Effect;
 
     // Start is called before the first frame update
     void Start()
     {
         isClear = false;
+        Effect.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,6 +32,7 @@ public class Karaage : FoodsSupportInterFace
         if(other.GetComponent<LemonJIru>())
         {
             isClear = true;
+            Effect.SetActive(true);
         }
     }
 }
