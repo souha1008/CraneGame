@@ -126,6 +126,22 @@ public class CircleFoodsInterFace : MonoBehaviour
             temp.z = LeftArmBord.transform.position.z;
 
             this.transform.position = temp;
+
+
+            if (m_ChachAction == ChachAction.SOFT)
+            {
+                //è¨Ç≥Ç≠Ç∑ÇÈ
+                if (Vector3.Distance(RightHit.point, LeftHit.point) < BallSize)
+                {
+                    Vector3 tempScale = transform.localScale;
+                    tempScale.x = BallSize * (Vector3.Distance(RightHit.point, LeftHit.point) / BallSize);
+
+                    //é·ä±Ç≈Ç©Ç≠Ç∑ÇÈ
+                    tempScale.x *= 1.1f;
+
+                    transform.localScale = tempScale;
+                }
+            }
         }
 
         //Debug.Log(transform.localScale.x);
