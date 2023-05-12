@@ -32,6 +32,8 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] float C_Option_WaitFrame = 180;
     [SerializeField] float UpdateModeChange_WaitTime = 5;
 
+    [ReadOnly] public bool Update_isPause;
+
     // プライベート変数
     private bool isPauseMenu = false;
 
