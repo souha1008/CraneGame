@@ -18,6 +18,6 @@ public class ResultText : ResultUI
             default: break;
         }
 
-        GameObject.Find("ResultManager").GetComponent<ResultManager>().SetState(ResultStateEnum.STATE.WAIT);
+        manager.SetState(ResultStateEnum.STATE.WAIT);
     }
 }

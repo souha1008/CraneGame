@@ -40,6 +40,12 @@ public class Meter : ResultUI
     [SerializeField]
     private float testscore;
 
+    private bool active = false;
+    public bool Active
+    {
+        set => active = value;
+    }
+
     void Start()
     {
         body_tf     = body.GetComponent<RectTransform>();
@@ -49,6 +55,8 @@ public class Meter : ResultUI
         body_image.sprite = pct[pctIndex].sprite;
         ++pctIndex;
 
+        body_tf.sizeDelta = new Vector2(0, body_tf_defSize.y);
+
         // test
         volumMax = testscore;
         // testend
@@ -57,6 +65,8 @@ public class Meter : ResultUI
 
     void Update()
     {
+        if (!active) return;
+
         // 終了確認
         if (Input.GetButtonDown("Submit"))
         {
@@ -94,7 +104,7 @@ public class Meter : ResultUI
 
     private void Finish()
     {
-        GameObject.Find("ResultManager").GetComponent<ResultManager>().SetState(ResultStateEnum.STATE.RESULT);
+        manager.SetState(ResultStateEnum.STATE.RESULT);
         Destroy(this);
     }
 }

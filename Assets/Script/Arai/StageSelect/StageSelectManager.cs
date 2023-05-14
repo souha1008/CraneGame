@@ -8,129 +8,126 @@ public class StageSelectManager : MonoBehaviour
 {
     [SerializeField]
     private Canvas canvas;
+    [SerializeField]
+    private GameObject empty;
 
     [SerializeField]
-    private List<Sprite> bg;
-
-    [SerializeField]
-    private Image bgbase;
-
-    [SerializeField]
-    private Sprite bgflame;
+    private ss_background background;
     
     [SerializeField, Header("UI")]
-    private Image worldText;
+    private List<StageSelectUI> uis = new List<StageSelectUI>();
 
-    [SerializeField]
-    private Image moveL;
-
-    [SerializeField]
-    private Image moveR;
-
-    private List<Image> UIs = new List<Image>();
-
-    [SerializeField, Header("Manager")]
-    private WorldManager worldManager;
-    private WorldManager manager;
-
-    [SerializeField]
+    [SerializeField, Header("Icon")]
     private IconManager iconManager;
+    private List<IconManager> iconManagers = new List<IconManager>();
+    private GameObject imManager;
 
+    [SerializeField]
+    private float distanceX = 3840;
+
+    [SerializeField, Range(0, 3)]
+    private int worldIndexLimit = 0;
     private int worldIndex = 0;
-    private int stageIndex = 0;
 
     private bool active = true;
 
     void Start()
     {
-        CreateSelectWorld(Vector2.zero);
-        CreateUI();
-        manager.Active = true;
+        // 背景
+        background = Instantiate(background, canvas.transform);
+        background.SetBG(worldIndex);
+
+        // UI
+        var obj = Instantiate(empty, canvas.transform);
+        obj.name = "UIs";
+
+        for(int i = 0; i < uis.Count; ++i)
+        {
+            uis[i] = Instantiate(uis[i], obj.transform);
+            uis[i].Activate(worldIndex);
+        }
+
+        // アイコン
+        imManager = Instantiate(empty, canvas.transform); 
+        imManager.name = "iconManagers";
+
+        for (int i = 0; i < Co.Const.WORLD_NUM; ++i)
+        {
+            iconManagers.Add(Instantiate(iconManager, imManager.transform));
+            iconManagers[i].GetComponent<RectTransform>().anchoredPosition
+             = new Vector2(i * distanceX, 100);
+            iconManagers[i].CreateIcons(i);
+        }
+        iconManagers[worldIndex].Activate();
     }
 
     void Update()
     {
         if (!active) return;
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) && worldIndex < worldIndexLimit)
         {
-            if (worldIndex+1 < Co.Const.WORLD_NUM)
+            Inactivate(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.A) && worldIndex > 0)
+        {
+            Inactivate(-1);
+        }
+    }
+
+    private void Activate()
+    {
+        foreach (var ui in uis)
+        {
+            ui.Activate(worldIndex);
+        }
+
+        iconManagers[worldIndex].Activate();
+        active = true;
+    }
+
+    private void Inactivate(int _way)
+    {
+        foreach (var ui in uis)
+        {
+            ui.Inactivate();
+        }
+
+        iconManagers[worldIndex].Inactivate();
+
+        worldIndex += _way;
+
+        active = false;
+        StartCoroutine(MoveIcons(_way));
+    }
+
+    private IEnumerator MoveIcons(int _way)
+    {
+        WaitForSeconds ws = new WaitForSeconds(0.001f);
+
+        Vector2 defpos = imManager.transform.localPosition;
+        Vector2 tgtpos = new Vector2(imManager.transform.localPosition.x - distanceX * _way, 0);
+        float param = 0;
+
+        while(true)
+        {
+            imManager.transform.localPosition = Vector2.Lerp(defpos, tgtpos, param);
+
+            if (param >= 0.49f && param <= 0.51f)
             {
-                ++worldIndex;
-                CreateSelectWorld(new Vector2(1920, 0));
-                Inactivate();
+                background.SetBG(worldIndex);
+            }
+
+            if (param >= 1)
+            {
+                Activate();
+                yield break;
+            }
+            else
+            {
+                param += 0.01f;
+                yield return ws;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (worldIndex > 0)
-            {
-                --worldIndex;
-                CreateSelectWorld(new Vector2(-1920, 0));
-                Inactivate();
-            }
-        }
-    }
-
-    private void CreateSelectWorld(Vector2 pos)
-    {
-        // 管理者
-        var obj = Instantiate(worldManager, canvas.transform);
-        obj.GetComponent<RectTransform>().anchoredPosition = pos;
-        obj.Parent = this;
-        obj.transform.SetAsFirstSibling();
-
-        // 背景
-        var bgobj = Instantiate(bgbase, obj.transform);
-        bgobj.sprite = bg[worldIndex];
-        var flame = Instantiate(bgbase, obj.transform);
-        flame.name = "flame";
-        flame.sprite = bgflame;
-
-        // アイコン
-        var icon = Instantiate(iconManager, obj.transform);
-        icon.CreateButton();
-
-        obj.IconManager = icon;
-        if (manager)
-        {
-            manager.Inactivate(new Vector2(-pos.x, pos.y));
-            obj.Activate();
-        }
-        else
-        {
-            obj.Activate(true);
-        }
-        manager = obj;
-    }
-
-    private void CreateUI()
-    {
-        worldText   = Instantiate(worldText, canvas.transform);
-        moveL       = Instantiate(moveL, canvas.transform);
-        moveR       = Instantiate(moveR, canvas.transform);
-
-        UIActive(false);
-        UIActive(true);
-    }
-
-    private void UIActive(bool _active)
-    {
-        worldText.gameObject.SetActive(_active);
-
-        if (!_active || (_active && worldIndex != 0))
-            moveL.gameObject.SetActive(_active);
-            
-        if (!_active || (_active && worldIndex != Co.Const.WORLD_NUM - 1))
-            moveR.gameObject.SetActive(_active);
-    }
-
-    public void Activate()
-    {
-        UIActive(active = true);
-    }
-    public void Inactivate()
-    {
-        UIActive(active = false);
     }
 }

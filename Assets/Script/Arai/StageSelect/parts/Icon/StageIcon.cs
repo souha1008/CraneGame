@@ -4,7 +4,7 @@ using UnityEngine;
 
 using UnityEngine.UI;
 
-public class StageSprite : MonoBehaviour
+public class StageIcon : MonoBehaviour
 {
     private Image image;
 
@@ -20,11 +20,17 @@ public class StageSprite : MonoBehaviour
         image.sprite = inactiveSprite;
     }
 
+    /// <summary>
+    /// 選択
+    /// </summary>
     public void Activate()
     {
         image.sprite = activeSprite;
     }
     
+    /// <summary>
+    /// 選択解除
+    /// </summary>
     public void Inactivate()
     {
         image.sprite = inactiveSprite;

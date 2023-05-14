@@ -81,7 +81,7 @@ public class ShowScore : ResultUI
 
     private void Finish()
     {
-        GameObject.Find("ResultManager").GetComponent<ResultManager>().SetState(ResultStateEnum.STATE.METER);
+        manager.SetState(ResultStateEnum.STATE.METER);
         Destroy(this);
     }
 }

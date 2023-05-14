@@ -21,6 +21,9 @@ public class ResultBace : ResultUI
     {
         image      = gameObject.GetComponent<Image>();
         imageColor = image.color;
+        
+        manager.SetState(ResultStateEnum.STATE.SCORE);
+        Destroy(this);
     }
 
     void Update()
@@ -30,7 +33,7 @@ public class ResultBace : ResultUI
 
         if (alpha >= alphaMax)
         {
-            GameObject.Find("ResultManager").GetComponent<ResultManager>().SetState(ResultStateEnum.STATE.SCORE);
+            manager.SetState(ResultStateEnum.STATE.SCORE);
             Destroy(this);
         }
     }
