@@ -11,7 +11,9 @@ public class PauseCoroutine : MonoBehaviour
 
     [SerializeField][Tooltip("ポーズのクールタイム")] float pauseCoolTime;
 
-    [SerializeField][Tooltip("押したらポーズする画面")] KeyCode pauseKey = KeyCode.P;
+    [SerializeField][Tooltip("押したらポーズするボタン")] KeyCode pauseKey = KeyCode.P;
+    [SerializeField][Tooltip("押したら決定する")] KeyCode KetteiKey = KeyCode.Space;
+    [SerializeField][Tooltip("押したらキャンセル")] KeyCode BackKey = KeyCode.Z;
 
     [SerializeField][Tooltip("選択中の色")] Color nowSelectColor = new Color(0, 255, 255);
 
@@ -31,6 +33,9 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] float C_Option_WaitTime = 1.5f;
     [SerializeField] float C_Option_WaitFrame = 180;
     [SerializeField] float UpdateModeChange_WaitTime = 5;
+
+    public static PauseCoroutine instance { get; private set; } = new PauseCoroutine();
+    public bool Update_isPause;
 
     // プライベート変数
     private bool isPauseMenu = false;
@@ -110,6 +115,7 @@ public class PauseCoroutine : MonoBehaviour
     void Pause()
     {
         SetPause(true);
+        Update_isPause = true;
         Debug.Log("ポーズしたYO");
         Pause_Canvas.gameObject.SetActive(true);
         Time.timeScale = 0;
@@ -126,6 +132,7 @@ public class PauseCoroutine : MonoBehaviour
         Debug.Log("ポーズ解除");
         StopCoroutine(PauseMenu());
         SetPause(false);
+        Update_isPause = false;
         Pause_Canvas.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
         
