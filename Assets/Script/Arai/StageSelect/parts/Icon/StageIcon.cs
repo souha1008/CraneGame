@@ -14,6 +14,15 @@ public class StageIcon : MonoBehaviour
     [SerializeField]
     private Sprite inactiveSprite;
 
+    [SerializeField]
+    private Image world;
+
+    [SerializeField]
+    private Image stage;
+
+    [SerializeField]
+    private Image state;
+
     void Awake()
     {
         image = gameObject.GetComponent<Image>();
@@ -34,5 +43,10 @@ public class StageIcon : MonoBehaviour
     public void Inactivate()
     {
         image.sprite = inactiveSprite;
+    }
+
+    public void SetParam(int _world, int _stage, bool _state)
+    {
+        
     }
 }

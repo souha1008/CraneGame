@@ -63,8 +63,10 @@ public class IconManager : MonoBehaviour
             obj.GetComponent<RectTransform>().anchoredPosition
              = new Vector2(offset.x * (int)(i % XNUM - 1) , -offset.y * (int)(i / XNUM));
 
-             icons.Add(obj);
-             obj.Inactivate();
+            icons.Add(obj);
+            obj.Inactivate();
+
+//            obj.GetComponent<StageIcon>().SetParam(worldIndex, i, true);
         }
     }
 
