@@ -16,6 +16,7 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField][Tooltip("押したらキャンセル")] KeyCode BackKey = KeyCode.Z;
 
     [SerializeField][Tooltip("選択中の色")] Color nowSelectColor = new Color(0, 255, 255);
+    [SerializeField] [Tooltip("選択してない色")] Color notSelectColor = Color.white;
 
     [Header("UI系")]
     [SerializeField] Canvas Pause_Canvas = null;
@@ -92,20 +93,20 @@ public class PauseCoroutine : MonoBehaviour
             {
                 case (int)SelectCorsor.Option:
                     Option.color = nowSelectColor;
-                    Retry.color = Color.blue;
-                    StageSelect.color = Color.blue;
+                    Retry.color = notSelectColor;
+                    StageSelect.color = notSelectColor;
 
                     break;
 
                 case (int)SelectCorsor.Retry:
-                    Option.color = Color.blue;
+                    Option.color = notSelectColor;
                     Retry.color = nowSelectColor;
-                    StageSelect.color = Color.blue;
+                    StageSelect.color = notSelectColor;
                     break;
 
                 case (int)SelectCorsor.StageSelect:
-                    Option.color = Color.blue;
-                    Retry.color = Color.blue;
+                    Option.color = notSelectColor;
+                    Retry.color = notSelectColor;
                     StageSelect.color = nowSelectColor;
                     break;
             }
@@ -171,11 +172,11 @@ public class PauseCoroutine : MonoBehaviour
                         break;
 
                     case (int)SelectCorsor.Retry:
-
+                        // リトライを選択した時の処理を書く
                         break;
 
                     case (int)SelectCorsor.StageSelect:
-
+                        // ステージセレクトを選択した時の処理を書く
                         break;
                 }
             }
