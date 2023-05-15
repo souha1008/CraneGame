@@ -20,6 +20,7 @@ public class Suica: CircleFoodsInterFace
     float Size;
 
     private int cnt = 60;
+    private int frame = 60;
     private bool isRight = false;
     private bool isLeft = false;
 
@@ -43,6 +44,7 @@ public class Suica: CircleFoodsInterFace
 
         if (!isNoAction)
         {
+            frame++;
             if (isGround)
             {
                 OldAngle = Angle;
@@ -58,12 +60,26 @@ public class Suica: CircleFoodsInterFace
                 }
 
                 if (cnt >= 60)
+                {
                     isRight = false;
+                    frame = 0;
+                }
                 if (cnt < 0)
                 {
                     isRight = true;
                     isLeft = !isLeft;
+                    frame = 0;
                 }
+
+                if (frame > 60) 
+                {
+                    frame = 0;
+                    isRight = !isRight;
+
+                    if (isRight)
+                        isLeft = !isLeft;
+                }
+
                 AngleVel = BackOut((float)cnt, 60.0f, 0.0f, 1.0f, 0.1f);
                 
                 if (!isLeft)
@@ -71,16 +87,14 @@ public class Suica: CircleFoodsInterFace
                 if (isLeft)
                     Angle += AngleVel;
 
-                //if (Angle > MAX_ANGLE)
-                //{
-                //    Angle = MAX_ANGLE;
-                //    AngleVel *= -1;
-                //}
-                //if (Angle < MIN_ANGLE)
-                //{
-                //    Angle = MIN_ANGLE;
-                //    AngleVel *= 1;
-                //}
+                if (Angle > MAX_ANGLE)
+                {
+                    Angle = MAX_ANGLE;
+                }
+                if (Angle < MIN_ANGLE)
+                {
+                    Angle = MIN_ANGLE;
+                }
 
 
                 float VelX = (OldAngle - Angle) / 360 * Size * Mathf.PI;
