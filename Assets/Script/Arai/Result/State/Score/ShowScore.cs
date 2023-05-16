@@ -28,55 +28,43 @@ public class ShowScore : ResultUI
 
     private ScoreData data;
 
+    private bool skip = false;
+
     void Start()
     {
 //        m_Data = GameObject.Find("Datas").GetComponent<Datas>();
 
-        Invoke("Show", interval);
+        StartCoroutine(Show());
     }
 
     void Update()
     {
         // スキップ
-        if (Input.GetButtonDown("Submit"))
+        if (!skip && /*Input.GetButtonDown("Submit")*/ Input.GetMouseButton(0))
         {
-            CancelInvoke("Show");
-
-            for (var i = index; i < Co.Const.FAZE_NUM; ++i)
-            {
-                var obj = Instantiate(image);
-                obj.transform.SetParent(this.transform.parent, false);
-
-                var offpos = this.transform.parent.transform.position;
-
-                obj.rectTransform.anchoredPosition = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * i);
-            }
-            Finish();
+            skip = true;
         }
     }
-
-    /// <summary>
-    /// スコア表示
-    /// </summary>
-    private void Show()
+    
+    private IEnumerator Show()
     {
-        if (index == Co.Const.FAZE_NUM)
+        var wfs = new WaitForSeconds(interval);
+
+        for (var i = index; i < Co.Const.FAZE_NUM; ++i)
         {
-            Invoke("Finish", delay);
-            return;
+            if (!skip) yield return wfs;
+
+            var obj = Instantiate(image, this.transform);
+
+            var offpos = this.transform.position;
+
+            obj.rectTransform.anchoredPosition = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * i);
         }
 
-        var obj = Instantiate(image);
-        obj.transform.SetParent(this.transform.parent, false);
+        if (!skip) yield return new WaitForSeconds(delay);
 
-        // スコアのスプライトに切り替え
-
-        var offpos = this.transform.parent.transform.position;
-
-        obj.rectTransform.anchoredPosition = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * index);
-
-        ++index;
-        Invoke("Show", interval);
+        Finish();
+        yield break;
     }
 
     private void Finish()

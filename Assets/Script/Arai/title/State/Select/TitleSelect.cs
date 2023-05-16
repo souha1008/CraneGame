@@ -43,7 +43,7 @@ public class TitleSelect : TitleObject
     private void CheckInput()
     {
         {
-            if (Input.GetButtonDown("Submit"))
+            if (/*Input.GetButtonDown("Submit")*/ Input.GetMouseButton(0))
             {
                 m_Objects[m_Index].PushAction();
                 Destroy(this);
@@ -53,13 +53,19 @@ public class TitleSelect : TitleObject
         // 十字キー入力
         {
             var newvolum = Input.GetAxis("JuujiKeyX");
+         
+            ///// 後で消す
+            if(Input.GetKeyDown(KeyCode.RightArrow)) newvolum = 1;
+            if(Input.GetKeyDown(KeyCode.LeftArrow)) newvolum = -1;
+            /////
+         
             if (m_InputVolum != newvolum)
             {
                 SelectChange(newvolum);
             }
             m_InputVolum = newvolum;
         }
-        // スティック縦入力
+        // スティック入力
         {
             var newvolum = Input.GetAxis("Horizontal");
             if (m_InputVolumStick != newvolum)

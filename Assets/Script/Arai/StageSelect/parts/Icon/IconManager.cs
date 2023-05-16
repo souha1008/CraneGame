@@ -26,6 +26,12 @@ public class IconManager : MonoBehaviour
     {
         if (!active) return;
 
+        if (/*Input.GetButtonDown("Submit")*/ Input.GetMouseButton(0))
+        {
+            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
+            return;
+        }
+
         // 下入力
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {

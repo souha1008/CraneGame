@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ScoreData : MonoBehaviour
 {
-    [SerializeField]
-    private float[] Score = new float[Co.Const.FAZE_NUM];
-
     private static ScoreData datas;
+
+    [SerializeField]
+    private float[] score = new float[Co.Const.FAZE_NUM];
+    
+    private float[] maxScore = new float[Co.Const.FAZE_NUM];
 
     void Awake()
     {
@@ -29,7 +31,7 @@ public class ScoreData : MonoBehaviour
     /// <param name="_score">スコア値</param>
     public void SetScore(int _index, float _score)
     {
-        Score[_index] = _score;
+        score[_index] = _score;
     }
 
     /// <summary>
@@ -39,7 +41,7 @@ public class ScoreData : MonoBehaviour
     /// <returns>スコア値</returns>
     public float GetScore(int _index)
     {
-        return Score[_index];
+        return score[_index];
     }
 
     /// <summary>
@@ -50,7 +52,7 @@ public class ScoreData : MonoBehaviour
     {
         float score = 0;
 
-        foreach(var value in Score)
+        foreach(var value in this.score)
         {
             score += value;
         }

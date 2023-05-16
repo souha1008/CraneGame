@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 221173457}
-  empty: {fileID: 4507343505066759194, guid: 089b9be23134472499f68a3f6dcf2535, type: 3}
+  emptyui: {fileID: 4507343505066759194, guid: 089b9be23134472499f68a3f6dcf2535, type: 3}
   background: {fileID: -592461322616358478, guid: 7dad92f2253fed440a7c5737394fcc91,
     type: 3}
   uis:
@@ -449,7 +449,9 @@ MonoBehaviour:
   - {fileID: -6545997729930545615, guid: 4892c923bd95477418b8a706be27c472, type: 3}
   iconManager: {fileID: 3462916658687786013, guid: b8f210c80aa8ea14f8fd385a7fe10e50,
     type: 3}
-  distanceX: 3820
+  mask: {fileID: 6020944402666008811, guid: 135dfe7679dd56c4685379d17c7b7e61, type: 3}
+  distanceX: 1920
+  moveSpeed: 2
   worldIndexLimit: 3
 --- !u!4 &1129918400
 Transform:
