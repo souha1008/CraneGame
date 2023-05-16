@@ -20,6 +20,8 @@ public class Player2 : MonoBehaviour
     public bool UseHammer;
     public bool UseFire;
 
+    public Arm m_Arm;
+
     public enum STICK_MOVE_TYPE
     {
         ZAHYOU_KIJUN,
@@ -172,7 +174,8 @@ public class Player2 : MonoBehaviour
         }
 
         //変更中じゃなければ
-        if (!isChange)
+        //if (!isChange)
+        if (!isChange && !m_Arm.isUnLock)
         {
             //応じた変更処理
             if (JuujiRight)
@@ -409,15 +412,18 @@ public class Player2 : MonoBehaviour
         {
             if (moveY > 0) moveY = 0;　//切り返し速く
             moveY = -1;
-            tempPos.y = 17.5f;
+            //tempPos.y = 17.5f;
         }
         else
         {
             if (moveY < 0) moveY = 0;　//切り返し速く
             moveY = 1;
-            tempPos.y = DefaultPos.y;
-          
+            //tempPos.y = DefaultPos.y;
+            
         }
+        tempPos.y += moveY;
+        tempPos.y = Mathf.Clamp(tempPos.y, 17.5f, DefaultPos.y);
+
 
         transform.position = tempPos;
     }

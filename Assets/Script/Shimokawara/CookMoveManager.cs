@@ -99,7 +99,7 @@ public class CookMoveManager : MonoBehaviour
             SleepCnt = 0;
 
             NextScene();
-            PlayerPosInitialize();
+            //PlayerPosInitialize();
             FPS_Time = 0;
 
             Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, SyattaMin, Syatta.transform.localPosition.z);
