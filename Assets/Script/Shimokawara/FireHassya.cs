@@ -71,13 +71,15 @@ public class FireHassya : MonoBehaviour
         {
             Y_Vector += 0.04f;
             Y_Zahyou += Y_Vector;
-
-
         }
 
 
         Y_Zahyou = Mathf.Max(Y_Zahyou, 2);
         Y_Zahyou = Mathf.Min(Y_Zahyou, transform.position.y);
+
+        float ZeroToOne = (transform.position.y - Y_Zahyou) / (transform.position.y - 2);
+        Effect_Buner.Instance.BunerSize = ZeroToOne;
+
 
        // Vector3 temp = m_Fire.transform.position;
         Fire.instance.Y = Y_Zahyou;

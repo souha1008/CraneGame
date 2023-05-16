@@ -14,8 +14,11 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField][Tooltip("押したらポーズするボタン")] KeyCode pauseKey = KeyCode.P;
     [SerializeField][Tooltip("押したら決定する")] KeyCode KetteiKey = KeyCode.Space;
     [SerializeField][Tooltip("押したらキャンセル")] KeyCode BackKey = KeyCode.Z;
+    [SerializeField] [Tooltip("下キー")] KeyCode DownArrow = KeyCode.DownArrow;
+    [SerializeField] [Tooltip("下キー")] KeyCode UpArrow = KeyCode.UpArrow;
 
     [SerializeField][Tooltip("選択中の色")] Color nowSelectColor = new Color(0, 255, 255);
+    [SerializeField] [Tooltip("選択してない色")] Color notSelectColor = Color.white;
 
     [Header("UI系")]
     [SerializeField] Canvas Pause_Canvas = null;
@@ -23,11 +26,22 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] Image Retry;
     [SerializeField] Image StageSelect;
 
-    [SerializeField, ReadOnly] int SelectCount = 0;
+    [SerializeField, ReadOnly] int MenuSelectCount = 0;
+    [SerializeField, ReadOnly] int OptionSelectCount = 0;
 
     [SerializeField] Animator animator_Pause;
     [SerializeField] Animator animator_Oshinagaki;
     [SerializeField] string UI_anim_paramator;
+
+    [Header("オプション内スライダー")]
+    [SerializeField] GameObject Option_C;
+    [SerializeField] Image TI_BGM;
+    [SerializeField] Image TI_SE;
+    [SerializeField] Slider BGM_Slider;
+    [SerializeField] Slider SE_Slider;
+    [SerializeField] float slider_rate = 0.1f;
+    [SerializeField] float slider_coolfrate = 35;
+    private float slider_nowcoolframe;
 
     [Header("コルーチン用変数")]
     [SerializeField] float C_Option_WaitTime = 1.5f;
@@ -88,24 +102,24 @@ public class PauseCoroutine : MonoBehaviour
     {
         if (isPauseMenu == true)
         {
-            switch (SelectCount)
+            switch (MenuSelectCount)
             {
                 case (int)SelectCorsor.Option:
                     Option.color = nowSelectColor;
-                    Retry.color = Color.blue;
-                    StageSelect.color = Color.blue;
+                    Retry.color = notSelectColor;
+                    StageSelect.color = notSelectColor;
 
                     break;
 
                 case (int)SelectCorsor.Retry:
-                    Option.color = Color.blue;
+                    Option.color = notSelectColor;
                     Retry.color = nowSelectColor;
-                    StageSelect.color = Color.blue;
+                    StageSelect.color = notSelectColor;
                     break;
 
                 case (int)SelectCorsor.StageSelect:
-                    Option.color = Color.blue;
-                    Retry.color = Color.blue;
+                    Option.color = notSelectColor;
+                    Retry.color = notSelectColor;
                     StageSelect.color = nowSelectColor;
                     break;
             }
@@ -127,7 +141,7 @@ public class PauseCoroutine : MonoBehaviour
     {
         Debug.Log("ポーズ中");
         StartCoroutine(PauseMenu());
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z) && isPauseMenu == true && mPauseCooldown >= pauseCoolTime);
+        yield return new WaitUntil(() => Input.GetKeyDown(BackKey) && isPauseMenu == true && mPauseCooldown >= pauseCoolTime);
 
         Debug.Log("ポーズ解除");
         StopCoroutine(PauseMenu());
@@ -143,39 +157,40 @@ public class PauseCoroutine : MonoBehaviour
         {
             if (isPauseMenu)
             {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (Input.GetKeyDown(UpArrow))
                 {
                     Debug.Log("上");
-                    SelectCount--;
+                    MenuSelectCount--;
                 }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (Input.GetKeyDown(DownArrow))
                 {
                     Debug.Log("下");
-                    SelectCount++;
+                    MenuSelectCount++;
                 }
-                if (SelectCount > 2) SelectCount = 0;   // 上にいく
-                if (SelectCount < 0) SelectCount = 2;   // 下に行く
+                if (MenuSelectCount > 2) MenuSelectCount = 0;   // 上にいく
+                if (MenuSelectCount < 0) MenuSelectCount = 2;   // 下に行く
 
 
-                switch (SelectCount)
+                switch (MenuSelectCount)
                 {
                     case (int)SelectCorsor.Option:
-                        if (Input.GetKeyDown(KeyCode.Space))
+                        if (Input.GetKeyDown(KetteiKey))
                         {
                             //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.UnscaledTime));
                             animator_Pause.SetBool(UI_anim_paramator, true);
                             animator_Oshinagaki.SetBool(UI_anim_paramator, true);
                             SetIsPauseMenu(false);
+                            Option_C.SetActive(true);
                             StartCoroutine(C_Option());
                         }
                         break;
 
                     case (int)SelectCorsor.Retry:
-
+                        // リトライを選択した時の処理を書く
                         break;
 
                     case (int)SelectCorsor.StageSelect:
-
+                        // ステージセレクトを選択した時の処理を書く
                         break;
                 }
             }
@@ -211,9 +226,47 @@ public class PauseCoroutine : MonoBehaviour
     IEnumerator C_Option()
     {
         yield return new WaitForSecondsRealtime(C_Option_WaitTime);
-        
+
+        Slider nowslider = BGM_Slider;
+
         while (true)
         {
+            if(Input.GetKeyDown(UpArrow))
+            {
+                OptionSelectCount--;
+                if (OptionSelectCount < 0) OptionSelectCount = 1;
+            }
+            if(Input.GetKeyDown(DownArrow))
+            {
+                OptionSelectCount++;
+                if (OptionSelectCount > 1) OptionSelectCount = 0;
+            }
+            
+
+            switch(OptionSelectCount)
+            {
+                case 0:
+                    nowslider = BGM_Slider;
+                    break;
+
+                case 1:
+                    nowslider = SE_Slider;
+                    break;
+            }
+
+            var value = Input.GetAxis("Horizontal");
+            if(value > 0.3f && slider_nowcoolframe >= slider_coolfrate)
+            {
+                nowslider.value += slider_rate;
+                slider_nowcoolframe = 0;
+            }
+            if(value < -0.3f && slider_nowcoolframe >= slider_coolfrate)
+            {
+                nowslider.value -= slider_rate;
+                slider_nowcoolframe = 0;
+            }
+            slider_nowcoolframe += 1;
+
             // ポーズメニューへ戻る
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -221,9 +274,12 @@ public class PauseCoroutine : MonoBehaviour
                 animator_Oshinagaki.SetBool(UI_anim_paramator, false);
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
+                Option_C.SetActive(false);
                 //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.AnimatePhysics));
                 yield break;
             }
+
+
             yield return null;
         }
     }

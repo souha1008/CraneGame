@@ -7,10 +7,12 @@ public class Effect_Buner : MonoBehaviour
 {
     // StartSizeとStartSpeedをいじれば小さくなるかも
 
+    public static Effect_Buner Instance;
+
     [SerializeField][Tooltip("Fire01のパーティクル")] ParticleSystem Fire01;
     [SerializeField][Tooltip("Fire01のパーティクル")] ParticleSystem Glow01;
     [SerializeField][Tooltip("Fire01のパーティクル")] ParticleSystem Dist01;
-    [SerializeField][Range(0.0f, 1.0f)] float BunerSize = 0.0f;
+    [SerializeField][Range(0.0f, 1.0f)] public float BunerSize = 0.0f;
 
     [Header("Fire01関連")]
     [SerializeField] Vector2 Fire01_Init_StartSpeed = new Vector2(15f, 7f);
@@ -35,6 +37,7 @@ public class Effect_Buner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
         // パーティクル情報取得
         Fire01_MainModule = Fire01.main;
         Glow01_MainModule = Glow01.main;
