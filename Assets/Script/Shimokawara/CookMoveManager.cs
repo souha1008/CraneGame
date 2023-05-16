@@ -5,6 +5,15 @@ using UnityEngine;
 public class CookMoveManager : MonoBehaviour
 {
 
+    public enum START_POS
+    {
+    FRONT,
+    CENTER,
+    BACK
+    }  
+
+    public START_POS StartPos;
+
     public GameObject[] GameStage;//ç≈èâÇÕñ{çÏã∆èÍ
     //public int FazeTime = 20;
     public int[] FazeTimeArray;
@@ -90,6 +99,7 @@ public class CookMoveManager : MonoBehaviour
             SleepCnt = 0;
 
             NextScene();
+            PlayerPosInitialize();
             FPS_Time = 0;
 
             Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, SyattaMin, Syatta.transform.localPosition.z);
@@ -301,6 +311,26 @@ public class CookMoveManager : MonoBehaviour
             }
         }
     }
+
+    void PlayerPosInitialize()
+    {
+        switch (StartPos)
+        {
+            case START_POS.FRONT:
+                Player2.instance.transform.position = new Vector3(-18.7f, Player2.instance.transform.position.y, -5);
+                break;
+
+            case START_POS.CENTER:
+                Player2.instance.transform.position = new Vector3(-18.7f, Player2.instance.transform.position.y, 5);
+                break;
+
+            case START_POS.BACK:
+                Player2.instance.transform.position = new Vector3(-18.7f, Player2.instance.transform.position.y, 15);
+                break;
+        }
+
+    }
+
 }
 
     
