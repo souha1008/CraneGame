@@ -37,6 +37,8 @@ public class StageSelectManager : MonoBehaviour
 
     private bool active = true;
 
+    private SceneChange sceneChange;
+
     void Start()
     {
         // 背景
@@ -74,7 +76,7 @@ public class StageSelectManager : MonoBehaviour
         }
         iconManagers[worldIndex].Activate();
 
-        Inactivate();
+        sceneChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
     }
 
     void Update()
@@ -82,10 +84,15 @@ public class StageSelectManager : MonoBehaviour
         if (!active)
         {
             // シーン遷移終了待機
-            Activate();
+            
         }
         else
         {
+            if (sceneChange.isFade)
+            {
+                Inactivate();
+            }
+
             if (Input.GetKeyDown(KeyCode.B))
             {
                 GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");

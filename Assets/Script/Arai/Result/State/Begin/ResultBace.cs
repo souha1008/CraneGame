@@ -35,13 +35,6 @@ public class ResultBace : ResultUI
 
     void Update()
     {
-        //alpha += alphaVolum;
-        //image.color = new Color(imageColor.r, imageColor.g, imageColor.b, alpha);
-//
-        //if (alpha >= alphaMax)
-        //{
-        //    manager.SetState(ResultStateEnum.STATE.SCORE);
-        //    Destroy(this);
-        //}
+        
     }
 }
