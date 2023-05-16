@@ -14,6 +14,8 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField][Tooltip("押したらポーズするボタン")] KeyCode pauseKey = KeyCode.P;
     [SerializeField][Tooltip("押したら決定する")] KeyCode KetteiKey = KeyCode.Space;
     [SerializeField][Tooltip("押したらキャンセル")] KeyCode BackKey = KeyCode.Z;
+    [SerializeField] [Tooltip("下キー")] KeyCode DownArrow = KeyCode.DownArrow;
+    [SerializeField] [Tooltip("下キー")] KeyCode UpArrow = KeyCode.UpArrow;
 
     [SerializeField][Tooltip("選択中の色")] Color nowSelectColor = new Color(0, 255, 255);
     [SerializeField] [Tooltip("選択してない色")] Color notSelectColor = Color.white;
@@ -128,7 +130,7 @@ public class PauseCoroutine : MonoBehaviour
     {
         Debug.Log("ポーズ中");
         StartCoroutine(PauseMenu());
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z) && isPauseMenu == true && mPauseCooldown >= pauseCoolTime);
+        yield return new WaitUntil(() => Input.GetKeyDown(BackKey) && isPauseMenu == true && mPauseCooldown >= pauseCoolTime);
 
         Debug.Log("ポーズ解除");
         StopCoroutine(PauseMenu());
@@ -144,12 +146,12 @@ public class PauseCoroutine : MonoBehaviour
         {
             if (isPauseMenu)
             {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (Input.GetKeyDown(UpArrow))
                 {
                     Debug.Log("上");
                     SelectCount--;
                 }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (Input.GetKeyDown(DownArrow))
                 {
                     Debug.Log("下");
                     SelectCount++;
@@ -161,7 +163,7 @@ public class PauseCoroutine : MonoBehaviour
                 switch (SelectCount)
                 {
                     case (int)SelectCorsor.Option:
-                        if (Input.GetKeyDown(KeyCode.Space))
+                        if (Input.GetKeyDown(KetteiKey))
                         {
                             //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.UnscaledTime));
                             animator_Pause.SetBool(UI_anim_paramator, true);
