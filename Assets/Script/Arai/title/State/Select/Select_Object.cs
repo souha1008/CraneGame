@@ -75,4 +75,9 @@ public class Select_Object : MonoBehaviour
 
         if (fin) nowEvent = null;
     }
+
+    public void FinishEvent()
+    {
+        nowEvent = null;
+    }
 }
