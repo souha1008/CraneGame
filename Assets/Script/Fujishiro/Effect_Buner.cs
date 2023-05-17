@@ -15,19 +15,19 @@ public class Effect_Buner : MonoBehaviour
     [SerializeField][Range(0.0f, 1.0f)] public float BunerSize = 0.0f;
 
     [Header("Fire01関連")]
-    [SerializeField] Vector2 Fire01_Init_StartSpeed = new Vector2(15f, 7f);
-    [SerializeField] float Fire01_Init_StartSize = 0.8f;
+    [SerializeField] Vector2 Fire01_Init_StartSpeed = new Vector2(9f, 2f);
+    [SerializeField] float Fire01_Init_StartSize = 0.7f;
     [SerializeField] float Fire01_Offset_StartSize = 0.6f;
 
     [Header("Glow01関連")]
-    [SerializeField] Vector2 Glow01_Init_StartSize = new Vector2(2.5f, 2.0f);
-    [SerializeField] Vector2 Glow01_Offset_StartSize = new Vector2(1f, 0.8f);
+    [SerializeField] Vector2 Glow01_Init_StartSize = new Vector2(1.2f, 0.6f);
+    [SerializeField] Vector2 Glow01_Offset_StartSize = new Vector2(0.5f, 0.3f);
 
     [Header("Dist01関連")]
-    [SerializeField] Vector2 Dist01_Init_StartSpeed = new Vector2(6, 7);
-    [SerializeField] Vector2 Dist01_Init_StartSize = new Vector2(1.5f, 1.5f);
-    [SerializeField] Vector2 Dist01_Offset_StartSpeed = new Vector2(2.7f, 1.25f);
-    [SerializeField] Vector2 Dist01_Offset_StartSize = new Vector2(0.1f, 0.7f);
+    [SerializeField] Vector2 Dist01_Init_StartSpeed = new Vector2(3, 5);
+    [SerializeField] Vector2 Dist01_Init_StartSize = new Vector2(0.5f, 0.5f);
+    [SerializeField] Vector2 Dist01_Offset_StartSpeed = new Vector2(1f, 0.7f);
+    [SerializeField] Vector2 Dist01_Offset_StartSize = new Vector2(0.1f, 0.3f);
 
     // メインモジュール変数
     private ParticleSystem.MainModule Fire01_MainModule;
