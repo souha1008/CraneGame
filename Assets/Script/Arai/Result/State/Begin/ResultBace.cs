@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using TMPro;
 
 public class ResultBace : ResultUI
 {
@@ -19,13 +20,11 @@ public class ResultBace : ResultUI
     private float alpha = 0;
 
     [SerializeField]
-    private Image world;
-    
-    [SerializeField]
-    private Image stage;
+    private TextMeshProUGUI world;
 
     [SerializeField]
-    private Numbers numbers;
+    private TextMeshProUGUI stage;
+    
 
     void Start()
     {
@@ -35,8 +34,8 @@ public class ResultBace : ResultUI
         var a = GameObject.Find("Datas");
         var datas = GameObject.Find("Datas").GetComponent<ScoreData>();
 
-        world.sprite = numbers.numbers[datas.WorldIndex + 1];
-        stage.sprite = numbers.numbers[datas.StageIndex + 1];
+        world.text = (datas.WorldIndex + 1).ToString();
+        stage.text = (datas.StageIndex + 1).ToString();
         
         manager.SetState(ResultStateEnum.STATE.SCORE);
         Destroy(this);

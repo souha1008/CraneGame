@@ -23,9 +23,9 @@ public class ScoreData : MonoBehaviour
     }
 
     [SerializeField]
-    private float[] score = new float[Co.Const.FAZE_NUM];
+    private int[] score = new int[Co.Const.FAZE_NUM];
     
-    private float[] maxScore = new float[Co.Const.FAZE_NUM];
+    private int[] maxScore = new int[Co.Const.FAZE_NUM];
 
     void Awake()
     {
@@ -45,7 +45,7 @@ public class ScoreData : MonoBehaviour
     /// </summary>
     /// <param name="_index">フェーズ数</param>
     /// <param name="_score">スコア値</param>
-    public void SetScore(int _index, float _score)
+    public void SetScore(int _index, int _score)
     {
         score[_index] = _score;
     }
@@ -55,7 +55,7 @@ public class ScoreData : MonoBehaviour
     /// </summary>
     /// <param name="_index">フェーズ数</param>
     /// <returns>スコア値</returns>
-    public float GetScore(int _index)
+    public int GetScore(int _index)
     {
         return score[_index];
     }
@@ -64,9 +64,9 @@ public class ScoreData : MonoBehaviour
     /// 合計スコア取得
     /// </summary>
     /// <returns>スコア値</returns>
-    public float GetAddScore()
+    public int GetAddScore()
     {
-        float score = 0;
+        int score = 0;
 
         foreach(var value in this.score)
         {

@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using TMPro;
 
 public class worldNumUI : StageSelectUI
 {
     [SerializeField]
-    private Image numImage;
-
-    [SerializeField]
-    private Numbers numbers;
+    private TextMeshProUGUI world;
 
     public override void Activate(int _worldindex)
     {
         base.Activate(_worldindex);
 
         // ワールド番号でスプライトを変更
-        numImage.sprite = numbers.numbers[_worldindex + 1];
+        world.text = (_worldindex + 1).ToString();
     }
 }

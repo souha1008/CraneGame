@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using TMPro;
 
 public class ShowScore : ResultUI
 {
     [SerializeField]
-    private Image image;
-
-    [SerializeField]
-    private List<Sprite> sprites;
+    private PhaseScore score;
 
     [SerializeField]
     private Vector2 defaultPos;
@@ -32,7 +30,7 @@ public class ShowScore : ResultUI
 
     void Start()
     {
-//        m_Data = GameObject.Find("Datas").GetComponent<Datas>();
+
 
         StartCoroutine(Show());
     }
@@ -50,15 +48,19 @@ public class ShowScore : ResultUI
     {
         var wfs = new WaitForSeconds(interval);
 
+        var data = GameObject.Find("Datas").GetComponent<ScoreData>();
+        var offpos = this.transform.position;
+
         for (var i = index; i < Co.Const.FAZE_NUM; ++i)
         {
             if (!skip) yield return wfs;
 
-            var obj = Instantiate(image, this.transform);
+            var p = Instantiate(score, this.transform);
 
-            var offpos = this.transform.position;
+            p.GetComponent<RectTransform>().anchoredPosition
+                = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * i);
 
-            obj.rectTransform.anchoredPosition = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * i);
+            p.SetScore(data.GetScore(i));
         }
 
         if (!skip) yield return new WaitForSeconds(delay);

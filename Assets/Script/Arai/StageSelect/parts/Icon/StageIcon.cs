@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using TMPro;
 
 public class StageIcon : MonoBehaviour
 {
@@ -15,16 +16,13 @@ public class StageIcon : MonoBehaviour
     private Sprite inactiveSprite;
 
     [SerializeField]
-    private Image world;
-
-    [SerializeField]
-    private Image stage;
-
-    [SerializeField]
     private Image state;
 
     [SerializeField]
-    private Numbers numbers;
+    private TextMeshProUGUI world;
+
+    [SerializeField]
+    private TextMeshProUGUI stage;
 
     [SerializeField]
     private Sprite stateSprite;
@@ -53,8 +51,8 @@ public class StageIcon : MonoBehaviour
 
     public void SetParam(int _world, int _stage, bool _state)
     {
-        world.sprite = numbers.numbers[_world + 1];
-        stage.sprite = numbers.numbers[_stage + 1];
+        world.text = (_world + 1).ToString();
+        stage.text = (_stage + 1).ToString();
 
         if (_state)
         {
