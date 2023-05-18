@@ -7,6 +7,22 @@ public class ScoreData : MonoBehaviour
     private static ScoreData datas;
 
     [SerializeField]
+    private int worldindex;
+    public int WorldIndex
+    {
+        get => worldindex;
+        set => worldindex = value;
+    }
+
+    [SerializeField]
+    private int stageindex;
+    public int StageIndex
+    {
+        get => stageindex;
+        set => stageindex = value;
+    }
+
+    [SerializeField]
     private float[] score = new float[Co.Const.FAZE_NUM];
     
     private float[] maxScore = new float[Co.Const.FAZE_NUM];

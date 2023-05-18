@@ -23,6 +23,12 @@ public class StageIcon : MonoBehaviour
     [SerializeField]
     private Image state;
 
+    [SerializeField]
+    private Numbers numbers;
+
+    [SerializeField]
+    private Sprite stateSprite;
+
     void Awake()
     {
         image = gameObject.GetComponent<Image>();
@@ -47,6 +53,16 @@ public class StageIcon : MonoBehaviour
 
     public void SetParam(int _world, int _stage, bool _state)
     {
-        
+        world.sprite = numbers.numbers[_world + 1];
+        stage.sprite = numbers.numbers[_stage + 1];
+
+        if (_state)
+        {
+            state.sprite = stateSprite;
+        }
+        else
+        {
+            state.color = new Color(0,0,0,0);
+        }
     }
 }

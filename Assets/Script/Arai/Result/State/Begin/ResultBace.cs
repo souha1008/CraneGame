@@ -24,10 +24,19 @@ public class ResultBace : ResultUI
     [SerializeField]
     private Image stage;
 
+    [SerializeField]
+    private Numbers numbers;
+
     void Start()
     {
         image      = gameObject.GetComponent<Image>();
         imageColor = image.color;
+
+        var a = GameObject.Find("Datas");
+        var datas = GameObject.Find("Datas").GetComponent<ScoreData>();
+
+        world.sprite = numbers.numbers[datas.WorldIndex + 1];
+        stage.sprite = numbers.numbers[datas.StageIndex + 1];
         
         manager.SetState(ResultStateEnum.STATE.SCORE);
         Destroy(this);

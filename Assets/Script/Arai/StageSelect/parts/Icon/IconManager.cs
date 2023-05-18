@@ -72,6 +72,9 @@ public class IconManager : MonoBehaviour
             icons.Add(obj);
             obj.Inactivate();
 
+            bool a = true;
+            if (i != 0) a = false;
+            obj.GetComponent<StageIcon>().SetParam(worldIndex, i, a);
 //            obj.GetComponent<StageIcon>().SetParam(worldIndex, i, true);
         }
     }
