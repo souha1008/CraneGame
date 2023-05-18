@@ -13,7 +13,6 @@ public class ScoreData : MonoBehaviour
         get => worldindex;
         set => worldindex = value;
     }
-
     [SerializeField]
     private int stageindex;
     public int StageIndex
@@ -25,6 +24,7 @@ public class ScoreData : MonoBehaviour
     [SerializeField]
     private int[] score = new int[Co.Const.FAZE_NUM];
     
+    [SerializeField]
     private int[] maxScore = new int[Co.Const.FAZE_NUM];
 
     void Awake()
@@ -38,6 +38,16 @@ public class ScoreData : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    /// <summary>
+    /// 最大スコアセット
+    /// </summary>
+    /// <param name="_index">フェーズ数</param>
+    /// <param name="_score">スコア値</param>
+    public void SetMaxScore(int _index, int _score)
+    {
+        maxScore[_index] = _score;
     }
 
     /// <summary>
@@ -61,18 +71,22 @@ public class ScoreData : MonoBehaviour
     }
 
     /// <summary>
-    /// 合計スコア取得
+    /// 合計スコア割合取得
     /// </summary>
     /// <returns>スコア値</returns>
-    public int GetAddScore()
+    public float GetScoreParcent()
     {
-        int score = 0;
+        float score = 0, maxscore = 0;
 
         foreach(var value in this.score)
         {
             score += value;
         }
+        foreach(var value in this.maxScore)
+        {
+            maxscore += value;
+        }
 
-        return score;
+        return score / maxscore;
     }
 }

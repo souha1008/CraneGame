@@ -30,8 +30,6 @@ public class ShowScore : ResultUI
 
     void Start()
     {
-
-
         StartCoroutine(Show());
     }
 

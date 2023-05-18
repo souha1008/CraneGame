@@ -28,6 +28,10 @@ public class IconManager : MonoBehaviour
 
         if (/*Input.GetButtonDown("Submit")*/ Input.GetMouseButton(0))
         {
+            var data = GameObject.Find("Datas").GetComponent<ScoreData>();
+            data.WorldIndex = worldIndex;
+            data.StageIndex = stageIndex;
+
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
             return;
         }
@@ -72,9 +76,11 @@ public class IconManager : MonoBehaviour
             icons.Add(obj);
             obj.Inactivate();
 
+            //// 仮置き ////
             bool a = true;
             if (i != 0) a = false;
             obj.GetComponent<StageIcon>().SetParam(worldIndex, i, a);
+            ////////////////
 //            obj.GetComponent<StageIcon>().SetParam(worldIndex, i, true);
         }
     }

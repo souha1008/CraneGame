@@ -37,9 +37,6 @@ public class Meter : ResultUI
     private float waitTime = 0.8f;   // 待機時間
     private float time = 0;
 
-    [SerializeField]
-    private float testscore;
-
     private bool active = false;
 
     private bool skip = false;
@@ -56,7 +53,7 @@ public class Meter : ResultUI
         body_tf.sizeDelta = new Vector2(0, body_tf_defSize.y);
 
         // test
-        volumMax = testscore;
+        volumMax = GameObject.Find("Datas").GetComponent<ScoreData>().GetScoreParcent();
         // testend
         // スコア割合確認
     }
