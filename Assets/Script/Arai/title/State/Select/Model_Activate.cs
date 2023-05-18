@@ -18,7 +18,11 @@ public class Model_Activate : Object_Activate
     public override void Method(Select_Object _obj)
     {
         animator.SetFloat("speed", 1);
-        animator.Play(animationName, 0, 0);
+        
+        var time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        if (time < 0) time = 0;
+
+        animator.Play(animationName, 0, time);
         _obj.FinishEvent();
     }
 }

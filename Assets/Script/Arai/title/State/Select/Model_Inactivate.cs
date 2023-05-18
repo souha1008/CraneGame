@@ -17,7 +17,11 @@ public class Model_Inactivate : Object_Activate
     {
         //animator.enabled = false;
         animator.SetFloat("speed", -1);
-        animator.Play(animationName, 0, 1);
+        
+        var time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        if (time > 1) time = 1;
+
+        animator.Play(animationName, 0, time);
         _obj.FinishEvent();
     }
 }
