@@ -41,6 +41,9 @@ public class StageSelectManager : MonoBehaviour
 
     void Start()
     {
+//        var data= GameObject.Find("Datas").GetComponent<ScoreData>();
+//        worldIndex = data.WorldIndex;
+
         // 背景
         background = Instantiate(background, canvas.transform);
         background.SetBG(worldIndex);
@@ -58,6 +61,8 @@ public class StageSelectManager : MonoBehaviour
         // アイコン
         imManager = Instantiate(emptyui, canvas.transform); 
         imManager.name = "iconManagers";
+        imManager.GetComponent<RectTransform>().anchoredPosition
+            = new Vector2(-distanceX * 2 * worldIndex, 0);
 
         for (int i = 0; i < Co.Const.WORLD_NUM * 2 - 1; ++i)
         {
@@ -65,7 +70,7 @@ public class StageSelectManager : MonoBehaviour
             {
                 iconManagers.Add(Instantiate(iconManager, imManager.transform));
                 iconManagers[i / 2].GetComponent<RectTransform>().anchoredPosition
-                 = new Vector2(i * distanceX, 100);
+                 = new Vector2(i * distanceX, 0);
                 iconManagers[i / 2].CreateIcons(i / 2);
             }
             else
@@ -75,6 +80,7 @@ public class StageSelectManager : MonoBehaviour
             }
         }
         iconManagers[worldIndex].Activate();
+//        iconManagers[worldIndex].Activate(data.StageIndex);
 
         sceneChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
     }

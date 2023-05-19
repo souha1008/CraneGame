@@ -12,13 +12,8 @@ public class IconManager : MonoBehaviour
     private int worldIndex = 0;
     private int stageIndex = 0;
 
-    [SerializeField, Range(0, 5)]
-    private int stageIndexLimit = 0;
-
     [SerializeField]
     private Vector2 offset;
-
-    private const int XNUM = 3;
 
     private bool active = false;
 
@@ -36,16 +31,6 @@ public class IconManager : MonoBehaviour
             return;
         }
 
-        // 下入力
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            MoveCursor(XNUM);
-        }
-        // 上入力
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            MoveCursor(-XNUM);
-        }
         // 右入力
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -71,7 +56,7 @@ public class IconManager : MonoBehaviour
             var obj = Instantiate(icon);
             obj.transform.SetParent(transform, false);
             obj.GetComponent<RectTransform>().anchoredPosition
-             = new Vector2(offset.x * (int)(i % XNUM - 1) , -offset.y * (int)(i / XNUM));
+             = new Vector2(offset.x * (int)(i - 2) , 0);
 
             icons.Add(obj);
             obj.Inactivate();
@@ -88,9 +73,9 @@ public class IconManager : MonoBehaviour
     /// <summary>
     /// 活性化
     /// </summary>
-    public void Activate()
+    public void Activate(int _stageindex = 0)
     {
-        stageIndex = 0;
+        stageIndex = _stageindex;
         active = true;
         icons[stageIndex].Activate();
     }
@@ -111,7 +96,7 @@ public class IconManager : MonoBehaviour
     private void MoveCursor(int _indexvol)
     {
         // 範囲外ブロック
-        if (stageIndex + _indexvol < 0 || stageIndex + _indexvol > stageIndexLimit)
+        if (stageIndex + _indexvol < 0 || stageIndex + _indexvol > Co.Const.STAGE_NUM - 1)
          return;
 
         icons[stageIndex].Inactivate();
