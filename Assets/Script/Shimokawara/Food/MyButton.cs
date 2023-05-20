@@ -41,6 +41,7 @@ public class MyButton: CircleFoodsInterFace
             OnceOK = false;
             //シーン遷移処理
             cookMoveManager.ChangeSign();
+            Debug.Log("ボタンシーンチェンジ");
         }
 
     }
