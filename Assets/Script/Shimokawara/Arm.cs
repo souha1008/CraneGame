@@ -26,7 +26,7 @@ public class Arm : MonoBehaviour
     int Direction = 1;
 
     public GameObject LockTex;
-    bool isUnLock = false;
+    public bool isUnLock = false;
 
     public bool HitFood;
 
@@ -124,13 +124,26 @@ public class Arm : MonoBehaviour
         {
             isUnLock = false;
         }
-        
-        if (length > 0.85f && 
-            (Mathf.Atan2(LeftStick.y , LeftStick.x) <= (-Mathf.PI / 2 + 0.2f)) &&
-            (Mathf.Atan2(LeftStick.y , LeftStick.x) >= (-Mathf.PI / 2 - 0.2f)))
+        //â∫Ç∂Ç·Ç»Ç´Ç·äJÇ©Ç»Ç¢
+        //if (length > 0.85f && 
+        //    (Mathf.Atan2(LeftStick.y , LeftStick.x) <= (-Mathf.PI / 2 + 0.2f)) &&
+        //    (Mathf.Atan2(LeftStick.y , LeftStick.x) >= (-Mathf.PI / 2 - 0.2f)))
+        if (length > 0.85f &&
+    (Mathf.Atan2(LeftStick.y, LeftStick.x) <= (-Mathf.PI / 2 + 0.2f)) &&
+    (Mathf.Atan2(LeftStick.y, LeftStick.x) >= (-Mathf.PI / 2 - 0.2f)) &&
+    Input.GetButton("Lbutton")
+    )
         {
             isUnLock = true;
         }
+
+        //è„Ç…Ç¢ÇÈ
+        //if(!Input.GetButton("Lbutton"))
+        //{
+        //    isUnLock = false;
+        //}
+
+
         //í˜Çﬂèàóù
         if(isUnLock)
         {

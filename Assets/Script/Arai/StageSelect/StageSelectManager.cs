@@ -8,87 +8,126 @@ public class StageSelectManager : MonoBehaviour
 {
     [SerializeField]
     private Canvas canvas;
+    [SerializeField]
+    private GameObject empty;
 
     [SerializeField]
-    private StageSprite stageSprite;
+    private ss_background background;
+    
+    [SerializeField, Header("UI")]
+    private List<StageSelectUI> uis = new List<StageSelectUI>();
+
+    [SerializeField, Header("Icon")]
+    private IconManager iconManager;
+    private List<IconManager> iconManagers = new List<IconManager>();
+    private GameObject imManager;
 
     [SerializeField]
-    private List<Sprite> bg;
+    private float distanceX = 3840;
 
-    [SerializeField]
-    private Image bgbase;
-
-    [SerializeField]
-    private StageSpriteManager ssManager;
-
-    private StageSpriteManager nowManager;
-
+    [SerializeField, Range(0, 3)]
+    private int worldIndexLimit = 0;
     private int worldIndex = 0;
-    private int stageIndex = 0;
-
-    [SerializeField]
-    private Vector2 pivotPos;
-    [SerializeField]
-    private float offsetX;
 
     private bool active = true;
-    public bool Active
-    {
-        set => active = value;
-    }
 
     void Start()
     {
-        CreateSelectWorld(Vector2.zero);
-        nowManager.Active = true;
+        // 背景
+        background = Instantiate(background, canvas.transform);
+        background.SetBG(worldIndex);
+
+        // UI
+        var obj = Instantiate(empty, canvas.transform);
+        obj.name = "UIs";
+
+        for(int i = 0; i < uis.Count; ++i)
+        {
+            uis[i] = Instantiate(uis[i], obj.transform);
+            uis[i].Activate(worldIndex);
+        }
+
+        // アイコン
+        imManager = Instantiate(empty, canvas.transform); 
+        imManager.name = "iconManagers";
+
+        for (int i = 0; i < Co.Const.WORLD_NUM; ++i)
+        {
+            iconManagers.Add(Instantiate(iconManager, imManager.transform));
+            iconManagers[i].GetComponent<RectTransform>().anchoredPosition
+             = new Vector2(i * distanceX, 100);
+            iconManagers[i].CreateIcons(i);
+        }
+        iconManagers[worldIndex].Activate();
     }
 
     void Update()
     {
         if (!active) return;
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) && worldIndex < worldIndexLimit)
         {
-            if (worldIndex+1 < Co.Const.WORLD_NUM)
-            {
-                nowManager.Active = false;
-                CreateSelectWorld(new Vector2(1920, 0));
-                ++worldIndex;
-                active = false;
-            }
+            Inactivate(1);
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.A) && worldIndex > 0)
         {
-            if (worldIndex > 0)
-            {
-                nowManager.Active = false;
-                CreateSelectWorld(new Vector2(-1920, 0));
-                --worldIndex;
-                active = false;
-            }
+            Inactivate(-1);
         }
     }
 
-    private void CreateSelectWorld(Vector2 pos)
+    private void Activate()
     {
-        // 画面生成
-        //var bgobj = Instantiate(bg);
-
-        var mng = Instantiate(ssManager);
-        mng.transform.SetParent(canvas.transform, false);
-        mng.GetComponent<RectTransform>().anchoredPosition = pos;
-        mng.CreateButton();
-        mng.Parent = this;
-
-
-        if (nowManager)
+        foreach (var ui in uis)
         {
-            nowManager.Inactivate(new Vector2(-pos.x, pos.y));
-            mng.Activate();
+            ui.Activate(worldIndex);
         }
-        else
-            mng.Activate(true);
 
-        nowManager = mng;
+        iconManagers[worldIndex].Activate();
+        active = true;
+    }
+
+    private void Inactivate(int _way)
+    {
+        foreach (var ui in uis)
+        {
+            ui.Inactivate();
+        }
+
+        iconManagers[worldIndex].Inactivate();
+
+        worldIndex += _way;
+
+        active = false;
+        StartCoroutine(MoveIcons(_way));
+    }
+
+    private IEnumerator MoveIcons(int _way)
+    {
+        WaitForSeconds ws = new WaitForSeconds(0.001f);
+
+        Vector2 defpos = imManager.transform.localPosition;
+        Vector2 tgtpos = new Vector2(imManager.transform.localPosition.x - distanceX * _way, 0);
+        float param = 0;
+
+        while(true)
+        {
+            imManager.transform.localPosition = Vector2.Lerp(defpos, tgtpos, param);
+
+            if (param >= 0.49f && param <= 0.51f)
+            {
+                background.SetBG(worldIndex);
+            }
+
+            if (param >= 1)
+            {
+                Activate();
+                yield break;
+            }
+            else
+            {
+                param += 0.01f;
+                yield return ws;
+            }
+        }
     }
 }

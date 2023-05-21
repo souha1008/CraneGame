@@ -11,7 +11,7 @@ public class ResultWait : ResultObject
         if (Input.anyKeyDown)
         {
             //GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
-            SceneManager.LoadScene("TitleTest");
+            SceneManager.LoadScene("StageSelect");
         }
     }
 }

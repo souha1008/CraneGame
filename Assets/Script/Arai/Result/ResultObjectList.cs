@@ -37,7 +37,7 @@ public class ResultObjectList : MonoBehaviour
     /// </summary>
     /// <param name="_state">状態指定</param>
     /// <param name="_canvas">使うキャンバス</param>
-    public void CreateObjects(ResultStateEnum.STATE _state, Canvas _canvas)
+    public void CreateObjects(ResultStateEnum.STATE _state, Canvas _canvas, ResultManager _manager)
     {
         // リストの探索
         foreach(var objs in m_Objects)
@@ -47,11 +47,11 @@ public class ResultObjectList : MonoBehaviour
             {
                 // UI生成
                 if (objs.m_Ui.Capacity > 0)
-                    CreateUI(objs, _canvas);
+                    CreateUI(objs, _canvas, _manager);
                 
                 // オブジェクト生成
                 if (objs.m_Objects.Capacity > 0)
-                    CreateObject(objs);
+                    CreateObject(objs, _manager);
                 
                 break;
             }
@@ -63,12 +63,13 @@ public class ResultObjectList : MonoBehaviour
     /// </summary>
     /// <param name="_obj">オブジェクトリスト</param>
     /// <param name="_canvas">キャンバス</param>
-    private void CreateUI(Object _obj, Canvas _canvas)
+    private void CreateUI(Object _obj, Canvas _canvas, ResultManager _manager)
     {
         foreach(var ui in _obj.m_Ui)
         {
             var obj = Instantiate(ui);
             obj.transform.SetParent(_canvas.transform, false);
+            obj.Manager = _manager;
         }
     }
 
@@ -76,11 +77,12 @@ public class ResultObjectList : MonoBehaviour
     /// 3Dオブジェクト生成
     /// </summary>
     /// <param name="_obj">オブジェクトリスト</param>
-    private void CreateObject(Object _obj)
+    private void CreateObject(Object _obj, ResultManager _manager)
     {
-        foreach(var obj in _obj.m_Objects)
+        foreach(var obje in _obj.m_Objects)
         {
-            Instantiate(obj);
+            var obj = Instantiate(obje);
+            obj.Manager = _manager;
         }
     }
 }

@@ -37,6 +37,6 @@ public class ResultManager : MonoBehaviour
     /// </summary>
     private void StateSetting()
     {
-        m_ObjectList.CreateObjects(m_NowState, m_Canvas);
+        m_ObjectList.CreateObjects(m_NowState, m_Canvas, this);
     }
 }

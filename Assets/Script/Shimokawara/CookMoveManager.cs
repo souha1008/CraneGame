@@ -5,9 +5,18 @@ using UnityEngine;
 public class CookMoveManager : MonoBehaviour
 {
 
+    public enum START_POS
+    {
+    FRONT,
+    CENTER,
+    BACK
+    }  
+
+    public START_POS StartPos;
+
     public GameObject[] GameStage;//最初は本作業場
-    //public int FazeTime = 20;
-    public int[] FazeTimeArray;
+    public int FazeTime = 18000;
+    //public int[] FazeTimeArray;
 
     public int FPS_Time = 0;
 
@@ -31,12 +40,13 @@ public class CookMoveManager : MonoBehaviour
     public bool[] isConvayor;
 
     float ConvayorModelPosY;
-
+    MyButton myButton;
     ScoreData m_ScoreData;
 
     // Start is called before the first frame update
     void Start()
     {
+        myButton = GameObject.FindObjectOfType<MyButton>();
         ConvayorModelPosY = ConvayorModel.transform.localPosition.y;
         SyattaSleep = true;
 
@@ -54,7 +64,7 @@ public class CookMoveManager : MonoBehaviour
 #if UNITY_EDITOR
         if(Input.GetButtonDown("Jump"))
         {
-            FPS_Time = FazeTimeArray[FazeNum] * 60 - SYATTA_TIME;
+            ChangeSign();
             //NextScene();
             //Debug.Log("呼ばれた");
         }
@@ -84,22 +94,23 @@ public class CookMoveManager : MonoBehaviour
 
         
 
-        if(FPS_Time > FazeTimeArray[FazeNum] * 60)
+        if(FPS_Time > FazeTime * 60)
         {
             SyattaSleep = true;
             SleepCnt = 0;
 
             NextScene();
+            //PlayerPosInitialize();
             FPS_Time = 0;
 
             Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, SyattaMin, Syatta.transform.localPosition.z);
         }
         //前後Nフレームで移動アニメーション
-        else if(Mathf.Abs((FazeTimeArray[FazeNum] * 60 / 2) - FPS_Time)  > (FazeTimeArray[FazeNum] * 60 / 2) - SYATTA_TIME /*- STOP_TIME / 2*/)
+        else if(Mathf.Abs((FazeTime * 60 / 2) - FPS_Time)  > (FazeTime * 60 / 2) - SYATTA_TIME /*- STOP_TIME / 2*/)
         {
             if (FazeNum < MAX_FAZE_NUM)
             {
-                float tempCnt = (FazeTimeArray[FazeNum] * 60 / 2) - Mathf.Abs((FazeTimeArray[FazeNum] * 60 / 2) - FPS_Time);//0への時間距離
+                float tempCnt = (FazeTime * 60 / 2) - Mathf.Abs((FazeTime * 60 / 2) - FPS_Time);//0への時間距離
                 float Wariai = tempCnt / SYATTA_TIME;//割合
 
                 float PosY = Wariai * (SyattaMax - SyattaMin) + SyattaMin;
@@ -115,9 +126,11 @@ public class CookMoveManager : MonoBehaviour
 
     public void NextScene()
     {
-
+        //DeleateKnife();
+        PlayerPosInitialize();
         AddScore();
         MoveObject();
+        myButton.ButtonReset();
 
         FazeNum++;
         if(FazeNum < isConvayor.Length)
@@ -301,6 +314,40 @@ public class CookMoveManager : MonoBehaviour
             }
         }
     }
+
+    void PlayerPosInitialize()
+    {
+        switch (StartPos)
+        {
+            case START_POS.FRONT:
+                Player2.instance.transform.position = new Vector3(-18.7f, Player2.instance.transform.position.y, -5);
+                break;
+
+            case START_POS.CENTER:
+                Player2.instance.transform.position = new Vector3(-18.7f, Player2.instance.transform.position.y, 5);
+                break;
+
+            case START_POS.BACK:
+                Player2.instance.transform.position = new Vector3(-18.7f, Player2.instance.transform.position.y, 15);
+                break;
+        }
+
+    }
+
+    public void ChangeSign()
+    {
+        FPS_Time = FazeTime * 60 - SYATTA_TIME;
+    }
+
+    //void DeleateKnife()
+    //{
+    //    Knife[] knives = GameObject.FindObjectsOfType<Knife>();
+    //    for (int i = 0; i < knives.Length; i++)
+    //    {
+    //        Destroy(knives[i]);
+    //    }
+    //}
+
 }
 
     

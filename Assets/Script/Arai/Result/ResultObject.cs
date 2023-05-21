@@ -4,4 +4,9 @@ using UnityEngine;
 
 public class ResultObject : MonoBehaviour
 {
+    protected ResultManager manager;
+    public ResultManager Manager
+    {
+        set => manager = value;
+    }
 }
