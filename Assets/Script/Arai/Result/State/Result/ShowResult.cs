@@ -14,25 +14,31 @@ public class ShowResult : MonoBehaviour
     [SerializeField]
     private ResultText textMotion;
 
-    [SerializeField]
-    private float excellentScore;
-
-    [SerializeField]
-    private float goodScore;
-
     void Start()
     {
         image = gameObject.GetComponent<Image>();
 
-        var result = ResultEnum.RESULT.A;
+        float score = 0, border = 0;
+        var result = ResultEnum.RESULT.BAD;
 
-        var score = GameObject.Find("Datas").GetComponent<ScoreData>().GetScoreParcent();
+        {
+            var data = GameObject.Find("Datas").GetComponent<ScoreData>();
+            score  = data.GetScoreParcent();
+            border = data.ClearBorder;
+        }
 
         // リザルト分岐
-        if (score >= excellentScore)
-            result = ResultEnum.RESULT.EXCELLENT;
-        else if (score >= goodScore)
-            result = ResultEnum.RESULT.B;
+        if (score >= border)
+        {
+            if (score > 10)
+            {
+
+            }
+            else
+            {
+                result = ResultEnum.RESULT.GOOD;
+            }
+        }
 
         image.sprite = resultSprites[(int)result];
 

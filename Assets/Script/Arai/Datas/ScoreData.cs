@@ -27,6 +27,14 @@ public class ScoreData : MonoBehaviour
     [SerializeField]
     private int[] maxScore = new int[Co.Const.FAZE_NUM];
 
+    [SerializeField]
+    private float clearBorder = 0.5f;
+    public float ClearBorder
+    {
+        get => clearBorder;
+        set => clearBorder = value;
+    }
+
     void Awake()
     {
         if (!datas)

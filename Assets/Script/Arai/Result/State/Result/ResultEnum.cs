@@ -7,8 +7,8 @@ public class ResultEnum
 {
     public enum RESULT
     {
-        A,
-        B,
+        BAD,
+        GOOD,
         EXCELLENT,
         MAX
     }
