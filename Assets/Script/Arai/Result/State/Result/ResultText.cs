@@ -18,6 +18,6 @@ public class ResultText : ResultUI
             default: break;
         }
 
-        manager.SetState(ResultStateEnum.STATE.WAIT);
+        manager.SetState(ResultStateEnum.STATE.BADGE);
     }
 }
