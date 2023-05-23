@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CookMoveManager : MonoBehaviour
 {
+    public static CookMoveManager instance;
+
 
     public enum START_POS
     {
@@ -17,6 +19,8 @@ public class CookMoveManager : MonoBehaviour
     public GameObject[] GameStage;//最初は本作業場
     public int FazeTime = 18000;
     //public int[] FazeTimeArray;
+
+    public int SPEED_CLEAR_TIME;
 
     public int FPS_Time = 0;
 
@@ -43,9 +47,14 @@ public class CookMoveManager : MonoBehaviour
     MyButton myButton;
     ScoreData m_ScoreData;
 
+    public int[] MAX_SCORE = new int[5];
+
+    int AllTime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         myButton = GameObject.FindObjectOfType<MyButton>();
         ConvayorModelPosY = ConvayorModel.transform.localPosition.y;
         SyattaSleep = true;
@@ -54,7 +63,15 @@ public class CookMoveManager : MonoBehaviour
         m_ScoreData = GameObject.Find("Datas").GetComponent<ScoreData>();
         SyattaMax = Syatta.transform.localPosition.y;
         FPS_Time = 0;
+        AllTime = 0;
         CovayorChange(isConvayor[0]);
+
+
+        for(int i = 0; i < 5; i++)
+        {
+            //マックススコア
+            m_ScoreData.SetMaxScore(i, MAX_SCORE[i]);
+        }
     }
 
     // Update is called once per frame
@@ -101,6 +118,7 @@ public class CookMoveManager : MonoBehaviour
 
             NextScene();
             //PlayerPosInitialize();
+            AllTime += FPS_Time;
             FPS_Time = 0;
 
             Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, SyattaMin, Syatta.transform.localPosition.z);
