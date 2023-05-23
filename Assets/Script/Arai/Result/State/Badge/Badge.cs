@@ -13,8 +13,8 @@ public class Badge : MonoBehaviour
 
     public enum BADGE
     {
-        SPEED,
         MISS,
+        SPEED,
         MAX
     }
 
@@ -43,6 +43,8 @@ public class Badge : MonoBehaviour
     private IEnumerator Move(BADGE _type)
     {
         yield return new WaitForSeconds(waittime);
+
+        var cam = GameObject.Find("Main Camera");
 
         var nowTf = new MoveTF();
         nowTf.position = rtf.anchoredPosition;

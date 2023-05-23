@@ -17,13 +17,13 @@ public class BadgeManager : ResultUI
 
     private IEnumerator ShowBadge()
     {
-        var speed = Instantiate(badge, transform);
-        speed.SetMove(Badge.BADGE.SPEED);
-
-        yield return new WaitForSeconds(waittime);
-
         var miss = Instantiate(badge, transform);
         miss.SetMove(Badge.BADGE.MISS);
+
+        yield return new WaitForSeconds(waittime);
+        
+        var speed = Instantiate(badge, transform);
+        speed.SetMove(Badge.BADGE.SPEED);
 
         // 表記をえくされんとに？
 

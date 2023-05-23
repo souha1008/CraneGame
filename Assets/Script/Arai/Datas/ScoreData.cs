@@ -35,6 +35,14 @@ public class ScoreData : MonoBehaviour
         set => clearBorder = value;
     }
 
+    [SerializeField]
+    private bool speedClear = false;
+    public bool SpeedClear
+    {
+        get => speedClear;
+        set => speedClear = value;
+    }
+
     void Awake()
     {
         if (!datas)
