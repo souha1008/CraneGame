@@ -12,6 +12,9 @@ public class IconManager : MonoBehaviour
     private int worldIndex = 0;
     private int stageIndex = 0;
 
+    [SerializeField, Range(0, 4)]
+    private int stageIndexLimit = 0;
+
     [SerializeField]
     private Vector2 offset;
 
@@ -24,8 +27,7 @@ public class IconManager : MonoBehaviour
         if (/*Input.GetButtonDown("Submit")*/ Input.GetMouseButton(0))
         {
             var data = GameObject.Find("Datas").GetComponent<ScoreData>();
-            data.WorldIndex = worldIndex;
-            data.StageIndex = stageIndex;
+            data.SetIndexs(worldIndex, stageIndex);
 
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
             return;
@@ -50,7 +52,12 @@ public class IconManager : MonoBehaviour
     public void CreateIcons(int _worldindex)
     {
         worldIndex = _worldindex;
-        
+
+        // データからリザルトを呼び出し
+        //
+        // 選択可能範囲を変更
+        //stageIndexLimit
+
         for(int i = 0; i < Co.Const.STAGE_NUM; ++i)
         {
             var obj = Instantiate(icon);
@@ -96,7 +103,7 @@ public class IconManager : MonoBehaviour
     private void MoveCursor(int _indexvol)
     {
         // 範囲外ブロック
-        if (stageIndex + _indexvol < 0 || stageIndex + _indexvol > Co.Const.STAGE_NUM - 1)
+        if (stageIndex + _indexvol < 0 || stageIndex + _indexvol > stageIndexLimit)
          return;
 
         icons[stageIndex].Inactivate();

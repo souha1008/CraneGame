@@ -4,7 +4,7 @@ using UnityEngine;
 
 using UnityEngine.UI;
 
-public class ShowResult : MonoBehaviour
+public class ShowResult : ResultUI
 {
     [SerializeField]
     private Sprite[] resultSprites = new Sprite[(int)ResultEnum.RESULT.MAX];
@@ -12,7 +12,9 @@ public class ShowResult : MonoBehaviour
     private Image image;
 
     [SerializeField]
-    private ResultText textMotion;
+    private float waittime;
+
+    private ScoreData datas;
 
     void Start()
     {
@@ -21,28 +23,35 @@ public class ShowResult : MonoBehaviour
         float score = 0, border = 0;
         var result = ResultEnum.RESULT.BAD;
 
-        {
-            var data = GameObject.Find("Datas").GetComponent<ScoreData>();
-            score  = data.GetScoreParcent();
-            border = data.ClearBorder;
-        }
+        datas = GameObject.Find("Datas").GetComponent<ScoreData>();
+        score  = datas.GetScoreParcent();
+        border = datas.ClearBorder;
 
         // リザルト分岐
         if (score >= border)
         {
-            if (score > 10)
-            {
-
-            }
-            else
-            {
-                result = ResultEnum.RESULT.GOOD;
-            }
+            result = ResultEnum.RESULT.GOOD;
         }
 
         image.sprite = resultSprites[(int)result];
+        datas.FinalResult = result;
 
-        textMotion.Action(result);
-        Destroy(this);
+        StartCoroutine(Next());
+    }
+
+    public void Excellent()
+    {
+        // 表示をEXCELLENTに変える
+        image.sprite = resultSprites[(int)ResultEnum.RESULT.EXCELLENT];
+        datas.FinalResult = ResultEnum.RESULT.EXCELLENT;
+    }
+
+    private IEnumerator Next()
+    {
+        yield return new WaitForSeconds(waittime);
+
+        manager.SetState(ResultStateEnum.STATE.BADGE);
+
+        yield break;
     }
 }
