@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class bgmnarasu : MonoBehaviour
 {
+    [SerializeField] string bgm_name;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,7 @@ public class bgmnarasu : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            SoundManager.instance.BGMPlay("ƒ^ƒCƒgƒ‹BGM");
+            SoundManager.instance.BGMPlay(bgm_name, true);
         }
     }
 }

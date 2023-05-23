@@ -13,7 +13,7 @@ public class kogasitest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        Material_ColorTransfer.instance.Scorch_Object(1.4f);
+        if (Input.GetKeyDown(KeyCode.Space))
+            this.GetComponent<Material_ColorTransfer>().Scorch_Object(1.2f);
     }
 }
