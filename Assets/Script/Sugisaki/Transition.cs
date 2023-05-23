@@ -31,7 +31,6 @@ public class Transition : MonoBehaviour
         
         Vector3 position = cameraObject.transform.position;
         Quaternion rotate = cameraObject.transform.rotation;
-        Vector3 scale = cameraObject.transform.localScale;
         
         position.y = position.y - 1.0f;
         position.z = position.z + 10.0f;
@@ -39,7 +38,6 @@ public class Transition : MonoBehaviour
 
         gameObject.transform.position = position;
         gameObject.transform.rotation = rotate;
-        gameObject.transform.localScale = scale;
     }
 
     IEnumerator Trans()
