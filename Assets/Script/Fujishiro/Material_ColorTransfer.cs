@@ -7,8 +7,8 @@ public class Material_ColorTransfer : MonoBehaviour
     [Header("遷移変化させたいオブジェクトを入れる")]
     [SerializeField] MeshRenderer meshRenderer;
 
-    [SerializeField][Range(0f, 1f)] float[] Transfer;
-    [SerializeField] string[] SG_name;
+    [SerializeField][Range(0f, 1f)] public float[] Transfer;
+    [SerializeField] public string[] SG_name = {"_Transfer_1st", "_Transfer_2nd" };
     
 
     // Start is called before the first frame update

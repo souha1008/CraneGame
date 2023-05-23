@@ -101,11 +101,11 @@ public class CookMoveManager : MonoBehaviour
             //bool‚Å‚í‚½‚·
             if(SPEED_CLEAR_TIME * 60 > AllTime)
             {
-
+                m_ScoreData.SpeedClear= true;
             }
             else
             {
-
+                m_ScoreData.SpeedClear = false;
             }
 
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
