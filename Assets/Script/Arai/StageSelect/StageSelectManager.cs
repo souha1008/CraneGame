@@ -9,7 +9,7 @@ public class StageSelectManager : MonoBehaviour
     [SerializeField]
     private Canvas canvas;
     [SerializeField]
-    private GameObject empty;
+    private GameObject emptyui;
 
     [SerializeField]
     private ss_background background;
@@ -23,7 +23,13 @@ public class StageSelectManager : MonoBehaviour
     private GameObject imManager;
 
     [SerializeField]
+    private Image mask;
+
+    [SerializeField]
     private float distanceX = 3840;
+
+    [SerializeField, Range(0, 10)]
+    private float moveSpeed = 2;
 
     [SerializeField, Range(0, 3)]
     private int worldIndexLimit = 0;
@@ -31,14 +37,19 @@ public class StageSelectManager : MonoBehaviour
 
     private bool active = true;
 
+    private SceneChange sceneChange;
+
     void Start()
     {
+//        var data= GameObject.Find("Datas").GetComponent<ScoreData>();
+//        worldIndex = data.WorldIndex;
+
         // 背景
         background = Instantiate(background, canvas.transform);
         background.SetBG(worldIndex);
 
         // UI
-        var obj = Instantiate(empty, canvas.transform);
+        var obj = Instantiate(emptyui, canvas.transform);
         obj.name = "UIs";
 
         for(int i = 0; i < uis.Count; ++i)
@@ -48,30 +59,62 @@ public class StageSelectManager : MonoBehaviour
         }
 
         // アイコン
-        imManager = Instantiate(empty, canvas.transform); 
+        imManager = Instantiate(emptyui, canvas.transform); 
         imManager.name = "iconManagers";
+        imManager.GetComponent<RectTransform>().anchoredPosition
+            = new Vector2(-distanceX * 2 * worldIndex, 0);
 
-        for (int i = 0; i < Co.Const.WORLD_NUM; ++i)
+        for (int i = 0; i < Co.Const.WORLD_NUM * 2 - 1; ++i)
         {
-            iconManagers.Add(Instantiate(iconManager, imManager.transform));
-            iconManagers[i].GetComponent<RectTransform>().anchoredPosition
-             = new Vector2(i * distanceX, 100);
-            iconManagers[i].CreateIcons(i);
+            if ((i & 1) == 0)
+            {
+                iconManagers.Add(Instantiate(iconManager, imManager.transform));
+                iconManagers[i / 2].GetComponent<RectTransform>().anchoredPosition
+                 = new Vector2(i * distanceX, 0);
+                iconManagers[i / 2].CreateIcons(i / 2);
+            }
+            else
+            {
+                var pmask = Instantiate(mask, imManager.transform);
+                pmask.GetComponent<RectTransform>().anchoredPosition = new Vector2(i * distanceX, 0);
+            }
         }
         iconManagers[worldIndex].Activate();
+//        iconManagers[worldIndex].Activate(data.StageIndex);
+
+        sceneChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
     }
 
     void Update()
     {
-        if (!active) return;
-
-        if (Input.GetKeyDown(KeyCode.D) && worldIndex < worldIndexLimit)
+        if (!active)
         {
-            Inactivate(1);
+            // シーン遷移終了待機
+            
         }
-        else if (Input.GetKeyDown(KeyCode.A) && worldIndex > 0)
+        else
         {
-            Inactivate(-1);
+            if (sceneChange.isFade)
+            {
+                Inactivate();
+            }
+
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
+                Inactivate();
+                Destroy(this);
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.D) && worldIndex < worldIndexLimit)
+            {
+                Inactivate(1);
+            }
+            else if (Input.GetKeyDown(KeyCode.A) && worldIndex > 0)
+            {
+                Inactivate(-1);
+            }
         }
     }
 
@@ -84,6 +127,13 @@ public class StageSelectManager : MonoBehaviour
 
         iconManagers[worldIndex].Activate();
         active = true;
+    }
+
+    private void Inactivate()
+    {
+        active = false;
+
+        iconManagers[worldIndex].Inactivate();
     }
 
     private void Inactivate(int _way)
@@ -106,28 +156,23 @@ public class StageSelectManager : MonoBehaviour
         WaitForSeconds ws = new WaitForSeconds(0.001f);
 
         Vector2 defpos = imManager.transform.localPosition;
-        Vector2 tgtpos = new Vector2(imManager.transform.localPosition.x - distanceX * _way, 0);
+        Vector2 tgtpos = new Vector2(imManager.transform.localPosition.x - distanceX * 2 * _way, 0);
         float param = 0;
 
-        while(true)
+        while(param < 1)
         {
             imManager.transform.localPosition = Vector2.Lerp(defpos, tgtpos, param);
 
+            // bg切り替え
             if (param >= 0.49f && param <= 0.51f)
             {
                 background.SetBG(worldIndex);
             }
 
-            if (param >= 1)
-            {
-                Activate();
-                yield break;
-            }
-            else
-            {
-                param += 0.01f;
-                yield return ws;
-            }
+            param += 0.01f * moveSpeed;
+            yield return ws;
         }
+        Activate();
+        yield break;
     }
 }

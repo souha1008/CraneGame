@@ -7,6 +7,7 @@ public class TitleSelect : TitleObject
     [SerializeField]
     private List<Select_Object> m_Objects;
 
+    [SerializeField, EditLock]
     private int m_Index = 0;
 
     private float m_InputVolum = 0;         // 十字キー入力
@@ -43,31 +44,37 @@ public class TitleSelect : TitleObject
     private void CheckInput()
     {
         {
-            if (Input.GetButtonDown("Submit"))
+            if (/*Input.GetButtonDown("Submit")*/ Input.GetMouseButton(0))
             {
                 m_Objects[m_Index].PushAction();
                 Destroy(this);
                 return;
             }
+
+            ///// 後で消す
+            if(Input.GetKeyDown(KeyCode.RightArrow)) SelectChange(1);
+            if(Input.GetKeyDown(KeyCode.LeftArrow)) SelectChange(-1);
+            /////
         }
-        // 十字キー入力
-        {
-            var newvolum = Input.GetAxis("JuujiKeyX");
-            if (m_InputVolum != newvolum)
-            {
-                SelectChange(newvolum);
-            }
-            m_InputVolum = newvolum;
-        }
-        // スティック縦入力
-        {
-            var newvolum = Input.GetAxis("Horizontal");
-            if (m_InputVolumStick != newvolum)
-            {
-                SelectChange(newvolum);
-            }
-            m_InputVolumStick = newvolum;
-        }
+        //// 十字キー入力
+        //{
+        //    var newvolum = Input.GetAxis("JuujiKeyX");
+        // 
+        //    if (m_InputVolum != newvolum)
+        //    {
+        //        SelectChange(newvolum);
+        //    }
+        //    m_InputVolum = newvolum;
+        //}
+        //// スティック入力
+        //{
+        //    var newvolum = Input.GetAxis("Horizontal");
+        //    if (m_InputVolumStick != newvolum)
+        //    {
+        //        SelectChange(newvolum);
+        //    }
+        //    m_InputVolumStick = newvolum;
+        //}
     }
     
     /// <summary>

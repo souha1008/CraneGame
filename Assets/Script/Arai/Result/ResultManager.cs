@@ -9,7 +9,7 @@ public class ResultManager : MonoBehaviour
     [SerializeField]
     private Canvas m_Canvas;
 
-    [SerializeField]
+    [SerializeField, EditLock]
     private ResultStateEnum.STATE m_NowState = ResultStateEnum.STATE.BEGIN;
 
     [SerializeField]
