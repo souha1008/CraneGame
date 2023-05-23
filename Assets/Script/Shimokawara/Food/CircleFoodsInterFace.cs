@@ -394,6 +394,7 @@ public class CircleFoodsInterFace : MonoBehaviour
                     //‚±‚±•ÏX
                     GetComponent<Renderer>().material.color = Color.black;
 
+
                     //•ÏX
                     //ˆÚ“®‚à‰ñ“]‚à‚µ‚È‚¢‚æ‚¤‚É‚·‚é
                     //GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;

@@ -38,7 +38,7 @@ public class Player2 : MonoBehaviour
 
     public bool isSlow = false;
 
-    public Attach MyAttach = new AttachCrane();
+    Attach MyAttach = new AttachCrane();
     public Attach.AttachType NextAttachType;
 
     static public Player2 instance;
