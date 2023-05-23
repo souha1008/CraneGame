@@ -49,7 +49,7 @@ public class CookMoveManager : MonoBehaviour
 
     public int[] MAX_SCORE = new int[5];
 
-    int AllTime = 0;
+    public int AllTime = 0;
 
     // Start is called before the first frame update
     void Start()
