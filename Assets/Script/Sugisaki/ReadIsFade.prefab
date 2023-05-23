@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2429045736847597353
+--- !u!1 &5794376219899070813
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2429045736847596759}
-  - component: {fileID: 2429045736847597352}
-  m_Layer: 3
-  m_Name: SceneChange
+  - component: {fileID: 8724031217129422165}
+  - component: {fileID: 1481284479273153359}
+  m_Layer: 0
+  m_Name: ReadIsFade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2429045736847596759
+--- !u!4 &8724031217129422165
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2429045736847597353}
+  m_GameObject: {fileID: 5794376219899070813}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 7.970527, y: -1.3493004, z: -2.4189925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2429045736847597352
+--- !u!114 &1481284479273153359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2429045736847597353}
+  m_GameObject: {fileID: 5794376219899070813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1bfd6e9c343d7c4e9413dfe134b4a3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 283d3b00333cd6a47b809cea4a4f72a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: ShimoScene
-  FadeInObject: {fileID: 5018664193685635793, guid: 29b3c1477f0994240b1a8111e47f2104,
-    type: 3}
-  readIsFade: {fileID: 5794376219899070813, guid: f00eb1bfce1cdc94789a481ead9cd06a,
-    type: 3}
   isFade: 0

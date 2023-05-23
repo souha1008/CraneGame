@@ -6,7 +6,7 @@ public class Transition : MonoBehaviour
 {
     private Animator animator;
 
-    private GameObject cameraObject;
+    [SerializeField] GameObject readIsFade;
 
     readonly float waitTime = 1.9f;
 
@@ -18,17 +18,25 @@ public class Transition : MonoBehaviour
         animator = GetComponent<Animator>();
 
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(readIsFade);
         StartCoroutine(nameof(Trans));
     }
     // Update is called once per frame
     void Update()
     {
-        cameraObject = GameObject.Find("Main Camera");
+        Camera cameraObject;
+
+        //cameraObject = GameObject.Find("Main Camera");
+        cameraObject = Camera.main;
         
         Vector3 position = cameraObject.transform.position;
         Quaternion rotate = cameraObject.transform.rotation;
         Vector3 scale = cameraObject.transform.localScale;
         
+        position.y = position.y - 1.0f;
+        position.z = position.z + 10.0f;
+        rotate.y = rotate.y + 180.0f;
+
         gameObject.transform.position = position;
         gameObject.transform.rotation = rotate;
         gameObject.transform.localScale = scale;
@@ -42,6 +50,7 @@ public class Transition : MonoBehaviour
 
         yield return new WaitForSeconds(waitTime);
 
+        readIsFade.GetComponent<ReadIsFade>().SetIsFade(false);
         Destroy(gameObject);
     }
 
