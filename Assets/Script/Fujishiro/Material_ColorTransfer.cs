@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Material_ColorTransfer : MonoBehaviour
 {
-    public static Material_ColorTransfer instance;
-
     [Header("遷移変化させたいオブジェクトを入れる")]
     [SerializeField] MeshRenderer meshRenderer;
 
@@ -18,7 +16,7 @@ public class Material_ColorTransfer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (instance == null) instance = this;
+
     }
 
     // Update is called once per frame
