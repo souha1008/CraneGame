@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4742267975658442836}
   - component: {fileID: 4742267975658442835}
   - component: {fileID: 4742267975658442834}
+  - component: {fileID: 657439158890625718}
   m_Layer: 0
   m_Name: Daikon
   m_TagString: Foods
@@ -134,11 +135,32 @@ MonoBehaviour:
   m_FireAction: 1
   isNoAction: 0
   isClear: 0
+  RightArmBord: {fileID: 0}
+  LeftArmBord: {fileID: 0}
   Vel: {x: 0, y: 0, z: 0}
   isGround: 0
   FoodsArmState: 0
   CutDaikon: {fileID: 9002339302543877557, guid: f9ade3a55c298db4da003de515df38f7,
     type: 3}
+--- !u!114 &657439158890625718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742267975658442833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980fca926efe07347bb83f82b71ae609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 0}
+  Transfer:
+  - 0
+  - 0
+  SG_name:
+  - _Transfer_1st
+  - _Transfer_2nd
 --- !u!1001 &4742267975924434708
 PrefabInstance:
   m_ObjectHideFlags: 0
