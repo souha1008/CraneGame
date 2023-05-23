@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1597583003790018783}
   - component: {fileID: 1597583003790018780}
   - component: {fileID: 1597583003790018781}
+  - component: {fileID: 7123784637048355664}
   m_Layer: 0
   m_Name: Nat
   m_TagString: Foods
@@ -140,6 +141,23 @@ MonoBehaviour:
   isGround: 0
   FoodsArmState: 0
   MotoRyouri: {fileID: 0}
+--- !u!114 &7123784637048355664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597583003790018778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980fca926efe07347bb83f82b71ae609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 0}
+  Transfer: []
+  SG_name:
+  - _Transfer_1st
+  - _Transfer_2nd
 --- !u!1001 &1597583003854596087
 PrefabInstance:
   m_ObjectHideFlags: 0

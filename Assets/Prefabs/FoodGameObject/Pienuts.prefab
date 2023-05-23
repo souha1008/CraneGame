@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2401120580916821804}
   - component: {fileID: 2401120580916821795}
   - component: {fileID: 2401120580916821794}
+  - component: {fileID: 6607144117326127499}
+  - component: {fileID: 8895855797664869293}
   m_Layer: 0
   m_Name: Pienuts
   m_TagString: Foods
@@ -134,9 +136,45 @@ MonoBehaviour:
   m_FireAction: 2
   isNoAction: 0
   isClear: 0
+  RightArmBord: {fileID: 0}
+  LeftArmBord: {fileID: 0}
   Vel: {x: 0, y: 0, z: 0}
   isGround: 0
   FoodsArmState: 0
+--- !u!114 &6607144117326127499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401120580916821793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980fca926efe07347bb83f82b71ae609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 0}
+  Transfer: []
+  SG_name:
+  - _Transfer_1st
+  - _Transfer_2nd
+--- !u!114 &8895855797664869293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401120580916821793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980fca926efe07347bb83f82b71ae609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 0}
+  Transfer: []
+  SG_name:
+  - _Transfer_1st
+  - _Transfer_2nd
 --- !u!1001 &2191966023342010659
 PrefabInstance:
   m_ObjectHideFlags: 0
