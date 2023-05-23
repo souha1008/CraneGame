@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-struct SOUND_STRUCT
+public struct SOUND_STRUCT
 {
-    string name;
-    AudioClip audioclip;
+    [SerializeField] string name;
+    [SerializeField] AudioClip audioclip;
 };
 
 public class SoundManager : MonoBehaviour
@@ -21,6 +21,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] static AudioClip[] audioClips;
 
+    [SerializeField]
     Dictionary<string, int> keyBGM = new Dictionary<string, int>
     {
         {"ƒ^ƒCƒgƒ‹BGM", 0},
@@ -56,7 +57,7 @@ public class SoundManager : MonoBehaviour
         {"SE", 20 },
     };
 
-
+    
     
     // Start is called before the first frame update
     void Start()
