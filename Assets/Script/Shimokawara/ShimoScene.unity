@@ -2303,7 +2303,7 @@ MonoBehaviour:
   - {fileID: 1781873757}
   - {fileID: 1855098180}
   FazeTime: 18000
-  SPEED_CLEAR_TIME: 0
+  SPEED_CLEAR_TIME: 120
   FPS_Time: 0
   START_STOP_FLAME: 0
   SYATTA_STOP_FLAME: 14
@@ -2314,6 +2314,7 @@ MonoBehaviour:
   PlaneModel: {fileID: 1215882831}
   isConvayor: 0000010001
   MAX_SCORE: 0000000000000000000000000000000000000000
+  AllTime: 0
 --- !u!4 &244182721
 Transform:
   m_ObjectHideFlags: 0
@@ -9517,7 +9518,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b71447209a1745e47b029f63925ac838, type: 2}
+  - {fileID: 2100000, guid: 1c6c2878e20f812439df71f7697a6a1e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13782,6 +13783,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7881630642974454939, guid: 55fa3ee5674780d4a9dfcaa1db99f17d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1c6c2878e20f812439df71f7697a6a1e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55fa3ee5674780d4a9dfcaa1db99f17d, type: 3}
 --- !u!1001 &8123562019560712020
