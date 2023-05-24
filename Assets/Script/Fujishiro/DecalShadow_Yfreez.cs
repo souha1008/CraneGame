@@ -15,8 +15,9 @@ public class DecalShadow_Yfreez : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var thisy = this.transform.position.y;
-        thisy = freez;
+        var thisy = this.transform.position;
+        thisy = new Vector3(thisy.x ,freez, thisy.z);
+        this.transform.position = thisy;
         
     }
 }
