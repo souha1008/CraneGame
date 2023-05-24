@@ -50,6 +50,9 @@ public class Player2 : MonoBehaviour
 
     private Rigidbody Rb;
 
+
+    float oldMoveX;
+    float oldMoveZ;
     public float moveX;
     public float moveZ;
 
@@ -150,8 +153,11 @@ public class Player2 : MonoBehaviour
 
     void FixedUpdate() //FixedUpdateはUpdate(毎フレーム)と違って0.02秒毎に呼ばれる仕組みになっている※もちろん感覚は変更可
     {
+        oldMoveX = moveX;
+        oldMoveZ = moveZ;
+
         //変更中なら
-        if(isChange)
+        if (isChange)
         {
             if(ChangeCnt >= 6)
             {
@@ -306,6 +312,12 @@ public class Player2 : MonoBehaviour
             moveZ *= 0.1f;
             Debug.Log("速度変更");
         }
+
+        if(oldMoveX <= 1f && oldMoveZ <= 1f && (moveX > 1f || moveZ > 1f))
+        {
+            SoundManager.instance.SEPlay("アームが前後左右移動SE_2");
+        }
+
     }
 
 

@@ -44,6 +44,8 @@ public class Kurumi : CircleFoodsInterFace
             Effect.SetActive(true);
             Effect.gameObject.transform.parent = null;
 
+            //SE
+            SoundManager.instance.SEPlay("ƒiƒbƒc—ÞŠ„‚ê‚½SE");
             m_HummerAction = HummerAction.STAY;
             Destroy(gameObject);
         }
