@@ -17,14 +17,25 @@ public class SoundManager : MonoBehaviour
     [SerializeField] SOUND_STRUCT[] keyBGM;
     [SerializeField] SOUND_STRUCT[] keySE;
 
+    [SerializeField, ReadOnly] float BGM_Volume = 1;
+    [SerializeField, ReadOnly] float SE_Volume = 1;
+
 
     // Start is called before the first frame update
     public void Awake()
     {
+        DontDestroyOnLoad(this);
         if (instance == null)
         {
             instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        BGM_Volume = 1;
+        SE_Volume = 1;
     }
 
     // Update is called once per frame
@@ -33,6 +44,17 @@ public class SoundManager : MonoBehaviour
 
     }
 
+    public void ChangeBGMVolume(float value)
+    {
+        BGM_Volume = value;
+    }
+
+    public void ChangeSEVolume(float value)
+    {
+        SE_Volume = value;
+    }
+
+
     public void BGMPlay(string playTitle)
     {   
         for(int i = 0; i < keyBGM.Length; i++)
@@ -40,14 +62,10 @@ public class SoundManager : MonoBehaviour
             if(playTitle == keyBGM[i].name)
             {
                 audioSource.clip = keyBGM[i].audioClip;
+                break;
             }
-            //else
-            //{
-            //    Debug.Log("‚»‚ñ‚ÈBGM‚È‚¢‚Å‚·" + "(" + playTitle + ")");
-            //    return;
-            //}
         }
-        
+        audioSource.volume = BGM_Volume;
         audioSource.Play();
     }
     public void BGMPlay(string playTitle, bool isloop)
@@ -57,34 +75,11 @@ public class SoundManager : MonoBehaviour
             if (playTitle == keyBGM[i].name)
             {
                 audioSource.clip = keyBGM[i].audioClip;
+                break;
             }
-            //else
-            //{
-            //    Debug.Log("‚»‚ñ‚ÈBGM‚È‚¢‚Å‚·" + "(" + playTitle + ")");
-            //    return;
-            //}
         }
         audioSource.loop = isloop;
-
-        audioSource.Play();
-    }
-    public void BGMPlay(string playTitle, bool isloop, float volume)
-    {
-        for (int i = 0; i < keyBGM.Length; i++)
-        {
-            if (playTitle == keyBGM[i].name)
-            {
-                audioSource.clip = keyBGM[i].audioClip;
-            }
-            //else
-            //{
-            //    Debug.Log("‚»‚ñ‚ÈBGM‚È‚¢‚Å‚·" + "(" + playTitle + ")");
-            //    return;
-            //}
-        }
-        audioSource.loop = isloop;
-        audioSource.volume = volume;
-
+        audioSource.volume = BGM_Volume;
         audioSource.Play();
     }
 
@@ -94,29 +89,9 @@ public class SoundManager : MonoBehaviour
         {
             if (playTitle == keySE[i].name)
             {
+                audioSource.volume = SE_Volume;
                 audioSource.PlayOneShot(keySE[i].audioClip);
-            }
-            else
-            {
-                Debug.Log("‚»‚ñ‚ÈSE‚È‚¢‚Å‚·");
-                return;
-            }
-        }
-    }
-
-    public void SEPlay(string playTitle, float volume)
-    {
-        audioSource.volume = volume;
-        for (int i = 0; i < keySE.Length; i++)
-        {
-            if (playTitle == keySE[i].name)
-            {
-                audioSource.PlayOneShot(keySE[i].audioClip);
-            }
-            else
-            {
-                Debug.Log("‚»‚ñ‚ÈBGM‚È‚¢‚Å‚·");
-                return;
+                break;
             }
         }
     }

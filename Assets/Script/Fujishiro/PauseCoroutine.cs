@@ -31,6 +31,7 @@ public class PauseCoroutine : MonoBehaviour
 
     [SerializeField] Animator animator_Pause;
     [SerializeField] Animator animator_Oshinagaki;
+    [SerializeField] Animator animator_Option_c;
     [SerializeField] string UI_anim_paramator;
 
     [Header("オプション内スライダー")]
@@ -128,6 +129,7 @@ public class PauseCoroutine : MonoBehaviour
 
     void Pause()
     {
+        SoundManager.instance.SEPlay("ポーズ開くSE");
         SetPause(true);
         Update_isPause = true;
         Debug.Log("ポーズしたYO");
@@ -135,6 +137,13 @@ public class PauseCoroutine : MonoBehaviour
         Time.timeScale = 0;
         SetIsPauseMenu(true);
         StartCoroutine(PauseStart());
+    }
+
+    void AnimSetBool(bool set)
+    {
+        animator_Pause.SetBool(UI_anim_paramator, set);
+        animator_Oshinagaki.SetBool(UI_anim_paramator, set);
+        animator_Option_c.SetBool(UI_anim_paramator, set);
     }
 
     IEnumerator PauseStart()
@@ -146,6 +155,7 @@ public class PauseCoroutine : MonoBehaviour
         Debug.Log("ポーズ解除");
         StopCoroutine(PauseMenu());
         SetPause(false);
+        SoundManager.instance.SEPlay("ポーズ閉じるSE");
         Update_isPause = false;
         Pause_Canvas.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
@@ -161,11 +171,13 @@ public class PauseCoroutine : MonoBehaviour
                 {
                     Debug.Log("上");
                     MenuSelectCount--;
+                    SoundManager.instance.SEPlay("選択SE");
                 }
                 if (Input.GetKeyDown(DownArrow))
                 {
                     Debug.Log("下");
                     MenuSelectCount++;
+                    SoundManager.instance.SEPlay("選択SE");
                 }
                 if (MenuSelectCount > 2) MenuSelectCount = 0;   // 上にいく
                 if (MenuSelectCount < 0) MenuSelectCount = 2;   // 下に行く
@@ -177,10 +189,9 @@ public class PauseCoroutine : MonoBehaviour
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.UnscaledTime));
-                            animator_Pause.SetBool(UI_anim_paramator, true);
-                            animator_Oshinagaki.SetBool(UI_anim_paramator, true);
+                            SoundManager.instance.SEPlay("決定SE");
+                            AnimSetBool(true);
                             SetIsPauseMenu(false);
-                            Option_C.SetActive(true);
                             StartCoroutine(C_Option());
                         }
                         break;
@@ -257,24 +268,27 @@ public class PauseCoroutine : MonoBehaviour
             var value = Input.GetAxis("Horizontal");
             if(value > 0.3f && slider_nowcoolframe >= slider_coolfrate)
             {
+                SoundManager.instance.SEPlay("音量調整SE");
                 nowslider.value += slider_rate;
+                SoundManager.instance.ChangeBGMVolume(nowslider.value);
                 slider_nowcoolframe = 0;
             }
             if(value < -0.3f && slider_nowcoolframe >= slider_coolfrate)
             {
+                SoundManager.instance.SEPlay("音量調整SE");
                 nowslider.value -= slider_rate;
+                SoundManager.instance.ChangeBGMVolume(nowslider.value);
                 slider_nowcoolframe = 0;
             }
             slider_nowcoolframe += 1;
 
             // ポーズメニューへ戻る
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(BackKey))
             {
-                animator_Pause.SetBool(UI_anim_paramator, false);
-                animator_Oshinagaki.SetBool(UI_anim_paramator, false);
+                AnimSetBool(false);
+                SoundManager.instance.SEPlay("戻るSE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
-                Option_C.SetActive(false);
                 //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.AnimatePhysics));
                 yield break;
             }

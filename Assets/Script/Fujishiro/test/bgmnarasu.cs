@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class kogasitest : MonoBehaviour
+public class bgmnarasu : MonoBehaviour
 {
+    [SerializeField] string bgm_name;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,8 @@ public class kogasitest : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
-        Material_ColorTransfer.instance.Scorch_Object(1.4f);
+        {
+            SoundManager.instance.SEPlay(bgm_name);
+        }
     }
 }
