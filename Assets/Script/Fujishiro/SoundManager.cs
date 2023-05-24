@@ -12,7 +12,8 @@ struct SOUND_STRUCT
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource BGMaudioSource;
+    [SerializeField] AudioSource SEaudioSource;
 
     [SerializeField] SOUND_STRUCT[] keyBGM;
     [SerializeField] SOUND_STRUCT[] keySE;
@@ -61,12 +62,12 @@ public class SoundManager : MonoBehaviour
         {
             if(playTitle == keyBGM[i].name)
             {
-                audioSource.clip = keyBGM[i].audioClip;
+                BGMaudioSource.clip = keyBGM[i].audioClip;
                 break;
             }
         }
-        audioSource.volume = BGM_Volume;
-        audioSource.Play();
+        BGMaudioSource.volume = BGM_Volume;
+        BGMaudioSource.Play();
     }
     public void BGMPlay(string playTitle, bool isloop)
     {
@@ -74,13 +75,13 @@ public class SoundManager : MonoBehaviour
         {
             if (playTitle == keyBGM[i].name)
             {
-                audioSource.clip = keyBGM[i].audioClip;
+                BGMaudioSource.clip = keyBGM[i].audioClip;
                 break;
             }
         }
-        audioSource.loop = isloop;
-        audioSource.volume = BGM_Volume;
-        audioSource.Play();
+        BGMaudioSource.loop = isloop;
+        BGMaudioSource.volume = BGM_Volume;
+        BGMaudioSource.Play();
     }
 
     public void SEPlay(string playTitle)
@@ -89,10 +90,37 @@ public class SoundManager : MonoBehaviour
         {
             if (playTitle == keySE[i].name)
             {
-                audioSource.volume = SE_Volume;
-                audioSource.PlayOneShot(keySE[i].audioClip);
+                SEaudioSource.volume = SE_Volume;
+                SEaudioSource.loop = false;
+                SEaudioSource.PlayOneShot(keySE[i].audioClip);
                 break;
             }
         }
+    }
+
+    public void SEPlay(string playTitle, bool loop)
+    {
+        for (int i = 0; i < keySE.Length; i++)
+        {
+            if (playTitle == keySE[i].name)
+            {
+                SEaudioSource.volume = SE_Volume;
+                SEaudioSource.clip = keySE[i].audioClip;
+                SEaudioSource.loop = loop;
+                SEaudioSource.Play();
+                
+                break;
+            }
+        }
+    }
+
+    public void BGMStop()
+    {
+        BGMaudioSource.Stop();
+    }
+
+    public void SEStop()
+    {
+        SEaudioSource.Stop();
     }
 }

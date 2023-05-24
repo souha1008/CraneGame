@@ -54,6 +54,7 @@ public class PauseCoroutine : MonoBehaviour
 
     // プライベート変数
     private bool isPauseMenu = false;
+    private float prevAxis = 0;
 
     enum SelectCorsor
     {
@@ -130,6 +131,8 @@ public class PauseCoroutine : MonoBehaviour
     void Pause()
     {
         if(GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ポーズ開くSE");
+        // プライベート変数初期化
+        prevAxis = 0;
         MenuSelectCount = 0;
         SetPause(true);
         Update_isPause = true;
@@ -170,22 +173,32 @@ public class PauseCoroutine : MonoBehaviour
         {
             if (isPauseMenu)
             {
-                if (Input.GetKeyDown(UpArrow) || Input.GetAxis("Vertical") > 0.3f)
+                if (Input.GetKeyDown(UpArrow) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
                 {
                     Debug.Log("上");
                     MenuSelectCount--;
+                    prevAxis = Input.GetAxis("Vertical");
                     if (GameObject.Find("SoundManager"))
                         SoundManager.instance.SEPlay("選択SE");
                 }
-                if (Input.GetKeyDown(DownArrow) || Input.GetAxis("Vertical") < -0.3f)
+
+                if (Input.GetKeyDown(DownArrow) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
                 {
                     Debug.Log("下");
                     MenuSelectCount++;
+                    prevAxis = Input.GetAxis("Vertical");
                     if (GameObject.Find("SoundManager"))
                         SoundManager.instance.SEPlay("選択SE");
                 }
+
                 if (MenuSelectCount > 2) MenuSelectCount = 0;   // 上にいく
                 if (MenuSelectCount < 0) MenuSelectCount = 2;   // 下に行く
+
+                if (Input.GetAxis("Vertical") == 0)
+                {
+                    prevAxis = 0;
+                }
+
 
                 if(Input.GetKeyDown(BackKey)) yield break;
 
