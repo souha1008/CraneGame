@@ -310,14 +310,18 @@ public class Player2 : MonoBehaviour
         {
             moveX *= 0.1f;
             moveZ *= 0.1f;
-            Debug.Log("速度変更");
+            //Debug.Log("速度変更");
         }
 
-        if(oldMoveX <= 1f && oldMoveZ <= 1f && (moveX > 1f || moveZ > 1f))
+        if(Mathf.Abs(oldMoveX) <= 0.5f && Mathf.Abs(oldMoveZ) <= 0.5f 
+            && (Mathf.Abs(moveX) > 0.5f || Mathf.Abs(moveZ) > 0.5f))
         {
-            SoundManager.instance.SEPlay("アームが前後左右移動SE_2");
+            SoundManager.instance.SEPlay("アームが前後左右移動SE_2",true);
         }
-
+        else if(Mathf.Abs(moveX) <= 0.5f && Mathf.Abs(moveZ) <= 0.5f)
+        {
+            SoundManager.instance.SELoopStop();
+        }
     }
 
 
