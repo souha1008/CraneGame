@@ -52,8 +52,8 @@ public class TitleSelect : TitleObject
             }
 
             ///// 後で消す
-            if(Input.GetKeyDown(KeyCode.RightArrow)) SelectChange(1);
-            if(Input.GetKeyDown(KeyCode.LeftArrow)) SelectChange(-1);
+            if(Input.GetKeyDown(KeyCode.RightArrow)) SelectChange(-1);
+            if(Input.GetKeyDown(KeyCode.LeftArrow)) SelectChange(1);
             /////
         }
         //// 十字キー入力
