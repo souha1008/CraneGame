@@ -132,7 +132,7 @@ MonoBehaviour:
   m_ChachAction: 0
   m_CutAction: 0
   m_HummerAction: 2
-  m_FireAction: 1
+  m_FireAction: 2
   isNoAction: 0
   isClear: 0
   RightArmBord: {fileID: 0}
@@ -156,11 +156,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 4646257410472435193}
   Transfer:
-  - 0
+  - 1
   - 0
   SG_name:
   - _Transfer_1st
   - _Transfer_2nd
+  isScorch: 0
+  trans_time: 0
 --- !u!1001 &4742267975924434708
 PrefabInstance:
   m_ObjectHideFlags: 0

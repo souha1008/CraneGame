@@ -367,6 +367,11 @@ public class CookMoveManager : MonoBehaviour
         FPS_Time = FazeTime * 60 - SYATTA_TIME;
     }
 
+    public int GetFazeNum()
+    {
+        return FazeNum;
+    }
+
     //void DeleateKnife()
     //{
     //    Knife[] knives = GameObject.FindObjectsOfType<Knife>();

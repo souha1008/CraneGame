@@ -32,10 +32,12 @@ public class MyText : MonoBehaviour
     {
         FPSTime = CookMoveManager.instance.FPS_Time;
         AllTime = CookMoveManager.instance.AllTime;
-        
+
         int FrameTime = FPSTime + AllTime;
         float SecTime = (float)FrameTime * OneFrame;
         time = speedClearTime - (int)SecTime;
+        if (time < 0)
+            time = 0;
 
         text.text = time.ToString("000");
     }

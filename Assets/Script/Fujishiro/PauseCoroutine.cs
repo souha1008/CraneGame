@@ -54,6 +54,7 @@ public class PauseCoroutine : MonoBehaviour
 
     // プライベート変数
     private bool isPauseMenu = false;
+    private float prevAxis = 0;
 
     enum SelectCorsor
     {
@@ -129,7 +130,10 @@ public class PauseCoroutine : MonoBehaviour
 
     void Pause()
     {
-        SoundManager.instance.SEPlay("ポーズ開くSE");
+        if(GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ポーズ開くSE");
+        // プライベート変数初期化
+        prevAxis = 0;
+        MenuSelectCount = 0;
         SetPause(true);
         Update_isPause = true;
         Debug.Log("ポーズしたYO");
@@ -153,12 +157,14 @@ public class PauseCoroutine : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(BackKey) && isPauseMenu == true && mPauseCooldown >= pauseCoolTime);
 
         Debug.Log("ポーズ解除");
+        MenuSelectCount = 0;
         StopCoroutine(PauseMenu());
         SetPause(false);
-        SoundManager.instance.SEPlay("ポーズ閉じるSE");
+        if (GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ポーズ閉じるSE");
         Update_isPause = false;
         Pause_Canvas.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
+        yield break;
         
     }
     IEnumerator PauseMenu()
@@ -167,21 +173,34 @@ public class PauseCoroutine : MonoBehaviour
         {
             if (isPauseMenu)
             {
-                if (Input.GetKeyDown(UpArrow))
+                if (Input.GetKeyDown(UpArrow) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
                 {
                     Debug.Log("上");
                     MenuSelectCount--;
-                    SoundManager.instance.SEPlay("選択SE");
+                    prevAxis = Input.GetAxis("Vertical");
+                    if (GameObject.Find("SoundManager"))
+                        SoundManager.instance.SEPlay("選択SE");
                 }
-                if (Input.GetKeyDown(DownArrow))
+
+                if (Input.GetKeyDown(DownArrow) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
                 {
                     Debug.Log("下");
                     MenuSelectCount++;
-                    SoundManager.instance.SEPlay("選択SE");
+                    prevAxis = Input.GetAxis("Vertical");
+                    if (GameObject.Find("SoundManager"))
+                        SoundManager.instance.SEPlay("選択SE");
                 }
+
                 if (MenuSelectCount > 2) MenuSelectCount = 0;   // 上にいく
                 if (MenuSelectCount < 0) MenuSelectCount = 2;   // 下に行く
 
+                if (Input.GetAxis("Vertical") == 0)
+                {
+                    prevAxis = 0;
+                }
+
+
+                if(Input.GetKeyDown(BackKey)) yield break;
 
                 switch (MenuSelectCount)
                 {
@@ -189,7 +208,8 @@ public class PauseCoroutine : MonoBehaviour
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.UnscaledTime));
-                            SoundManager.instance.SEPlay("決定SE");
+                            if (GameObject.Find("SoundManager"))
+                                SoundManager.instance.SEPlay("決定SE");
                             AnimSetBool(true);
                             SetIsPauseMenu(false);
                             StartCoroutine(C_Option());
@@ -268,14 +288,16 @@ public class PauseCoroutine : MonoBehaviour
             var value = Input.GetAxis("Horizontal");
             if(value > 0.3f && slider_nowcoolframe >= slider_coolfrate)
             {
-                SoundManager.instance.SEPlay("音量調整SE");
+                if (GameObject.Find("SoundManager"))
+                    SoundManager.instance.SEPlay("音量調整SE");
                 nowslider.value += slider_rate;
                 SoundManager.instance.ChangeBGMVolume(nowslider.value);
                 slider_nowcoolframe = 0;
             }
             if(value < -0.3f && slider_nowcoolframe >= slider_coolfrate)
             {
-                SoundManager.instance.SEPlay("音量調整SE");
+                if (GameObject.Find("SoundManager"))
+                    SoundManager.instance.SEPlay("音量調整SE");
                 nowslider.value -= slider_rate;
                 SoundManager.instance.ChangeBGMVolume(nowslider.value);
                 slider_nowcoolframe = 0;
@@ -289,7 +311,7 @@ public class PauseCoroutine : MonoBehaviour
                 SoundManager.instance.SEPlay("戻るSE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
-                //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.AnimatePhysics));
+                OptionSelectCount = 0;
                 yield break;
             }
 

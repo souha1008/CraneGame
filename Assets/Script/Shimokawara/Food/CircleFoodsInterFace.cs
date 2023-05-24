@@ -351,6 +351,9 @@ public class CircleFoodsInterFace : MonoBehaviour
                 Hummer(other);
                 if (m_HummerAction == HummerAction.SCALE)
                 {
+
+                    SoundManager.instance.SEPlay("Ç®Ç‡ÇøÇ·í◊ÇµSE");
+
                     Vector3 temp = transform.localScale;
                     //Debug.Log("transform.localScale");
                     float Moving = temp.y * 0.40f;
@@ -392,8 +395,15 @@ public class CircleFoodsInterFace : MonoBehaviour
                 if (m_FireAction == FireAction.KOGE)
                 {
                     //Ç±Ç±ïœçX
-                    GetComponent<Renderer>().material.color = Color.black;
-
+                    Debug.Log("è≈Ç∞ä÷êîåƒÇŒÇÍÇÈÇ©Ç‡ÅH");
+                    //GetComponent<Renderer>().material.color = Color.black;
+                    if(GetComponent<Material_ColorTransfer>())
+                    {
+                        Debug.Log("åƒÇŒÇÍÇΩ");
+                        GetComponent<Material_ColorTransfer>().Scorch_Object(3.0f);
+                        
+                    }
+                    SoundManager.instance.SEPlay("è≈Ç∞ÇÈSE");
 
                     //ïœçX
                     //à⁄ìÆÇ‡âÒì]Ç‡ÇµÇ»Ç¢ÇÊÇ§Ç…Ç∑ÇÈ

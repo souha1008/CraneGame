@@ -47,6 +47,9 @@ public class Pienuts : CircleFoodsInterFace
             Effect.SetActive(true);
             Effect.gameObject.transform.parent = null;
 
+            //SE
+            SoundManager.instance.SEPlay("ƒiƒbƒc—ÞŠ„‚ê‚½SE");
+
             Destroy(gameObject);
 
             m_HummerAction = HummerAction.STAY;
