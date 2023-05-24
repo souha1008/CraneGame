@@ -392,7 +392,14 @@ public class CircleFoodsInterFace : MonoBehaviour
                 if (m_FireAction == FireAction.KOGE)
                 {
                     //Ç±Ç±ïœçX
-                    GetComponent<Renderer>().material.color = Color.black;
+                    Debug.Log("è≈Ç∞ä÷êîåƒÇŒÇÍÇÈÇ©Ç‡ÅH");
+                    //GetComponent<Renderer>().material.color = Color.black;
+                    if(GetComponent<Material_ColorTransfer>())
+                    {
+                        Debug.Log("åƒÇŒÇÍÇΩ");
+                        GetComponent<Material_ColorTransfer>().Scorch_Object(3.0f);
+                        
+                    }
 
 
                     //ïœçX

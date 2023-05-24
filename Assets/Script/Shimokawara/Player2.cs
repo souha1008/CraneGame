@@ -509,6 +509,11 @@ public class Player2 : MonoBehaviour
         }
     }
 
+    Attach.AttachType GetAttach()
+    {
+        return MyAttach.type;
+    }
+
     //void NextAttach()
     //{
     //    NextAttachType += 1;
