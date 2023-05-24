@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
     [SerializeField] AudioSource BGMaudioSource;
     [SerializeField] AudioSource SEaudioSource;
+    [SerializeField] AudioSource SEloopAudioSource;
 
     [SerializeField] SOUND_STRUCT[] keyBGM;
     [SerializeField] SOUND_STRUCT[] keySE;
@@ -91,7 +92,6 @@ public class SoundManager : MonoBehaviour
             if (playTitle == keySE[i].name)
             {
                 SEaudioSource.volume = SE_Volume;
-                SEaudioSource.loop = false;
                 SEaudioSource.PlayOneShot(keySE[i].audioClip);
                 break;
             }
@@ -104,10 +104,10 @@ public class SoundManager : MonoBehaviour
         {
             if (playTitle == keySE[i].name)
             {
-                SEaudioSource.volume = SE_Volume;
-                SEaudioSource.clip = keySE[i].audioClip;
-                SEaudioSource.loop = loop;
-                SEaudioSource.Play();
+                SEloopAudioSource.volume = SE_Volume;
+                SEloopAudioSource.clip = keySE[i].audioClip;
+                SEloopAudioSource.loop = loop;
+                SEloopAudioSource.Play();
                 
                 break;
             }
@@ -122,5 +122,10 @@ public class SoundManager : MonoBehaviour
     public void SEStop()
     {
         SEaudioSource.Stop();
+    }
+
+    public void SELoopStop()
+    {
+        SEloopAudioSource.Stop();
     }
 }
