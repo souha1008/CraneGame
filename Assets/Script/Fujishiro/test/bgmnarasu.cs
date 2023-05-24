@@ -16,7 +16,7 @@ public class bgmnarasu : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            SoundManager.instance.BGMPlay(bgm_name, true);
+            SoundManager.instance.SEPlay(bgm_name);
         }
     }
 }
