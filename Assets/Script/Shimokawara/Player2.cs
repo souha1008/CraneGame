@@ -485,8 +485,10 @@ public class Player2 : MonoBehaviour
         if(MyAttach.type != Type)
         {
             //MyAttach.CustomUninit();
-            
-            for(int i = 0; i < PrefabArray.Length;i++)
+
+            SoundManager.instance.SEPlay("アタッチメント変更SE");
+
+            for (int i = 0; i < PrefabArray.Length;i++)
             {
                 if(i == (int) Type)
                 {
