@@ -11,7 +11,7 @@ using UnityEditor;
 public class Kurumi : CircleFoodsInterFace
 {
     int Cnt = 0;
-
+    public GameObject Effect;
     void Start()
     {
         Cnt = 0;
@@ -40,6 +40,9 @@ public class Kurumi : CircleFoodsInterFace
             Kurumi.GetComponent<KurumiNakami>().Vel = new Vector3(0.3f, 0.1f, 0);
             //Debug.Log(Nakami.GetComponent<KurumiNakami>().Vel);
             //Destroy(Kurumi);
+
+            Effect.SetActive(true);
+            Effect.gameObject.transform.parent = null;
 
             m_HummerAction = HummerAction.STAY;
             Destroy(gameObject);

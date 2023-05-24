@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3371379316064485449}
   - component: {fileID: 7125398137040063346}
   - component: {fileID: 1230867066843202284}
+  - component: {fileID: -149766367428281134}
   m_Layer: 0
   m_Name: DaikonLeftSingle
   m_TagString: Foods
@@ -134,9 +135,28 @@ MonoBehaviour:
   m_FireAction: 2
   isNoAction: 0
   isClear: 0
+  RightArmBord: {fileID: 0}
+  LeftArmBord: {fileID: 0}
   Vel: {x: 0, y: 0, z: 0}
   isGround: 0
   FoodsArmState: 0
+--- !u!114 &-149766367428281134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002339302543877557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980fca926efe07347bb83f82b71ae609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 0}
+  Transfer: []
+  SG_name:
+  - _Transfer_1st
+  - _Transfer_2nd
 --- !u!1001 &8526040871499678188
 PrefabInstance:
   m_ObjectHideFlags: 0

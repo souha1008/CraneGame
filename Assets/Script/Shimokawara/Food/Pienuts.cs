@@ -11,6 +11,7 @@ using UnityEditor;
 public class Pienuts : CircleFoodsInterFace
 {
     int Cnt = 0;
+    public GameObject Effect;
 
     void Start()
     {
@@ -42,6 +43,9 @@ public class Pienuts : CircleFoodsInterFace
             Cut1.GetComponent<PienutsNakami>().Vel = new Vector3(0.3f, 0.1f, 0);
             Instantiate(Cut2, tempPos2, transform.rotation);
             Cut2.GetComponent<PienutsNakami>().Vel = new Vector3(-0.3f, 0.1f, 0);
+
+            Effect.SetActive(true);
+            Effect.gameObject.transform.parent = null;
 
             Destroy(gameObject);
 

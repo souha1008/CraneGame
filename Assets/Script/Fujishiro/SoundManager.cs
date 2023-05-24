@@ -9,7 +9,6 @@ struct SOUND_STRUCT
     public AudioClip audioClip;
 }
 
-
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
@@ -25,10 +24,6 @@ public class SoundManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            if (instance != null)
-            {
-                Debug.Log("“ü‚ê‚½‚æ");
-            }
         }
     }
 
@@ -46,6 +41,11 @@ public class SoundManager : MonoBehaviour
             {
                 audioSource.clip = keyBGM[i].audioClip;
             }
+            //else
+            //{
+            //    Debug.Log("‚»‚ñ‚ÈBGM‚È‚¢‚Å‚·" + "(" + playTitle + ")");
+            //    return;
+            //}
         }
         
         audioSource.Play();
@@ -58,6 +58,11 @@ public class SoundManager : MonoBehaviour
             {
                 audioSource.clip = keyBGM[i].audioClip;
             }
+            //else
+            //{
+            //    Debug.Log("‚»‚ñ‚ÈBGM‚È‚¢‚Å‚·" + "(" + playTitle + ")");
+            //    return;
+            //}
         }
         audioSource.loop = isloop;
 
@@ -71,6 +76,11 @@ public class SoundManager : MonoBehaviour
             {
                 audioSource.clip = keyBGM[i].audioClip;
             }
+            //else
+            //{
+            //    Debug.Log("‚»‚ñ‚ÈBGM‚È‚¢‚Å‚·" + "(" + playTitle + ")");
+            //    return;
+            //}
         }
         audioSource.loop = isloop;
         audioSource.volume = volume;
@@ -86,6 +96,11 @@ public class SoundManager : MonoBehaviour
             {
                 audioSource.PlayOneShot(keySE[i].audioClip);
             }
+            else
+            {
+                Debug.Log("‚»‚ñ‚ÈSE‚È‚¢‚Å‚·");
+                return;
+            }
         }
     }
 
@@ -97,6 +112,11 @@ public class SoundManager : MonoBehaviour
             if (playTitle == keySE[i].name)
             {
                 audioSource.PlayOneShot(keySE[i].audioClip);
+            }
+            else
+            {
+                Debug.Log("‚»‚ñ‚ÈBGM‚È‚¢‚Å‚·");
+                return;
             }
         }
     }
