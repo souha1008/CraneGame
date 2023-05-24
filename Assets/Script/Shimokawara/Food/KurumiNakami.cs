@@ -38,6 +38,7 @@ public class KurumiNakami : CircleFoodsInterFace
         if (Cnt > 15)
         {
             m_HummerAction = HummerAction.SCALE;//ŠÑ’Ê‚µ‚Ä‚Ù‚µ‚¢‚¾‚¯
+            m_FireAction = FireAction.KOGE;
         }
         if (transform.position.x < ShikiriX)
         {
