@@ -21,10 +21,17 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     public void Awake()
     {
+        DontDestroyOnLoad(this);
         if (instance == null)
         {
             instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
+        
     }
 
     // Update is called once per frame
@@ -40,12 +47,8 @@ public class SoundManager : MonoBehaviour
             if(playTitle == keyBGM[i].name)
             {
                 audioSource.clip = keyBGM[i].audioClip;
+                break;
             }
-            //else
-            //{
-            //    Debug.Log("‚»‚ñ‚ÈBGM‚È‚¢‚Å‚·" + "(" + playTitle + ")");
-            //    return;
-            //}
         }
         
         audioSource.Play();
@@ -57,12 +60,8 @@ public class SoundManager : MonoBehaviour
             if (playTitle == keyBGM[i].name)
             {
                 audioSource.clip = keyBGM[i].audioClip;
+                break;
             }
-            //else
-            //{
-            //    Debug.Log("‚»‚ñ‚ÈBGM‚È‚¢‚Å‚·" + "(" + playTitle + ")");
-            //    return;
-            //}
         }
         audioSource.loop = isloop;
 
@@ -75,12 +74,8 @@ public class SoundManager : MonoBehaviour
             if (playTitle == keyBGM[i].name)
             {
                 audioSource.clip = keyBGM[i].audioClip;
+                break;
             }
-            //else
-            //{
-            //    Debug.Log("‚»‚ñ‚ÈBGM‚È‚¢‚Å‚·" + "(" + playTitle + ")");
-            //    return;
-            //}
         }
         audioSource.loop = isloop;
         audioSource.volume = volume;
@@ -95,11 +90,7 @@ public class SoundManager : MonoBehaviour
             if (playTitle == keySE[i].name)
             {
                 audioSource.PlayOneShot(keySE[i].audioClip);
-            }
-            else
-            {
-                Debug.Log("‚»‚ñ‚ÈSE‚È‚¢‚Å‚·");
-                return;
+                break;
             }
         }
     }
@@ -112,11 +103,7 @@ public class SoundManager : MonoBehaviour
             if (playTitle == keySE[i].name)
             {
                 audioSource.PlayOneShot(keySE[i].audioClip);
-            }
-            else
-            {
-                Debug.Log("‚»‚ñ‚ÈBGM‚È‚¢‚Å‚·");
-                return;
+                break;
             }
         }
     }
