@@ -63,7 +63,6 @@ public class PauseCoroutine : MonoBehaviour
         Option = 0,
         Retry = 1,
         StageSelect = 2,
-        max
     };
 
     void SetIsPauseMenu(bool set)
