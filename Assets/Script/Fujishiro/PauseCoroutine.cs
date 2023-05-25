@@ -54,9 +54,7 @@ public class PauseCoroutine : MonoBehaviour
 
     // プライベート変数
     private bool isPauseMenu = false;
-    private bool isOption_c = false;
     private float prevAxis = 0;
-    private Coroutine counddown_corutine;
 
     enum SelectCorsor
     {
@@ -73,10 +71,6 @@ public class PauseCoroutine : MonoBehaviour
     {
         mPaused = set;
     }
-    void SetIsOption_c(bool set)
-    {
-        isOption_c = set;
-    }
 
     private void Awake()
     {
@@ -86,7 +80,7 @@ public class PauseCoroutine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        counddown_corutine = StartCoroutine(CoolDown());
+        StartCoroutine("CoolDown");
     }
 
 
@@ -103,11 +97,6 @@ public class PauseCoroutine : MonoBehaviour
             Pause();
         }
 
-    }
-    private void OnDestroy()
-    {
-        StopAllCoroutines();
-        counddown_corutine = null;
     }
 
     private void LateUpdate()
@@ -133,22 +122,6 @@ public class PauseCoroutine : MonoBehaviour
                     Option.color = notSelectColor;
                     Retry.color = notSelectColor;
                     StageSelect.color = nowSelectColor;
-                    break;
-            }
-        }
-
-        if(isOption_c == true)
-        {
-            switch (OptionSelectCount)
-            {
-                case 0:
-                    TI_BGM.color = nowSelectColor;
-                    TI_SE.color = notSelectColor;
-                    break;
-
-                case 1:
-                    TI_BGM.color = notSelectColor;
-                    TI_SE.color = nowSelectColor;
                     break;
             }
         }
@@ -220,7 +193,6 @@ public class PauseCoroutine : MonoBehaviour
                 if (MenuSelectCount > 2) MenuSelectCount = 0;   // 上にいく
                 if (MenuSelectCount < 0) MenuSelectCount = 2;   // 下に行く
 
-                // 入力無し
                 if (Input.GetAxis("Vertical") == 0)
                 {
                     prevAxis = 0;
@@ -274,34 +246,34 @@ public class PauseCoroutine : MonoBehaviour
         }
     }
 
+    IEnumerator Animator_UpdateModeChange(AnimatorUpdateMode mode)
+    {
+        animator_Pause.updateMode = mode;
+
+        yield return new WaitForSecondsRealtime(UpdateModeChange_WaitTime);
+    }
+
     IEnumerator C_Option()
     {
         yield return new WaitForSecondsRealtime(C_Option_WaitTime);
 
         Slider nowslider = BGM_Slider;
-        SetIsOption_c(true);
 
         while (true)
         {
-            // 上
-            if (Input.GetKeyDown(UpArrow) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
+            if(Input.GetKeyDown(UpArrow))
             {
                 OptionSelectCount--;
                 if (OptionSelectCount < 0) OptionSelectCount = 1;
             }
-            // 下
-            if(Input.GetKeyDown(DownArrow) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
+            if(Input.GetKeyDown(DownArrow))
             {
                 OptionSelectCount++;
                 if (OptionSelectCount > 1) OptionSelectCount = 0;
             }
-            // 入力無し
-            if (Input.GetAxis("Vertical") == 0)
-            {
-                prevAxis = 0;
-            }
+            
 
-            switch (OptionSelectCount)
+            switch(OptionSelectCount)
             {
                 case 0:
                     nowslider = BGM_Slider;
@@ -312,33 +284,21 @@ public class PauseCoroutine : MonoBehaviour
                     break;
             }
 
-            // ステイックの横軸傾き取得
             var value = Input.GetAxis("Horizontal");
-            if((Input.GetKey(KeyCode.RightArrow) || value > 0.3f) && slider_nowcoolframe >= slider_coolfrate)
+            if(value > 0.3f && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
                     SoundManager.instance.SEPlay("音量調整SE");
-
                 nowslider.value += slider_rate;
-
-                if(nowslider == BGM_Slider) // BGMスライダー選択中
-                    SoundManager.instance.ChangeBGMVolume(nowslider.value);
-                else // SEスライダー選択中
-                    SoundManager.instance.ChangeSEVolume(nowslider.value);
-
+                SoundManager.instance.ChangeBGMVolume(nowslider.value);
                 slider_nowcoolframe = 0;
             }
-            if((Input.GetKey(KeyCode.LeftArrow) || value < -0.3f) && slider_nowcoolframe >= slider_coolfrate)
+            if(value < -0.3f && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
                     SoundManager.instance.SEPlay("音量調整SE");
                 nowslider.value -= slider_rate;
-
-                if (nowslider == BGM_Slider) // BGMスライダー選択中
-                    SoundManager.instance.ChangeBGMVolume(nowslider.value);
-                else // SEスライダー選択中
-                    SoundManager.instance.ChangeSEVolume(nowslider.value);
-
+                SoundManager.instance.ChangeBGMVolume(nowslider.value);
                 slider_nowcoolframe = 0;
             }
             slider_nowcoolframe += 1;
@@ -350,7 +310,6 @@ public class PauseCoroutine : MonoBehaviour
                 SoundManager.instance.SEPlay("戻るSE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
-                SetIsOption_c(false);
                 OptionSelectCount = 0;
                 yield break;
             }
