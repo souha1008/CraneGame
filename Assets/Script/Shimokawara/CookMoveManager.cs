@@ -51,9 +51,12 @@ public class CookMoveManager : MonoBehaviour
 
     public int AllTime = 0;
 
+    bool isSyatta = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        isSyatta = true;
         instance = this;
         myButton = GameObject.FindObjectOfType<MyButton>();
         ConvayorModelPosY = ConvayorModel.transform.localPosition.y;
@@ -127,6 +130,7 @@ public class CookMoveManager : MonoBehaviour
             SleepCnt = 0;
 
             NextScene();
+            SoundManager.instance.SELoopStop();
             //PlayerPosInitialize();
             AllTime += FPS_Time;
             FPS_Time = 0;
@@ -136,6 +140,8 @@ public class CookMoveManager : MonoBehaviour
         //前後Nフレームで移動アニメーション
         else if(Mathf.Abs((FazeTime * 60 / 2) - FPS_Time)  > (FazeTime * 60 / 2) - SYATTA_TIME /*- STOP_TIME / 2*/)
         {
+            isSyatta = true;
+
             if (FazeNum < MAX_FAZE_NUM)
             {
                 float tempCnt = (FazeTime * 60 / 2) - Mathf.Abs((FazeTime * 60 / 2) - FPS_Time);//0への時間距離
@@ -148,6 +154,8 @@ public class CookMoveManager : MonoBehaviour
 
         else
         {
+            isSyatta = false;
+
             Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, SyattaMax, Syatta.transform.localPosition.z);
         }
     }
@@ -370,6 +378,11 @@ public class CookMoveManager : MonoBehaviour
     public int GetFazeNum()
     {
         return FazeNum;
+    }
+
+    public bool GetIsShatta()
+    {
+        return isSyatta;
     }
 
     //void DeleateKnife()

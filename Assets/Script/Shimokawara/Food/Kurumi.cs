@@ -11,7 +11,12 @@ using UnityEditor;
 public class Kurumi : CircleFoodsInterFace
 {
     int Cnt = 0;
+    int OldCnt = 0;
     public GameObject Effect;
+
+    public GameObject obj1;
+    public GameObject obj2;
+
     void Start()
     {
         Cnt = 0;
@@ -26,7 +31,27 @@ public class Kurumi : CircleFoodsInterFace
 
     void FixedUpdate()
     {
+        
         FoodsFixedUpdate();
+
+        
+
+        if (Cnt == 1)
+        {
+            if(OldCnt == 0)
+            {
+                SoundManager.instance.SEPlay("ナッツ類割れたSE");
+            }
+            obj1.SetActive(true);
+        }
+        if (Cnt == 2)
+        {
+            if (OldCnt == 1)
+            {
+                SoundManager.instance.SEPlay("ナッツ類割れたSE");
+            }
+            obj2.SetActive(true);
+        }
 
         if(Cnt >= 3 && !isNoAction)
         {
@@ -49,6 +74,8 @@ public class Kurumi : CircleFoodsInterFace
             m_HummerAction = HummerAction.STAY;
             Destroy(gameObject);
         }
+
+        OldCnt = Cnt;
     }
 
     public override void Hummer(Collider other)

@@ -57,6 +57,8 @@ public class Knife : MonoBehaviour
                 //RotateKnife();
                 if (Input.GetButton("Lbutton"))
                 {
+                    SoundManager.instance.SEPlay("•ï’šËoSE");
+
                     KnifeState = KNIFE_STATE.Cut;
                     knifeHassya.instance.haveKnife = false;
                 }

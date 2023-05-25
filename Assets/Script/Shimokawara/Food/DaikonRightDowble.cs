@@ -66,6 +66,8 @@ public class DaikonRightDowble : CircleFoodsInterFace
                 Instantiate(Cut2, tempPos2, transform.rotation);
                 Cut2.GetComponent<DaikonCenterSingle>().Vel = new Vector3(-0.3f, 0.1f, 0);
 
+                SoundManager.instance.SEPlay("Ç®Ç‡ÇøÇ·êÿífSE");
+
                 Destroy(gameObject);
             }
             else
