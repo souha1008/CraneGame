@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseCoroutine : MonoBehaviour
 {
@@ -251,10 +252,12 @@ public class PauseCoroutine : MonoBehaviour
 
                     case (int)SelectCorsor.Retry:
                         // リトライを選択した時の処理を書く
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                         break;
 
                     case (int)SelectCorsor.StageSelect:
                         // ステージセレクトを選択した時の処理を書く
+                        SceneManager.LoadScene("StageSelect");
                         break;
                 }
             }
