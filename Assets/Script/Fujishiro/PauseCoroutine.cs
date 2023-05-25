@@ -252,12 +252,18 @@ public class PauseCoroutine : MonoBehaviour
 
                     case (int)SelectCorsor.Retry:
                         // リトライを選択した時の処理を書く
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                        if (Input.GetKeyDown(KetteiKey))
+                        {
+                            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                        }
                         break;
 
                     case (int)SelectCorsor.StageSelect:
                         // ステージセレクトを選択した時の処理を書く
-                        SceneManager.LoadScene("StageSelect");
+                        if (Input.GetKeyDown(KetteiKey))
+                        {
+                            SceneManager.LoadScene("StageSelect");
+                        }
                         break;
                 }
             }
