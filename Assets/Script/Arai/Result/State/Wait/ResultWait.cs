@@ -10,8 +10,8 @@ public class ResultWait : ResultObject
     {
         if (Input.anyKeyDown)
         {
-            //GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
-            SceneManager.LoadScene("StageSelect");
+            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
+            //SceneManager.LoadScene("StageSelect");
         }
     }
 }

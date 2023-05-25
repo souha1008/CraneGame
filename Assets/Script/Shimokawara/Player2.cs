@@ -50,6 +50,9 @@ public class Player2 : MonoBehaviour
 
     private Rigidbody Rb;
 
+
+    float oldMoveX;
+    float oldMoveZ;
     public float moveX;
     public float moveZ;
 
@@ -150,8 +153,11 @@ public class Player2 : MonoBehaviour
 
     void FixedUpdate() //FixedUpdateはUpdate(毎フレーム)と違って0.02秒毎に呼ばれる仕組みになっている※もちろん感覚は変更可
     {
+        oldMoveX = moveX;
+        oldMoveZ = moveZ;
+
         //変更中なら
-        if(isChange)
+        if (isChange)
         {
             if(ChangeCnt >= 6)
             {
@@ -304,7 +310,17 @@ public class Player2 : MonoBehaviour
         {
             moveX *= 0.1f;
             moveZ *= 0.1f;
-            Debug.Log("速度変更");
+            //Debug.Log("速度変更");
+        }
+
+        if(Mathf.Abs(oldMoveX) <= 0.5f && Mathf.Abs(oldMoveZ) <= 0.5f 
+            && (Mathf.Abs(moveX) > 0.5f || Mathf.Abs(moveZ) > 0.5f))
+        {
+            SoundManager.instance.SEPlay("アームが前後左右移動SE_2",true);
+        }
+        else if(Mathf.Abs(moveX) <= 0.5f && Mathf.Abs(moveZ) <= 0.5f)
+        {
+            SoundManager.instance.SELoopStop();
         }
     }
 
@@ -469,8 +485,10 @@ public class Player2 : MonoBehaviour
         if(MyAttach.type != Type)
         {
             //MyAttach.CustomUninit();
-            
-            for(int i = 0; i < PrefabArray.Length;i++)
+
+            SoundManager.instance.SEPlay("アタッチメント変更SE");
+
+            for (int i = 0; i < PrefabArray.Length;i++)
             {
                 if(i == (int) Type)
                 {
@@ -507,6 +525,11 @@ public class Player2 : MonoBehaviour
             isChange = true;
             ChangeCnt = 0;
         }
+    }
+
+    public Attach.AttachType GetAttach()
+    {
+        return MyAttach.type;
     }
 
     //void NextAttach()

@@ -7,9 +7,11 @@ public class Material_ColorTransfer : MonoBehaviour
     [Header("遷移変化させたいオブジェクトを入れる")]
     [SerializeField] MeshRenderer meshRenderer;
 
-    [SerializeField][Range(0f, 1f)] float[] Transfer;
-    [SerializeField] string[] SG_name;
-    
+    [SerializeField][Range(0f, 1f)] public float[] Transfer = {1.0f, 0.0f };
+    [SerializeField] public string[] SG_name = {"_Transfer_1st", "_Transfer_2nd" };
+
+    [SerializeField, ReadOnly] bool isScorch = false;
+    [SerializeField, ReadOnly] float trans_time = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +26,25 @@ public class Material_ColorTransfer : MonoBehaviour
         {
             meshRenderer.material.SetFloat(SG_name[i], Transfer[i]);
         }
+
+        if(isScorch)
+        {
+            Transfer[0] -= Time.deltaTime * trans_time;
+            meshRenderer.material.SetFloat(SG_name[0], Transfer[0]);
+
+            if(Transfer[0] <= 0.0f)
+            {
+                Transfer[0] = 0f;
+                isScorch = false;
+                trans_time = 0;
+            }
+        }
     }
+
+    public void Scorch_Object(float time)
+    {
+        isScorch = true;
+        trans_time = time;
+    }
+
 }

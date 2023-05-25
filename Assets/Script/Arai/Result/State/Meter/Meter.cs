@@ -37,14 +37,9 @@ public class Meter : ResultUI
     private float waitTime = 0.8f;   // 待機時間
     private float time = 0;
 
-    [SerializeField]
-    private float testscore;
-
     private bool active = false;
-    public bool Active
-    {
-        set => active = value;
-    }
+
+    private bool skip = false;
 
     void Start()
     {
@@ -58,7 +53,7 @@ public class Meter : ResultUI
         body_tf.sizeDelta = new Vector2(0, body_tf_defSize.y);
 
         // test
-        volumMax = testscore;
+        volumMax = GameObject.Find("Datas").GetComponent<ScoreData>().GetScoreParcent();
         // testend
         // スコア割合確認
     }
@@ -68,43 +63,48 @@ public class Meter : ResultUI
         if (!active) return;
 
         // 終了確認
-        if (Input.GetButtonDown("Submit"))
+        if (!skip && /*Input.GetButtonDown("Submit")*/ Input.GetMouseButton(0))
         {
-            body_tf.sizeDelta = new Vector2(body_tf_defSize.x * volumMax, body_tf_defSize.y);
-            Finish();
-            return;
+            skip = true;
         }
-        
-        if (volum < volumMax)
+    }
+
+    private IEnumerator GainMeter()
+    {
+        var waitframe = new WaitForEndOfFrame();
+
+        while(volum < volumMax)
         {
             // ゲージ増加
             body_tf.sizeDelta = new Vector2(body_tf_defSize.x * volum, body_tf_defSize.y);
             volum += speed * Co.Const.SCORE_SPEED_MAG;
 
+            // テクスチャ切り替え
             if (pctIndex < pct.Count && volum >= pct[pctIndex].pct)
             {
                 body_image.sprite = pct[pctIndex].sprite;
                 ++pctIndex;
             }
+
+            if (!skip) yield return waitframe;
         }
-        else
-        {
-            // 待機
-            if (time <= 0) body_tf.sizeDelta = new Vector2(body_tf_defSize.x * volumMax, body_tf_defSize.y);
-            else
-            {
-                if (time >= waitTime)
-                {
-                    Finish();
-                }
-            }
-            time += Time.deltaTime;
-        }
+        body_tf.sizeDelta = new Vector2(body_tf_defSize.x * volumMax, body_tf_defSize.y);
+
+        yield return new WaitForSeconds(waitTime);
+
+        Finish();
+        yield break;
     }
 
     private void Finish()
     {
         manager.SetState(ResultStateEnum.STATE.RESULT);
         Destroy(this);
+    }
+
+    public void Activate()
+    {
+        active = true;
+        StartCoroutine(GainMeter());
     }
 }

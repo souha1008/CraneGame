@@ -3,21 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using TMPro;
 
 public class StageIcon : MonoBehaviour
 {
     private Image image;
 
     [SerializeField]
-    private Sprite activeSprite;
+    private Image state;
 
     [SerializeField]
-    private Sprite inactiveSprite;
+    private TextMeshProUGUI world;
+
+    [SerializeField]
+    private TextMeshProUGUI stage;
+
+    [SerializeField]
+    private Sprite stateSprite;
 
     void Awake()
     {
         image = gameObject.GetComponent<Image>();
-        image.sprite = inactiveSprite;
+        Inactivate();
     }
 
     /// <summary>
@@ -25,7 +32,7 @@ public class StageIcon : MonoBehaviour
     /// </summary>
     public void Activate()
     {
-        image.sprite = activeSprite;
+        image.color = Color.red;
     }
     
     /// <summary>
@@ -33,6 +40,21 @@ public class StageIcon : MonoBehaviour
     /// </summary>
     public void Inactivate()
     {
-        image.sprite = inactiveSprite;
+        image.color = Color.blue;
+    }
+
+    public void SetParam(int _world, int _stage, bool _state)
+    {
+        world.text = (_world + 1).ToString();
+        stage.text = (_stage + 1).ToString();
+
+        if (_state)
+        {
+            state.sprite = stateSprite;
+        }
+        else
+        {
+            state.color = new Color(0,0,0,0);
+        }
     }
 }

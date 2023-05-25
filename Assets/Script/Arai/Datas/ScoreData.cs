@@ -4,10 +4,44 @@ using UnityEngine;
 
 public class ScoreData : MonoBehaviour
 {
-    [SerializeField]
-    private float[] Score = new float[Co.Const.FAZE_NUM];
-
     private static ScoreData datas;
+
+    [SerializeField]
+    private int worldindex;
+    public int WorldIndex
+    {
+        get => worldindex;
+        set => worldindex = value;
+    }
+    [SerializeField]
+    private int stageindex;
+    public int StageIndex
+    {
+        get => stageindex;
+        set => stageindex = value;
+    }
+
+    [SerializeField]
+    private int[] score = new int[Co.Const.FAZE_NUM];
+    
+    [SerializeField]
+    private int[] maxScore = new int[Co.Const.FAZE_NUM];
+
+    [SerializeField]
+    private float clearBorder = 0.5f;
+    public float ClearBorder
+    {
+        get => clearBorder;
+        set => clearBorder = value;
+    }
+
+    [SerializeField]
+    private bool speedClear = false;
+    public bool SpeedClear
+    {
+        get => speedClear;
+        set => speedClear = value;
+    }
 
     void Awake()
     {
@@ -23,13 +57,23 @@ public class ScoreData : MonoBehaviour
     }
 
     /// <summary>
+    /// 最大スコアセット
+    /// </summary>
+    /// <param name="_index">フェーズ数</param>
+    /// <param name="_score">スコア値</param>
+    public void SetMaxScore(int _index, int _score)
+    {
+        maxScore[_index] = _score;
+    }
+
+    /// <summary>
     /// スコアセット
     /// </summary>
     /// <param name="_index">フェーズ数</param>
     /// <param name="_score">スコア値</param>
-    public void SetScore(int _index, float _score)
+    public void SetScore(int _index, int _score)
     {
-        Score[_index] = _score;
+        score[_index] = _score;
     }
 
     /// <summary>
@@ -37,24 +81,28 @@ public class ScoreData : MonoBehaviour
     /// </summary>
     /// <param name="_index">フェーズ数</param>
     /// <returns>スコア値</returns>
-    public float GetScore(int _index)
+    public int GetScore(int _index)
     {
-        return Score[_index];
+        return score[_index];
     }
 
     /// <summary>
-    /// 合計スコア取得
+    /// 合計スコア割合取得
     /// </summary>
     /// <returns>スコア値</returns>
-    public float GetAddScore()
+    public float GetScoreParcent()
     {
-        float score = 0;
+        float score = 0, maxscore = 0;
 
-        foreach(var value in Score)
+        foreach(var value in this.score)
         {
             score += value;
         }
+        foreach(var value in this.maxScore)
+        {
+            maxscore += value;
+        }
 
-        return score;
+        return score / maxscore;
     }
 }

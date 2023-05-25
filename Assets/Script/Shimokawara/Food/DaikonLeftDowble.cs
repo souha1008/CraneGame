@@ -36,6 +36,7 @@ public class DaikonLeftDowble : CircleFoodsInterFace
         if (Cnt > 15)
         {
             //m_CutAction = CutAction.CANNOT;//ŠÑ’Ê‚¨‚í‚è
+            m_FireAction = FireAction.KOGE;
         }
 
         FoodsFixedUpdate();

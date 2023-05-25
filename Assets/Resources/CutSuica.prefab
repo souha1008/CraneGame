@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3371379316064485449}
   - component: {fileID: 7125398137040063346}
   - component: {fileID: 8804572743901334704}
+  - component: {fileID: -7431907054858067049}
   m_Layer: 0
   m_Name: CutSuica
   m_TagString: Foods
@@ -139,6 +140,27 @@ MonoBehaviour:
   Vel: {x: 0, y: 0, z: 0}
   isGround: 0
   FoodsArmState: 0
+--- !u!114 &-7431907054858067049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002339302543877557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980fca926efe07347bb83f82b71ae609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 7753081153461581635}
+  Transfer:
+  - 1
+  - 0
+  SG_name:
+  - _Transfer_1st
+  - _Transfer_2nd
+  isScorch: 0
+  trans_time: 0
 --- !u!1001 &1012116001236489052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226,6 +248,12 @@ PrefabInstance:
 --- !u!4 &2393879214360856298 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3401069094095230390, guid: 1738b18fa73f81141bdec3fb9f517d73,
+    type: 3}
+  m_PrefabInstance: {fileID: 1012116001236489052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7753081153461581635 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7319396263897261087, guid: 1738b18fa73f81141bdec3fb9f517d73,
     type: 3}
   m_PrefabInstance: {fileID: 1012116001236489052}
   m_PrefabAsset: {fileID: 0}

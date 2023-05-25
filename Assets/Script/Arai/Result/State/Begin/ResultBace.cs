@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using TMPro;
 
 public class ResultBace : ResultUI
 {
@@ -12,15 +13,29 @@ public class ResultBace : ResultUI
 
     [SerializeField, Header("アルファ変更速度")]
     private float alphaVolum = 0.005f;
+    
     [SerializeField, Range(0.1f, 1.0f)]
     private float alphaMax = 1;
 
     private float alpha = 0;
 
+    [SerializeField]
+    private TextMeshProUGUI world;
+
+    [SerializeField]
+    private TextMeshProUGUI stage;
+    
+
     void Start()
     {
         image      = gameObject.GetComponent<Image>();
         imageColor = image.color;
+
+        var a = GameObject.Find("Datas");
+        var datas = GameObject.Find("Datas").GetComponent<ScoreData>();
+
+        world.text = (datas.WorldIndex + 1).ToString();
+        stage.text = (datas.StageIndex + 1).ToString();
         
         manager.SetState(ResultStateEnum.STATE.SCORE);
         Destroy(this);
@@ -28,13 +43,6 @@ public class ResultBace : ResultUI
 
     void Update()
     {
-        alpha += alphaVolum;
-        image.color = new Color(imageColor.r, imageColor.g, imageColor.b, alpha);
-
-        if (alpha >= alphaMax)
-        {
-            manager.SetState(ResultStateEnum.STATE.SCORE);
-            Destroy(this);
-        }
+        
     }
 }

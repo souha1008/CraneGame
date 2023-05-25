@@ -11,6 +11,7 @@ public class ResultStateEnum
         SCORE,
         METER,
         RESULT,
+        BADGE,
         WAIT,
         MAX
     }

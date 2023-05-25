@@ -8,9 +8,9 @@ public class ResultText : ResultUI
     {
         switch (_result)
         {
-            case ResultEnum.RESULT.A:
+            case ResultEnum.RESULT.BAD:
                 break;
-            case ResultEnum.RESULT.B:
+            case ResultEnum.RESULT.GOOD:
                 break;
             case ResultEnum.RESULT.EXCELLENT:
                 break;
@@ -18,6 +18,6 @@ public class ResultText : ResultUI
             default: break;
         }
 
-        manager.SetState(ResultStateEnum.STATE.WAIT);
+        manager.SetState(ResultStateEnum.STATE.BADGE);
     }
 }

@@ -3,44 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using TMPro;
 
 public class PhaseScore : MonoBehaviour
 {
-    private Image image;
-    private Color color;
+    [SerializeField]
+    private TextMeshProUGUI score;
 
-    private float alpha = 0;
+    [SerializeField]
+    private Image image;
+    
+    [SerializeField]
+    private Vector2 offsetPosition;
     
     [SerializeField]
     private float alphaRatio = 0.01f;
 
+    private RectTransform rt;
     private Vector2 defaultPosition;
-    [SerializeField]
-    private Vector2 offsetPosition;
+    private float alpha = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        image = gameObject.GetComponent<Image>();
+        rt = gameObject.GetComponent<RectTransform>();
 
-        color = image.color;
-        image.color = new Color(color.r, color.g, color.b, alpha);
+        defaultPosition = rt.anchoredPosition;
+        rt.anchoredPosition = defaultPosition - offsetPosition;
 
-        defaultPosition = image.rectTransform.anchoredPosition;
-        image.rectTransform.anchoredPosition = defaultPosition - offsetPosition;
+        score.color = new Color(score.color.r, score.color.g, score.color.b, alpha);
+        image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
     }
 
-    // Update is called once per frame
     void Update()
     {
         alpha += alphaRatio;
-        image.rectTransform.anchoredPosition = defaultPosition - offsetPosition * (1 - alpha);
-        image.color = new Color(color.r, color.g, color.b, alpha);
 
-        if (alpha >= color.a)
+        rt.anchoredPosition += offsetPosition * alphaRatio;
+
+        score.color = new Color(score.color.r, score.color.g, score.color.b, alpha);
+        image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
+
+        if (alpha >= 1)
         {
-            image.color = color;
+            score.color = new Color(score.color.r, score.color.g, score.color.b, 1);
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
             Destroy(this);
         }
+    }
+
+    public void SetScore(int _score)
+    {
+        score.text = _score.ToString();
     }
 }

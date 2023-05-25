@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3371379316064485449}
   - component: {fileID: 7125398137040063346}
   - component: {fileID: -4252682027245192551}
+  - component: {fileID: 2276173194390600749}
   m_Layer: 0
   m_Name: KurumiNakami
   m_TagString: Foods
@@ -134,9 +135,32 @@ MonoBehaviour:
   m_FireAction: 2
   isNoAction: 0
   isClear: 0
+  RightArmBord: {fileID: 0}
+  LeftArmBord: {fileID: 0}
   Vel: {x: 0, y: 0, z: 0}
   isGround: 0
   FoodsArmState: 0
+--- !u!114 &2276173194390600749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002339302543877557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980fca926efe07347bb83f82b71ae609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 7420423778830572906}
+  Transfer:
+  - 1
+  - 0
+  SG_name:
+  - _Transfer_1st
+  - _Transfer_2nd
+  isScorch: 0
+  trans_time: 0
 --- !u!1001 &1792146510588502326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -221,6 +245,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7337fc93efbf7da4a8e317d3554899c3, type: 3}
+--- !u!23 &7420423778830572906 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 9089495350885727324, guid: 7337fc93efbf7da4a8e317d3554899c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1792146510588502326}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8611617868477934267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8024401965978864525, guid: 7337fc93efbf7da4a8e317d3554899c3,
