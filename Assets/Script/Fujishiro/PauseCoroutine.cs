@@ -80,6 +80,8 @@ public class PauseCoroutine : MonoBehaviour
 
     private void Awake()
     {
+        BGM_Slider.value = 1;
+        SE_Slider.value = 1;
         Pause_Canvas.gameObject.SetActive(false);
     }
 
@@ -160,6 +162,10 @@ public class PauseCoroutine : MonoBehaviour
         // プライベート変数初期化
         prevAxis = 0;
         MenuSelectCount = 0;
+
+        // 音声ストップ
+        if (GameObject.Find("SoundManager")) SoundManager.instance.SELoopStop();
+
         SetPause(true);
         Update_isPause = true;
         Debug.Log("ポーズしたYO");
@@ -286,13 +292,17 @@ public class PauseCoroutine : MonoBehaviour
             // 上
             if (Input.GetKeyDown(UpArrow) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
             {
+                SoundManager.instance.SEPlay("選択SE");
                 OptionSelectCount--;
+                prevAxis = Input.GetAxis("Vertical");
                 if (OptionSelectCount < 0) OptionSelectCount = 1;
             }
             // 下
             if(Input.GetKeyDown(DownArrow) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
             {
+                SoundManager.instance.SEPlay("選択SE");
                 OptionSelectCount++;
+                prevAxis = Input.GetAxis("Vertical");
                 if (OptionSelectCount > 1) OptionSelectCount = 0;
             }
             // 入力無し
@@ -318,7 +328,12 @@ public class PauseCoroutine : MonoBehaviour
                 if (GameObject.Find("SoundManager"))
                     SoundManager.instance.SEPlay("音量調整SE");
                 nowslider.value += slider_rate;
-                SoundManager.instance.ChangeBGMVolume(nowslider.value);
+
+                if (nowslider == BGM_Slider)
+                    SoundManager.instance.ChangeBGMVolume(nowslider.value);
+                else
+                    SoundManager.instance.ChangeSEVolume(nowslider.value);
+
                 slider_nowcoolframe = 0;
             }
             if(value < -0.3f && slider_nowcoolframe >= slider_coolfrate)
@@ -326,7 +341,12 @@ public class PauseCoroutine : MonoBehaviour
                 if (GameObject.Find("SoundManager"))
                     SoundManager.instance.SEPlay("音量調整SE");
                 nowslider.value -= slider_rate;
-                SoundManager.instance.ChangeBGMVolume(nowslider.value);
+
+                if(nowslider == BGM_Slider)
+                    SoundManager.instance.ChangeBGMVolume(nowslider.value);
+                else
+                    SoundManager.instance.ChangeSEVolume(nowslider.value);
+
                 slider_nowcoolframe = 0;
             }
             slider_nowcoolframe += 1;
@@ -335,10 +355,10 @@ public class PauseCoroutine : MonoBehaviour
             if (Input.GetKeyDown(BackKey))
             {
                 AnimSetBool(false);
+                SetIsOption_c(false);
                 SoundManager.instance.SEPlay("戻るSE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
-                SetIsOption_c(false);
                 OptionSelectCount = 0;
                 yield break;
             }
