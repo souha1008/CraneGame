@@ -54,6 +54,8 @@ public class Tomato : CircleFoodsInterFace
                 Cut2.GetComponent<CutTomato>().Vel = new Vector3(0.3f, 0.1f, 0);
                 Cut2.GetComponent<CutTomato>().FoodsStart();
 
+                SoundManager.instance.SEPlay("Ç®Ç‡ÇøÇ·êÿífSE");
+
                 Destroy(gameObject);
             }
             else

@@ -153,6 +153,11 @@ public class Player2 : MonoBehaviour
 
     void FixedUpdate() //FixedUpdateはUpdate(毎フレーム)と違って0.02秒毎に呼ばれる仕組みになっている※もちろん感覚は変更可
     {
+        if(CookMoveManager.instance.GetIsShatta())
+        {
+            return;
+        }
+
         oldMoveX = moveX;
         oldMoveZ = moveZ;
 

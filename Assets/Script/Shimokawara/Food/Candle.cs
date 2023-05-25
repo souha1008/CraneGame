@@ -14,6 +14,7 @@ public class Candle : CircleFoodsInterFace
     bool FireAburareFlag;
 
     public bool isFire = false;
+    bool OldIsFire = false;
 
     public GameObject Effect;
     void Start()
@@ -30,6 +31,8 @@ public class Candle : CircleFoodsInterFace
 
     void FixedUpdate()
     {
+        OldIsFire = isFire;
+
         if (!isNoAction)
         {
             if (FireAburareFlag)
@@ -50,6 +53,12 @@ public class Candle : CircleFoodsInterFace
         if(isFire)
         {
             Effect.SetActive(true);
+            
+            
+            if(!OldIsFire)
+            {
+                SoundManager.instance.SEPlay("‚ë‚¤‚»‚­’…‰ÎSE");
+            }
         }
 
     }

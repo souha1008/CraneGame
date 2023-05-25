@@ -11,6 +11,7 @@ public class FireHassya : MonoBehaviour
     public GameObject m_Fire;
 
     bool Down = false;
+    bool OldDown = false;
 
     float OldAngleRadian = 0;
 
@@ -36,6 +37,8 @@ public class FireHassya : MonoBehaviour
 
     private void FixedUpdate()
     {
+        OldDown = Down;
+
         Down = false;
         Vector2 LeftStick;
         LeftStick.x = Input.GetAxis("RightX");
@@ -66,6 +69,10 @@ public class FireHassya : MonoBehaviour
         {
             Y_Vector = 0;
             Y_Zahyou -= 0.3f;
+            if(!OldDown)
+            {
+                SoundManager.instance.SEPlay("バーナー噴射SE_2");
+            }
         }
         else
         {
