@@ -254,6 +254,8 @@ public class PauseCoroutine : MonoBehaviour
                         // リトライを選択した時の処理を書く
                         if (Input.GetKeyDown(KetteiKey))
                         {
+                            Time.timeScale = 1.0f;
+                            SoundManager.instance.SEPlay("決定SE");
                             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                         }
                         break;
@@ -262,6 +264,8 @@ public class PauseCoroutine : MonoBehaviour
                         // ステージセレクトを選択した時の処理を書く
                         if (Input.GetKeyDown(KetteiKey))
                         {
+                            Time.timeScale = 1.0f;
+                            SoundManager.instance.SEPlay("決定SE");
                             SceneManager.LoadScene("StageSelect");
                         }
                         break;
