@@ -14,7 +14,8 @@ public class ShowResult : ResultUI
     [SerializeField]
     private float waittime;
 
-    private ScoreData datas;
+    private ScoreData data;
+    private SaveManager save;
 
     void Start()
     {
@@ -23,9 +24,12 @@ public class ShowResult : ResultUI
         float score = 0, border = 0;
         var result = ResultEnum.RESULT.BAD;
 
-        datas = GameObject.Find("Datas").GetComponent<ScoreData>();
-        score  = datas.GetScoreParcent();
-        border = datas.ClearBorder;
+        var datas = GameObject.Find("Datas");
+        data = datas.GetComponent<ScoreData>();
+        save = datas.GetComponent<SaveManager>();
+
+        score  = data.GetScoreParcent();
+        border = data.ClearBorder;
 
         // リザルト分岐
         if (score >= border)
@@ -34,7 +38,7 @@ public class ShowResult : ResultUI
         }
 
         image.sprite = resultSprites[(int)result];
-        datas.FinalResult = result;
+        data.FinalResult = result;
 
         StartCoroutine(Next());
     }
@@ -43,7 +47,7 @@ public class ShowResult : ResultUI
     {
         // 表示をEXCELLENTに変える
         image.sprite = resultSprites[(int)ResultEnum.RESULT.EXCELLENT];
-        datas.FinalResult = ResultEnum.RESULT.EXCELLENT;
+        data.FinalResult = ResultEnum.RESULT.EXCELLENT;
     }
 
     private IEnumerator Next()

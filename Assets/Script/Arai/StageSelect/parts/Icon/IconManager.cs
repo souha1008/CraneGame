@@ -49,14 +49,23 @@ public class IconManager : MonoBehaviour
     /// アイコン生成
     /// </summary>
     /// <param name="_worldindex">ワールド番号</param>
-    public void CreateIcons(int _worldindex)
+    public void CreateIcons(int _worldindex, SaveManager _save)
     {
         worldIndex = _worldindex;
 
-        // データからリザルトを呼び出し
-        //
         // 選択可能範囲を変更
-        //stageIndexLimit
+        if (worldIndex < _save.data.worldindex)
+        {
+            stageIndexLimit = Co.Const.STAGE_NUM - 1;
+        }
+        else if (worldIndex == _save.data.worldindex)
+        {
+            stageIndexLimit = _save.data.stageindex;
+        }
+        else
+        {
+            stageIndexLimit = 0;
+        }
 
         for(int i = 0; i < Co.Const.STAGE_NUM; ++i)
         {
@@ -68,12 +77,15 @@ public class IconManager : MonoBehaviour
             icons.Add(obj);
             obj.Inactivate();
 
-            //// 仮置き ////
-            bool a = true;
-            if (i != 0) a = false;
-            obj.GetComponent<StageIcon>().SetParam(worldIndex, i, a);
-            ////////////////
-//            obj.GetComponent<StageIcon>().SetParam(worldIndex, i, true);
+            if (i <= stageIndexLimit)
+            {
+                obj.GetComponent<StageIcon>().SetParam(worldIndex, i, _save.data.data[worldIndex * Co.Const.STAGE_NUM + i]);
+            }
+            else
+            {
+                
+                obj.GetComponent<StageIcon>().SetParam(worldIndex, i, 0);
+            }
         }
     }
 

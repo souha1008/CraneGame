@@ -41,11 +41,12 @@ public class StageSelectManager : MonoBehaviour
 
     void Start()
     {
-        var data= GameObject.Find("Datas").GetComponent<ScoreData>();
-        worldIndex = data.WorldIndex;
+        var datas = GameObject.Find("Datas");
+        var data = datas.GetComponent<ScoreData>();
+        var save = datas.GetComponent<SaveManager>();
 
         // ワールド限界値取得
-        // worldIndexLimit = 
+        worldIndexLimit = save.data.worldindex;
 
         // 背景
         background = Instantiate(background, canvas.transform);
@@ -74,7 +75,7 @@ public class StageSelectManager : MonoBehaviour
                 iconManagers.Add(Instantiate(iconManager, imManager.transform));
                 iconManagers[i / 2].GetComponent<RectTransform>().anchoredPosition
                  = new Vector2(i * distanceX, 0);
-                iconManagers[i / 2].CreateIcons(i / 2);
+                iconManagers[i / 2].CreateIcons(i / 2, save);
             }
             else
             {
@@ -85,23 +86,7 @@ public class StageSelectManager : MonoBehaviour
 
         sceneChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
 
-        // クリアしてたら一つ進む
-        if (data.FinalResult == ResultEnum.RESULT.GOOD || data.FinalResult == ResultEnum.RESULT.EXCELLENT)
-        {
-            if (data.StageIndex + 1 == Co.Const.STAGE_NUM)
-            {
-                Inactivate(1);
-            }
-            else
-            {
-                data.StageIndex += 1;
-                iconManagers[worldIndex].Activate(data.StageIndex);
-            }
-        }
-        else
-        {
-            iconManagers[worldIndex].Activate(data.StageIndex);
-        }
+        Inactivate(data.WorldIndex, data.StageIndex);
     }
 
     void Update()
@@ -137,14 +122,14 @@ public class StageSelectManager : MonoBehaviour
         }
     }
 
-    private void Activate()
+    private void Activate(int _stageindex)
     {
         foreach (var ui in uis)
         {
             ui.Activate(worldIndex, worldIndexLimit);
         }
 
-        iconManagers[worldIndex].Activate();
+        iconManagers[worldIndex].Activate(_stageindex);
         active = true;
     }
 
@@ -155,8 +140,14 @@ public class StageSelectManager : MonoBehaviour
         iconManagers[worldIndex].Inactivate();
     }
 
-    private void Inactivate(int _way)
+    private void Inactivate(int _way, int _stageindex = 0)
     {
+        if (_way == 0)
+        {
+            iconManagers[worldIndex].Activate(_stageindex);
+            return;
+        }
+
         foreach (var ui in uis)
         {
             ui.Inactivate();
@@ -167,10 +158,10 @@ public class StageSelectManager : MonoBehaviour
         worldIndex += _way;
 
         active = false;
-        StartCoroutine(MoveIcons(_way));
+        StartCoroutine(MoveIcons(_way, _stageindex));
     }
 
-    private IEnumerator MoveIcons(int _way)
+    private IEnumerator MoveIcons(int _way, int _stageindex)
     {
         WaitForSeconds ws = new WaitForSeconds(0.001f);
 
@@ -191,7 +182,7 @@ public class StageSelectManager : MonoBehaviour
             param += 0.01f * moveSpeed;
             yield return ws;
         }
-        Activate();
+        Activate(_stageindex);
         yield break;
     }
 }

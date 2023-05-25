@@ -46,18 +46,25 @@ public class StageIcon : MonoBehaviour
         select.enabled = false;
     }
 
-    public void SetParam(int _world, int _stage, bool _state)
+    public void SetParam(int _world, int _stage, int _state)
     {
         world.text = (_world + 1).ToString();
         stage.text = (_stage + 1).ToString();
 
-        if (_state)
+        switch(_state)
         {
-            state.sprite = stateSprite;
-        }
-        else
-        {
-            state.color = new Color(0,0,0,0);
+            case 0:
+                state.color = new Color(0,0,0,0);
+            break;
+            case 1:
+                state.color = Color.red;
+            break;
+            case 2:
+                state.color = Color.green;
+            break;
+            case 3:
+                state.color = Color.yellow;
+            break;
         }
     }
 }
