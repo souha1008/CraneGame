@@ -103,7 +103,7 @@ public class StageSelectManager : MonoBehaviour
                 Inactivate();
             }
 
-            if (Input.GetKeyDown(KeyCode.B))
+            if (Input.GetKeyDown("joystick button 1") ||  Input.GetMouseButton(2))
             {
                 GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
                 Inactivate();

@@ -45,20 +45,14 @@ public class ResultWait : ResultObject
             save.data.worldindex = data.WorldIndex;
             save.data.stageindex = data.StageIndex;
         }
-/*        if (save.data.worldindex < data.WorldIndex)
-        {
-            save.data.worldindex = data.WorldIndex;
-            save.data.stageindex = data.StageIndex;
-        }*/
         save.Save();
     }
 
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
         {
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
-            //SceneManager.LoadScene("StageSelect");
         }
     }
 }

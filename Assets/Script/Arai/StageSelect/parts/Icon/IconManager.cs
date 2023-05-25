@@ -24,7 +24,7 @@ public class IconManager : MonoBehaviour
     {
         if (!active) return;
 
-        if (/*Input.GetButtonDown("Submit")*/ Input.GetMouseButton(0))
+        if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
         {
             var data = GameObject.Find("Datas").GetComponent<ScoreData>();
             data.SetIndexs(worldIndex, stageIndex);
@@ -33,6 +33,7 @@ public class IconManager : MonoBehaviour
             return;
         }
 
+        /// コントローラの入力に変える
         // 右入力
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
