@@ -22,13 +22,24 @@ public class GameUIAttach : MonoBehaviour
         if (attach == AttachType) 
         {
             if (isActive)
+            {
                 this.enabled = true;
+            }
+            else
+            {
+                this.enabled = false;
+            }
         }
         else
         {
             if (!isActive)
+            {
                 this.enabled = true;
+            }
+            else
+            {
+                this.enabled = false;
+            }
         }
-        this.enabled = false;
     }
 }
