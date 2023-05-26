@@ -7,7 +7,7 @@ public class TitleSelect : TitleObject
     [SerializeField]
     private List<Select_Object> m_Objects;
 
-    [SerializeField, EditLock]
+    [SerializeField]
     private int m_Index = 0;
 
     private float m_InputVolum = 0;         // 十字キー入力
