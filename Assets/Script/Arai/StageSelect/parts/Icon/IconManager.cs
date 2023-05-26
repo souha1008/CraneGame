@@ -18,34 +18,6 @@ public class IconManager : MonoBehaviour
     [SerializeField]
     private Vector2 offset;
 
-    private bool active = false;
-
-    void Update()
-    {
-        if (!active) return;
-
-        if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
-        {
-            var data = GameObject.Find("Datas").GetComponent<ScoreData>();
-            data.SetIndexs(worldIndex, stageIndex);
-
-            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
-            return;
-        }
-
-        /// コントローラの入力に変える
-        // 右入力
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            MoveCursor(1);
-        }
-        // 左入力
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            MoveCursor(-1);
-        }
-    }
-
     /// <summary>
     /// アイコン生成
     /// </summary>
@@ -96,7 +68,6 @@ public class IconManager : MonoBehaviour
     public void Activate(int _stageindex = 0)
     {
         stageIndex = _stageindex;
-        active = true;
         icons[stageIndex].Activate();
     }
 
@@ -106,14 +77,13 @@ public class IconManager : MonoBehaviour
     public void Inactivate()
     {
         icons[stageIndex].Inactivate();
-        active = false;
     }
 
     /// <summary>
     /// カーソル移動
     /// </summary>
     /// <param name="_indexvol">移動量</param>
-    private void MoveCursor(int _indexvol)
+    public void MoveCursor(int _indexvol)
     {
         // 範囲外ブロック
         if (stageIndex + _indexvol < 0 || stageIndex + _indexvol > stageIndexLimit)
@@ -122,5 +92,14 @@ public class IconManager : MonoBehaviour
         icons[stageIndex].Inactivate();
         stageIndex += _indexvol;
         icons[stageIndex].Activate();
+    }
+
+    public void Pushed()
+    {
+        var data = GameObject.Find("Datas").GetComponent<ScoreData>();
+        data.SetIndexs(worldIndex, stageIndex);
+
+        GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
+        return;
     }
 }

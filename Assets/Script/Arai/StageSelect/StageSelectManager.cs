@@ -39,6 +39,9 @@ public class StageSelectManager : MonoBehaviour
 
     private SceneChange sceneChange;
 
+    private float m_InputVolum = 0;         // 十字キー入力
+    private float m_InputVolumStick = 0;    // スティック入力
+
     void Start()
     {
         var datas = GameObject.Find("Datas");
@@ -101,23 +104,63 @@ public class StageSelectManager : MonoBehaviour
             if (sceneChange.isFade)
             {
                 Inactivate();
+                //active = false;
+                //return;
             }
 
-            if (Input.GetKeyDown("joystick button 1") ||  Input.GetMouseButton(2))
+            // 選択された
+            if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
+            {
+                iconManagers[worldIndex].Pushed();
+            }
+            // タイトル戻る
+            else if (Input.GetKeyDown("joystick button 1") ||  Input.GetMouseButton(2))
             {
                 GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
                 Inactivate();
                 Destroy(this);
-                return;
             }
-
-            if ((Input.GetKeyDown("joystick button 5") ||  Input.GetKeyDown(KeyCode.D)) && worldIndex < worldIndexLimit)
+            // ワールド移動右
+            else if ((Input.GetKeyDown("joystick button 5") ||  Input.GetKeyDown(KeyCode.D)) && worldIndex < worldIndexLimit)
             {
                 Inactivate(1);
             }
+            // ワールド移動左
             else if ((Input.GetKeyDown("joystick button 4") ||  Input.GetKeyDown(KeyCode.A)) && worldIndex > 0)
             {
                 Inactivate(-1);
+            }
+            // ステージ移動
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    iconManagers[worldIndex].MoveCursor(1);
+                }
+                // 左入力
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    iconManagers[worldIndex].MoveCursor(-1);
+                }
+                // 十字キー入力
+                {
+                    var newvolum = Input.GetAxis("JuujiKeyX");
+                 
+                    if (m_InputVolum != newvolum)
+                    {
+                        SelectChange(-newvolum);
+                    }
+                    m_InputVolum = newvolum;
+                }
+                // スティック入力
+                {
+                    var newvolum = Input.GetAxis("Horizontal");
+                    if (m_InputVolumStick != newvolum)
+                    {
+                        SelectChange(-newvolum);
+                    }
+                    m_InputVolumStick = newvolum;
+                }
             }
         }
     }
@@ -184,5 +227,15 @@ public class StageSelectManager : MonoBehaviour
         }
         Activate(_stageindex);
         yield break;
+    }
+
+    private void SelectChange(float _volum)
+    {
+        int num = 0;
+
+        if (_volum < 0) num = 1;
+        else if (_volum > 0) num = -1;
+
+        iconManagers[worldIndex].MoveCursor(num);
     }
 }
