@@ -23,22 +23,22 @@ public class GameUIAttach : MonoBehaviour
         {
             if (isActive)
             {
-                this.enabled = true;
+                this.gameObject.SetActive(true);
             }
             else
             {
-                this.enabled = false;
+                this.gameObject.SetActive(false);
             }
         }
         else
         {
             if (!isActive)
             {
-                this.enabled = true;
+                this.gameObject.SetActive(true);
             }
             else
             {
-                this.enabled = false;
+                this.gameObject.SetActive(false);
             }
         }
     }
