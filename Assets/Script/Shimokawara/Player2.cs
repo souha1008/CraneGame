@@ -194,7 +194,7 @@ public class Player2 : MonoBehaviour
                 if (transform.position.y == DefaultPos.y)
                 {
                     if(UseFire)
-                        NextAttachType = Attach.AttachType.FIRE;
+                        NextAttachType = Attach.AttachType.HAMMER;
                 }
                 JuujiRight = false;
             }
@@ -203,7 +203,7 @@ public class Player2 : MonoBehaviour
                 if (transform.position.y == DefaultPos.y)
                 {
                     if (UseHammer)
-                        NextAttachType = Attach.AttachType.HAMMER;
+                        NextAttachType = Attach.AttachType.KNIFE;
                 }
                 JuujiLeft = false;
             }
@@ -212,7 +212,7 @@ public class Player2 : MonoBehaviour
                 if (transform.position.y == DefaultPos.y)
                 {
                     if (UseKnife)
-                        NextAttachType = Attach.AttachType.KNIFE;
+                        NextAttachType = Attach.AttachType.CRANE;
                 }
                 JuujiUp = false;
             }
@@ -221,7 +221,7 @@ public class Player2 : MonoBehaviour
                 if (transform.position.y == DefaultPos.y)
                 {
                     if (UseChatcher)
-                        NextAttachType = Attach.AttachType.CRANE;
+                        NextAttachType = Attach.AttachType.FIRE;
                 }
                 JuujiDown = false;
             }
