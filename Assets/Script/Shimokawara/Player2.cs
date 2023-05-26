@@ -37,6 +37,7 @@ public class Player2 : MonoBehaviour
     public float MAX_SPEED = 9;
 
     public bool isSlow = false;
+    bool oldIsSlow = false;
 
     Attach MyAttach = new AttachCrane();
     public Attach.AttachType NextAttachType;
@@ -327,6 +328,19 @@ public class Player2 : MonoBehaviour
         {
             SoundManager.instance.SELoopStop();
         }
+        //びりびりエフェクト
+        if(!oldIsSlow && isSlow)
+        {
+            GameObject Biri = (GameObject)Resources.Load("lightning_fx_002");
+
+            Vector3 tempPos1 = transform.position;
+            tempPos1.y -= 4;
+            // Cubeプレハブを元に、インスタンスを生成、
+            Biri = Instantiate(Biri, tempPos1, transform.rotation);
+            Biri.gameObject.transform.parent = this.transform;
+        }
+
+        oldIsSlow = isSlow;
     }
 
 
