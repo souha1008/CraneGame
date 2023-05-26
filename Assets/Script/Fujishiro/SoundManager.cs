@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 [System.Serializable]
-struct SOUND_STRUCT
+public struct SOUND_STRUCT
 {
     public string name;
     public AudioClip audioClip;
@@ -16,8 +17,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource SEaudioSource;
     [SerializeField] AudioSource SEloopAudioSource;
 
-    [SerializeField] SOUND_STRUCT[] keyBGM;
-    [SerializeField] SOUND_STRUCT[] keySE;
+    public SOUND_STRUCT[] keyBGM;
+    public SOUND_STRUCT[] keySE;
 
     [SerializeField, ReadOnly] float BGM_Volume = 1;
     [SerializeField, ReadOnly] float SE_Volume = 1;
