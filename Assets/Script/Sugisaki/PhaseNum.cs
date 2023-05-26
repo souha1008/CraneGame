@@ -20,7 +20,7 @@ public class PhaseNum : MonoBehaviour
     void Update()
     {
         Phase = CookMoveManager.instance.GetFazeNum();
-        if (Phase + 1 < MaxPhase)
+        if (Phase + 1 > MaxPhase)
             Phase = MaxPhase - 1;
         text.text = Phase + 1 + "     " + MaxPhase;
     }

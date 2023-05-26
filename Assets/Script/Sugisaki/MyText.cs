@@ -20,16 +20,13 @@ public class MyText : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
         text.text = "9999";
 
-        speedClearTime = CookMoveManager.instance.SPEED_CLEAR_TIME;
-        FPSTime = CookMoveManager.instance.FPS_Time;
-        AllTime = CookMoveManager.instance.AllTime;
-
         OneFrame = 1.0f / 60.0f;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        speedClearTime = CookMoveManager.instance.SPEED_CLEAR_TIME;
         FPSTime = CookMoveManager.instance.FPS_Time;
         AllTime = CookMoveManager.instance.AllTime;
 
