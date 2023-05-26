@@ -12,6 +12,8 @@ public class SceneChange : MonoBehaviour
 
     readonly float waitTime = 1.0f;
 
+    [SerializeField] float Changewait;
+
     public bool isFade;
     // Start is called before the first frame update
     void Start()
@@ -53,7 +55,7 @@ public class SceneChange : MonoBehaviour
         rotate.y = rotate.y + 180.0f;
         Instantiate(FadeInObject, position, rotate);
 
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitTime+Changewait);
 
         SceneManager.LoadScene(sceneName);
     }
