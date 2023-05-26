@@ -24,6 +24,9 @@ public class StageIcon : MonoBehaviour
     [SerializeField]
     private Image select;
 
+    [SerializeField]
+    private Sprite[] statesprites = new Sprite[(int)ResultEnum.RESULT.MAX];
+
     void Awake()
     {
         image = gameObject.GetComponent<Image>();
@@ -51,20 +54,7 @@ public class StageIcon : MonoBehaviour
         world.text = (_world + 1).ToString();
         stage.text = (_stage + 1).ToString();
 
-        switch(_state)
-        {
-            case 0:
-                state.color = new Color(0,0,0,0);
-            break;
-            case 1:
-                state.color = Color.red;
-            break;
-            case 2:
-                state.color = Color.green;
-            break;
-            case 3:
-                state.color = Color.yellow;
-            break;
-        }
+        if (_state == 0) state.enabled = false;
+        else state.sprite = statesprites[_state - 1];
     }
 }
