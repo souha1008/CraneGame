@@ -155,7 +155,11 @@ public class StageSelectManager : MonoBehaviour
                 // スティック入力
                 {
                     var newvolum = Input.GetAxis("Horizontal");
-                    if (m_InputVolumStick != newvolum)
+
+                    if (newvolum > 0)       newvolum =  1;
+                    else if (newvolum < 0)  newvolum = -1;
+
+                    if (m_InputVolumStick != newvolum && newvolum != 0)
                     {
                         SelectChange(-newvolum);
                     }
