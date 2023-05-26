@@ -34,6 +34,7 @@ public class Transition : MonoBehaviour
         
         position.y = position.y - 1.0f;
         position.z = position.z + 10.0f;
+        rotate.x = cameraObject.transform.localEulerAngles.x;
         rotate.y = rotate.y + 180.0f;
 
         gameObject.transform.position = position;

@@ -47,7 +47,7 @@ public class ShowScore : ResultUI
         var wfs = new WaitForSeconds(interval);
 
         var data = GameObject.Find("Datas").GetComponent<ScoreData>();
-        var offpos = this.transform.position;
+        var offpos = this.GetComponent<RectTransform>().anchoredPosition;
 
         for (var i = index; i < Co.Const.FAZE_NUM; ++i)
         {
