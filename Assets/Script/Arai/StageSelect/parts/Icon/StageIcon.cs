@@ -21,6 +21,9 @@ public class StageIcon : MonoBehaviour
     [SerializeField]
     private Sprite stateSprite;
 
+    [SerializeField]
+    private Image select;
+
     void Awake()
     {
         image = gameObject.GetComponent<Image>();
@@ -32,7 +35,7 @@ public class StageIcon : MonoBehaviour
     /// </summary>
     public void Activate()
     {
-        image.color = Color.red;
+        select.enabled = true;
     }
     
     /// <summary>
@@ -40,21 +43,28 @@ public class StageIcon : MonoBehaviour
     /// </summary>
     public void Inactivate()
     {
-        image.color = Color.blue;
+        select.enabled = false;
     }
 
-    public void SetParam(int _world, int _stage, bool _state)
+    public void SetParam(int _world, int _stage, int _state)
     {
         world.text = (_world + 1).ToString();
         stage.text = (_stage + 1).ToString();
 
-        if (_state)
+        switch(_state)
         {
-            state.sprite = stateSprite;
-        }
-        else
-        {
-            state.color = new Color(0,0,0,0);
+            case 0:
+                state.color = new Color(0,0,0,0);
+            break;
+            case 1:
+                state.color = Color.red;
+            break;
+            case 2:
+                state.color = Color.green;
+            break;
+            case 3:
+                state.color = Color.yellow;
+            break;
         }
     }
 }

@@ -17,15 +17,33 @@ public class BadgeManager : ResultUI
 
     private IEnumerator ShowBadge()
     {
-        var miss = Instantiate(badge, transform);
-        miss.SetMove(Badge.BADGE.MISS);
+        var data = GameObject.Find("Datas").GetComponent<ScoreData>();
+        bool ex = false;
 
-        yield return new WaitForSeconds(waittime);
-        
-        var speed = Instantiate(badge, transform);
-        speed.SetMove(Badge.BADGE.SPEED);
+        if (data.GetScoreParcent() >= 1)
+        {
+            var miss = Instantiate(badge, transform);
+            miss.SetMove(Badge.BADGE.MISS);
 
-        // 表記をえくされんとに？
+            ex = true;
+    
+            yield return new WaitForSeconds(waittime);
+        }
+
+        if (data.SpeedClear)
+        {
+            var speed = Instantiate(badge, transform);
+            speed.SetMove(Badge.BADGE.SPEED);
+        }
+        else ex = false;
+
+        // 表記をえくせれんとに
+        if (ex)
+        {
+            yield return new WaitForSeconds(waittime);
+
+            transform.parent.gameObject.transform.Find("ResultText(Clone)").GetComponent<ShowResult>().Excellent();
+        }
 
         manager.SetState(ResultStateEnum.STATE.WAIT);
 

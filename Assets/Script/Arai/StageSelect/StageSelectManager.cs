@@ -39,10 +39,17 @@ public class StageSelectManager : MonoBehaviour
 
     private SceneChange sceneChange;
 
+    private float m_InputVolum = 0;         // 十字キー入力
+    private float m_InputVolumStick = 0;    // スティック入力
+
     void Start()
     {
-//        var data= GameObject.Find("Datas").GetComponent<ScoreData>();
-//        worldIndex = data.WorldIndex;
+        var datas = GameObject.Find("Datas");
+        var data = datas.GetComponent<ScoreData>();
+        var save = datas.GetComponent<SaveManager>();
+
+        // ワールド限界値取得
+        worldIndexLimit = save.data.worldindex;
 
         // 背景
         background = Instantiate(background, canvas.transform);
@@ -55,7 +62,7 @@ public class StageSelectManager : MonoBehaviour
         for(int i = 0; i < uis.Count; ++i)
         {
             uis[i] = Instantiate(uis[i], obj.transform);
-            uis[i].Activate(worldIndex);
+            uis[i].Activate(worldIndex, worldIndexLimit);
         }
 
         // アイコン
@@ -71,7 +78,7 @@ public class StageSelectManager : MonoBehaviour
                 iconManagers.Add(Instantiate(iconManager, imManager.transform));
                 iconManagers[i / 2].GetComponent<RectTransform>().anchoredPosition
                  = new Vector2(i * distanceX, 0);
-                iconManagers[i / 2].CreateIcons(i / 2);
+                iconManagers[i / 2].CreateIcons(i / 2, save);
             }
             else
             {
@@ -79,10 +86,10 @@ public class StageSelectManager : MonoBehaviour
                 pmask.GetComponent<RectTransform>().anchoredPosition = new Vector2(i * distanceX, 0);
             }
         }
-        iconManagers[worldIndex].Activate();
-//        iconManagers[worldIndex].Activate(data.StageIndex);
 
         sceneChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
+
+        Inactivate(data.WorldIndex, data.StageIndex);
     }
 
     void Update()
@@ -97,35 +104,75 @@ public class StageSelectManager : MonoBehaviour
             if (sceneChange.isFade)
             {
                 Inactivate();
+                //active = false;
+                //return;
             }
 
-            if (Input.GetKeyDown(KeyCode.B))
+            // 選択された
+            if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
+            {
+                iconManagers[worldIndex].Pushed();
+            }
+            // タイトル戻る
+            else if (Input.GetKeyDown("joystick button 1") ||  Input.GetMouseButton(2))
             {
                 GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
                 Inactivate();
                 Destroy(this);
-                return;
             }
-
-            if (Input.GetKeyDown(KeyCode.D) && worldIndex < worldIndexLimit)
+            // ワールド移動右
+            else if ((Input.GetKeyDown("joystick button 5") ||  Input.GetKeyDown(KeyCode.D)) && worldIndex < worldIndexLimit)
             {
                 Inactivate(1);
             }
-            else if (Input.GetKeyDown(KeyCode.A) && worldIndex > 0)
+            // ワールド移動左
+            else if ((Input.GetKeyDown("joystick button 4") ||  Input.GetKeyDown(KeyCode.A)) && worldIndex > 0)
             {
                 Inactivate(-1);
+            }
+            // ステージ移動
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    iconManagers[worldIndex].MoveCursor(1);
+                }
+                // 左入力
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    iconManagers[worldIndex].MoveCursor(-1);
+                }
+                // 十字キー入力
+                {
+                    var newvolum = Input.GetAxis("JuujiKeyX");
+                 
+                    if (m_InputVolum != newvolum)
+                    {
+                        SelectChange(-newvolum);
+                    }
+                    m_InputVolum = newvolum;
+                }
+                // スティック入力
+                {
+                    var newvolum = Input.GetAxis("Horizontal");
+                    if (m_InputVolumStick != newvolum)
+                    {
+                        SelectChange(-newvolum);
+                    }
+                    m_InputVolumStick = newvolum;
+                }
             }
         }
     }
 
-    private void Activate()
+    private void Activate(int _stageindex)
     {
         foreach (var ui in uis)
         {
-            ui.Activate(worldIndex);
+            ui.Activate(worldIndex, worldIndexLimit);
         }
 
-        iconManagers[worldIndex].Activate();
+        iconManagers[worldIndex].Activate(_stageindex);
         active = true;
     }
 
@@ -136,8 +183,14 @@ public class StageSelectManager : MonoBehaviour
         iconManagers[worldIndex].Inactivate();
     }
 
-    private void Inactivate(int _way)
+    private void Inactivate(int _way, int _stageindex = 0)
     {
+        if (_way == 0)
+        {
+            iconManagers[worldIndex].Activate(_stageindex);
+            return;
+        }
+
         foreach (var ui in uis)
         {
             ui.Inactivate();
@@ -148,10 +201,10 @@ public class StageSelectManager : MonoBehaviour
         worldIndex += _way;
 
         active = false;
-        StartCoroutine(MoveIcons(_way));
+        StartCoroutine(MoveIcons(_way, _stageindex));
     }
 
-    private IEnumerator MoveIcons(int _way)
+    private IEnumerator MoveIcons(int _way, int _stageindex)
     {
         WaitForSeconds ws = new WaitForSeconds(0.001f);
 
@@ -172,7 +225,17 @@ public class StageSelectManager : MonoBehaviour
             param += 0.01f * moveSpeed;
             yield return ws;
         }
-        Activate();
+        Activate(_stageindex);
         yield break;
+    }
+
+    private void SelectChange(float _volum)
+    {
+        int num = 0;
+
+        if (_volum < 0) num = 1;
+        else if (_volum > 0) num = -1;
+
+        iconManagers[worldIndex].MoveCursor(num);
     }
 }

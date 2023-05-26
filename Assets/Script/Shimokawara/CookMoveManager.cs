@@ -118,7 +118,11 @@ public class CookMoveManager : MonoBehaviour
             if (!SyattaSleep)
             {
                 FPS_Time++;//ŽžŠÔ‰ÁŽZ
+
+                
             }
+            
+
         }
 
 
@@ -157,6 +161,15 @@ public class CookMoveManager : MonoBehaviour
             isSyatta = false;
 
             Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, SyattaMax, Syatta.transform.localPosition.z);
+
+            if (FazeNum == 0)
+            {
+                GameStartUI.instance.isFalse();
+            }
+            if (FazeNum == 4)
+            {
+                GameSetUI.instance.isTrue();
+            }
         }
     }
 

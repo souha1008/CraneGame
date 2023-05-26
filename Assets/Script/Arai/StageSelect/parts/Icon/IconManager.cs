@@ -12,45 +12,34 @@ public class IconManager : MonoBehaviour
     private int worldIndex = 0;
     private int stageIndex = 0;
 
+    [SerializeField, Range(0, 4)]
+    private int stageIndexLimit = 0;
+
     [SerializeField]
     private Vector2 offset;
-
-    private bool active = false;
-
-    void Update()
-    {
-        if (!active) return;
-
-        if (/*Input.GetButtonDown("Submit")*/ Input.GetMouseButton(0))
-        {
-            var data = GameObject.Find("Datas").GetComponent<ScoreData>();
-            data.WorldIndex = worldIndex;
-            data.StageIndex = stageIndex;
-
-            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
-            return;
-        }
-
-        // 右入力
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            MoveCursor(1);
-        }
-        // 左入力
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            MoveCursor(-1);
-        }
-    }
 
     /// <summary>
     /// アイコン生成
     /// </summary>
     /// <param name="_worldindex">ワールド番号</param>
-    public void CreateIcons(int _worldindex)
+    public void CreateIcons(int _worldindex, SaveManager _save)
     {
         worldIndex = _worldindex;
-        
+
+        // 選択可能範囲を変更
+        if (worldIndex < _save.data.worldindex)
+        {
+            stageIndexLimit = Co.Const.STAGE_NUM - 1;
+        }
+        else if (worldIndex == _save.data.worldindex)
+        {
+            stageIndexLimit = _save.data.stageindex;
+        }
+        else
+        {
+            stageIndexLimit = 0;
+        }
+
         for(int i = 0; i < Co.Const.STAGE_NUM; ++i)
         {
             var obj = Instantiate(icon);
@@ -61,12 +50,15 @@ public class IconManager : MonoBehaviour
             icons.Add(obj);
             obj.Inactivate();
 
-            //// 仮置き ////
-            bool a = true;
-            if (i != 0) a = false;
-            obj.GetComponent<StageIcon>().SetParam(worldIndex, i, a);
-            ////////////////
-//            obj.GetComponent<StageIcon>().SetParam(worldIndex, i, true);
+            if (i <= stageIndexLimit)
+            {
+                obj.GetComponent<StageIcon>().SetParam(worldIndex, i, _save.data.data[worldIndex * Co.Const.STAGE_NUM + i]);
+            }
+            else
+            {
+                
+                obj.GetComponent<StageIcon>().SetParam(worldIndex, i, 0);
+            }
         }
     }
 
@@ -76,7 +68,6 @@ public class IconManager : MonoBehaviour
     public void Activate(int _stageindex = 0)
     {
         stageIndex = _stageindex;
-        active = true;
         icons[stageIndex].Activate();
     }
 
@@ -86,21 +77,29 @@ public class IconManager : MonoBehaviour
     public void Inactivate()
     {
         icons[stageIndex].Inactivate();
-        active = false;
     }
 
     /// <summary>
     /// カーソル移動
     /// </summary>
     /// <param name="_indexvol">移動量</param>
-    private void MoveCursor(int _indexvol)
+    public void MoveCursor(int _indexvol)
     {
         // 範囲外ブロック
-        if (stageIndex + _indexvol < 0 || stageIndex + _indexvol > Co.Const.STAGE_NUM - 1)
+        if (stageIndex + _indexvol < 0 || stageIndex + _indexvol > stageIndexLimit)
          return;
 
         icons[stageIndex].Inactivate();
         stageIndex += _indexvol;
         icons[stageIndex].Activate();
+    }
+
+    public void Pushed()
+    {
+        var data = GameObject.Find("Datas").GetComponent<ScoreData>();
+        data.SetIndexs(worldIndex, stageIndex);
+
+        GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
+        return;
     }
 }

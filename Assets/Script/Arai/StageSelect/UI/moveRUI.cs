@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class moveRUI : StageSelectUI
 {
-    public override void Activate(int _worldindex)
+    public override void Activate(int _worldindex, int _indexmax)
     {
-        if (_worldindex != Co.Const.WORLD_NUM - 1)
-            base.Activate(_worldindex);
+        if (_worldindex != _indexmax)
+            base.Activate(_worldindex, _indexmax);
         else
             base.Inactivate();
     }

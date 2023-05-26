@@ -22,7 +22,6 @@ public class TitleSelect : TitleObject
 
     private float moveVolum;
 
-    // Start is called before the first frame update
     void Start()
     {
         m_Objects[m_Index].Activate();
@@ -31,7 +30,6 @@ public class TitleSelect : TitleObject
         moveVolum = offset / moveTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!move)  CheckInput();
@@ -44,7 +42,7 @@ public class TitleSelect : TitleObject
     private void CheckInput()
     {
         {
-            if (/*Input.GetButtonDown("Submit")*/ Input.GetMouseButton(0))
+            if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
             {
                 m_Objects[m_Index].PushAction();
                 Destroy(this);
@@ -52,29 +50,30 @@ public class TitleSelect : TitleObject
             }
 
             ///// 後で消す
-            if(Input.GetKeyDown(KeyCode.RightArrow)) SelectChange(1);
-            if(Input.GetKeyDown(KeyCode.LeftArrow)) SelectChange(-1);
+            if(Input.GetKeyDown(KeyCode.RightArrow)) SelectChange(-1);
+            if(Input.GetKeyDown(KeyCode.LeftArrow)) SelectChange(1);
             /////
         }
-        //// 十字キー入力
-        //{
-        //    var newvolum = Input.GetAxis("JuujiKeyX");
-        // 
-        //    if (m_InputVolum != newvolum)
-        //    {
-        //        SelectChange(newvolum);
-        //    }
-        //    m_InputVolum = newvolum;
-        //}
-        //// スティック入力
-        //{
-        //    var newvolum = Input.GetAxis("Horizontal");
-        //    if (m_InputVolumStick != newvolum)
-        //    {
-        //        SelectChange(newvolum);
-        //    }
-        //    m_InputVolumStick = newvolum;
-        //}
+        
+        // 十字キー入力
+        {
+            var newvolum = Input.GetAxis("JuujiKeyX");
+         
+            if (m_InputVolum != newvolum)
+            {
+                SelectChange(-newvolum);
+            }
+            m_InputVolum = newvolum;
+        }
+        // スティック入力
+        {
+            var newvolum = Input.GetAxis("Horizontal");
+            if (m_InputVolumStick != newvolum)
+            {
+                SelectChange(-newvolum);
+            }
+            m_InputVolumStick = newvolum;
+        }
     }
     
     /// <summary>
