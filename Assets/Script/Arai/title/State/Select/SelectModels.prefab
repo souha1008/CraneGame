@@ -692,6 +692,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -26.918
       objectReference: {fileID: 0}
+    - target: {fileID: 8831106849557127274, guid: f3a337459185d1e4797cefe8298c79f2,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 10426f761fb52664899b4d0fb2b2d175, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3a337459185d1e4797cefe8298c79f2, type: 3}
 --- !u!95 &927987159134950416 stripped
@@ -703,6 +708,12 @@ Animator:
 --- !u!4 &2510829310785535905 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7854294299271703684, guid: f3a337459185d1e4797cefe8298c79f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5753435358213018405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3843305624660783951 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8831106849557127274, guid: f3a337459185d1e4797cefe8298c79f2,
     type: 3}
   m_PrefabInstance: {fileID: 5753435358213018405}
   m_PrefabAsset: {fileID: 0}
@@ -739,22 +750,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  activate: {fileID: 1909681909591099034}
-  inactivate: {fileID: 6353253151380586732}
---- !u!114 &1909681909591099034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9097939861215806965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5300c9bbe789445bae09f995c9a4af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 927987159134950416}
-  animationName: Dinosaur_ita_motion_01 0
+  activate: {fileID: 5504858598291559326}
+  inactivate: {fileID: 3226970833046458555}
 --- !u!114 &4310065439251283852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,7 +764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0f1dc2aae0ecc468dea689f3f287a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6353253151380586732
+--- !u!114 &5504858598291559326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -776,11 +773,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 9097939861215806965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e328e7acd8ca24a4bb8160329310cbcd, type: 3}
+  m_Script: {fileID: 11500000, guid: f47480c91d2539948a508ee19062e30f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 927987159134950416}
-  animationName: Dinosaur_ita_motion_01 0
+  animator:
+  - {fileID: 927987159134950416}
+  - {fileID: 3843305624660783951}
+  animationName:
+  - Dinosaur_ita_motion_01 0
+  - Dinosaur_tilte_01
+--- !u!114 &3226970833046458555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9097939861215806965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d7d63baff586b4692df5a7edac7708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator:
+  - {fileID: 927987159134950416}
+  - {fileID: 3843305624660783951}
+  animationName:
+  - Dinosaur_ita_motion_01 0
+  - Dinosaur_tilte_01
 --- !u!1001 &7056193294801872832
 PrefabInstance:
   m_ObjectHideFlags: 0
