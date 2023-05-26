@@ -332,7 +332,7 @@ public class Player2 : MonoBehaviour
         if(!oldIsSlow && isSlow)
         {
             GameObject Biri = (GameObject)Resources.Load("lightning_fx_002");
-
+            SoundManager.instance.SEPlay("ビリビリSE");
             Vector3 tempPos1 = transform.position;
             tempPos1.y -= 4;
             // Cubeプレハブを元に、インスタンスを生成、

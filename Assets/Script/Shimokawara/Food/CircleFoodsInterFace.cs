@@ -260,6 +260,8 @@ public class CircleFoodsInterFace : MonoBehaviour
         {
             if (Vector3.Distance(RightArmBord.transform.position,LeftArmBord.transform.position) < 0.2f * BallSize)
             {
+                SoundManager.instance.SEPlay("‚¨‚à‚¿‚á’×‚µSE");
+
                 Destroy(gameObject);
                 //GetComponent<Renderer>().enabled = false;
             }
