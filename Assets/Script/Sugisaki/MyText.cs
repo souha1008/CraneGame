@@ -7,13 +7,8 @@ public class MyText : MonoBehaviour
 {
     TextMeshProUGUI text;
 
-    int speedClearTime; // タイムリミット秒
-    int FPSTime;    // 今フェーズのフレーム数
-    int AllTime;    // それまでのフレーム数
-
     float OneFrame; // 1フレームの秒数 
 
-    int time = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,15 +21,19 @@ public class MyText : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        speedClearTime = CookMoveManager.instance.SPEED_CLEAR_TIME;
-        FPSTime = CookMoveManager.instance.FPS_Time;
-        AllTime = CookMoveManager.instance.AllTime;
+        int speedClearTime = CookMoveManager.instance.SPEED_CLEAR_TIME;
+        int FPSTime = CookMoveManager.instance.FPS_Time;
+        if (FPSTime > 17000)
+            FPSTime = 0;
+        int AllTime = CookMoveManager.instance.AllTime;
 
         int FrameTime = FPSTime + AllTime;
         float SecTime = (float)FrameTime * OneFrame;
-        time = speedClearTime - (int)SecTime;
+        int time = speedClearTime - (int)SecTime;
         if (time < 0)
-            time = 0;
+        {
+            this.gameObject.SetActive(false);
+        }
 
         text.text = time.ToString("000");
     }
