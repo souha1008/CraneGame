@@ -13,9 +13,6 @@ public class ResultWait : ResultObject
 
         int score = save.data.data[data.WorldIndex * Co.Const.STAGE_NUM + data.StageIndex];
 
-        data.FinalResult = ResultEnum.RESULT.GOOD;
-//        data.FinalResult = ResultEnum.RESULT.EXCELLENT;
-
         // カーソル移動フラグ
         bool newstage = true;
         if (data.WorldIndex * Co.Const.STAGE_NUM + data.StageIndex < save.data.worldindex * Co.Const.STAGE_NUM + save.data.stageindex)
@@ -50,7 +47,7 @@ public class ResultWait : ResultObject
 
     void Update()
     {
-        if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
+        if (Input.GetKeyDown("joystick button 1") || Input.GetMouseButton(0))
         {
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
         }

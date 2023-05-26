@@ -54,25 +54,26 @@ public class TitleSelect : TitleObject
             if(Input.GetKeyDown(KeyCode.LeftArrow)) SelectChange(1);
             /////
         }
-        //// 十字キー入力
-        //{
-        //    var newvolum = Input.GetAxis("JuujiKeyX");
-        // 
-        //    if (m_InputVolum != newvolum)
-        //    {
-        //        SelectChange(newvolum);
-        //    }
-        //    m_InputVolum = newvolum;
-        //}
-        //// スティック入力
-        //{
-        //    var newvolum = Input.GetAxis("Horizontal");
-        //    if (m_InputVolumStick != newvolum)
-        //    {
-        //        SelectChange(newvolum);
-        //    }
-        //    m_InputVolumStick = newvolum;
-        //}
+        
+        // 十字キー入力
+        {
+            var newvolum = Input.GetAxis("JuujiKeyX");
+         
+            if (m_InputVolum != newvolum)
+            {
+                SelectChange(-newvolum);
+            }
+            m_InputVolum = newvolum;
+        }
+        // スティック入力
+        {
+            var newvolum = Input.GetAxis("Horizontal");
+            if (m_InputVolumStick != newvolum)
+            {
+                SelectChange(-newvolum);
+            }
+            m_InputVolumStick = newvolum;
+        }
     }
     
     /// <summary>

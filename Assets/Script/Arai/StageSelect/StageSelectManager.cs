@@ -111,11 +111,11 @@ public class StageSelectManager : MonoBehaviour
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.D) && worldIndex < worldIndexLimit)
+            if ((Input.GetKeyDown("joystick button 5") ||  Input.GetKeyDown(KeyCode.D)) && worldIndex < worldIndexLimit)
             {
                 Inactivate(1);
             }
-            else if (Input.GetKeyDown(KeyCode.A) && worldIndex > 0)
+            else if ((Input.GetKeyDown("joystick button 4") ||  Input.GetKeyDown(KeyCode.A)) && worldIndex > 0)
             {
                 Inactivate(-1);
             }
