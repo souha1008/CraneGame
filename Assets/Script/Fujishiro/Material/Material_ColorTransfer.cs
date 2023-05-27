@@ -6,6 +6,7 @@ public class Material_ColorTransfer : MonoBehaviour
 {
     [Header("遷移変化させたいオブジェクトを入れる")]
     [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] SkinnedMeshRenderer skinnedMeshRenderer;
 
     [SerializeField][Range(0f, 1f)] public float[] Transfer = {1.0f, 0.0f };
     [SerializeField] public string[] SG_name = {"_Transfer_1st", "_Transfer_2nd" };
@@ -24,13 +25,22 @@ public class Material_ColorTransfer : MonoBehaviour
     {
         for (int i = 0; i < Transfer.Length; i++)
         {
-            meshRenderer.material.SetFloat(SG_name[i], Transfer[i]);
+            if (meshRenderer != null)
+                meshRenderer.material.SetFloat(SG_name[i], Transfer[i]);
+
+            if (skinnedMeshRenderer != null)
+                skinnedMeshRenderer.material.SetFloat(SG_name[i], Transfer[i]);
         }
 
         if(isScorch)
         {
             Transfer[0] -= Time.deltaTime * trans_time;
+
+            if(meshRenderer != null)
             meshRenderer.material.SetFloat(SG_name[0], Transfer[0]);
+
+            if (skinnedMeshRenderer != null)
+                skinnedMeshRenderer.material.SetFloat(SG_name[0], Transfer[0]);
 
             if(Transfer[0] <= 0.0f)
             {

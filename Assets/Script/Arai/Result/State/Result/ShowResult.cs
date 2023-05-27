@@ -40,6 +40,11 @@ public class ShowResult : ResultUI
         image.sprite = resultSprites[(int)result];
         data.FinalResult = result;
 
+        if (result == ResultEnum.RESULT.BAD)
+        {
+            GameObject.Find("Animals(Clone)").GetComponent<Animals>().Bad();
+        }
+
         StartCoroutine(Next());
     }
 
