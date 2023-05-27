@@ -5531,6 +5531,32 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 148184125}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &780612381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2404955352211769142, guid: 748adcbf7e913b24c8252f6a284df870,
+    type: 3}
+  m_PrefabInstance: {fileID: 1686096301}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &780612383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780612381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473a5b10caa6c5b48a2f857bfb4f6390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -0.52
+  meshRenderer: {fileID: 780612384}
+--- !u!23 &780612384 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4336425425515080818, guid: 748adcbf7e913b24c8252f6a284df870,
+    type: 3}
+  m_PrefabInstance: {fileID: 1686096301}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &794777184
 GameObject:
   m_ObjectHideFlags: 0
@@ -9163,7 +9189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c45ecef68652654d9ce8230e9f4135d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.045
+  speed: 0.09
   AkiDistance: 6
   KadoDistance: 15
 --- !u!65 &1510612413
