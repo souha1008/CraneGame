@@ -42,6 +42,8 @@ public class StageSelectManager : MonoBehaviour
     private float m_InputVolum = 0;         // 十字キー入力
     private float m_InputVolumStick = 0;    // スティック入力
 
+    private SoundManager sound;
+
     void Start()
     {
         var datas = GameObject.Find("Datas");
@@ -90,6 +92,9 @@ public class StageSelectManager : MonoBehaviour
         sceneChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
 
         Inactivate(data.WorldIndex, data.StageIndex);
+
+        sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        // sound.BGMPlay("タイトルBGM");
     }
 
     void Update()
@@ -112,12 +117,14 @@ public class StageSelectManager : MonoBehaviour
             if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
             {
                 iconManagers[worldIndex].Pushed();
+                sound.SEPlay("ステージ決定SE");
             }
             // タイトル戻る
             else if (Input.GetKeyDown("joystick button 1") ||  Input.GetMouseButton(2))
             {
                 GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
                 Inactivate();
+                sound.SEPlay("戻るSE");
                 Destroy(this);
             }
             // ワールド移動右
@@ -133,15 +140,16 @@ public class StageSelectManager : MonoBehaviour
             // ステージ移動
             else
             {
+                //////////////////////////////////////////////
                 if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
                     iconManagers[worldIndex].MoveCursor(1);
                 }
-                // 左入力
                 else if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
                     iconManagers[worldIndex].MoveCursor(-1);
                 }
+                //////////////////////////////////////////////
                 // 十字キー入力
                 {
                     var newvolum = Input.GetAxis("JuujiKeyX");
@@ -156,10 +164,7 @@ public class StageSelectManager : MonoBehaviour
                 {
                     var newvolum = Input.GetAxis("Horizontal");
 
-                    if (newvolum > 0)       newvolum =  1;
-                    else if (newvolum < 0)  newvolum = -1;
-
-                    if (m_InputVolumStick != newvolum && newvolum != 0)
+                    if (m_InputVolumStick != newvolum)
                     {
                         SelectChange(-newvolum);
                     }
@@ -205,6 +210,7 @@ public class StageSelectManager : MonoBehaviour
         worldIndex += _way;
 
         active = false;
+        sound.SEPlay("選択SE");
         StartCoroutine(MoveIcons(_way, _stageindex));
     }
 
@@ -235,11 +241,14 @@ public class StageSelectManager : MonoBehaviour
 
     private void SelectChange(float _volum)
     {
+        if ((int)_volum == 0) return;
+
         int num = 0;
 
         if (_volum < 0) num = 1;
         else if (_volum > 0) num = -1;
 
-        iconManagers[worldIndex].MoveCursor(num);
+        if(iconManagers[worldIndex].MoveCursor(num))
+            sound.SEPlay("選択SE");
     }
 }

@@ -35,6 +35,7 @@ public class ShowResult : ResultUI
         if (score >= border)
         {
             result = ResultEnum.RESULT.GOOD;
+            manager.Sound.SEPlay("グッドSE");
         }
 
         image.sprite = resultSprites[(int)result];
@@ -42,6 +43,7 @@ public class ShowResult : ResultUI
 
         if (result == ResultEnum.RESULT.BAD)
         {
+            manager.Sound.SEPlay("バッドSE");
             GameObject.Find("Animals(Clone)").GetComponent<Animals>().Bad();
         }
 
@@ -53,6 +55,7 @@ public class ShowResult : ResultUI
         // 表示をEXCELLENTに変える
         image.sprite = resultSprites[(int)ResultEnum.RESULT.EXCELLENT];
         data.FinalResult = ResultEnum.RESULT.EXCELLENT;
+        manager.Sound.SEPlay("エクセレントSE");
     }
 
     private IEnumerator Next()

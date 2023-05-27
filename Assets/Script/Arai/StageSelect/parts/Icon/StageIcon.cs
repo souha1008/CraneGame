@@ -27,6 +27,9 @@ public class StageIcon : MonoBehaviour
     [SerializeField]
     private Sprite[] statesprites = new Sprite[(int)ResultEnum.RESULT.MAX];
 
+    [SerializeField]
+    private Sprite unlocksprite;
+
     void Awake()
     {
         image = gameObject.GetComponent<Image>();
@@ -54,7 +57,16 @@ public class StageIcon : MonoBehaviour
         world.text = (_world + 1).ToString();
         stage.text = (_stage + 1).ToString();
 
-        if (_state == 0) state.enabled = false;
+        if (_state == -1)
+        {
+            state.sprite = unlocksprite;
+            state.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,0);
+            state.SetNativeSize();
+        }
+        else if (_state == 0)
+        {
+            state.enabled = false;
+        }
         else state.sprite = statesprites[_state - 1];
     }
 }

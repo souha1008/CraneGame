@@ -59,6 +59,7 @@ public class ShowScore : ResultUI
                 = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * i);
 
             p.SetScore(data.GetScore(i));
+            p.SS = this;
         }
 
         if (!skip) yield return new WaitForSeconds(delay);
@@ -71,5 +72,10 @@ public class ShowScore : ResultUI
     {
         manager.SetState(ResultStateEnum.STATE.METER);
         Destroy(this);
+    }
+
+    public void SE()
+    {
+        if (!skip) manager.Sound.SEPlay("スコア表示SE");
     }
 }

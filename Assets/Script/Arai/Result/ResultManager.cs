@@ -13,9 +13,19 @@ public class ResultManager : MonoBehaviour
     [SerializeField]
     private ResultObjectList m_ObjectList;
 
+
+    private SoundManager sound;
+    public SoundManager Sound
+    {
+        get => sound;
+    }
+
     void Start()
     {
         StateSetting();
+
+        sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        sound.BGMPlay("リザルトBGM");
     }
     
     /// <summary>
@@ -36,5 +46,10 @@ public class ResultManager : MonoBehaviour
     private void StateSetting()
     {
         m_ObjectList.CreateObjects(m_NowState, m_Canvas, this);
+    }
+
+    public void PlaySE(string _name)
+    {
+        sound.SEPlay(_name);
     }
 }

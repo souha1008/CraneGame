@@ -105,6 +105,7 @@ public class Meter : ResultUI
     public void Activate()
     {
         active = true;
+        manager.Sound.SEPlay("メータアップSE");
         StartCoroutine(GainMeter());
     }
 }

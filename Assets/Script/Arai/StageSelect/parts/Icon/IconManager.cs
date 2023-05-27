@@ -57,7 +57,7 @@ public class IconManager : MonoBehaviour
             else
             {
                 
-                obj.GetComponent<StageIcon>().SetParam(worldIndex, i, 0);
+                obj.GetComponent<StageIcon>().SetParam(worldIndex, i, -1);
             }
         }
     }
@@ -83,15 +83,16 @@ public class IconManager : MonoBehaviour
     /// カーソル移動
     /// </summary>
     /// <param name="_indexvol">移動量</param>
-    public void MoveCursor(int _indexvol)
+    public bool MoveCursor(int _indexvol)
     {
         // 範囲外ブロック
         if (stageIndex + _indexvol < 0 || stageIndex + _indexvol > stageIndexLimit)
-         return;
+         return false;
 
         icons[stageIndex].Inactivate();
         stageIndex += _indexvol;
         icons[stageIndex].Activate();
+        return true;
     }
 
     public void Pushed()

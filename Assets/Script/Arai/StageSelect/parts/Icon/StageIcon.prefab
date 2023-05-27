@@ -31,7 +31,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8777741129653422945}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -167,7 +167,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8777741129653422945}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -239,16 +239,16 @@ RectTransform:
   m_GameObject: {fileID: 8289541592539544346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8777741129653422945}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -8, y: -80}
-  m_SizeDelta: {x: 468, y: 90}
+  m_SizeDelta: {x: 234, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6953865337335127375
 CanvasRenderer:
@@ -319,7 +319,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8777741129653422945}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -457,10 +457,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3102647316601629363}
   - {fileID: 4723801999190447501}
   - {fileID: 6566730603432159142}
   - {fileID: 87069728327034244}
+  - {fileID: 3102647316601629363}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -528,3 +528,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c50d7baf736b545489dae2ba2719f357, type: 3}
   - {fileID: 21300000, guid: 3bd0fe49e57c89045ac4b0ad79c87414, type: 3}
   - {fileID: 21300000, guid: 316a8a5f1f81d35459d4c49fddc8ab32, type: 3}
+  unlocksprite: {fileID: 21300000, guid: 0485a233dc1033f4aad1d4e89b4069fe, type: 3}

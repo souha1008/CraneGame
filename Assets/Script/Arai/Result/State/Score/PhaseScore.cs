@@ -23,6 +23,12 @@ public class PhaseScore : MonoBehaviour
     private Vector2 defaultPosition;
     private float alpha = 0;
 
+    private ShowScore ss;
+    public ShowScore SS
+    {
+        set => ss = value;
+    }
+
     void Awake()
     {
         rt = gameObject.GetComponent<RectTransform>();
@@ -47,6 +53,7 @@ public class PhaseScore : MonoBehaviour
         {
             score.color = new Color(score.color.r, score.color.g, score.color.b, 1);
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+            ss.SE();
             Destroy(this);
         }
     }
