@@ -560,7 +560,11 @@ public class Player2 : MonoBehaviour
         moveX = 0;
         moveZ = 0;
 
-        moveY = 30;
+        moveY = 90;
+
+        Vector3 tempPos = transform.position;
+        tempPos.y = DefaultPos.y;
+        transform.position = tempPos;
     }
 
     //void NextAttach()
