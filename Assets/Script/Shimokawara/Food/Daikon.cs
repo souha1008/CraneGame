@@ -48,9 +48,9 @@ public class Daikon : CircleFoodsInterFace
                 tempPos1.x -= 3;
                 tempPos2.x += 3;//右
                                 // Cubeプレハブを元に、インスタンスを生成、
-                Instantiate(Cut1, tempPos1, transform.rotation);
+                Cut1 = Instantiate(Cut1, tempPos1, transform.rotation);
                 Cut1.GetComponent<DaikonLeftDowble>().Vel = new Vector3(-0.3f, 0.1f, 0);
-                Instantiate(Cut2, tempPos2, transform.rotation);
+                Cut2 = Instantiate(Cut2, tempPos2, transform.rotation);
                 Cut2.GetComponent<DaikonRightSingle>().Vel = new Vector3(0.3f, 0.1f, 0);
 
                 SoundManager.instance.SEPlay("おもちゃ切断SE");
@@ -71,9 +71,9 @@ public class Daikon : CircleFoodsInterFace
                 tempPos1.x -= 3;
                 tempPos2.x += 3;//右
                                 // Cubeプレハブを元に、インスタンスを生成、
-                Instantiate(Cut1, tempPos1, transform.rotation);
+                Cut1 = Instantiate(Cut1, tempPos1, transform.rotation);
                 Cut1.GetComponent<DaikonLeftSingle>().Vel = new Vector3(-0.3f, 0.1f, 0);
-                Instantiate(Cut2, tempPos2, transform.rotation);
+                Cut2 = Instantiate(Cut2, tempPos2, transform.rotation);
                 Cut2.GetComponent<DaikonRightDowble>().Vel = new Vector3(0.3f, 0.1f, 0);
 
                 SoundManager.instance.SEPlay("おもちゃ切断SE");

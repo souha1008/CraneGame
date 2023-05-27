@@ -36,12 +36,12 @@ public class Pienuts : CircleFoodsInterFace
 
             Vector3 tempPos1 = transform.position;
             Vector3 tempPos2 = transform.position;
-            tempPos1.x -= 2;
-            tempPos2.x += 2;
+            tempPos1.x += 2;
+            tempPos2.x -= 2;
             // Cubeプレハブを元に、インスタンスを生成、
-            Instantiate(Cut1, tempPos1, transform.rotation);
+            Cut1 = Instantiate(Cut1, tempPos1, transform.rotation);
             Cut1.GetComponent<PienutsNakami>().Vel = new Vector3(0.3f, 0.1f, 0);
-            Instantiate(Cut2, tempPos2, transform.rotation);
+            Cut2 = Instantiate(Cut2, tempPos2, transform.rotation);
             Cut2.GetComponent<PienutsNakami>().Vel = new Vector3(-0.3f, 0.1f, 0);
 
             Effect.SetActive(true);

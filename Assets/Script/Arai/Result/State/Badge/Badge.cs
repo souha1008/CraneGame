@@ -74,6 +74,7 @@ public class Badge : MonoBehaviour
             yield return wff;
         }
 
+        Destroy(this);
         yield break;
     }
 }
