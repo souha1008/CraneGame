@@ -71,7 +71,7 @@ public class Arm : MonoBehaviour
         transform.position = playerObj.transform.position + PosVector;
     }
 
-    public void custumFixedUpdate(ArmManager.ARM_STICK_TYPE armStickType , ARM_MOVE armMove)
+    public void custumFixedUpdate(ArmManager.ARM_STICK_TYPE armStickType , ARM_MOVE armMove , int Size)
     {
         switch (armStickType)
         {
@@ -79,7 +79,7 @@ public class Arm : MonoBehaviour
                 OokumaKimoi();
                 break;
             case ArmManager.ARM_STICK_TYPE.AKIYAMA_HANGETSU:
-                AkiyamaHangetsu(armMove);
+                AkiyamaHangetsu(armMove , Size);
                 break;
             case ArmManager.ARM_STICK_TYPE.BUTTON_PUSH:
                 ButtonPush();
@@ -118,7 +118,7 @@ public class Arm : MonoBehaviour
 
         rAngle = temp * MAX_ANGLE;
     }
-    void AkiyamaHangetsu(ARM_MOVE armMove)
+    void AkiyamaHangetsu(ARM_MOVE armMove , int Size)
     {
         oldAngle = rAngle;
 
@@ -183,7 +183,24 @@ public class Arm : MonoBehaviour
 
                 case ARM_MOVE.STOP:
 
-                    //float TeikouAngle = 
+                    
+
+                    //スイッチで大きさによって変える
+
+                    //switch (Size)
+                    //{
+                    //    case 5:
+                    //        if(goAngle >= 1.15f)
+                    //        {
+                    //            goAngle = 1.15f;
+                    //        }
+                          
+                    //        break;
+
+
+                    //}
+
+                    //これがもともと
                     rAngle = Mathf.Min(goAngle, oldAngle);
                     break;
 

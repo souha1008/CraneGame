@@ -62,8 +62,8 @@ public class ArmManager : MonoBehaviour
         //}
         //CenterHitObject.Hit = false;
 
-        LeftArm.custumFixedUpdate(ArmStickType , CenterHitObject.Move);
-        RightArm.custumFixedUpdate(ArmStickType, CenterHitObject.Move);
+        LeftArm.custumFixedUpdate(ArmStickType , CenterHitObject.Move, CenterHitObject.Size);
+        RightArm.custumFixedUpdate(ArmStickType, CenterHitObject.Move , CenterHitObject.Size);
 
         CenterHitObject.Move = ARM_MOVE.MOVE;
 

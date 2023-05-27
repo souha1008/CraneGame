@@ -11,7 +11,7 @@ public enum ARM_MOVE
 
 public class CreanHitObj : MonoBehaviour
 {
-    
+    public int Size = 0;
 
 
 
@@ -37,6 +37,7 @@ public class CreanHitObj : MonoBehaviour
                 if(other.GetComponent<CircleFoodsInterFace>().m_ChachAction == ChachAction.HARD)
                 {
                     Move = ARM_MOVE.STOP;
+                    Size = (int)other.transform.localScale.x;
                 }
                 if (other.GetComponent<CircleFoodsInterFace>().m_ChachAction == ChachAction.SOFT)
                 {
