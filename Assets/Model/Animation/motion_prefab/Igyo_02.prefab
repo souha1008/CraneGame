@@ -391,6 +391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1216001684193214255}
   - component: {fileID: 1687339594115053334}
+  - component: {fileID: 551471348168593604}
   m_Layer: 0
   m_Name: Igyo_02
   m_TagString: Untagged
@@ -438,6 +439,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &551471348168593604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993911261010371989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e3f17ae5207df419086f7a9a631f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2027930629068876900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,6 +1747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 612821460815680042}
   - component: {fileID: 9117999132118758566}
+  - component: {fileID: 477834436322419302}
   m_Layer: 0
   m_Name: koisi_model_fix:Igyou_03
   m_TagString: Untagged
@@ -1837,6 +1851,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.09754041, y: 0.048922263, z: -0.12929536}
     m_Extent: {x: 0.4386131, y: 0.22006571, z: 0.267748}
   m_DirtyAABB: 0
+--- !u!114 &477834436322419302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7223949310042722018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67481c66448e4c4da1c48c76992858b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedmeshRenderer: {fileID: 9117999132118758566}
+  rand_: 0
 --- !u!1 &7405001878082503478
 GameObject:
   m_ObjectHideFlags: 0
