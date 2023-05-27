@@ -24,9 +24,9 @@ public class BadgeManager : ResultUI
         {
             var miss = Instantiate(badge, transform);
             miss.SetMove(Badge.BADGE.MISS);
+            manager.Sound.SEPlay("ボーナス獲得SE");
 
             ex = true;
-    
             yield return new WaitForSeconds(waittime);
         }
 
@@ -34,6 +34,7 @@ public class BadgeManager : ResultUI
         {
             var speed = Instantiate(badge, transform);
             speed.SetMove(Badge.BADGE.SPEED);
+            manager.Sound.SEPlay("ボーナス獲得SE");
         }
         else ex = false;
 

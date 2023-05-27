@@ -41,20 +41,17 @@ public class TitleSelect : TitleObject
     /// </summary>
     private void CheckInput()
     {
+        if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
         {
-            if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
-            {
-                m_Objects[m_Index].PushAction();
-                manager.PlaySE("決定SE");
-                Destroy(this);
-                return;
-            }
-
-            ///// 後で消す
-            if(Input.GetKeyDown(KeyCode.RightArrow)) SelectChange(-1);
-            if(Input.GetKeyDown(KeyCode.LeftArrow)) SelectChange(1);
-            /////
+            m_Objects[m_Index].PushAction();
+            manager.Sound.SEPlay("決定SE");
+            Destroy(this);
+            return;
         }
+        ///// 後で消す
+        if(Input.GetKeyDown(KeyCode.RightArrow)) SelectChange(-1);
+        if(Input.GetKeyDown(KeyCode.LeftArrow)) SelectChange(1);
+        /////
         
         // 十字キー入力
         {
@@ -102,7 +99,7 @@ public class TitleSelect : TitleObject
 
         m_Objects[m_Index].Activate();
 
-        manager.PlaySE("選択SE");
+        manager.Sound.SEPlay("選択SE");
     }
 
     private void Move()

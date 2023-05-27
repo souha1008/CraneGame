@@ -51,7 +51,11 @@ public class ShowScore : ResultUI
 
         for (var i = index; i < Co.Const.FAZE_NUM; ++i)
         {
-            if (!skip) yield return wfs;
+            if (!skip)
+            {
+                yield return wfs;
+                manager.Sound.SEPlay("スコア表示SE");
+            }
 
             var p = Instantiate(score, this.transform);
 

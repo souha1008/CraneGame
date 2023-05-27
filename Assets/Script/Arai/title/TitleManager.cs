@@ -16,13 +16,17 @@ public class TitleManager : MonoBehaviour
     private TitleObjectList m_ObjectList;
 
     private SoundManager sound;
+    public SoundManager Sound
+    {
+        get => sound;
+    }
 
     void Start()
     {
         StateSetting();
 
         sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
-        sound.BGMPlay("タイトルBGM", true);
+        if(!sound.CheckPlayBGM("タイトルBGM")) sound.BGMPlay("タイトルBGM", true);
     }
 
     /// <summary>
@@ -43,10 +47,5 @@ public class TitleManager : MonoBehaviour
     private void StateSetting()
     {
         m_ObjectList.CreateObjects(m_NowState, m_Canvas, this);
-    }
-
-    public void PlaySE(string _name)
-    {
-        sound.SEPlay(_name);
     }
 }

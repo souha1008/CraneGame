@@ -53,7 +53,6 @@ public class PhaseScore : MonoBehaviour
         {
             score.color = new Color(score.color.r, score.color.g, score.color.b, 1);
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
-            ss.SE();
             Destroy(this);
         }
     }

@@ -94,7 +94,7 @@ public class StageSelectManager : MonoBehaviour
         Inactivate(data.WorldIndex, data.StageIndex);
 
         sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
-        // sound.BGMPlay("タイトルBGM");
+        if(!sound.CheckPlayBGM("タイトルBGM")) sound.BGMPlay("タイトルBGM", true);
     }
 
     void Update()
