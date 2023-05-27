@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PhaseMeter : MonoBehaviour
 {
+    public static PhaseMeter instance;
+
     [SerializeField]
     private GameObject body;        // メーター増える部分
     private RectTransform body_tf;
@@ -28,8 +30,14 @@ public class PhaseMeter : MonoBehaviour
     [SerializeField, Range(0.001f, 20.0f)]
     private float speed = 5;         // メーター増加速度
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
+        
         body_tf     = body.GetComponent<RectTransform>();
         body_image  = body.GetComponent<Image>();
 

@@ -55,9 +55,13 @@ public class CookMoveManager : MonoBehaviour
     bool isSyatta = true;
     bool GameSetOnce = true;
 
+    PhaseMeter m_PhaseMater;
+
     // Start is called before the first frame update
     void Start()
     {
+        m_PhaseMater = PhaseMeter.instance;
+
         isSyatta = true;
         instance = this;
         myButton = GameObject.FindObjectOfType<MyButton>();
@@ -73,11 +77,16 @@ public class CookMoveManager : MonoBehaviour
         CovayorChange(isConvayor[0]);
 
         GameSetOnce = true;
+
+        int tempAll = 0;
         for (int i = 0; i < 5; i++)
         {
             //マックススコア
             m_ScoreData.SetMaxScore(i, MAX_SCORE[i]);
+            tempAll += MAX_SCORE[i];
         }
+
+        m_PhaseMater.ValueMax = tempAll;
     }
 
     // Update is called once per frame
@@ -267,6 +276,7 @@ public class CookMoveManager : MonoBehaviour
                 if (Foods[i].GetComponent<CircleFoodsInterFace>().isClear)
                 {
                     m_ScoreData.SetScore(FazeNum, m_ScoreData.GetScore(FazeNum) + 100);
+                    m_PhaseMater.AddMeter(100);
                 }
                 //Destroy(Foods[i]);
             }
@@ -306,6 +316,7 @@ public class CookMoveManager : MonoBehaviour
                     if (FoodsSupport[i].GetComponent<FoodsSupportInterFace>().isClear)
                     {
                         m_ScoreData.SetScore(FazeNum, m_ScoreData.GetScore(FazeNum) + 100);
+                        m_PhaseMater.AddMeter(100);
                     }
 
                 }
