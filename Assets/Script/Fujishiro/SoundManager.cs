@@ -62,6 +62,29 @@ public class SoundManager : MonoBehaviour
         SE_Volume = value;
     }
 
+    public bool CheckPlayBGM(string playTitle)
+    {
+        AudioClip searchClip = null;
+
+        for(int i = 0; i < keyBGM.Length; i++)
+        {
+            if(playTitle == keyBGM[i].name)
+            {
+                searchClip = keyBGM[i].audioClip;
+
+                if (searchClip == BGMaudioSource.clip)
+                {
+                    // 探したクリップと再生中のクリップが同じならtrue
+                    return true;
+                }
+
+                break;
+            }
+        }
+
+        // それ以外ならfalse
+        return false;
+    }
 
     public void BGMPlay(string playTitle)
     {   
