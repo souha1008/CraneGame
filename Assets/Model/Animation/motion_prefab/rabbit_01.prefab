@@ -1390,6 +1390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4936397709220408926}
   - component: {fileID: 4830993451235470589}
+  - component: {fileID: -341031634760023178}
   m_Layer: 0
   m_Name: rabbit_01
   m_TagString: Untagged
@@ -1437,6 +1438,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-341031634760023178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5749490489641546980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e3f17ae5207df419086f7a9a631f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6013106231094510221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,6 +1906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4614472484554855612}
   - component: {fileID: 833492236453133409}
+  - component: {fileID: 3587512542928415481}
   m_Layer: 0
   m_Name: rabbit_msh_01
   m_TagString: Untagged
@@ -1991,6 +2005,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.114691034, y: -0.00013293326, z: 0.25867915}
     m_Extent: {x: 0.23930849, y: 0.24690534, z: 0.44897723}
   m_DirtyAABB: 0
+--- !u!114 &3587512542928415481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7827360137412873900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67481c66448e4c4da1c48c76992858b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedmeshRenderer: {fileID: 833492236453133409}
+  rand_: 0
 --- !u!1 &8067443415363020507
 GameObject:
   m_ObjectHideFlags: 0
