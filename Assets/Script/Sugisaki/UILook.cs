@@ -6,10 +6,16 @@ public class UILook : MonoBehaviour
 {
     [SerializeField] GameObject UIEmpty;
 
+    static public UILook Instance;
+
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
+        
         UIEmpty.SetActive(true);
+
+        EnableUI();
     }
 
     // Update is called once per frame

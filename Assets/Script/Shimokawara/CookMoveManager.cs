@@ -103,6 +103,7 @@ public class CookMoveManager : MonoBehaviour
         if(SleepCnt == -1)
         {
             SoundManager.instance.SEPlay("スタートSE");
+            UILook.Instance.AbleUI();//UI表示
         }
 
         SleepCnt++;
@@ -125,6 +126,7 @@ public class CookMoveManager : MonoBehaviour
             if (GameSetOnce)
             {
                 SoundManager.instance.SEPlay("ゲームセットSE");
+                UILook.Instance.EnableUI();//UI非表示
                 GameSetOnce = false;
             }
 
