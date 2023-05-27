@@ -52,6 +52,8 @@ public class Wait : TitleUI
             Invoke("ExitWait", m_WaitTime);
             m_Image.color = new Color(m_ImageColor.r, m_ImageColor.g, m_ImageColor.b, 1.0f);
 
+            m_Manager.PlaySE("プレスエニーSE");
+
             m_PushedAction.Action();
         }
         else

@@ -4,4 +4,9 @@ using UnityEngine;
 
 public class TitleObject : MonoBehaviour
 {
+    protected TitleManager manager;
+    public TitleManager Manager
+    {
+        set => manager = value;
+    }
 }

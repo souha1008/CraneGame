@@ -45,6 +45,7 @@ public class TitleSelect : TitleObject
             if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
             {
                 m_Objects[m_Index].PushAction();
+                manager.PlaySE("決定SE");
                 Destroy(this);
                 return;
             }
@@ -82,6 +83,8 @@ public class TitleSelect : TitleObject
     /// <param name="_volum">入力値（方向）</param>
     private void SelectChange(float _volum)
     {
+        if ((int)_volum == 0) return;
+
         _volum *= -1;
 
         m_Objects[m_Index].InActivate();
@@ -98,6 +101,8 @@ public class TitleSelect : TitleObject
         }
 
         m_Objects[m_Index].Activate();
+
+        manager.PlaySE("選択SE");
     }
 
     private void Move()

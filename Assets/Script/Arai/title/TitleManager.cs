@@ -15,9 +15,14 @@ public class TitleManager : MonoBehaviour
     [SerializeField, Header("状態時生成物")]
     private TitleObjectList m_ObjectList;
 
+    private SoundManager sound;
+
     void Start()
     {
         StateSetting();
+
+        sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        sound.BGMPlay("タイトルBGM", true);
     }
 
     /// <summary>
@@ -37,6 +42,11 @@ public class TitleManager : MonoBehaviour
     /// </summary>
     private void StateSetting()
     {
-        m_ObjectList.CreateObjects(m_NowState, m_Canvas);
+        m_ObjectList.CreateObjects(m_NowState, m_Canvas, this);
+    }
+
+    public void PlaySE(string _name)
+    {
+        sound.SEPlay(_name);
     }
 }

@@ -37,7 +37,7 @@ public class TitleObjectList : MonoBehaviour
     /// </summary>
     /// <param name="_state">状態指定</param>
     /// <param name="_canvas">使うキャンバス</param>
-    public void CreateObjects(TitleStateEnum.STATE _state, Canvas _canvas)
+    public void CreateObjects(TitleStateEnum.STATE _state, Canvas _canvas, TitleManager _manager)
     {
         // リストの探索
         foreach(var objs in m_Objects)
@@ -47,31 +47,33 @@ public class TitleObjectList : MonoBehaviour
             {
                 // UI生成
                 if (objs.m_Ui.Capacity > 0)
-                    CreateUI(objs, _canvas);
+                    CreateUI(objs, _canvas, _manager);
                 
                 // オブジェクト生成
                 if (objs.m_Objects.Capacity > 0)
-                    CreateObject(objs);
+                    CreateObject(objs, _manager);
                 
                 break;
             }
         }
     }
 
-    private void CreateUI(Object _obj, Canvas _canvas)
+    private void CreateUI(Object _obj, Canvas _canvas, TitleManager _manager)
     {
         foreach(var ui in _obj.m_Ui)
         {
             var obj = Instantiate(ui);
             obj.transform.SetParent(_canvas.transform, false);
+            obj.Manager = _manager;
         }
     }
 
-    private void CreateObject(Object _obj)
+    private void CreateObject(Object _obj, TitleManager _manager)
     {
         foreach(var obj in _obj.m_Objects)
         {
-            Instantiate(obj);
+            var objec = Instantiate(obj);
+            objec.Manager = _manager;
         }
     }
 }
