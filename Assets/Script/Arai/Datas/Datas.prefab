@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4291509590838307494}
   - component: {fileID: -6909415387011867966}
+  - component: {fileID: 935042014}
   m_Layer: 0
   m_Name: Datas
   m_TagString: Untagged
@@ -27,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,9 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12421a3ede902864db740029ef03d130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  worldindex: 0
+  stageindex: 0
+  score: 0000000000000000000000000000000000000000
+  maxScore: 0000000000000000000000000000000000000000
+  clearBorder: 0.5
+  speedClear: 0
+  finalResult: 0
+--- !u!114 &935042014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4291509590838307497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65fea211090ee14b940f3b5b2e565f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    data: 
+    worldindex: 0

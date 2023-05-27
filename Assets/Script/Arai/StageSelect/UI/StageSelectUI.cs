@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StageSelectUI : MonoBehaviour
 {
-    virtual public void Activate(int _worldindex)
+    virtual public void Activate(int _worldindex, int _indexmax)
     {
         gameObject.SetActive(true);
     }

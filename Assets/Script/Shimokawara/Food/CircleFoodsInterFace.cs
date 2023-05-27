@@ -260,6 +260,8 @@ public class CircleFoodsInterFace : MonoBehaviour
         {
             if (Vector3.Distance(RightArmBord.transform.position,LeftArmBord.transform.position) < 0.2f * BallSize)
             {
+                SoundManager.instance.SEPlay("おもちゃ潰しSE");
+
                 Destroy(gameObject);
                 //GetComponent<Renderer>().enabled = false;
             }
@@ -404,6 +406,14 @@ public class CircleFoodsInterFace : MonoBehaviour
                         
                     }
                     SoundManager.instance.SEPlay("焦げるSE");
+
+                    //煙りだす
+                    GameObject Smoke = (GameObject)Resources.Load("smoke_fx_001");
+
+                    Vector3 tempPos1 = transform.position;
+                    // Cubeプレハブを元に、インスタンスを生成、
+                    Smoke = Instantiate(Smoke, tempPos1, transform.rotation);
+                    Smoke.gameObject.transform.parent = this.transform;
 
                     //変更
                     //移動も回転もしないようにする

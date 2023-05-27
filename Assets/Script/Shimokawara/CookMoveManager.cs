@@ -23,6 +23,7 @@ public class CookMoveManager : MonoBehaviour
     public int SPEED_CLEAR_TIME;
 
     public int FPS_Time = 0;
+    //int OldFpsTime = 0;
 
     public int START_STOP_FLAME;
 
@@ -66,6 +67,7 @@ public class CookMoveManager : MonoBehaviour
         m_ScoreData = GameObject.Find("Datas").GetComponent<ScoreData>();
         SyattaMax = Syatta.transform.localPosition.y;
         FPS_Time = 0;
+        
         AllTime = 0;
         CovayorChange(isConvayor[0]);
 
@@ -118,7 +120,11 @@ public class CookMoveManager : MonoBehaviour
             if (!SyattaSleep)
             {
                 FPS_Time++;//ŽžŠÔ‰ÁŽZ
+
+                
             }
+            
+
         }
 
 
@@ -132,7 +138,7 @@ public class CookMoveManager : MonoBehaviour
             NextScene();
             SoundManager.instance.SELoopStop();
             //PlayerPosInitialize();
-            AllTime += FPS_Time;
+            //AllTime += FPS_Time;
             FPS_Time = 0;
 
             Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, SyattaMin, Syatta.transform.localPosition.z);
@@ -157,7 +163,18 @@ public class CookMoveManager : MonoBehaviour
             isSyatta = false;
 
             Syatta.transform.localPosition = new Vector3(Syatta.transform.localPosition.x, SyattaMax, Syatta.transform.localPosition.z);
+
+            if (FazeNum == 0)
+            {
+                GameStartUI.instance.isFalse();
+            }
+            if (FazeNum == 4)
+            {
+                GameSetUI.instance.isTrue();
+            }
         }
+
+
     }
 
     public void NextScene()
@@ -372,6 +389,8 @@ public class CookMoveManager : MonoBehaviour
 
     public void ChangeSign()
     {
+        AllTime += FPS_Time;
+
         FPS_Time = FazeTime * 60 - SYATTA_TIME;
     }
 

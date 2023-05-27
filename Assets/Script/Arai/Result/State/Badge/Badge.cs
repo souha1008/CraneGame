@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
 public class Badge : MonoBehaviour
 {
     [System.Serializable]
@@ -17,6 +18,9 @@ public class Badge : MonoBehaviour
         SPEED,
         MAX
     }
+
+    [SerializeField]
+    private Sprite[] sprites = new Sprite[(int)BADGE.MAX];
 
     [SerializeField]
     private MoveTF[] moveTFs = new MoveTF[(int)BADGE.MAX];
@@ -37,6 +41,10 @@ public class Badge : MonoBehaviour
 
     public void SetMove(BADGE _type)
     {
+        var image = gameObject.GetComponent<Image>();
+        image.sprite = sprites[(int)_type];
+        image.SetNativeSize();
+        
         StartCoroutine(Move(_type));
     }
 

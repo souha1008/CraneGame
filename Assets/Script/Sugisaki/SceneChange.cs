@@ -55,7 +55,7 @@ public class SceneChange : MonoBehaviour
         rotate.y = rotate.y + 180.0f;
         Instantiate(FadeInObject, position, rotate);
 
-        yield return new WaitForSeconds(waitTime+Changewait);
+        yield return new WaitForSeconds(waitTime + Changewait);
 
         SceneManager.LoadScene(sceneName);
     }

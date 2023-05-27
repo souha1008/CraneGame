@@ -36,7 +36,7 @@ public class ShowScore : ResultUI
     void Update()
     {
         // スキップ
-        if (!skip && /*Input.GetButtonDown("Submit")*/ Input.GetMouseButton(0))
+        if (!skip && (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0)))
         {
             skip = true;
         }
@@ -47,7 +47,7 @@ public class ShowScore : ResultUI
         var wfs = new WaitForSeconds(interval);
 
         var data = GameObject.Find("Datas").GetComponent<ScoreData>();
-        var offpos = this.transform.position;
+        var offpos = this.GetComponent<RectTransform>().anchoredPosition;
 
         for (var i = index; i < Co.Const.FAZE_NUM; ++i)
         {

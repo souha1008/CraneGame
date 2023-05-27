@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEditor.UI;
-
 public class ResultManager : MonoBehaviour
 {
     [SerializeField]
     private Canvas m_Canvas;
 
-    [SerializeField, EditLock]
+    [SerializeField]
     private ResultStateEnum.STATE m_NowState = ResultStateEnum.STATE.BEGIN;
 
     [SerializeField]

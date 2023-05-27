@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class Model_Inactivate : Object_Activate
 {
-    private Animator animator;
+    [SerializeField] private Animator animator;
 
     [SerializeField] private string animationName;
-
-    void Awake()
-    {
-        animator = gameObject.GetComponent<Animator>();
-    }
 
     public override void Method(Select_Object _obj)
     {

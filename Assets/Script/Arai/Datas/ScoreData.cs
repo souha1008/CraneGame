@@ -11,7 +11,6 @@ public class ScoreData : MonoBehaviour
     public int WorldIndex
     {
         get => worldindex;
-        set => worldindex = value;
     }
     [SerializeField]
     private int stageindex;
@@ -41,6 +40,14 @@ public class ScoreData : MonoBehaviour
     {
         get => speedClear;
         set => speedClear = value;
+    }
+
+    [SerializeField]
+    private ResultEnum.RESULT finalResult = ResultEnum.RESULT.MAX;
+    public  ResultEnum.RESULT FinalResult
+    {
+        get => finalResult;
+        set => finalResult = value;
     }
 
     void Awake()
@@ -104,5 +111,33 @@ public class ScoreData : MonoBehaviour
         }
 
         return score / maxscore;
+    }
+
+    /// <summary>
+    /// ワールド・ステージ番号設定
+    /// </summary>
+    /// <param name="_world">ワールド番号</param>
+    /// <param name="_stage">ステージ番号</param>
+    public void SetIndexs(int _world, int _stage)
+    {
+        worldindex = _world;
+        stageindex = _stage;
+
+        ClearScores();
+    }
+
+    /// <summary>
+    /// スコアリセット
+    /// </summary>
+    public void ClearScores()
+    {
+        for(int i = 0; i < Co.Const.FAZE_NUM; ++i)
+        {
+            score[i]    = 0;
+            maxScore[i] = 0;
+        }
+
+        speedClear = false;
+        finalResult = ResultEnum.RESULT.MAX;
     }
 }

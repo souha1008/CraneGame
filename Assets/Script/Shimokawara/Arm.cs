@@ -33,6 +33,8 @@ public class Arm : MonoBehaviour
     public GameObject playerObj;
     Vector3 PosVector;
 
+    bool LTrigger = false;
+
     public void custumStart(int direction)
     {
         isUnLock = false;
@@ -57,6 +59,11 @@ public class Arm : MonoBehaviour
         Quaternion rot = Quaternion.AngleAxis(Direction * rAngle * 180 / Mathf.PI, Vector3.forward);
 
         this.transform.rotation = rot;
+
+        if(Input.GetButtonDown("Lbutton"))
+        {
+            LTrigger = true;
+        }
     }
 
     void SneekPlayer()
@@ -91,8 +98,9 @@ public class Arm : MonoBehaviour
 
 
 
+        LTrigger = false;
 
-       
+
     }
 
    void OokumaKimoi()
@@ -130,8 +138,9 @@ public class Arm : MonoBehaviour
         //    (Mathf.Atan2(LeftStick.y , LeftStick.x) >= (-Mathf.PI / 2 - 0.2f)))
         if (length > 0.85f &&
     (Mathf.Atan2(LeftStick.y, LeftStick.x) <= (-Mathf.PI / 2 + 0.2f)) &&
-    (Mathf.Atan2(LeftStick.y, LeftStick.x) >= (-Mathf.PI / 2 - 0.2f)) &&
-    Input.GetButton("Lbutton")
+    (Mathf.Atan2(LeftStick.y, LeftStick.x) >= (-Mathf.PI / 2 - 0.2f)) 
+    //&&
+    //Input.GetButton("Lbutton")
     )
         {
             isUnLock = true;
@@ -143,6 +152,10 @@ public class Arm : MonoBehaviour
         //    isUnLock = false;
         //}
 
+        if(LTrigger)
+        {
+            isUnLock = false;
+        }
 
         //í˜Çﬂèàóù
         if(isUnLock)

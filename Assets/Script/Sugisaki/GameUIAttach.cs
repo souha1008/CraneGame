@@ -7,6 +7,7 @@ public class GameUIAttach : MonoBehaviour
 {
     [SerializeField] bool isActive;
     [SerializeField] Attach.AttachType AttachType;
+    [SerializeField] GameObject[] gameObjects;
 
     // Start is called before the first frame update
     void Start()
@@ -19,26 +20,32 @@ public class GameUIAttach : MonoBehaviour
     {
         Attach.AttachType attach = Player2.instance.GetAttach();
 
+        int length = gameObjects.Length;
+
         if (attach == AttachType) 
         {
             if (isActive)
             {
-                this.gameObject.SetActive(true);
+                for (int i = 0; i < length; i++)
+                    gameObjects[i].SetActive(true);
             }
             else
             {
-                this.gameObject.SetActive(false);
+                for (int i = 0; i < length; i++)
+                    gameObjects[i].SetActive(false);
             }
         }
         else
         {
             if (!isActive)
             {
-                this.gameObject.SetActive(true);
+                for (int i = 0; i < length; i++)
+                    gameObjects[i].SetActive(true);
             }
             else
             {
-                this.gameObject.SetActive(false);
+                for (int i = 0; i < length; i++)
+                    gameObjects[i].SetActive(false);
             }
         }
     }
