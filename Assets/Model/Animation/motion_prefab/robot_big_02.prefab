@@ -580,6 +580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6124806386136972541}
   - component: {fileID: 4437501601765762298}
+  - component: {fileID: 2233314581015690100}
   m_Layer: 0
   m_Name: bigrobot_model1
   m_TagString: Untagged
@@ -678,6 +679,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.09977679, y: -0.121481314, z: -0.007982761}
     m_Extent: {x: 0.3657375, y: 0.27344662, z: 0.30625618}
   m_DirtyAABB: 0
+--- !u!114 &2233314581015690100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4235158361929195630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67481c66448e4c4da1c48c76992858b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedmeshRenderer: {fileID: 4437501601765762298}
+  rand_: 0
 --- !u!1 &4247057343201872048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,6 +1476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8593655607547104654}
   - component: {fileID: 5430874627251931009}
+  - component: {fileID: 2640223476705780606}
   m_Layer: 0
   m_Name: robot_big_02
   m_TagString: Untagged
@@ -1507,6 +1523,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2640223476705780606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8937706352832403252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e3f17ae5207df419086f7a9a631f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9069373291213105118
 GameObject:
   m_ObjectHideFlags: 0

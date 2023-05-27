@@ -393,6 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6038732190070296316}
   - component: {fileID: 6072923313152554100}
+  - component: {fileID: -5910460847238354521}
   m_Layer: 0
   m_Name: toy_hebi_02
   m_TagString: Untagged
@@ -439,6 +440,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5910460847238354521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378841182078440518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e3f17ae5207df419086f7a9a631f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6418766904369866335
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9167412637341564621}
   - component: {fileID: 334189531272879895}
+  - component: {fileID: 7833743127971451881}
   m_Layer: 0
   m_Name: Snake_02
   m_TagString: Untagged
@@ -564,6 +578,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.16115631, y: 0.1537878, z: 0.08526947}
     m_Extent: {x: 0.378138, y: 0.4458676, z: 0.30555663}
   m_DirtyAABB: 0
+--- !u!114 &7833743127971451881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7418007930364153928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67481c66448e4c4da1c48c76992858b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedmeshRenderer: {fileID: 334189531272879895}
+  rand_: 0
 --- !u!1 &8207389150951782935
 GameObject:
   m_ObjectHideFlags: 0

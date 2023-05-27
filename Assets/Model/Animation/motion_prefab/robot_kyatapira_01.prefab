@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1408799942480216482}
   - component: {fileID: 5788862179050705724}
+  - component: {fileID: 5827676850975727856}
   m_Layer: 0
   m_Name: caterpillar_01
   m_TagString: Untagged
@@ -129,6 +130,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.042152733, y: 0.0002758503, z: 0.04032354}
     m_Extent: {x: 0.5374929, y: 0.562345, z: 0.43287903}
   m_DirtyAABB: 0
+--- !u!114 &5827676850975727856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221716757747363388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67481c66448e4c4da1c48c76992858b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedmeshRenderer: {fileID: 5788862179050705724}
+  rand_: 0
 --- !u!1 &1844102679881792737
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,6 +728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8689577252466566735}
   - component: {fileID: 9159526720342882118}
+  - component: {fileID: 5778872688201873102}
   m_Layer: 0
   m_Name: robot_kyatapira_01
   m_TagString: Untagged
@@ -759,6 +775,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5778872688201873102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8348623488158137589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e3f17ae5207df419086f7a9a631f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8437901491003695003
 GameObject:
   m_ObjectHideFlags: 0

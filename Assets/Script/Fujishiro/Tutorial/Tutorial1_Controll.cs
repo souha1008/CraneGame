@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Tutorial1_Controll : MonoBehaviour
 {
     [SerializeField] GameObject Tutorial_Canvas;
+    [SerializeField] GameObject Sprite_Catcher;
     [SerializeField, ReadOnly]public static bool TutorialEnabled = true;
     // Start is called before the first frame update
     void Start()
@@ -23,15 +24,21 @@ public class Tutorial1_Controll : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.JoystickButton0) && TutorialEnabled)
         {
             TutorialEnabled = false;
+            SoundManager.instance.SEPlay("Œˆ’èSE");
             Time.timeScale = 1;
         }
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space) && TutorialEnabled)
         {
             TutorialEnabled = false;
+            SoundManager.instance.SEPlay("Œˆ’èSE");
             Time.timeScale = 1;
         }
+#endif
+
         Tutorial_Canvas.gameObject.SetActive(TutorialEnabled);
-        if(Input.GetKeyDown(KeyCode.Return))
+        Sprite_Catcher.gameObject.SetActive(TutorialEnabled);
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             SceneManager.LoadScene("PauseTest");
         }
