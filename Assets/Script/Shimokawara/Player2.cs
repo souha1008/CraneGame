@@ -553,6 +553,16 @@ public class Player2 : MonoBehaviour
         return MyAttach.type;
     }
 
+    public void ResetPlayer()
+    {
+        oldMoveX = 0;
+        oldMoveZ = 0;
+        moveX = 0;
+        moveZ = 0;
+
+        moveY = 30;
+    }
+
     //void NextAttach()
     //{
     //    NextAttachType += 1;

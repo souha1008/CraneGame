@@ -53,6 +53,7 @@ public class CookMoveManager : MonoBehaviour
     public int AllTime = 0;
 
     bool isSyatta = true;
+    bool GameSetOnce = true;
 
     // Start is called before the first frame update
     void Start()
@@ -71,8 +72,8 @@ public class CookMoveManager : MonoBehaviour
         AllTime = 0;
         CovayorChange(isConvayor[0]);
 
-
-        for(int i = 0; i < 5; i++)
+        GameSetOnce = true;
+        for (int i = 0; i < 5; i++)
         {
             //マックススコア
             m_ScoreData.SetMaxScore(i, MAX_SCORE[i]);
@@ -95,6 +96,15 @@ public class CookMoveManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(SleepCnt == -180 || SleepCnt == -120 || SleepCnt == -60)
+        {
+            SoundManager.instance.SEPlay("スタートカウントSE");
+        }
+        if(SleepCnt == -1)
+        {
+            SoundManager.instance.SEPlay("スタートSE");
+        }
+
         SleepCnt++;
         if(SleepCnt > SYATTA_STOP_FLAME)
         {
@@ -112,7 +122,13 @@ public class CookMoveManager : MonoBehaviour
             {
                 m_ScoreData.SpeedClear = false;
             }
+            if (GameSetOnce)
+            {
+                SoundManager.instance.SEPlay("ゲームセットSE");
+                GameSetOnce = false;
+            }
 
+            
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
         }
         else
@@ -181,6 +197,7 @@ public class CookMoveManager : MonoBehaviour
     {
         //DeleateKnife();
         PlayerPosInitialize();
+        Player2.instance.ResetPlayer();
         AddScore();
         MoveObject();
         myButton.ButtonReset();
@@ -190,7 +207,9 @@ public class CookMoveManager : MonoBehaviour
         {
             CovayorChange(isConvayor[FazeNum]);
         }
-        
+
+        SoundManager.instance.SEPlay("シャッター開閉SE");
+
     }
 
     void ConvayorOn()
