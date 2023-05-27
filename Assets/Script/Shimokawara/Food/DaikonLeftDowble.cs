@@ -61,9 +61,9 @@ public class DaikonLeftDowble : CircleFoodsInterFace
                 tempPos2.x -= 3;
                 // Cubeプレハブを元に、インスタンスを生成、
 
-                Instantiate(Cut1, tempPos1, transform.rotation);
+                Cut1 = Instantiate(Cut1, tempPos1, transform.rotation);
                 Cut1.GetComponent<DaikonCenterSingle>().Vel = new Vector3(0.3f, 0.1f, 0);
-                Instantiate(Cut2, tempPos2, transform.rotation);
+                Cut2 = Instantiate(Cut2, tempPos2, transform.rotation);
                 Cut2.GetComponent<DaikonLeftSingle>().Vel = new Vector3(-0.3f, 0.1f, 0);
                 SoundManager.instance.SEPlay("おもちゃ切断SE");
 

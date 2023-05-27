@@ -127,10 +127,10 @@ public class Suica: CircleFoodsInterFace
                 tempPos2.x -= 3;
                 // Cubeプレハブを元に、インスタンスを生成、
 
-                Instantiate(Cut1, tempPos1, Quaternion.Euler(0f, 0f, 0.0f));
-                Cut1.GetComponent<CutSuica>().Vel = new Vector3(-0.3f, 0.1f, 0);
-                Instantiate(Cut2, tempPos2, Quaternion.Euler(0f, 180f, 0.0f));
-                Cut2.GetComponent<CutSuica>().Vel = new Vector3(0.3f, 0.1f, 0);
+                Cut1 = Instantiate(Cut1, tempPos1, Quaternion.Euler(0f, 0f, 0.0f));
+                Cut1.GetComponent<CutSuica>().Vel = new Vector3(0.3f, 0.1f, 0);
+                Cut2 = Instantiate(Cut2, tempPos2, Quaternion.Euler(0f, 180f, 0.0f));
+                Cut2.GetComponent<CutSuica>().Vel = new Vector3(-0.3f, 0.1f, 0);
                 SoundManager.instance.SEPlay("おもちゃ切断SE");
                 Destroy(gameObject);
             }
