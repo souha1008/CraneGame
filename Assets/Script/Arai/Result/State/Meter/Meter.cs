@@ -52,10 +52,7 @@ public class Meter : ResultUI
 
         body_tf.sizeDelta = new Vector2(0, body_tf_defSize.y);
 
-        // test
         volumMax = GameObject.Find("Datas").GetComponent<ScoreData>().GetScoreParcent();
-        // testend
-        // スコア割合確認
     }
 
     void Update()
