@@ -106,7 +106,10 @@ public class IconManager : MonoBehaviour
         else
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene((worldIndex + 1) + "-" + (stageIndex + 1));
 #else
-        GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene((worldIndex + 1) + "-" + (stageIndex + 1));
+        if (Input.GetKey(KeyCode.M))
+            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("2-1");
+        else
+            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene((worldIndex + 1) + "-" + (stageIndex + 1));
 #endif
         return;
     }
