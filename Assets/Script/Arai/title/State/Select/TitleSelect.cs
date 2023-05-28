@@ -41,7 +41,7 @@ public class TitleSelect : TitleObject
 
         fade = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
 
-        settingobj = GameObject.Find("Title_OptionManager");
+        settingobj = GameObject.Find("Title_OptionManager").transform.GetChild(0).gameObject;
     }
 
     void Update()
@@ -49,7 +49,7 @@ public class TitleSelect : TitleObject
         if (fade.GetIsFade()) return;
         if (setting)
         {
-            if (!settingobj.transform.GetChild(0).gameObject.activeInHierarchy)
+            if (!settingobj.activeInHierarchy)
                 setting = false;
             return;
         }
