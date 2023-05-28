@@ -829,6 +829,7 @@ MonoBehaviour:
   - {fileID: 6972306137186954574}
   - {fileID: 71768703463890242}
   - {fileID: 8522230618388501404}
+  - {fileID: 8522230618388501404}
 --- !u!1 &991923578349694450
 GameObject:
   m_ObjectHideFlags: 0
@@ -4951,6 +4952,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9091206086096307687}
     m_Modifications:
+    - target: {fileID: 3186276134413708096, guid: 1740f324deb8f3b4a99bb1c9ebf39739,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.3529412
+      objectReference: {fileID: 0}
     - target: {fileID: 3186276134649792910, guid: 1740f324deb8f3b4a99bb1c9ebf39739,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5060,6 +5066,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Meter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186276135011046933, guid: 1740f324deb8f3b4a99bb1c9ebf39739,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.3529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186276135011046933, guid: 1740f324deb8f3b4a99bb1c9ebf39739,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186276135011046933, guid: 1740f324deb8f3b4a99bb1c9ebf39739,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186276135011046933, guid: 1740f324deb8f3b4a99bb1c9ebf39739,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1740f324deb8f3b4a99bb1c9ebf39739, type: 3}
