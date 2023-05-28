@@ -1986,6 +1986,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sarada (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2676685964034430604, guid: efdb1d4326d87534982947c9c48ece03,
+        type: 3}
+      propertyPath: NatArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 961326501}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efdb1d4326d87534982947c9c48ece03, type: 3}
 --- !u!4 &181931570 stripped
@@ -4251,7 +4256,7 @@ PrefabInstance:
     - target: {fileID: 627390849059349145, guid: d830fcdcdee406549a086fbde8a8b78e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.03
       objectReference: {fileID: 0}
     - target: {fileID: 627390849059349145, guid: d830fcdcdee406549a086fbde8a8b78e,
         type: 3}
@@ -4661,7 +4666,7 @@ PrefabInstance:
     - target: {fileID: 5061073302705246929, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.0312881
+      value: -2.94
       objectReference: {fileID: 0}
     - target: {fileID: 5061073302705246929, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
         type: 3}
@@ -5054,7 +5059,7 @@ PrefabInstance:
     - target: {fileID: 5061073302705246929, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.40051365
+      value: 0.52
       objectReference: {fileID: 0}
     - target: {fileID: 5061073302705246929, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
         type: 3}
@@ -6676,7 +6681,7 @@ PrefabInstance:
     - target: {fileID: 627390849059349145, guid: d830fcdcdee406549a086fbde8a8b78e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.646976
+      value: -1.48
       objectReference: {fileID: 0}
     - target: {fileID: 627390849059349145, guid: d830fcdcdee406549a086fbde8a8b78e,
         type: 3}
@@ -7175,6 +7180,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 961326499}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &961326501 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1597583003790018781, guid: 6f5afa97166f4d0459c63dca9e674309,
+    type: 3}
+  m_PrefabInstance: {fileID: 961326499}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29509aa73ea21014c81032423e23d893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -8417,22 +8434,22 @@ PrefabInstance:
     - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7031348
+      value: 0.70313525
       objectReference: {fileID: 0}
     - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.07758984
+      value: -0.077588275
       objectReference: {fileID: 0}
     - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.07737737
+      value: -0.077378936
       objectReference: {fileID: 0}
     - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.7025625
+      value: -0.70256203
       objectReference: {fileID: 0}
     - target: {fileID: 1449676679721715708, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
@@ -9381,6 +9398,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1304299411}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1304299413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1597583003790018781, guid: 6f5afa97166f4d0459c63dca9e674309,
+    type: 3}
+  m_PrefabInstance: {fileID: 1304299411}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29509aa73ea21014c81032423e23d893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1314230650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10138,7 +10167,7 @@ PrefabInstance:
     - target: {fileID: 5061073302705246929, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 5061073302705246929, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
         type: 3}
@@ -11384,7 +11413,7 @@ PrefabInstance:
     - target: {fileID: 2676685964034430595, guid: efdb1d4326d87534982947c9c48ece03,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.67
       objectReference: {fileID: 0}
     - target: {fileID: 2676685964034430595, guid: efdb1d4326d87534982947c9c48ece03,
         type: 3}
@@ -11431,6 +11460,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sarada
       objectReference: {fileID: 0}
+    - target: {fileID: 2676685964034430604, guid: efdb1d4326d87534982947c9c48ece03,
+        type: 3}
+      propertyPath: NatArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 1304299413}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efdb1d4326d87534982947c9c48ece03, type: 3}
 --- !u!4 &1717341179 stripped
