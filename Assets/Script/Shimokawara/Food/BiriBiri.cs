@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class BiriBiri : MonoBehaviour
 {
-    bool isSlow = false;
-    int SlowCnt = 0;
+    //bool isSlow = false;
+    //int SlowCnt = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        isSlow = false;
-        SlowCnt = 0;
+        //isSlow = false;
+        //SlowCnt = 0;
     }
 
     private void OnDestroy()
     {
-        Player2.instance.isSlow = false;
+        //Player2.instance.isSlow = false;
     }
 
     // Update is called once per frame
@@ -29,15 +29,15 @@ public class BiriBiri : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (SlowCnt <= 0)
-        {
-            isSlow = false;
-        }
+        //if (SlowCnt <= 0)
+        //{
+        //    isSlow = false;
+        //}
 
-        SlowCnt--;
+        //SlowCnt--;
 
 
-        Player2.instance.isSlow = isSlow;
+        //Player2.instance.isSlow = isSlow;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,8 +45,7 @@ public class BiriBiri : MonoBehaviour
         if(other.gameObject == Player2.instance.gameObject)
         {
             Debug.Log("‚Ñ‚è‚ñ‚è‚’");
-            SlowCnt = 40;
-            isSlow = true;
+            Player2.instance.PlayerSlow();
         }
     }
 }

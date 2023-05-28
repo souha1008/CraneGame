@@ -90,6 +90,8 @@ public class Player2 : MonoBehaviour
     public bool isChange = false;
     public int ChangeCnt = 0;
 
+
+    int SlowCnt = 0;
     //ジャンプキー
     //public KeyCode jumpKey = KeyCode.Space;
 
@@ -333,6 +335,7 @@ public class Player2 : MonoBehaviour
         //びりびりエフェクト
         if(!oldIsSlow && isSlow)
         {
+            Debug.Log("びりびりSE ");
             GameObject Biri = (GameObject)Resources.Load("lightning_fx_002");
             SoundManager.instance.SEPlay("ビリビリSE");
             Vector3 tempPos1 = transform.position;
@@ -341,6 +344,8 @@ public class Player2 : MonoBehaviour
             Biri = Instantiate(Biri, tempPos1, transform.rotation);
             Biri.gameObject.transform.parent = this.transform;
         }
+
+        SlowUpdate();
 
         oldIsSlow = isSlow;
     }
@@ -566,6 +571,23 @@ public class Player2 : MonoBehaviour
         tempPos.y = DefaultPos.y;
         transform.position = tempPos;
     }
+
+    public void PlayerSlow()
+    {
+        isSlow = true;
+        SlowCnt = 40;
+    }
+
+    void SlowUpdate()
+    {
+        if (SlowCnt <= 0)
+        {
+            isSlow = false;
+        }
+
+        SlowCnt--;
+    }
+
 
     //void NextAttach()
     //{
