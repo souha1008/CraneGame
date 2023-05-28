@@ -22,6 +22,12 @@ public class TitleSelect : TitleObject
 
     private float moveVolum;
 
+    private bool setting = false;
+    public bool Setting
+    {
+        set => setting = value;
+    }
+
     void Start()
     {
         m_Objects[m_Index].Activate();
@@ -32,6 +38,8 @@ public class TitleSelect : TitleObject
 
     void Update()
     {
+        if (setting) return;
+        
         if (!move)  CheckInput();
         else        Move();
     }
