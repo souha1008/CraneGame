@@ -35,7 +35,6 @@ public class Meter : ResultUI
 
     [SerializeField]
     private float waitTime = 0.8f;   // 待機時間
-    private float time = 0;
 
     private bool active = false;
 

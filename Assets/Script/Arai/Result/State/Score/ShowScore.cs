@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine.UI;
-using TMPro;
-
 public class ShowScore : ResultUI
 {
     [SerializeField]
@@ -23,8 +20,6 @@ public class ShowScore : ResultUI
     private float delay;
 
     private int index = 0;
-
-    private ScoreData data;
 
     private bool skip = false;
 
@@ -76,10 +71,5 @@ public class ShowScore : ResultUI
     {
         manager.SetState(ResultStateEnum.STATE.METER);
         Destroy(this);
-    }
-
-    public void SE()
-    {
-        if (!skip) manager.Sound.SEPlay("スコア表示SE");
     }
 }

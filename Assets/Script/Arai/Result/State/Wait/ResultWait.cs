@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ResultWait : ResultObject
 {
@@ -51,6 +50,7 @@ public class ResultWait : ResultObject
         {
             manager.Sound.SEPlay("戻るSE");
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
+            Destroy(this);
         }
     }
 }

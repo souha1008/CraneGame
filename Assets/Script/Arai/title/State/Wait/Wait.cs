@@ -30,6 +30,8 @@ public class Wait : TitleUI
     [SerializeField]
     private Wait_Pushed m_PushedAction;
 
+    private ReadIsFade fade;
+
     void Start()
     {
         m_Image      = gameObject.GetComponent<Image>();
@@ -38,6 +40,8 @@ public class Wait : TitleUI
         m_Ratio      = m_Alpha / 1.0f;
 
         m_Manager    = GameObject.Find("TitleManager").GetComponent<TitleManager>();
+
+        fade = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
     }
 
     void Update()
@@ -46,7 +50,7 @@ public class Wait : TitleUI
         if (m_PressButton) return;
         
         // 何か押された
-        if (Input.anyKeyDown)
+        if (!fade.GetIsFade() && Input.anyKeyDown)
         {
             m_PressButton = true;
             Invoke("ExitWait", m_WaitTime);
