@@ -53,7 +53,14 @@ public class MyButton: CircleFoodsInterFace
             if (other.gameObject.tag == "AttachFire")
                 ButtonState = true;
             if (other.gameObject.tag == "AttachKnife")
+            {
                 ButtonState = true;
+                if(other.GetComponent<Knife>())
+                {
+                    other.GetComponent<Knife>().NotCut();
+                }
+            }
+               
             if (other.gameObject.tag == "AttachHummer")
                 ButtonState = true;
             if (other.gameObject.tag == "LeftArm")

@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2401120580916821793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 65.39, y: 5, z: -181.5}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9136776207223309858}
@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 3736692271105308464}
+  skinnedMeshRenderer: {fileID: 0}
   Transfer:
   - 1
   - 0
@@ -309,7 +310,7 @@ PrefabInstance:
     - target: {fileID: 6964593559161796353, guid: a192f91f347dacb4aaa041376ae9476b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.468
+      value: -0.39
       objectReference: {fileID: 0}
     - target: {fileID: 6964593559161796353, guid: a192f91f347dacb4aaa041376ae9476b,
         type: 3}
