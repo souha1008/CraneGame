@@ -6,7 +6,7 @@ public class TransitionTex : MonoBehaviour
 {
     private Animator animator;
 
-    //[SerializeField] GameObject readIsFade;
+    [SerializeField] GameObject readIsFade;
 
     readonly float waitTime = 1.9f;
 
@@ -35,7 +35,7 @@ public class TransitionTex : MonoBehaviour
 
         yield return new WaitForSeconds(waitTime);
         
-        ReadIsFade.instance
+        readIsFade.GetComponent<ReadIsFade>().SetIsFade(false);
         Destroy(gameObject);
     }
 
