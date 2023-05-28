@@ -6,7 +6,7 @@ public class ReadIsFade : MonoBehaviour
 {
     public static ReadIsFade instance;
 
-    private bool isFade;
+    [SerializeField, ReadOnly] bool isFade;
 
     private void Awake()
     {
@@ -24,7 +24,6 @@ public class ReadIsFade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //isFade = false;
     }
 
     // Update is called once per frame

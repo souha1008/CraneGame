@@ -18,8 +18,7 @@ public class SceneChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isFade = false;
-        readIsFade.GetComponent<ReadIsFade>().SetIsFade(isFade);
+
     }
 
     // Update is called once per frame
