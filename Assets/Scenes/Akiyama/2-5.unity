@@ -2890,22 +2890,22 @@ PrefabInstance:
     - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7031352
+      value: 0.70313525
       objectReference: {fileID: 0}
     - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0775908
+      value: -0.077588275
       objectReference: {fileID: 0}
     - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.07737642
+      value: -0.077378936
       objectReference: {fileID: 0}
     - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.70256215
+      value: -0.70256203
       objectReference: {fileID: 0}
     - target: {fileID: 1449676679721715708, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
@@ -2967,8 +2967,44 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8389623048988796823, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
+        type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389623048988796823, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5, type: 3}
+--- !u!1 &306129838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4450400857508984537, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 306129837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &306129839 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2345546186395950493, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 306129837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &306129840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306129838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473a5b10caa6c5b48a2f857bfb4f6390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -0.255
+  meshRenderer: {fileID: 306129839}
 --- !u!1 &314822954
 GameObject:
   m_ObjectHideFlags: 0
@@ -10070,7 +10106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c45ecef68652654d9ce8230e9f4135d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.045
   AkiDistance: 6
   KadoDistance: 15
 --- !u!65 &1510612413
