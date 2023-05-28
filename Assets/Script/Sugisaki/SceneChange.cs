@@ -8,7 +8,6 @@ public class SceneChange : MonoBehaviour
     [SerializeField] string sceneName;
 
     [SerializeField] GameObject FadeInObject;
-    [SerializeField] GameObject readIsFade;
 
     readonly float waitTime = 1.0f;
 
@@ -24,7 +23,7 @@ public class SceneChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isFade = readIsFade.GetComponent<ReadIsFade>().GetIsFade();
+        isFade = ReadIsFade.instance.GetIsFade();
 
         if (Input.GetKeyDown(KeyCode.Return) && !isFade)
         {
@@ -41,8 +40,7 @@ public class SceneChange : MonoBehaviour
 
     IEnumerator Load()
     {
-        isFade = true;
-        readIsFade.GetComponent<ReadIsFade>().SetIsFade(isFade);
+        ReadIsFade.instance.SetIsFade(true);
 
         GameObject cameraObject = GameObject.Find("Main Camera");
 
