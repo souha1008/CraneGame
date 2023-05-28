@@ -23,7 +23,8 @@ public class SceneChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isFade = ReadIsFade.instance.GetIsFade();
+        if (ReadIsFade.instance)
+            isFade = ReadIsFade.instance.GetIsFade();
 
         if (Input.GetKeyDown(KeyCode.Return) && !isFade)
         {
