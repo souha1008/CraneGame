@@ -333,6 +333,7 @@ public class Player2 : MonoBehaviour
         //びりびりエフェクト
         if(!oldIsSlow && isSlow)
         {
+            Debug.Log("びりびりSE ");
             GameObject Biri = (GameObject)Resources.Load("lightning_fx_002");
             SoundManager.instance.SEPlay("ビリビリSE");
             Vector3 tempPos1 = transform.position;
