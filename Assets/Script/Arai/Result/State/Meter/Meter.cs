@@ -60,7 +60,7 @@ public class Meter : ResultUI
         if (!active) return;
 
         // 終了確認
-        if (!skip && (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0)))
+        if (!skip && (Input.GetKeyDown("joystick button 1") || Input.GetMouseButton(0)))
         {
             skip = true;
         }

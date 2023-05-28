@@ -41,7 +41,7 @@ public class TitleSelect : TitleObject
     /// </summary>
     private void CheckInput()
     {
-        if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
+        if (Input.GetKeyDown("joystick button 1") || Input.GetMouseButton(0))
         {
             m_Objects[m_Index].PushAction();
             manager.Sound.SEPlay("決定SE");

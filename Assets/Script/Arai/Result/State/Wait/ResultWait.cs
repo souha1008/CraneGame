@@ -47,7 +47,7 @@ public class ResultWait : ResultObject
 
     void Update()
     {
-        if (Input.GetKeyDown("joystick button 1") || Input.GetMouseButton(0))
+        if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
         {
             manager.Sound.SEPlay("戻るSE");
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");

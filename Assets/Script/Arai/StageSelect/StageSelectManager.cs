@@ -44,10 +44,14 @@ public class StageSelectManager : MonoBehaviour
 
     private SoundManager sound;
 
+    private ReadIsFade fade;
+
+    private ScoreData data;
+
     void Start()
     {
         var datas = GameObject.Find("Datas");
-        var data = datas.GetComponent<ScoreData>();
+        data = datas.GetComponent<ScoreData>();
         var save = datas.GetComponent<SaveManager>();
 
         // ワールド限界値取得
@@ -95,6 +99,8 @@ public class StageSelectManager : MonoBehaviour
 
         sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         if(!sound.CheckPlayBGM("タイトルBGM")) sound.BGMPlay("タイトルBGM", true);
+
+        fade = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
     }
 
     void Update()
@@ -102,25 +108,29 @@ public class StageSelectManager : MonoBehaviour
         if (!active)
         {
             // シーン遷移終了待機
-            
+            if (!fade.GetIsFade())
+            {
+                iconManagers[worldIndex].Activate(data.StageIndex);
+                active = true;
+            }
         }
         else
         {
             if (sceneChange.isFade)
             {
                 Inactivate();
-                //active = false;
-                //return;
+                active = false;
+                return;
             }
 
             // 選択された
-            if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
+            if (Input.GetKeyDown("joystick button 1") || Input.GetMouseButton(0))
             {
                 iconManagers[worldIndex].Pushed();
                 sound.SEPlay("ステージ決定SE");
             }
             // タイトル戻る
-            else if (Input.GetKeyDown("joystick button 1") ||  Input.GetMouseButton(2))
+            else if (Input.GetKeyDown("joystick button 0") ||  Input.GetMouseButton(2))
             {
                 GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
                 Inactivate();

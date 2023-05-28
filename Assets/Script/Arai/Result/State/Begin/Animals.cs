@@ -21,7 +21,7 @@ public class Animals : ResultObject
         for(int i = 0; i < animNum; ++i)
         {
             //child.GetChild(i).gameObject.GetComponent<Animator>().Play("w");
-            var a = child.GetChild(i).gameObject.GetComponent<Animator>();
+            child.GetChild(i).gameObject.GetComponent<Animator>().SetBool("Bad", true);
         }
     }
 }
