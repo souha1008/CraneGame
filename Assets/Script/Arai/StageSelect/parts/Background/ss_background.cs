@@ -11,16 +11,6 @@ public class ss_background : MonoBehaviour
 
     [SerializeField] private Image image;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-
-    }
-
     public void SetBG(int _worldindex)
     {
         image.sprite = bgs[_worldindex];
