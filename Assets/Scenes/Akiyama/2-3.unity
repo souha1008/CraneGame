@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.52853143, g: 0.55415887, b: 0.5465236, a: 1}
+  m_IndirectSpecularColor: {r: 0.5287309, g: 0.5508917, b: 0.54973257, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4103,6 +4103,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aaf9c45e9551f842aa6ad76e7000bcd, type: 3}
+--- !u!1001 &509112357
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7523452465650399444, guid: 26d7b02bff7bd4c4e848b2d027c5d29a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 7523452465650399444, guid: 26d7b02bff7bd4c4e848b2d027c5d29a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7523452465650399444, guid: 26d7b02bff7bd4c4e848b2d027c5d29a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7523452465650399444, guid: 26d7b02bff7bd4c4e848b2d027c5d29a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7523452465650399444, guid: 26d7b02bff7bd4c4e848b2d027c5d29a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7523452465650399444, guid: 26d7b02bff7bd4c4e848b2d027c5d29a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7523452465650399444, guid: 26d7b02bff7bd4c4e848b2d027c5d29a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7523452465650399444, guid: 26d7b02bff7bd4c4e848b2d027c5d29a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7523452465650399444, guid: 26d7b02bff7bd4c4e848b2d027c5d29a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7523452465650399444, guid: 26d7b02bff7bd4c4e848b2d027c5d29a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7523452465650399444, guid: 26d7b02bff7bd4c4e848b2d027c5d29a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7523452465650399445, guid: 26d7b02bff7bd4c4e848b2d027c5d29a,
+        type: 3}
+      propertyPath: m_Name
+      value: Shikiri
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 26d7b02bff7bd4c4e848b2d027c5d29a, type: 3}
 --- !u!1 &516138791
 GameObject:
   m_ObjectHideFlags: 0
@@ -6262,6 +6331,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2429045736847597352, guid: d615701f925a0b84a8c364ab8fe17495,
+        type: 3}
+      propertyPath: Changewait
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2429045736847597353, guid: d615701f925a0b84a8c364ab8fe17495,
         type: 3}
       propertyPath: m_Name
@@ -6980,7 +7054,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
