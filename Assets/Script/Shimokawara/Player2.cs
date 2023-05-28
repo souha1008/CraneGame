@@ -321,7 +321,7 @@ public class Player2 : MonoBehaviour
             //Debug.Log("速度変更");
         }
 
-        float temp = 1.5f;
+        float temp = 2.5f;
 
         if(Mathf.Abs(oldMoveX) <= temp && Mathf.Abs(oldMoveZ) <= temp
             && (Mathf.Abs(moveX) > temp || Mathf.Abs(moveZ) > temp))

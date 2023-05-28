@@ -3364,6 +3364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17a58fdd73f3db448b3c4e9a93e520df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Size: 0
   Move: 0
 --- !u!1 &399217896
 GameObject:
@@ -8202,6 +8203,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7031348
+      objectReference: {fileID: 0}
+    - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.07758984
+      objectReference: {fileID: 0}
+    - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.07737737
+      objectReference: {fileID: 0}
+    - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7025625
+      objectReference: {fileID: 0}
     - target: {fileID: 1449676679721715708, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_Name
@@ -10314,7 +10335,7 @@ MonoBehaviour:
   UseHammer: 1
   UseFire: 1
   m_Arm: {fileID: 1871770197}
-  MAX_SPEED: 9
+  MAX_SPEED: 18
   isSlow: 0
   NextAttachType: 2
   cameraObj: {fileID: 963194225}
