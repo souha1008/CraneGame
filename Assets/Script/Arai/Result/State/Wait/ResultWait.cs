@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ResultWait : ResultObject
 {
+    private bool last = false;
+
     void Start()
     {
         var datas = GameObject.Find("Datas");
@@ -33,6 +35,8 @@ public class ResultWait : ResultObject
                 {
                     data.SetIndexs(data.WorldIndex + 1, 0);
                 }
+                else
+                    last = true;
             }
             else
             {
@@ -49,7 +53,9 @@ public class ResultWait : ResultObject
         if (Input.GetKeyDown("joystick button 0") || Input.GetMouseButton(0))
         {
             manager.Sound.SEPlay("戻るSE");
-            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
+
+            if (!last) GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
+            else GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("Ending");
             Destroy(this);
         }
     }
