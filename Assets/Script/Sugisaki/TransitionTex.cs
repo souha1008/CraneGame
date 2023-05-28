@@ -18,7 +18,7 @@ public class TransitionTex : MonoBehaviour
         animator = GetComponent<Animator>();
 
         DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(readIsFade);
+        //DontDestroyOnLoad(readIsFade);
         StartCoroutine(nameof(Trans));
     }
     // Update is called once per frame
