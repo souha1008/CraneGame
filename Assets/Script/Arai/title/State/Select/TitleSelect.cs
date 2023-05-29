@@ -22,16 +22,38 @@ public class TitleSelect : TitleObject
 
     private float moveVolum;
 
+    private bool setting = false;
+    public bool Setting
+    {
+        set => setting = value;
+    }
+
+    private ReadIsFade fade;
+
+    private GameObject settingobj;
+
     void Start()
     {
         m_Objects[m_Index].Activate();
 
         gameObject.transform.position = gameObject.transform.position - new Vector3(0, offset, 0);
         moveVolum = offset / moveTime;
+
+        fade = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
+
+        settingobj = GameObject.Find("Title_OptionManager").transform.GetChild(0).gameObject;
     }
 
     void Update()
     {
+        if (fade.GetIsFade()) return;
+        if (setting)
+        {
+            if (!settingobj.activeInHierarchy)
+                setting = false;
+            return;
+        }
+        
         if (!move)  CheckInput();
         else        Move();
     }
@@ -45,7 +67,8 @@ public class TitleSelect : TitleObject
         {
             m_Objects[m_Index].PushAction();
             manager.Sound.SEPlay("決定SE");
-            Destroy(this);
+            if (m_Index != 1) Destroy(this);
+            else setting = true;
             return;
         }
         ///// 後で消す

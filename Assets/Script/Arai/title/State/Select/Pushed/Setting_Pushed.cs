@@ -7,6 +7,7 @@ public class Setting_Pushed : MonoBehaviour
     public void PushAction()
     {
         // 設定
-        GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
+        //GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
+        Title_OptionManager.instance.Call_Option();
     }
 }
