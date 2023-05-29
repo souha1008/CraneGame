@@ -87,8 +87,8 @@ public class PauseCoroutine : MonoBehaviour
 
     private void Awake()
     {
-        BGM_Slider.value = 1;
-        SE_Slider.value = 1;
+        BGM_Slider.value = SoundManager.instance.BGM_Volume;
+        SE_Slider.value = SoundManager.instance.SE_Volume;
         Pause_Canvas.gameObject.SetActive(false);
     }
 
