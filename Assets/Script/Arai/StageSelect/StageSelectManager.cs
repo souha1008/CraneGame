@@ -48,6 +48,12 @@ public class StageSelectManager : MonoBehaviour
 
     private ScoreData data;
 
+    void Awake()
+    {
+        fade = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
+        sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+    }
+
     void Start()
     {
         var datas = GameObject.Find("Datas");
@@ -96,11 +102,8 @@ public class StageSelectManager : MonoBehaviour
         sceneChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
 
         Inactivate(data.WorldIndex, data.StageIndex);
-
-        sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+       
         if(!sound.CheckPlayBGM("タイトルBGM")) sound.BGMPlay("タイトルBGM", true);
-
-        fade = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
     }
 
     void Update()
@@ -210,7 +213,7 @@ public class StageSelectManager : MonoBehaviour
         worldIndex += _way;
 
         active = false;
-        sound.SEPlay("選択SE");
+        if(!fade.GetIsFade()) sound.SEPlay("選択SE");
         StartCoroutine(MoveIcons(_way, _stageindex));
     }
 

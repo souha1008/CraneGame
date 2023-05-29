@@ -18,9 +18,10 @@ public class Tyfp : MonoBehaviour
 
     private ReadIsFade fade;
 
-    void Start()
+    void Awake()
     {
         tyfp = gameObject.GetComponent<Image>();
+        tyfp.color = Co.Const.CLEAR;
         fade = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
     }
 
