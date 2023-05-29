@@ -19,6 +19,13 @@ public class TitleManager : MonoBehaviour
         get => sound;
     }
 
+    private bool first = true;
+    public bool First
+    {
+        get => first;
+    }
+
+
     void Start()
     {
         sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
@@ -29,6 +36,7 @@ public class TitleManager : MonoBehaviour
         else
         {
             m_NowState = TitleStateEnum.STATE.SELECT;
+            first = false;
         }
         StateSetting();
     }
