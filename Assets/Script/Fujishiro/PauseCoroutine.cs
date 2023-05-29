@@ -262,7 +262,7 @@ public class PauseCoroutine : MonoBehaviour
                         {
                             Time.timeScale = 1.0f;
                             SoundManager.instance.SEPlay("Œˆ’èSE");
-                            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
                         }
                         break;
 
@@ -272,7 +272,7 @@ public class PauseCoroutine : MonoBehaviour
                         {
                             Time.timeScale = 1.0f;
                             SoundManager.instance.SEPlay("Œˆ’èSE");
-                            SceneManager.LoadScene("StageSelect");
+                            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
                         }
                         break;
                 }
