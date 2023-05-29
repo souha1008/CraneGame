@@ -19,12 +19,26 @@ public class TitleManager : MonoBehaviour
         get => sound;
     }
 
+    private bool first = true;
+    public bool First
+    {
+        get => first;
+    }
+
+
     void Start()
     {
-        StateSetting();
-
         sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
-        if(!sound.CheckPlayBGM("タイトルBGM")) sound.BGMPlay("タイトルBGM", true);
+        if(!sound.CheckPlayBGM("タイトルBGM"))
+        {
+            sound.BGMPlay("タイトルBGM", true);
+        }
+        else
+        {
+            m_NowState = TitleStateEnum.STATE.SELECT;
+            first = false;
+        }
+        StateSetting();
     }
 
     /// <summary>

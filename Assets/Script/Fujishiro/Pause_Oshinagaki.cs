@@ -38,6 +38,25 @@ public class Pause_Oshinagaki : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    private void LateUpdate()
+    {
+        if (GetComponent<PauseCoroutine>().GetIsPauseMenu() == true)
+        {
+            for (int i = 0; i < oshinagaki_Icon.Length; i++)
+            {
+                // Žg‚í‚È‚¢‚È‚çF‚ð‚Â‚¯‚È‚¢
+                if (oshinagaki_Icon[i].isUse == false)
+                {
+                    oshinagaki_Icon[i].Icon.color = notUseColor;
+                }
+                else
+                {
+                    oshinagaki_Icon[i].Icon.color = Color.white;
+                }
+            }
+        }
     }
 }

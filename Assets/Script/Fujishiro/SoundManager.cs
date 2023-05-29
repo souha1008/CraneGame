@@ -20,8 +20,8 @@ public class SoundManager : MonoBehaviour
     public SOUND_STRUCT[] keyBGM;
     public SOUND_STRUCT[] keySE;
 
-    [SerializeField, ReadOnly] float BGM_Volume = 1;
-    [SerializeField, ReadOnly] float SE_Volume = 1;
+    [SerializeField, ReadOnly] public float BGM_Volume = 1;
+    [SerializeField, ReadOnly] public float SE_Volume = 1;
 
 
     // Start is called before the first frame update

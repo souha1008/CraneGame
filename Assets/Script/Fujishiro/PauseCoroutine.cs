@@ -70,6 +70,12 @@ public class PauseCoroutine : MonoBehaviour
     {
         isPauseMenu = set;
     }
+
+    public bool GetIsPauseMenu()
+    {
+        return isPauseMenu;
+    }
+
     void SetPause(bool set)
     {
         mPaused = set;
@@ -81,8 +87,8 @@ public class PauseCoroutine : MonoBehaviour
 
     private void Awake()
     {
-        BGM_Slider.value = 1;
-        SE_Slider.value = 1;
+        BGM_Slider.value = SoundManager.instance.BGM_Volume;
+        SE_Slider.value = SoundManager.instance.SE_Volume;
         Pause_Canvas.gameObject.SetActive(false);
     }
 
@@ -101,7 +107,7 @@ public class PauseCoroutine : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(pauseKey) && mPauseCooldown <= 0.0f && mPaused == false)
+        if (Input.GetKeyDown(pauseKey) && mPauseCooldown <= 0.0f && mPaused == false && ReadIsFade.instance.GetIsFade() == false)
         {
             Pause();
         }
@@ -256,7 +262,7 @@ public class PauseCoroutine : MonoBehaviour
                         {
                             Time.timeScale = 1.0f;
                             SoundManager.instance.SEPlay("Œˆ’èSE");
-                            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(SceneManager.GetActiveScene().name);
                         }
                         break;
 
@@ -266,7 +272,7 @@ public class PauseCoroutine : MonoBehaviour
                         {
                             Time.timeScale = 1.0f;
                             SoundManager.instance.SEPlay("Œˆ’èSE");
-                            SceneManager.LoadScene("StageSelect");
+                            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
                         }
                         break;
                 }

@@ -48,6 +48,12 @@ public class StageSelectManager : MonoBehaviour
 
     private ScoreData data;
 
+    void Awake()
+    {
+        fade = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
+        sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+    }
+
     void Start()
     {
         var datas = GameObject.Find("Datas");
@@ -96,11 +102,8 @@ public class StageSelectManager : MonoBehaviour
         sceneChange = GameObject.Find("SceneChange").GetComponent<SceneChange>();
 
         Inactivate(data.WorldIndex, data.StageIndex);
-
-        sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+       
         if(!sound.CheckPlayBGM("タイトルBGM")) sound.BGMPlay("タイトルBGM", true);
-
-        fade = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
     }
 
     void Update()
@@ -124,13 +127,13 @@ public class StageSelectManager : MonoBehaviour
             }
 
             // 選択された
-            if (Input.GetKeyDown("joystick button 1") || Input.GetMouseButton(0))
+            if (Input.GetKeyDown("joystick button 1"))
             {
                 iconManagers[worldIndex].Pushed();
                 sound.SEPlay("ステージ決定SE");
             }
             // タイトル戻る
-            else if (Input.GetKeyDown("joystick button 0") ||  Input.GetMouseButton(2))
+            else if (Input.GetKeyDown("joystick button 0"))
             {
                 GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
                 Inactivate();
@@ -138,28 +141,18 @@ public class StageSelectManager : MonoBehaviour
                 Destroy(this);
             }
             // ワールド移動右
-            else if ((Input.GetKeyDown("joystick button 5") ||  Input.GetKeyDown(KeyCode.D)) && worldIndex < worldIndexLimit)
+            else if (Input.GetKeyDown("joystick button 5") && worldIndex < worldIndexLimit)
             {
                 Inactivate(1);
             }
             // ワールド移動左
-            else if ((Input.GetKeyDown("joystick button 4") ||  Input.GetKeyDown(KeyCode.A)) && worldIndex > 0)
+            else if (Input.GetKeyDown("joystick button 4") && worldIndex > 0)
             {
                 Inactivate(-1);
             }
             // ステージ移動
             else
             {
-                //////////////////////////////////////////////
-                if (Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    iconManagers[worldIndex].MoveCursor(1);
-                }
-                else if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    iconManagers[worldIndex].MoveCursor(-1);
-                }
-                //////////////////////////////////////////////
                 // 十字キー入力
                 {
                     var newvolum = Input.GetAxis("JuujiKeyX");
@@ -220,7 +213,7 @@ public class StageSelectManager : MonoBehaviour
         worldIndex += _way;
 
         active = false;
-        sound.SEPlay("選択SE");
+        if(!fade.GetIsFade()) sound.SEPlay("選択SE");
         StartCoroutine(MoveIcons(_way, _stageindex));
     }
 
