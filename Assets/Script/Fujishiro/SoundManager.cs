@@ -37,8 +37,6 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        BGM_Volume = 1;
-        SE_Volume = 1;
         BGMaudioSource.volume = BGM_Volume;
         SEloopAudioSource.volume = SE_Volume;
         SEaudioSource.volume = SE_Volume;
