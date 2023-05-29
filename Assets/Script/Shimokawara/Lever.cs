@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
-    float MAX_ANGLE = 45;
+    float MAX_ANGLE = 20;
 
     Vector3 DefaultVector = new Vector3(0, 0, -90);
     // Start is called before the first frame update
