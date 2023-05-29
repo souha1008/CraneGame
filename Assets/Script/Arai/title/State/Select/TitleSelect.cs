@@ -36,9 +36,15 @@ public class TitleSelect : TitleObject
     {
         m_Objects[m_Index].Activate();
 
-        gameObject.transform.position = gameObject.transform.position - new Vector3(0, offset, 0);
-        moveVolum = offset / moveTime;
-
+        if (manager.First)
+        {
+            gameObject.transform.position = gameObject.transform.position - new Vector3(0, offset, 0);
+            moveVolum = offset / moveTime;
+        }
+        else
+        {
+            move = false;
+        }
         fade = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
 
         settingobj = GameObject.Find("Title_OptionManager").transform.GetChild(0).gameObject;
@@ -63,7 +69,7 @@ public class TitleSelect : TitleObject
     /// </summary>
     private void CheckInput()
     {
-        if (Input.GetKeyDown("joystick button 1") || Input.GetMouseButton(0))
+        if (Input.GetKeyDown("joystick button 1"))
         {
             m_Objects[m_Index].PushAction();
             manager.Sound.SEPlay("決定SE");
@@ -71,10 +77,6 @@ public class TitleSelect : TitleObject
             else setting = true;
             return;
         }
-        ///// 後で消す
-        if(Input.GetKeyDown(KeyCode.RightArrow)) SelectChange(-1);
-        if(Input.GetKeyDown(KeyCode.LeftArrow)) SelectChange(1);
-        /////
         
         // 十字キー入力
         {

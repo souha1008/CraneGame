@@ -8,8 +8,6 @@ public class Tyfp : MonoBehaviour
 {
     private Image tyfp;
 
-    private Color zero = new Color(1, 1, 1, 0);
-
     private float param = 0;
 
     [SerializeField]
@@ -45,7 +43,7 @@ public class Tyfp : MonoBehaviour
 
         while(true)
         {
-            tyfp.color = Color.Lerp(zero, Color.white, param);
+            tyfp.color = Color.Lerp(Co.Const.CLEAR, Color.white, param);
             param += 0.0016f;
 
             if (tyfp.color.a >= 1)
