@@ -13,10 +13,25 @@ public class Logo : MonoBehaviour
     [SerializeField]
     private float waittime = 1;
 
-    void Start()
+    private bool skip = false;
+
+    void Awake()
     {
         logo = gameObject.GetComponent<Image>();
+        logo.color = Co.Const.CLEAR;
+    }
+
+    void Start()
+    {
         StartCoroutine(Fade());
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown("joystick button 1"))
+        {
+            skip = true;
+        }
     }
 
     private IEnumerator Fade()
@@ -31,7 +46,7 @@ public class Logo : MonoBehaviour
             if (logo.color.a >= 1)
                 break;
             else
-                yield return wait;
+                if (!skip) yield return wait;
         }
         
         yield return new WaitForSeconds(waittime);
