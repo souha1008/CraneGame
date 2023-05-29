@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
-    float MaxAngle = 60;
-
+    float MaxAngle = 20;
+    Vector3 DefaultVector = new Vector3(0, 0, -90);
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +23,15 @@ public class Lever : MonoBehaviour
 
         float Power = Mathf.Sqrt(LeftStick.x * LeftStick.x + LeftStick.y * LeftStick.y);
 
-
-        transform.rotation = Quaternion.AngleAxis(Power, new Vector3(LeftStick.y, 0, -LeftStick.x));
+        if(Power == 0)
+        {
+            transform.rotation = Quaternion.Euler(DefaultVector);
+        }
+        else
+        {
+            transform.rotation = Quaternion.AngleAxis(Power * MaxAngle, new Vector3(LeftStick.y, 0, -LeftStick.x)) * Quaternion.Euler(DefaultVector);
+        }
+       
 
     }
 }

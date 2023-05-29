@@ -15,9 +15,15 @@ public class MyButton: CircleFoodsInterFace
     bool OnceOK;
     int Cnt = 0;
 
+    public GameObject Button;
+    float DefaultY = 4.619977f; 
+
     void Start()
     {
+        //DefaultY = Button.transform.position.y;
+
         cookMoveManager = GameObject.FindObjectOfType<CookMoveManager>();
+        Button.transform.position = new Vector3(Button.transform.position.x, DefaultY , Button.transform.position.z);
         OnceOK = true;
         ButtonState = false;
         Cnt = 0;
@@ -40,8 +46,11 @@ public class MyButton: CircleFoodsInterFace
         {
             OnceOK = false;
             //シーン遷移処理
+            Button.transform.position = new Vector3(Button.transform.position.x, DefaultY - 0.7f, Button.transform.position.z);
             cookMoveManager.ChangeSign();
             Debug.Log("ボタンシーンチェンジ");
+            SoundManager.instance.SEPlay("シャッター開閉SE");
+            SoundManager.instance.SEPlay("ボタン押下SE");
         }
 
     }
