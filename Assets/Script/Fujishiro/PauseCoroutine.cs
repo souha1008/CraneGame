@@ -107,7 +107,7 @@ public class PauseCoroutine : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(pauseKey) && mPauseCooldown <= 0.0f && mPaused == false)
+        if (Input.GetKeyDown(pauseKey) && mPauseCooldown <= 0.0f && mPaused == false && ReadIsFade.instance.GetIsFade() == false)
         {
             Pause();
         }
