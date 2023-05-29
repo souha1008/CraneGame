@@ -70,6 +70,12 @@ public class PauseCoroutine : MonoBehaviour
     {
         isPauseMenu = set;
     }
+
+    public bool GetIsPauseMenu()
+    {
+        return isPauseMenu;
+    }
+
     void SetPause(bool set)
     {
         mPaused = set;
