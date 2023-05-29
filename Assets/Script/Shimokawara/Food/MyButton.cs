@@ -49,6 +49,8 @@ public class MyButton: CircleFoodsInterFace
             Button.transform.position = new Vector3(Button.transform.position.x, DefaultY - 0.7f, Button.transform.position.z);
             cookMoveManager.ChangeSign();
             Debug.Log("ボタンシーンチェンジ");
+            SoundManager.instance.SEPlay("シャッター開閉SE");
+            SoundManager.instance.SEPlay("ボタン押下SE");
         }
 
     }
