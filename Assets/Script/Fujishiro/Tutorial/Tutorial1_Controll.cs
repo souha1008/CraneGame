@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Tutorial1_Controll : MonoBehaviour
 {
+    public static Tutorial1_Controll instance;
     [SerializeField] GameObject Tutorial_Canvas;
     [SerializeField] GameObject Sprite_Catcher;
     [SerializeField, ReadOnly]public static bool TutorialEnabled = true;
@@ -17,6 +18,7 @@ public class Tutorial1_Controll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         Tutorial_image1.SetActive(true);
         Tutorial_image2.SetActive(false);
     }
