@@ -10,4 +10,8 @@ public class SaveData
     public int stageindex = 0;
 
     public int[] data = new int [Co.Const.STAGE_NUM * Co.Const.WORLD_NUM];
+
+    public float bgmvolum = 1;
+
+    public float sevolum = 1;
 }
