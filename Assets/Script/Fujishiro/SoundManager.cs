@@ -146,6 +146,7 @@ public class SoundManager : MonoBehaviour
     public void BGMStop()
     {
         BGMaudioSource.Stop();
+        BGMaudioSource.clip = null;
     }
 
     public void SEStop()
