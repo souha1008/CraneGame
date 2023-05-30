@@ -67,7 +67,7 @@ public class Meter : ResultUI
 
     private IEnumerator GainMeter()
     {
-        var waitframe = new WaitForSecondsRealtime(0.016f);
+        var waitframe = new WaitForSecondsRealtime(0.004f);
 
         while(volum < volumMax)
         {

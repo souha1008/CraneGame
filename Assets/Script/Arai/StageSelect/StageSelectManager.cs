@@ -48,6 +48,8 @@ public class StageSelectManager : MonoBehaviour
 
     private ScoreData data;
 
+    private bool fadebool = true;
+
     void Awake()
     {
         fade = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
@@ -111,9 +113,10 @@ public class StageSelectManager : MonoBehaviour
         if (!active)
         {
             // シーン遷移終了待機
-            if (!fade.GetIsFade())
+            if (!fade.GetIsFade() && fadebool)
             {
                 iconManagers[worldIndex].Activate(data.StageIndex);
+                fadebool = false;
                 active = true;
             }
         }
