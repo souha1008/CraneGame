@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Tutorial1_Controll : MonoBehaviour
 {
-    public static Tutorial1_Controll instance;
     [SerializeField] GameObject Tutorial_Canvas;
     [SerializeField] GameObject Sprite_Catcher;
     [SerializeField, ReadOnly]public static bool TutorialEnabled = true;
@@ -18,9 +17,12 @@ public class Tutorial1_Controll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
         Tutorial_image1.SetActive(true);
         Tutorial_image2.SetActive(false);
+        if(TutorialEnabled == false) 
+        {
+            Destroy(GameObject.Find("Tutorial"));
+        }
     }
 
     // Update is called once per frame
@@ -33,8 +35,12 @@ public class Tutorial1_Controll : MonoBehaviour
                 Time.timeScale = 0;
             }
         }
+        if (TutorialEnabled == false)
+        {
+            Destroy(GameObject.Find("Tutorial"));
+        }
 
-        if(Input.GetKeyDown(KeyCode.JoystickButton1) && TutorialEnabled && next == true)
+        if (Input.GetKeyDown(KeyCode.JoystickButton1) && TutorialEnabled && next == true)
         {
             TutorialEnabled = false;
             Time.timeScale = 1;
@@ -72,15 +78,5 @@ public class Tutorial1_Controll : MonoBehaviour
 
         Tutorial_Canvas.gameObject.SetActive(TutorialEnabled);
         Sprite_Catcher.gameObject.SetActive(TutorialEnabled);
-
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            SceneManager.LoadScene("PauseTest");
-        }
-
-        if (GameObject.Find("Tutorial"))
-        {
-            return;
-        }
     }
 }
