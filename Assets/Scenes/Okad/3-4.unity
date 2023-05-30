@@ -8603,6 +8603,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8389623048988796823, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5, type: 3}
 --- !u!1 &992062954 stripped
@@ -11770,7 +11775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c45ecef68652654d9ce8230e9f4135d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.045
   AkiDistance: 6
   KadoDistance: 15
 --- !u!65 &1510612413
