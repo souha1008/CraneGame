@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 4985219653914186488}
+  skinnedMeshRenderer: {fileID: 0}
   Transfer:
   - 1
   - 0
@@ -476,7 +477,7 @@ PrefabInstance:
     - target: {fileID: 1715607391593182118, guid: e1c293381b6b5074e91e563dcf022565,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1715607391593182118, guid: e1c293381b6b5074e91e563dcf022565,
         type: 3}
@@ -486,12 +487,12 @@ PrefabInstance:
     - target: {fileID: 1715607391593182118, guid: e1c293381b6b5074e91e563dcf022565,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1715607391593182118, guid: e1c293381b6b5074e91e563dcf022565,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1715607391593182118, guid: e1c293381b6b5074e91e563dcf022565,
         type: 3}
@@ -501,7 +502,7 @@ PrefabInstance:
     - target: {fileID: 1715607391593182118, guid: e1c293381b6b5074e91e563dcf022565,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1715607391593182118, guid: e1c293381b6b5074e91e563dcf022565,
         type: 3}
