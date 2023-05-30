@@ -2232,7 +2232,7 @@ MonoBehaviour:
   ConvayorModel: {fileID: 1543475843}
   PlaneModel: {fileID: 1543475842}
   isConvayor: 0000010001
-  MAX_SCORE: 0000000000000000000000000000000000000000
+  MAX_SCORE: 3c0000001e000000500000003c00000028000000
   AllTime: 0
 --- !u!4 &244182721
 Transform:
@@ -2462,6 +2462,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086896220687303407, guid: 0e4ee910df44a9a4ab24e80f346b949f,
+        type: 3}
+      propertyPath: oshinagaki_Icon.Array.data[4].isUse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086896220687303407, guid: 0e4ee910df44a9a4ab24e80f346b949f,
+        type: 3}
+      propertyPath: oshinagaki_Icon.Array.data[6].isUse
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e4ee910df44a9a4ab24e80f346b949f, type: 3}
@@ -10748,9 +10758,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseChatcher: 1
-  UseKnife: 1
+  UseKnife: 0
   UseHammer: 1
-  UseFire: 1
+  UseFire: 0
   m_Arm: {fileID: 1871770197}
   MAX_SPEED: 18
   isSlow: 0

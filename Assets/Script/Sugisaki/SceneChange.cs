@@ -7,17 +7,21 @@ public class SceneChange : MonoBehaviour
 {
     [SerializeField] string sceneName;
 
+    private GameObject FadeObject;
+
     [SerializeField] GameObject FadeInObject;
+
+    [SerializeField] GameObject LastFadeObject;
 
     readonly float waitTime = 1.0f;
 
-    [SerializeField] float Changewait;
+    private float Changewait;
 
     public bool isFade;
     // Start is called before the first frame update
     void Start()
     {
-
+        FadeObject = FadeInObject;
     }
 
     // Update is called once per frame
@@ -32,11 +36,24 @@ public class SceneChange : MonoBehaviour
         }
     }
 
-    public void LoadScene(string scene)
+    public void LoadScene(string scene, int checkEnd = 0)
     {
         sceneName = scene;
         if (!isFade)
+        {
+            Changewait = checkEnd;
+
+            if (checkEnd == 1) 
+            {
+                FadeObject = LastFadeObject;
+            }
+            else
+            {
+                FadeObject = FadeInObject;
+            }
+
             StartCoroutine(nameof(Load));
+        }
     }
 
     IEnumerator Load()
@@ -51,9 +68,9 @@ public class SceneChange : MonoBehaviour
         position.y = position.y - 1.0f;
         position.z = position.z + 10.0f;
         rotate.y = rotate.y + 180.0f;
-        Instantiate(FadeInObject, position, rotate);
+        Instantiate(FadeObject, position, rotate);
 
-        yield return new WaitForSeconds(waitTime + Changewait);
+        yield return new WaitForSeconds(waitTime);
 
         SceneManager.LoadScene(sceneName);
     }
