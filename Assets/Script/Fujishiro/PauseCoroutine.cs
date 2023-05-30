@@ -263,6 +263,7 @@ public class PauseCoroutine : MonoBehaviour
                             Time.timeScale = 1.0f;
                             SoundManager.instance.SEPlay("Œˆ’èSE");
                             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(SceneManager.GetActiveScene().name);
+                            yield return new WaitForSecondsRealtime(3);
                             yield break;
                         }
                         break;
