@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.52853143, g: 0.55415887, b: 0.5465236, a: 1}
+  m_IndirectSpecularColor: {r: 0.5287309, g: 0.5508917, b: 0.54973257, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5de718f7f82a9764e882175ee3dc7871,
+    type: 2}
   m_LightingSettings: {fileID: 475463491}
 --- !u!196 &4
 NavMeshSettings:
@@ -2215,7 +2216,7 @@ MonoBehaviour:
   - {fileID: 1781873757}
   - {fileID: 1855098180}
   FazeTime: 18000
-  SPEED_CLEAR_TIME: 10
+  SPEED_CLEAR_TIME: 200
   FPS_Time: 0
   START_STOP_FLAME: 240
   SYATTA_STOP_FLAME: 14
@@ -2225,7 +2226,7 @@ MonoBehaviour:
   ConvayorModel: {fileID: 886895388}
   PlaneModel: {fileID: 886895387}
   isConvayor: 0000010001
-  MAX_SCORE: 0000000000000000000000000000000000000000
+  MAX_SCORE: 3200000064000000460000005a00000046000000
   AllTime: 0
 --- !u!4 &244182721
 Transform:
@@ -6312,22 +6313,22 @@ PrefabInstance:
     - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70313567
+      value: 0.6730736
       objectReference: {fileID: 0}
     - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.077589355
+      value: -0.276248
       objectReference: {fileID: 0}
     - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.077377856
+      value: 0.17417759
       objectReference: {fileID: 0}
     - target: {fileID: 71363531115610301, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.7025616
+      value: -0.663567
       objectReference: {fileID: 0}
     - target: {fileID: 1449676679721715708, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
         type: 3}
