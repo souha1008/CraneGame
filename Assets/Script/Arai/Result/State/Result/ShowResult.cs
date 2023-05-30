@@ -47,7 +47,7 @@ public class ShowResult : ResultUI
             GameObject.Find("Animals(Clone)").GetComponent<Animals>().Bad();
         }
 
-        StartCoroutine(Next());
+        StartCoroutine(Next(result));
     }
 
     public void Excellent()
@@ -58,11 +58,14 @@ public class ShowResult : ResultUI
         manager.Sound.SEPlay("エクセレントSE");
     }
 
-    private IEnumerator Next()
+    private IEnumerator Next(ResultEnum.RESULT _result)
     {
         yield return new WaitForSecondsRealtime(waittime);
 
-        manager.SetState(ResultStateEnum.STATE.BADGE);
+        if (_result == ResultEnum.RESULT.BAD)
+            manager.SetState(ResultStateEnum.STATE.WAIT);
+        else
+            manager.SetState(ResultStateEnum.STATE.BADGE);
 
         yield break;
     }
