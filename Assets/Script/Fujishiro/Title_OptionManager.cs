@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Title_OptionManager : MonoBehaviour
 {
     public static Title_OptionManager instance;
-    [SerializeField][Tooltip("‰Ÿ‚µ‚½‚çŒˆ’è‚·‚é")] KeyCode KetteiKey = KeyCode.Joystick1Button1;
-    [SerializeField][Tooltip("‰Ÿ‚µ‚½‚çƒLƒƒƒ“ƒZƒ‹")] KeyCode BackKey = KeyCode.Joystick1Button0;
-    [SerializeField][Tooltip("‰ºƒL[")] KeyCode DownArrow = KeyCode.DownArrow;
-    [SerializeField][Tooltip("‰ºƒL[")] KeyCode UpArrow = KeyCode.UpArrow;
+    [SerializeField][Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çŒˆï¿½è‚·ï¿½ï¿½")] KeyCode KetteiKey = KeyCode.Joystick1Button1;
+    [SerializeField][Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½")] KeyCode BackKey = KeyCode.Joystick1Button0;
+    [SerializeField][Tooltip("ï¿½ï¿½ï¿½Lï¿½[")] KeyCode DownArrow = KeyCode.DownArrow;
+    [SerializeField][Tooltip("ï¿½ï¿½ï¿½Lï¿½[")] KeyCode UpArrow = KeyCode.UpArrow;
 
     [SerializeField] GameObject Option_Canvas;
     [SerializeField] Slider BGM_slider;
@@ -50,7 +49,7 @@ public class Title_OptionManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             Option_Canvas.SetActive(true);
-            if (GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ƒ|[ƒYŠJ‚­SE");
+            if (GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ï¿½|ï¿½[ï¿½Yï¿½Jï¿½ï¿½SE");
             StartCoroutine(C_Option());
         }
     }
@@ -84,42 +83,42 @@ public class Title_OptionManager : MonoBehaviour
         {
             if (Input.GetKeyDown(UpArrow) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
             {
-                Debug.Log("ã");
+                Debug.Log("ï¿½ï¿½");
                 OptionSelectCount--;
                 prevAxis = Input.GetAxis("Vertical");
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("‘I‘ğSE");
+                    SoundManager.instance.SEPlay("ï¿½Iï¿½ï¿½SE");
                 if (OptionSelectCount < 0) OptionSelectCount = 1;
             }
 
             if (Input.GetKeyDown(DownArrow) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
             {
-                Debug.Log("‰º");
+                Debug.Log("ï¿½ï¿½");
                 OptionSelectCount++;
                 prevAxis = Input.GetAxis("Vertical");
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("‘I‘ğSE");
+                    SoundManager.instance.SEPlay("ï¿½Iï¿½ï¿½SE");
                 if (OptionSelectCount > 1) OptionSelectCount = 0;
             }
 
-            // “ü—Í–³‚µ
+            // ï¿½ï¿½ï¿½Í–ï¿½ï¿½ï¿½
             if (Input.GetAxis("Vertical") == 0)
             {
                 prevAxis = 0;
             }
 
-            // ƒIƒvƒVƒ‡ƒ“I‚í‚è
+            // ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½
             if(Input.GetKeyDown(BackKey))
             {
                 Option_Canvas.SetActive(false);
                 isOption = false;
-                SoundManager.instance.SEPlay("–ß‚éSE");
+                SoundManager.instance.SEPlay("ï¿½ß‚ï¿½SE");
                 OptionSelectCount = 0;
                 Time.timeScale = 1;
                 yield break;
             }
 
-            // ¡g‚Á‚Ä‚¢‚éƒXƒ‰ƒCƒ_[‚Ì‘I‘ğ
+            // ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Cï¿½_ï¿½[ï¿½Ì‘Iï¿½ï¿½
             switch (OptionSelectCount)
             {
                 case 0:
@@ -135,7 +134,7 @@ public class Title_OptionManager : MonoBehaviour
             if (value > 0.3f && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("‰¹—Ê’²®SE");
+                    SoundManager.instance.SEPlay("ï¿½ï¿½ï¿½Ê’ï¿½ï¿½ï¿½SE");
                 nowslider.value += slider_rate;
 
                 if (nowslider == BGM_slider)
@@ -148,7 +147,7 @@ public class Title_OptionManager : MonoBehaviour
             if (value < -0.3f && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("‰¹—Ê’²®SE");
+                    SoundManager.instance.SEPlay("ï¿½ï¿½ï¿½Ê’ï¿½ï¿½ï¿½SE");
                 nowslider.value -= slider_rate;
 
                 if (nowslider == BGM_slider)
