@@ -346,48 +346,56 @@ public class CircleFoodsInterFace : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {//地上なら
-        if(isGround)
+        //if(isGround)
         {
             if (other.gameObject.tag == "AttachHummer")
             {
                 Hummer(other);
-                if (m_HummerAction == HummerAction.SCALE)
+                if (isGround)
                 {
+                    if (m_HummerAction == HummerAction.SCALE)
+                    {
 
-                    SoundManager.instance.SEPlay("おもちゃ潰しSE");
+                        SoundManager.instance.SEPlay("おもちゃ潰しSE");
 
-                    Vector3 temp = transform.localScale;
-                    //Debug.Log("transform.localScale");
-                    float Moving = temp.y * 0.40f;
+                        Vector3 temp = transform.localScale;
+                        //Debug.Log("transform.localScale");
+                        float Moving = temp.y * 0.40f;
 
-                    transform.position = new Vector3(transform.position.x, transform.position.y - Moving, transform.position.z);
-                    transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * 0.1f, transform.localScale.z);
+                        transform.position = new Vector3(transform.position.x, transform.position.y - Moving, transform.position.z);
+                        transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * 0.1f, transform.localScale.z);
 
-                    //変更
-                    //移動も回転もしないようにする
-                    GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-                    m_HummerAction = HummerAction.STAY;
-                    m_CutAction = CutAction.CANNOT;
-                    m_FireAction = FireAction.STAY;
-                    m_ChachAction = ChachAction.CANNOT;
+                        //変更
+                        //移動も回転もしないようにする
+                        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                        m_HummerAction = HummerAction.STAY;
+                        m_CutAction = CutAction.CANNOT;
+                        m_FireAction = FireAction.STAY;
+                        m_ChachAction = ChachAction.CANNOT;
 
-                    isNoAction = true;
+                        isNoAction = true;
 
-                    //Debug.Log("ハンマー2");
+                        //Debug.Log("ハンマー2");
+                    }
                 }
+                    
             }
 
             else if (other.gameObject.tag == "AttachKnife")
             {
                 Cut(other);
-                if (m_CutAction == CutAction.CANNOT)
+                //if (isGround)
                 {
-                    //if(!gameObject.GetComponent<CutDaikon>())
+                    if (m_CutAction == CutAction.CANNOT)
                     {
-                        other.gameObject.GetComponent<Knife>().NotCut();
-                    }
+                        //if(!gameObject.GetComponent<CutDaikon>())
+                        {
+                            other.gameObject.GetComponent<Knife>().NotCut();
+                        }
 
+                    }
                 }
+                    
 
             }
             else if (other.gameObject.tag == "AttachFire")
