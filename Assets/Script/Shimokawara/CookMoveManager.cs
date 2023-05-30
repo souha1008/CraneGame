@@ -140,7 +140,7 @@ public class CookMoveManager : MonoBehaviour
             }
 
             
-            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
+            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest", 1);
         }
         else
         {

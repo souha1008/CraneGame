@@ -2297,7 +2297,7 @@ MonoBehaviour:
   ConvayorModel: {fileID: 716271309}
   PlaneModel: {fileID: 304989417}
   isConvayor: 0000000000
-  MAX_SCORE: 14000000280000001e0000003200000028000000
+  MAX_SCORE: 14000000280000000a000000320000001e000000
   AllTime: 0
 --- !u!4 &244182721
 Transform:
@@ -5792,6 +5792,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 441560036693368097, guid: 534dd4ec4562da04a973c4a46c3dea7a,
+        type: 3}
+      propertyPath: Border
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7608055985425368242, guid: 534dd4ec4562da04a973c4a46c3dea7a,
         type: 3}
       propertyPath: m_Name

@@ -49,7 +49,7 @@ public class Basket : FoodsSupportInterFace
                 }
                 else
                 {
-                    MikanArray[i].isClear = false; ;
+                    //MikanArray[i].isClear = false; ;
                 }
             }
             
