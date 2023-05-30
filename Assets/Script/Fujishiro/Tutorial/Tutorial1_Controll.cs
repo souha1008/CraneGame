@@ -36,6 +36,7 @@ public class Tutorial1_Controll : MonoBehaviour
         {
             TutorialEnabled = false;
             Time.timeScale = 1;
+            this.gameObject.SetActive(TutorialEnabled);
         }
         if (Input.GetKeyDown(KeyCode.JoystickButton1) && TutorialEnabled && next == false)
         {
@@ -73,6 +74,11 @@ public class Tutorial1_Controll : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             SceneManager.LoadScene("PauseTest");
+        }
+
+        if (GameObject.Find("Tutorial"))
+        {
+            return;
         }
     }
 }
