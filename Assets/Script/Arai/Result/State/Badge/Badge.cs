@@ -62,7 +62,7 @@ public class Badge : MonoBehaviour
 
         float param = 0;
 
-        var wff = new WaitForSecondsRealtime(0.016f);
+        var wff = new WaitForSecondsRealtime(0.004f);
 
         while(param < 1)
         {
