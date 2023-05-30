@@ -110,7 +110,7 @@ public class Suica: CircleFoodsInterFace
 
     public override void Cut(Collider other)
     {
-        if (m_CutAction == CutAction.CAN && isGround)
+        if (m_CutAction == CutAction.CAN /*&& isGround*/)
         {
             float SizeX = transform.localScale.x;
 
