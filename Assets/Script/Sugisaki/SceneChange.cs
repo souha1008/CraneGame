@@ -30,10 +30,10 @@ public class SceneChange : MonoBehaviour
         if (ReadIsFade.instance)
             isFade = ReadIsFade.instance.GetIsFade();
 
-        if (Input.GetKeyDown(KeyCode.Return) && !isFade)
-        {
-            LoadScene(sceneName, 1);
-        }
+        //if (Input.GetKeyDown(KeyCode.Return) && !isFade)
+        //{
+        //    LoadScene(sceneName, 1);
+        //}
     }
 
     public void LoadScene(string scene, int checkEnd = 0)
