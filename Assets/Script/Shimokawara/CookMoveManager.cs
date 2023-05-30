@@ -112,6 +112,11 @@ public class CookMoveManager : MonoBehaviour
         if(SleepCnt == -1)
         {
             SoundManager.instance.SEPlay("スタートSE");
+            //ここで呼ぶ
+            if(GameObject.FindAnyObjectByType<BGMPlayer>())
+            {
+                GameObject.FindAnyObjectByType<BGMPlayer>().BGMPlaying();
+            }
             UILook.Instance.AbleUI();//UI表示
         }
 
