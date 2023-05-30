@@ -67,7 +67,7 @@ public class Meter : ResultUI
 
     private IEnumerator GainMeter()
     {
-        var waitframe = new WaitForEndOfFrame();
+        var waitframe = new WaitForSecondsRealtime(0.016f);
 
         while(volum < volumMax)
         {
@@ -86,7 +86,7 @@ public class Meter : ResultUI
         }
         body_tf.sizeDelta = new Vector2(body_tf_defSize.x * volumMax, body_tf_defSize.y);
 
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSecondsRealtime(waitTime);
 
         Finish();
         yield break;

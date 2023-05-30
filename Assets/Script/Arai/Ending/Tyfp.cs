@@ -40,7 +40,7 @@ public class Tyfp : MonoBehaviour
 
     private IEnumerator Fade()
     {
-        var wait = new WaitForEndOfFrame();
+        var wait = new WaitForSecondsRealtime(0.016f);
 
         while(true)
         {

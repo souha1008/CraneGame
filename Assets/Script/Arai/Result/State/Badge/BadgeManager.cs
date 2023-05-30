@@ -27,7 +27,7 @@ public class BadgeManager : ResultUI
             manager.Sound.SEPlay("ボーナス獲得SE");
 
             ex = true;
-            yield return new WaitForSeconds(waittime);
+            yield return new WaitForSecondsRealtime(waittime);
         }
 
         if (data.GetScoreParcent() >= 1)
@@ -41,7 +41,7 @@ public class BadgeManager : ResultUI
         // 表記をえくせれんとに
         if (ex)
         {
-            yield return new WaitForSeconds(waittime);
+            yield return new WaitForSecondsRealtime(waittime);
 
             transform.parent.gameObject.transform.Find("ResultText(Clone)").GetComponent<ShowResult>().Excellent();
         }

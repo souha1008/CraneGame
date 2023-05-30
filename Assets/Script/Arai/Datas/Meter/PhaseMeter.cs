@@ -51,7 +51,7 @@ public class PhaseMeter : MonoBehaviour
         increasing = true;
         
         var finpercent = nowvalue / valueMax;
-        var waitframe = new WaitForEndOfFrame();
+        var waitframe = new WaitForSecondsRealtime(0.016f);
 
         while(percent < finpercent)
         {

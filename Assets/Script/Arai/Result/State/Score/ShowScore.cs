@@ -39,7 +39,7 @@ public class ShowScore : ResultUI
     
     private IEnumerator Show()
     {
-        var wfs = new WaitForSeconds(interval);
+        var wfs = new WaitForSecondsRealtime(interval);
 
         var data = GameObject.Find("Datas").GetComponent<ScoreData>();
         var offpos = this.GetComponent<RectTransform>().anchoredPosition;
@@ -61,7 +61,7 @@ public class ShowScore : ResultUI
             p.SS = this;
         }
 
-        if (!skip) yield return new WaitForSeconds(delay);
+        if (!skip) yield return new WaitForSecondsRealtime(delay);
 
         Finish();
         yield break;

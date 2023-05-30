@@ -36,12 +36,12 @@ public class Logo : MonoBehaviour
 
     private IEnumerator Fade()
     {
-        var wait = new WaitForEndOfFrame();
+        var wait = new WaitForSecondsRealtime(0.016f);
 
         while(true)
         {
             logo.color = Color.Lerp(Co.Const.CLEAR, Color.white, param);
-            param += 0.0016f;
+            param += 0.016f;
 
             if (logo.color.a >= 1)
                 break;
@@ -49,7 +49,7 @@ public class Logo : MonoBehaviour
                 if (!skip) yield return wait;
         }
         
-        yield return new WaitForSeconds(waittime);
+        yield return new WaitForSecondsRealtime(waittime);
 
         GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
         yield break;

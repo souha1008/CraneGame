@@ -50,7 +50,7 @@ public class Badge : MonoBehaviour
 
     private IEnumerator Move(BADGE _type)
     {
-        yield return new WaitForSeconds(waittime);
+        yield return new WaitForSecondsRealtime(waittime);
 
         var cam = GameObject.Find("Main Camera");
 
@@ -62,7 +62,7 @@ public class Badge : MonoBehaviour
 
         float param = 0;
 
-        var wff = new WaitForEndOfFrame();
+        var wff = new WaitForSecondsRealtime(0.016f);
 
         while(param < 1)
         {

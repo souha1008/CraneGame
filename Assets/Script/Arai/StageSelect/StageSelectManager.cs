@@ -219,7 +219,7 @@ public class StageSelectManager : MonoBehaviour
 
     private IEnumerator MoveIcons(int _way, int _stageindex)
     {
-        WaitForSeconds ws = new WaitForSeconds(0.001f);
+        var ws = new WaitForSecondsRealtime(0.001f);
 
         Vector2 defpos = imManager.transform.localPosition;
         Vector2 tgtpos = new Vector2(imManager.transform.localPosition.x - distanceX * 2 * _way, 0);

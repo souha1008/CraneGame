@@ -60,7 +60,7 @@ public class ShowResult : ResultUI
 
     private IEnumerator Next()
     {
-        yield return new WaitForSeconds(waittime);
+        yield return new WaitForSecondsRealtime(waittime);
 
         manager.SetState(ResultStateEnum.STATE.BADGE);
 
