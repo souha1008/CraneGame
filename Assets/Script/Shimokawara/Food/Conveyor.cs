@@ -7,7 +7,7 @@ public class Conveyor : MonoBehaviour
     public float speed = 100f;
 
     public float AkiDistance;
-    public float KadoDistance;
+    /*public*/ float KadoDistance = 13;
 
     // Start is called before the first frame update
     void Start()
