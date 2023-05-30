@@ -20,7 +20,7 @@ public class BadgeManager : ResultUI
         var data = GameObject.Find("Datas").GetComponent<ScoreData>();
         bool ex = false;
 
-        if (data.GetScoreParcent() >= 1)
+        if (data.SpeedClear)
         {
             var speed = Instantiate(badge, transform);
             speed.SetMove(Badge.BADGE.SPEED);
@@ -30,7 +30,7 @@ public class BadgeManager : ResultUI
             yield return new WaitForSeconds(waittime);
         }
 
-        if (data.SpeedClear)
+        if (data.GetScoreParcent() >= 1)
         {
             var miss = Instantiate(badge, transform);
             miss.SetMove(Badge.BADGE.MISS);
