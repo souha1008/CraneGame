@@ -32,11 +32,14 @@ public class SceneChange : MonoBehaviour
         }
     }
 
-    public void LoadScene(string scene)
+    public void LoadScene(string scene, int checkEnd = 0)
     {
         sceneName = scene;
         if (!isFade)
+        {
+            Changewait = checkEnd;
             StartCoroutine(nameof(Load));
+        }
     }
 
     IEnumerator Load()
@@ -53,7 +56,7 @@ public class SceneChange : MonoBehaviour
         rotate.y = rotate.y + 180.0f;
         Instantiate(FadeInObject, position, rotate);
 
-        yield return new WaitForSeconds(waitTime + Changewait);
+        yield return new WaitForSeconds(waitTime);
 
         SceneManager.LoadScene(sceneName);
     }
