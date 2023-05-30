@@ -23,12 +23,17 @@ public class BGMPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SoundManager.instance.BGMPlay(selectplayTitle);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void BGMPlaying()
+    {
+        SoundManager.instance.BGMPlay(selectplayTitle);
     }
 }
