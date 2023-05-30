@@ -99,18 +99,7 @@ public class IconManager : MonoBehaviour
     {
         var data = GameObject.Find("Datas").GetComponent<ScoreData>();
         data.SetIndexs(worldIndex, stageIndex);
-
-#if UNITY_EDITOR
-        if (Input.GetKey(KeyCode.L))
-            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest");
-        else
-            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene((worldIndex + 1) + "-" + (stageIndex + 1));
-#else
-        if (Input.GetKey(KeyCode.M))
-            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("2-1");
-        else
-            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene((worldIndex + 1) + "-" + (stageIndex + 1));
-#endif
+        GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene((worldIndex + 1) + "-" + (stageIndex + 1));
         return;
     }
 }
