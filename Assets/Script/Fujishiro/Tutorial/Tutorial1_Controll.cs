@@ -38,7 +38,7 @@ public class Tutorial1_Controll : MonoBehaviour
         {
             TutorialEnabled = false;
             Time.timeScale = 1;
-            Destroy(this);
+            Destroy(GameObject.Find("Tutorial"));
         }
         if (Input.GetKeyDown(KeyCode.JoystickButton1) && TutorialEnabled && next == false)
         {
