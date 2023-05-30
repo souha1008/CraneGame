@@ -9,38 +9,67 @@ public class Tutorial1_Controll : MonoBehaviour
     [SerializeField] GameObject Sprite_Catcher;
     [SerializeField, ReadOnly]public static bool TutorialEnabled = true;
 
-    private bool si;
+    private bool next;
+
+    [SerializeField] GameObject Tutorial_image1;
+    [SerializeField] GameObject Tutorial_image2;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Tutorial_image1.SetActive(true);
+        Tutorial_image2.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>().GetIsFade() == false && TutorialEnabled)
+        if (GameObject.Find("ReadIsFade"))
         {
-            Time.timeScale = 0;
+            if (GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>().GetIsFade() == false && TutorialEnabled)
+            {
+                Time.timeScale = 0;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.JoystickButton1) && TutorialEnabled)
+        if(Input.GetKeyDown(KeyCode.JoystickButton1) && TutorialEnabled && next == true)
+        {
+            TutorialEnabled = false;
+            Time.timeScale = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.JoystickButton1) && TutorialEnabled && next == false)
+        {
+            // éüÇ…çsÇ≠
+            next = true;
+            Tutorial_image1.SetActive(false);
+            Sprite_Catcher.gameObject.SetActive(false);
+            Tutorial_image2.SetActive(true);
+            SoundManager.instance.SEPlay("åàíËSE");
+
+        }
+#if UNITY_EDITOR
+
+        if (Input.GetKeyDown(KeyCode.Space) && TutorialEnabled && next == true)
         {
             TutorialEnabled = false;
             SoundManager.instance.SEPlay("åàíËSE");
             Time.timeScale = 1;
         }
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Space) && TutorialEnabled)
+        if (Input.GetKeyDown(KeyCode.Space) && TutorialEnabled && next == false)
         {
-            TutorialEnabled = false;
+            // éüÇ…çsÇ≠
+            next = true;
+            Tutorial_image1.SetActive(false);
+            Sprite_Catcher.gameObject.SetActive(false);
+            Tutorial_image2.SetActive(true);
             SoundManager.instance.SEPlay("åàíËSE");
-            Time.timeScale = 1;
+
         }
 #endif
 
         Tutorial_Canvas.gameObject.SetActive(TutorialEnabled);
         Sprite_Catcher.gameObject.SetActive(TutorialEnabled);
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             SceneManager.LoadScene("PauseTest");
