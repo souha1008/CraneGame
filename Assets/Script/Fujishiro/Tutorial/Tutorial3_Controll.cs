@@ -11,7 +11,10 @@ public class Tutorial3_Controll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (TutorialEnabled == false)
+        {
+            Destroy(GameObject.Find("Tutorial"));
+        }
     }
 
     // Update is called once per frame
@@ -20,6 +23,11 @@ public class Tutorial3_Controll : MonoBehaviour
         if (GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>().GetIsFade() == false && TutorialEnabled)
         {
             Time.timeScale = 0;
+        }
+
+        if (TutorialEnabled == false)
+        {
+            Destroy(GameObject.Find("Tutorial"));
         }
 
         if (Input.GetKeyDown(KeyCode.JoystickButton1) && TutorialEnabled)
@@ -39,9 +47,5 @@ public class Tutorial3_Controll : MonoBehaviour
 
         Tutorial_Canvas.gameObject.SetActive(TutorialEnabled);
         Sprite_Hammer.gameObject.SetActive(TutorialEnabled);
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            SceneManager.LoadScene("PauseTest");
-        }
     }
 }
