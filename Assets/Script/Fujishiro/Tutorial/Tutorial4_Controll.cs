@@ -11,12 +11,16 @@ public class Tutorial4_Controll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 0;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>().GetIsFade() == false && TutorialEnabled)
+        {
+            Time.timeScale = 0;
+        }
         if (!TutorialEnabled)
         {
             Time.timeScale = 1;

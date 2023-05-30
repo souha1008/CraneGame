@@ -8,20 +8,27 @@ public class Tutorial1_Controll : MonoBehaviour
     [SerializeField] GameObject Tutorial_Canvas;
     [SerializeField] GameObject Sprite_Catcher;
     [SerializeField, ReadOnly]public static bool TutorialEnabled = true;
+
+    private bool si;
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 0;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>().GetIsFade() == false && TutorialEnabled)
+        {
+            Time.timeScale = 0;
+        }
+
         if(!TutorialEnabled)
         {
             Time.timeScale = 1;
         }
-        if (Input.GetKeyDown(KeyCode.JoystickButton0) && TutorialEnabled)
+        if (Input.GetKeyDown(KeyCode.JoystickButton1) && TutorialEnabled)
         {
             TutorialEnabled = false;
             SoundManager.instance.SEPlay("Œˆ’èSE");
