@@ -20,11 +20,8 @@ public class Tutorial2_Controll : MonoBehaviour
         {
             Time.timeScale = 0;
         }
-        if (!TutorialEnabled)
-        {
-            Time.timeScale = 1;
-        }
-        if (Input.GetKeyDown(KeyCode.JoystickButton0) && TutorialEnabled)
+
+        if (Input.GetKeyDown(KeyCode.JoystickButton1) && TutorialEnabled)
         {
             TutorialEnabled = false;
             SoundManager.instance.SEPlay("Œˆ’èSE");
