@@ -32,7 +32,7 @@ public class SceneChange : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return) && !isFade)
         {
-            LoadScene(sceneName);
+            LoadScene(sceneName, 1);
         }
     }
 
@@ -43,7 +43,7 @@ public class SceneChange : MonoBehaviour
         {
             Changewait = checkEnd;
 
-            if (checkEnd == 1) 
+            if (Changewait == 1) 
             {
                 FadeObject = LastFadeObject;
             }
@@ -70,7 +70,7 @@ public class SceneChange : MonoBehaviour
         rotate.y = rotate.y + 180.0f;
         Instantiate(FadeObject, position, rotate);
 
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitTime + Changewait);
 
         SceneManager.LoadScene(sceneName);
     }

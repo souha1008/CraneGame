@@ -6,7 +6,7 @@ public class TransitionTex : MonoBehaviour
 {
     private Animator animator;
 
-    readonly float waitTime = 1.9f;
+    readonly float waitTime = 1.7f;
 
     public float stopTime;
 
@@ -16,7 +16,6 @@ public class TransitionTex : MonoBehaviour
         animator = GetComponent<Animator>();
 
         DontDestroyOnLoad(gameObject);
-        //DontDestroyOnLoad(readIsFade);
         StartCoroutine(nameof(Trans));
     }
     // Update is called once per frame
@@ -27,7 +26,7 @@ public class TransitionTex : MonoBehaviour
 
     IEnumerator Trans()
     {
-        yield return new WaitForSeconds(waitTime / 2);
+        yield return new WaitForSeconds(waitTime / 2 + 0.03f);
 
         StartCoroutine((nameof(WaitAnim)));
 
