@@ -87,14 +87,16 @@ public class PauseCoroutine : MonoBehaviour
 
     private void Awake()
     {
-        BGM_Slider.value = SoundManager.instance.BGM_Volume;
-        SE_Slider.value = SoundManager.instance.SE_Volume;
-        Pause_Canvas.gameObject.SetActive(false);
+
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        BGM_Slider.value = SoundManager.instance.BGM_Volume;
+        SE_Slider.value = SoundManager.instance.SE_Volume;
+        Pause_Canvas.gameObject.SetActive(false);
         counddown_corutine = StartCoroutine(CoolDown());
     }
 

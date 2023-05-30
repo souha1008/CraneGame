@@ -37,11 +37,17 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        BGM_Volume = 1;
-        SE_Volume = 1;
-        BGMaudioSource.volume = BGM_Volume;
-        SEloopAudioSource.volume = SE_Volume;
-        SEaudioSource.volume = SE_Volume;
+    }
+
+    private void Start()
+    {
+        GameObject.Find("Datas").GetComponent<SaveManager>().Load();
+        BGM_Volume = GameObject.Find("Datas").GetComponent<SaveManager>().data.bgmvolum;
+        SE_Volume = GameObject.Find("Datas").GetComponent<SaveManager>().data.sevolum;
+        BGMaudioSource.volume = GameObject.Find("Datas").GetComponent<SaveManager>().data.bgmvolum;
+        SEloopAudioSource.volume = GameObject.Find("Datas").GetComponent<SaveManager>().data.sevolum;
+        SEaudioSource.volume = GameObject.Find("Datas").GetComponent<SaveManager>().data.sevolum;
+        
     }
 
     // Update is called once per frame
@@ -55,11 +61,15 @@ public class SoundManager : MonoBehaviour
     public void ChangeBGMVolume(float value)
     {
         BGM_Volume = value;
+        GameObject.Find("Datas").GetComponent<SaveManager>().data.bgmvolum = BGM_Volume;
+        GameObject.Find("Datas").GetComponent<SaveManager>().Save();
     }
 
     public void ChangeSEVolume(float value)
     {
         SE_Volume = value;
+        GameObject.Find("Datas").GetComponent<SaveManager>().data.sevolum = SE_Volume;
+        GameObject.Find("Datas").GetComponent<SaveManager>().Save();
     }
 
     public bool CheckPlayBGM(string playTitle)
