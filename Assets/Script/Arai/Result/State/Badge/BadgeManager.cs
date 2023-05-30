@@ -22,8 +22,8 @@ public class BadgeManager : ResultUI
 
         if (data.GetScoreParcent() >= 1)
         {
-            var miss = Instantiate(badge, transform);
-            miss.SetMove(Badge.BADGE.MISS);
+            var speed = Instantiate(badge, transform);
+            speed.SetMove(Badge.BADGE.SPEED);
             manager.Sound.SEPlay("ボーナス獲得SE");
 
             ex = true;
@@ -32,8 +32,8 @@ public class BadgeManager : ResultUI
 
         if (data.SpeedClear)
         {
-            var speed = Instantiate(badge, transform);
-            speed.SetMove(Badge.BADGE.SPEED);
+            var miss = Instantiate(badge, transform);
+            miss.SetMove(Badge.BADGE.MISS);
             manager.Sound.SEPlay("ボーナス獲得SE");
         }
         else ex = false;
