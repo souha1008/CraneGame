@@ -27,7 +27,7 @@ public class TransitionTex2 : MonoBehaviour
 
     IEnumerator Trans()
     {
-        yield return new WaitForSeconds(waitTime / 2);
+        yield return new WaitForSeconds(waitTime / 2 + 0.03f);
 
         StartCoroutine((nameof(WaitAnim)));
 
