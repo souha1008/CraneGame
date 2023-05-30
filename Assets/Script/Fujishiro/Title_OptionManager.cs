@@ -38,8 +38,10 @@ public class Title_OptionManager : MonoBehaviour
     {
         instance = this;
         Option_Canvas.SetActive(false);
-        BGM_slider.value = SoundManager.instance.BGM_Volume; 
-        SE_slider.value =SoundManager.instance.SE_Volume;
+
+        GameObject.Find("Datas").GetComponent<SaveManager>().Load();
+        BGM_slider.value = GameObject.Find("Datas").GetComponent<SaveManager>().data.bgmvolum; 
+        SE_slider.value = GameObject.Find("Datas").GetComponent<SaveManager>().data.sevolum;
     }
 
     // Update is called once per frame
