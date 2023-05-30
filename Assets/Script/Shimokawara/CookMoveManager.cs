@@ -105,6 +105,11 @@ public class CookMoveManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //if(GameObject.Find("Tutorial"))
+        //{
+        //    return;
+        //}
+
         if(SleepCnt == -180 || SleepCnt == -120 || SleepCnt == -60)
         {
             SoundManager.instance.SEPlay("スタートカウントSE");
@@ -120,7 +125,12 @@ public class CookMoveManager : MonoBehaviour
             UILook.Instance.AbleUI();//UI表示
         }
 
-        SleepCnt++;
+        if (!GameObject.Find("Tutorial"))
+        {
+            SleepCnt++;
+        }
+        
+
         if(SleepCnt > SYATTA_STOP_FLAME)
         {
             SyattaSleep = false;
