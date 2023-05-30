@@ -14,8 +14,8 @@ public class Badge : MonoBehaviour
 
     public enum BADGE
     {
-        MISS,
         SPEED,
+        MISS,
         MAX
     }
 
