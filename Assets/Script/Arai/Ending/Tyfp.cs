@@ -45,7 +45,7 @@ public class Tyfp : MonoBehaviour
         while(true)
         {
             tyfp.color = Color.Lerp(Co.Const.CLEAR, Color.white, param);
-            param += 0.0016f;
+            param += 0.016f;
 
             if (tyfp.color.a >= 1)
                 break;

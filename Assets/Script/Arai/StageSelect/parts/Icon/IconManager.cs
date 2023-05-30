@@ -100,6 +100,7 @@ public class IconManager : MonoBehaviour
         var data = GameObject.Find("Datas").GetComponent<ScoreData>();
         data.SetIndexs(worldIndex, stageIndex);
         GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene((worldIndex + 1) + "-" + (stageIndex + 1));
+        SoundManager.instance.BGMStop();
         return;
     }
 }
