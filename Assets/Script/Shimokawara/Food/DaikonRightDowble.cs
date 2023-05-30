@@ -44,7 +44,7 @@ public class DaikonRightDowble : CircleFoodsInterFace
 
     public override void Cut(Collider other)
     {
-        if (!isNoAction && isGround)
+        if (!isNoAction/* && isGround*/)
         {
             float SizeX = transform.localScale.x;
 
