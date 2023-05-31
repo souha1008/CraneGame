@@ -42,7 +42,7 @@ public class Badge : MonoBehaviour
     public void SetMove(BADGE _type)
     {
         var image = gameObject.GetComponent<Image>();
-        image.sprite = sprites[(int)_type];
+        image.sprite = sprites[_type.GetHashCode()];
         image.SetNativeSize();
         
         StartCoroutine(Move(_type));
