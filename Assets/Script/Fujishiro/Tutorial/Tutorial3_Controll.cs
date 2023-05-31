@@ -44,8 +44,10 @@ public class Tutorial3_Controll : MonoBehaviour
             Time.timeScale = 1;
         }
 #endif
-
-        Tutorial_Canvas.gameObject.SetActive(TutorialEnabled);
-        Sprite_Hammer.gameObject.SetActive(TutorialEnabled);
+        if (TutorialEnabled == false)
+        {
+            Tutorial_Canvas.gameObject.SetActive(TutorialEnabled);
+            Sprite_Hammer.gameObject.SetActive(TutorialEnabled);
+        }
     }
 }

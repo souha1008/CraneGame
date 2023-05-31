@@ -18,6 +18,7 @@ public class Tutorial1_Controll : MonoBehaviour
     void Start()
     {
         Tutorial_image1.SetActive(true);
+        Sprite_Catcher.SetActive(true);
         Tutorial_image2.SetActive(false);
         if(TutorialEnabled == false) 
         {
@@ -51,7 +52,7 @@ public class Tutorial1_Controll : MonoBehaviour
             // éüÇ…çsÇ≠
             next = true;
             Tutorial_image1.SetActive(false);
-            Sprite_Catcher.gameObject.SetActive(false);
+            Sprite_Catcher.SetActive(false);
             Tutorial_image2.SetActive(true);
             SoundManager.instance.SEPlay("åàíËSE");
 
@@ -75,8 +76,10 @@ public class Tutorial1_Controll : MonoBehaviour
 
         }
 #endif
-
-        Tutorial_Canvas.gameObject.SetActive(TutorialEnabled);
-        Sprite_Catcher.gameObject.SetActive(TutorialEnabled);
+        if (TutorialEnabled == false)
+        {
+            Tutorial_Canvas.gameObject.SetActive(TutorialEnabled);
+            Sprite_Catcher.gameObject.SetActive(TutorialEnabled);
+        }
     }
 }
