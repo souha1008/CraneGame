@@ -27,7 +27,7 @@ public class FireHassya : MonoBehaviour
     private void OnEnable()
     {
         Start();
-        Fire.instance.Y = Y_Zahyou;
+        if(Fire.instance)        Fire.instance.Y = Y_Zahyou;
     }
 
     // Update is called once per frame
