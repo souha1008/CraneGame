@@ -1947,6 +1947,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 178245620}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &178245622 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8123562019770673689, guid: e6b7afe54cd636a40b61419274c8e615,
+    type: 3}
+  m_PrefabInstance: {fileID: 178245620}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ad968eb59215245a00dd6d47c36c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &183499800 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8269422392108881923, guid: 0ac82a8902f763c42b7cf9f407d92cc5,
@@ -4652,6 +4664,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 531831904}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &531831906 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8123562019770673689, guid: e6b7afe54cd636a40b61419274c8e615,
+    type: 3}
+  m_PrefabInstance: {fileID: 531831904}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ad968eb59215245a00dd6d47c36c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &540842463 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2806026896133207742, guid: 0ac82a8902f763c42b7cf9f407d92cc5,
@@ -6529,7 +6553,7 @@ PrefabInstance:
     - target: {fileID: 627390849059349145, guid: d830fcdcdee406549a086fbde8a8b78e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.6600037
+      value: -12.14
       objectReference: {fileID: 0}
     - target: {fileID: 627390849059349145, guid: d830fcdcdee406549a086fbde8a8b78e,
         type: 3}
@@ -8507,6 +8531,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 949689931}
     m_Modifications:
+    - target: {fileID: 5061073302705246928, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
+        type: 3}
+      propertyPath: MikanArray.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061073302705246928, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
+        type: 3}
+      propertyPath: MikanArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 531831906}
     - target: {fileID: 5061073302705246929, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
         type: 3}
       propertyPath: m_RootOrder
@@ -8525,7 +8559,7 @@ PrefabInstance:
     - target: {fileID: 5061073302705246929, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.004379
+      value: -0.96
       objectReference: {fileID: 0}
     - target: {fileID: 5061073302705246929, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
         type: 3}
@@ -8955,6 +8989,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1204353585}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1204353587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8123562019770673689, guid: e6b7afe54cd636a40b61419274c8e615,
+    type: 3}
+  m_PrefabInstance: {fileID: 1204353585}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ad968eb59215245a00dd6d47c36c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1226337967
 GameObject:
   m_ObjectHideFlags: 0
@@ -10837,6 +10883,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 95682761}
     m_Modifications:
+    - target: {fileID: 5061073302705246928, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
+        type: 3}
+      propertyPath: MikanArray.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061073302705246928, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
+        type: 3}
+      propertyPath: MikanArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 178245622}
+    - target: {fileID: 5061073302705246928, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
+        type: 3}
+      propertyPath: MikanArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 1204353587}
     - target: {fileID: 5061073302705246929, guid: 6a1aeff1ad3bc3040b28b066b1b920db,
         type: 3}
       propertyPath: m_RootOrder
@@ -11206,7 +11267,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   AkiDistance: 6
-  KadoDistance: 15
 --- !u!65 &1510612413
 BoxCollider:
   m_ObjectHideFlags: 0
