@@ -36,4 +36,9 @@ public class BGMPlayer : MonoBehaviour
     {
         SoundManager.instance.BGMPlay(selectplayTitle);
     }
+
+    public void BGMPlaying(bool isloop)
+    {
+        SoundManager.instance.BGMPlay(selectplayTitle, isloop);
+    }
 }
