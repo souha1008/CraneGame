@@ -10,6 +10,7 @@ using System;
 public class BGMPlayer : MonoBehaviour
 {
     public string selectplayTitle;
+    public bool isloop;
 
     BGMPlayer()
     {
@@ -33,11 +34,6 @@ public class BGMPlayer : MonoBehaviour
     }
 
     public void BGMPlaying()
-    {
-        SoundManager.instance.BGMPlay(selectplayTitle);
-    }
-
-    public void BGMPlaying(bool isloop)
     {
         SoundManager.instance.BGMPlay(selectplayTitle, isloop);
     }
