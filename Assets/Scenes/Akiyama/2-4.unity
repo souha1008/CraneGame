@@ -726,6 +726,11 @@ PrefabInstance:
       propertyPath: speed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8389623048988796823, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5, type: 3}
 --- !u!1 &51155047 stripped
@@ -10470,7 +10475,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.025
   AkiDistance: 6
-  KadoDistance: 15
 --- !u!65 &1510612413
 BoxCollider:
   m_ObjectHideFlags: 0
