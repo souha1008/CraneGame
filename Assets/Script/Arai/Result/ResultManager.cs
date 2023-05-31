@@ -25,7 +25,7 @@ public class ResultManager : MonoBehaviour
         StateSetting();
 
         sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
-        sound.BGMPlay("リザルトBGM");
+        sound.BGMPlay("リザルトBGM", true);
     }
     
     /// <summary>

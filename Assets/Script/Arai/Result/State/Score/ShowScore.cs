@@ -31,7 +31,7 @@ public class ShowScore : ResultUI
     void Update()
     {
         // スキップ
-        if (!skip && (Input.GetKeyDown("joystick button 1") || Input.GetMouseButton(0)))
+        if (!skip && Input.GetKeyDown("joystick button 1"))
         {
             skip = true;
         }

@@ -38,11 +38,10 @@ public class BadgeManager : ResultUI
         }
         else ex = false;
 
+        yield return new WaitForSecondsRealtime(waittime);
         // 表記をえくせれんとに
         if (ex)
         {
-            yield return new WaitForSecondsRealtime(waittime);
-
             transform.parent.gameObject.transform.Find("ResultText(Clone)").GetComponent<ShowResult>().Excellent();
         }
 

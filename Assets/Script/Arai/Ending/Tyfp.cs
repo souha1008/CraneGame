@@ -23,6 +23,9 @@ public class Tyfp : MonoBehaviour
         tyfp = gameObject.GetComponent<Image>();
         tyfp.color = Co.Const.CLEAR;
         fade = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
+
+        SoundManager.instance.BGMStop();
+        SoundManager.instance.SEPlay("エンディング", true);
     }
 
     void Update()
@@ -32,7 +35,7 @@ public class Tyfp : MonoBehaviour
             sta = true;
             StartCoroutine(Fade());
         }
-        if (fin && Input.anyKeyDown)
+        if (fin && Input.GetKeyDown("joystick button 0"))
         {
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
         }
