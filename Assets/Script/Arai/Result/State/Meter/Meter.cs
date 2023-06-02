@@ -17,6 +17,9 @@ public class Meter : ResultUI
     }
 
     [SerializeField]
+    private Image border;
+
+    [SerializeField]
     private GameObject body;        // メーター増える部分
     private RectTransform body_tf;
     private Vector2 body_tf_defSize;
@@ -42,6 +45,11 @@ public class Meter : ResultUI
 
     void Start()
     {
+        var data = GameObject.Find("Datas").GetComponent<ScoreData>();
+
+        var bt = border.GetComponent<RectTransform>();
+        bt.sizeDelta = new Vector2(bt.sizeDelta.x * data.ClearBorder, bt.sizeDelta.y);
+
         body_tf     = body.GetComponent<RectTransform>();
         body_image  = body.GetComponent<Image>();
 
@@ -51,7 +59,7 @@ public class Meter : ResultUI
 
         body_tf.sizeDelta = new Vector2(0, body_tf_defSize.y);
 
-        volumMax = GameObject.Find("Datas").GetComponent<ScoreData>().GetScoreParcent();
+        volumMax = data.GetScoreParcent();
     }
 
     void Update()
