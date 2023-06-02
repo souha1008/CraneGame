@@ -50,15 +50,18 @@ public class Conveyor : MonoBehaviour
                 TempVel.x = -1;
                 if(KadoDistance < X_Distance && KadoDistance < Z_Distance)
                 {
+                    if(Mathf.PI * 0.5f < Angle)
                     TempVel.z = -1;
                 }
+                
             }
             else if(Mathf.PI * 0.25f > Angle && Mathf.PI * -0.25f < Angle)
             {
                 TempVel.z = 1;
                 if (KadoDistance < X_Distance && KadoDistance < Z_Distance)
                 {
-                    TempVel.x = -1;
+                    if (Mathf.PI * 0.0f < Angle)
+                        TempVel.x = -1;
                 }
             }
             else if((Mathf.PI * -0.25f > Angle && Mathf.PI * -0.75f < Angle))
@@ -66,7 +69,8 @@ public class Conveyor : MonoBehaviour
                 TempVel.x = 1;
                 if (KadoDistance < X_Distance && KadoDistance < Z_Distance)
                 {
-                    TempVel.z = 1;
+                    if (Mathf.PI * -0.5f < Angle)
+                        TempVel.z = 1;
                 }
             }
             else
@@ -74,7 +78,8 @@ public class Conveyor : MonoBehaviour
                 TempVel.z = -1;
                 if (KadoDistance < X_Distance && KadoDistance < Z_Distance)
                 {
-                    TempVel.x = 1;
+                    if (Mathf.PI * 0.0f > Angle)
+                        TempVel.x = 1;
                 }
             }
 

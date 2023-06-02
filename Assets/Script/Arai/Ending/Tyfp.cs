@@ -37,6 +37,9 @@ public class Tyfp : MonoBehaviour
         }
         if (fin && Input.GetKeyDown("joystick button 0"))
         {
+            //下川原渓吾です。
+            SoundManager.instance.SELoopStop();
+            //下川原渓吾でした。
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
         }
     }
