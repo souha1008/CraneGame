@@ -6,7 +6,7 @@ public class Arm : MonoBehaviour
 {
     // Start is called before the first frame update
 
-   
+    float UnLockAngle;
 
     public enum LEFT_OR_RIGHT
     {
@@ -136,14 +136,15 @@ public class Arm : MonoBehaviour
         //if (length > 0.85f && 
         //    (Mathf.Atan2(LeftStick.y , LeftStick.x) <= (-Mathf.PI / 2 + 0.2f)) &&
         //    (Mathf.Atan2(LeftStick.y , LeftStick.x) >= (-Mathf.PI / 2 - 0.2f)))
-        if (length > 0.85f &&
+        if (length > 0.85f && !isUnLock /*&&
     (Mathf.Atan2(LeftStick.y, LeftStick.x) <= (-Mathf.PI / 2 + 0.2f)) &&
-    (Mathf.Atan2(LeftStick.y, LeftStick.x) >= (-Mathf.PI / 2 - 0.2f)) 
+    (Mathf.Atan2(LeftStick.y, LeftStick.x) >= (-Mathf.PI / 2 - 0.2f))*/ 
     //&&
     //Input.GetButton("Lbutton")
     )
         {
             isUnLock = true;
+            UnLockAngle = Mathf.Atan2(LeftStick.y, LeftStick.x);
         }
 
         //è„Ç…Ç¢ÇÈ
@@ -160,7 +161,13 @@ public class Arm : MonoBehaviour
         //í˜Çﬂèàóù
         if(isUnLock)
         {
-            float temp = ((Input.GetAxis("RightY")) + 1) * 0.5f;
+            //tempÇÕ0Å`1
+            //float temp = ((Input.GetAxis("RightY")) + 1) * 0.5f;
+
+            float Angle_Sa = /*Mathf.Abs*/(UnLockAngle - Mathf.Atan2(LeftStick.y, LeftStick.x));
+            Angle_Sa = Angle_Sa_naoshi(Angle_Sa);
+            Debug.Log(Angle_Sa);
+            float temp = Angle_Sa / Mathf.PI;
             float goAngle = temp * MAX_ANGLE;
 
             switch (armMove)
@@ -273,5 +280,26 @@ public class Arm : MonoBehaviour
         {
             HitFood = true;
         }
+    }
+
+    private float Angle_Sa_naoshi(float Angle_Sa )
+    {
+        if(Angle_Sa < 0)
+        {
+            Angle_Sa += (Mathf.PI * 2);
+        }
+        if (Angle_Sa > Mathf.PI * 2)
+        {
+            Angle_Sa -= (Mathf.PI * 2);
+        }
+
+        if(Angle_Sa > Mathf.PI)
+        {
+            Angle_Sa = Mathf.PI * 2 - Angle_Sa;
+        }
+
+        return Angle_Sa;
+
+
     }
 }
