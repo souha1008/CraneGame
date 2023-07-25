@@ -36,7 +36,7 @@ public class CircleGage : MonoBehaviour
         }
         else
         {
-            if ((param -= speed) < 0)
+            if (param > 0)
             {
                 param = 0;
             }
