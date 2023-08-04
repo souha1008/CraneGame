@@ -166,7 +166,7 @@ public class Arm : MonoBehaviour
 
             float Angle_Sa = /*Mathf.Abs*/(UnLockAngle - Mathf.Atan2(LeftStick.y, LeftStick.x));
             Angle_Sa = Angle_Sa_naoshi(Angle_Sa);
-            Debug.Log(Angle_Sa);
+            //Debug.Log(Angle_Sa);
             float temp = Angle_Sa / Mathf.PI;
             float goAngle = temp * MAX_ANGLE;
 

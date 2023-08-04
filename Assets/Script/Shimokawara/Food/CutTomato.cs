@@ -10,7 +10,7 @@ using UnityEditor;
 
 public class CutTomato : CircleFoodsInterFace
 {
-
+    Plate[] PlateArray;
     int Cnt = 0;
     void Start()
     {
@@ -22,16 +22,10 @@ public class CutTomato : CircleFoodsInterFace
 
         FoodsStart();
     }
-    //private void OnEnable()
-    //{
-    //    m_ChachAction = ChachAction.HARD;
-    //    m_CutAction = CutAction.CAN;//ŠÑ’Ê‚µ‚Ä‚Ù‚µ‚¢‚¾‚¯
-    //    m_HummerAction = HummerAction.SCALE;
-    //    m_FireAction = FireAction.STAY;
-
-
-    //    FoodsStart();
-    //}
+    private void OnEnable()
+    {
+        PlateArray = GameObject.FindObjectsOfType<Plate>();
+    }
 
 
     // Update is called once per frame
@@ -54,10 +48,19 @@ public class CutTomato : CircleFoodsInterFace
             m_CutAction = CutAction.CANNOT;//ŠÑ’Ê‚¨‚í‚è
             m_FireAction = FireAction.KOGE;
         }
-        if (transform.position.x < ShikiriX)
+
+        for(int i = 0; i < PlateArray.Length; i++ )
         {
-            isClear = true;
+            if(PlateArray[i])
+            {
+                float VectorLength = (transform.position - PlateArray[i].transform.position).magnitude;
+                if (VectorLength < 8)
+                {
+                    isClear = true;
+                }
+            }
         }
+       
         FoodsFixedUpdate();
     }
 

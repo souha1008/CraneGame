@@ -258,10 +258,10 @@ public class CircleFoodsInterFace : MonoBehaviour
 
         if (m_ChachAction == ChachAction.SOFT)
         {
-            if (Vector3.Distance(RightArmBord.transform.position,LeftArmBord.transform.position) < 0.2f * BallSize)
+            if (Vector3.Distance(RightArmBord.transform.position,LeftArmBord.transform.position) < 0.4f * BallSize)
             {
                 SoundManager.instance.SEPlay("Ç®Ç‡ÇøÇ·í◊ÇµSE");
-
+                NigiriTubushi();
                 Destroy(gameObject);
                 //GetComponent<Renderer>().enabled = false;
             }
@@ -343,6 +343,12 @@ public class CircleFoodsInterFace : MonoBehaviour
     {
         //Debug.Log("∂Øƒ");
     }
+
+    public virtual void NigiriTubushi()
+    {
+        
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {//ínè„Ç»ÇÁ
