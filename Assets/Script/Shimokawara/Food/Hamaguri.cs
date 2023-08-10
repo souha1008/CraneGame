@@ -44,7 +44,7 @@ public class Hamaguri : CircleFoodsInterFace
 
         if(Open )
         {
-            if (transform.position.x < ShikiriX)
+            //if (transform.position.x < ShikiriX)
             {
                 isClear = true;
             }
