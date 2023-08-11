@@ -677,6 +677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 392186129}
   Y: 0
+  FireState: 0
 --- !u!135 &70041683
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1015,9 +1016,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj_candle: {fileID: 124267215}
-  Max_Intensity: 100
-  Rate_Intensity: 0.4
-  debug: 0
+  Max_Intensity: 5800
+  Rate_Intensity: 4
+  debug: 1
 --- !u!114 &124267214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1050,8 +1051,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.978208, g: 1, b: 0.5424528, a: 1}
-  m_Intensity: 5823.3
-  m_Range: 77
+  m_Intensity: 0
+  m_Range: 79
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -9911,22 +9912,22 @@ PrefabInstance:
     - target: {fileID: 199450669464258941, guid: 748adcbf7e913b24c8252f6a284df870,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7031345
+      value: 0.7031336
       objectReference: {fileID: 0}
     - target: {fileID: 199450669464258941, guid: 748adcbf7e913b24c8252f6a284df870,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.07758195
+      value: -0.07759178
       objectReference: {fileID: 0}
     - target: {fileID: 199450669464258941, guid: 748adcbf7e913b24c8252f6a284df870,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.07738501
+      value: -0.07737515
       objectReference: {fileID: 0}
     - target: {fileID: 199450669464258941, guid: 748adcbf7e913b24c8252f6a284df870,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.70256287
+      value: -0.70256376
       objectReference: {fileID: 0}
     - target: {fileID: 285564920553024681, guid: 748adcbf7e913b24c8252f6a284df870,
         type: 3}
@@ -11074,6 +11075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Fire: {fileID: 0}
+  FireWariai: 0
 --- !u!1 &2016314132
 GameObject:
   m_ObjectHideFlags: 0

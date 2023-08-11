@@ -22,6 +22,12 @@ public class CandleGimmick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // ƒ‰ƒCƒg‚Ì–¾‚é‚³‚ª0ˆÈã‚Å‚ ‚ê‚ÎŒ¸Š
+        if(obj_candle.intensity > 0)
+        {
+            obj_candle.intensity -= Rate_Intensity;
+        }
+
         if(debug)
         {
             if(Input.GetKeyDown(KeyCode.Space)) 
@@ -40,9 +46,9 @@ public class CandleGimmick : MonoBehaviour
     {
         while(true)
         {
-            obj_candle.intensity += Rate_Intensity;
+            obj_candle.intensity = Max_Intensity;
 
-            if(obj_candle.intensity > Max_Intensity )
+            if(obj_candle.intensity >= Max_Intensity )
             {
                 yield break;
             }
