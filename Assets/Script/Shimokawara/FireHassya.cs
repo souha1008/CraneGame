@@ -14,10 +14,19 @@ public class FireHassya : MonoBehaviour
     bool OldDown = false;
 
     float OldAngleRadian = 0;
+    //待機フレーム60
+    float[] WariaiArray = new float[120];
 
+    public float FireWariai;
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < WariaiArray.Length; i++)
+        {
+            WariaiArray[i] = 0;
+        }
+
+
         OldAngleRadian = 0;
         instance = this;
         Y_Zahyou = transform.position.y;
@@ -27,10 +36,13 @@ public class FireHassya : MonoBehaviour
     private void OnEnable()
     {
         Start();
-        if(Fire.instance)        Fire.instance.Y = Y_Zahyou;
+        if (Fire.instance)
+        {
+            Fire.instance.Y = Y_Zahyou;
+            Fire.instance.FireState = FIRE_STATE.FIRE_NONE;
+        }
     }
-
-    // Update is called once per frame
+        // Update is called once per frame
     void Update()
     {
         
@@ -69,7 +81,7 @@ public class FireHassya : MonoBehaviour
         if (Down)
         {
             Y_Vector = 0;
-            Y_Zahyou -= 0.3f;
+            Y_Zahyou -= 0.4f;
             if(!OldDown)
             {
                 SoundManager.instance.SEPlay("バーナー噴射SE_2");
@@ -82,16 +94,50 @@ public class FireHassya : MonoBehaviour
         }
 
 
-        Y_Zahyou = Mathf.Max(Y_Zahyou, 2);
-        Y_Zahyou = Mathf.Min(Y_Zahyou, transform.position.y);
+        Y_Zahyou = Mathf.Max(Y_Zahyou, 2);                      //  2
+        Y_Zahyou = Mathf.Min(Y_Zahyou, transform.position.y);   //  21
 
         float ZeroToOne = (transform.position.y - Y_Zahyou) / (transform.position.y - 2);
+
+        //配列編集
+        for (int i = 0; i < WariaiArray.Length - 1; i++)
+        {
+            WariaiArray[i] = WariaiArray[i + 1];
+        }
+        WariaiArray[WariaiArray.Length - 1] = ZeroToOne;
+
+        //炎チェック
+        bool bFire = true;
+        for (int i = 0; i < WariaiArray.Length; i++)
+        {
+            if (WariaiArray[i] < FireWariai)
+            {
+               bFire = false;
+            }
+        }
+
+
+        //藤代君
         Effect_Buner.Instance.BunerSize = ZeroToOne;
 
 
-       // Vector3 temp = m_Fire.transform.position;
-        Fire.instance.Y = Y_Zahyou;
+        //Fire.instance.Y = Y_Zahyou;
+        Fire.instance.Y = 2;
 
-        //m_Fire.transform.position = temp;
+        //反映
+        if(bFire)
+        {
+            Fire.instance.FireState = FIRE_STATE.FIRE_FIRE;
+        }
+        else if(ZeroToOne<0.2f)
+        {
+            Fire.instance.FireState = FIRE_STATE.FIRE_NONE;
+        }
+        else
+        {
+            Fire.instance.FireState = FIRE_STATE.FIRE_AIR;
+        }
+    
+
     }
 }

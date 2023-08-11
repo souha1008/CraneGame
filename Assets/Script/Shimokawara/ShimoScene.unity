@@ -758,6 +758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 392186129}
   Y: 0
+  FireState: 0
 --- !u!135 &70041683
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12690,6 +12691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Fire: {fileID: 0}
+  FireWariai: 0.85
 --- !u!114 &2002937776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13404,21 +13406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03dbf0cbeab90654489a766579703c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ChachAction: 0
-  m_CutAction: 0
-  m_HummerAction: 0
-  m_FireAction: 0
-  isNoAction: 0
-  isClear: 0
-  RightArmBord: {fileID: 0}
-  LeftArmBord: {fileID: 0}
-  GLAVITY: 0.006
-  Vel: {x: 0, y: 0, z: 0}
-  isGround: 0
-  FoodsArmState: 0
-  BallSize: 0
-  leftDistance: 0
-  rightDistance: 0
 --- !u!1 &2119881201
 GameObject:
   m_ObjectHideFlags: 0
