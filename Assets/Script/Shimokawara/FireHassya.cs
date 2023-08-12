@@ -9,6 +9,7 @@ public class FireHassya : MonoBehaviour
     float Y_Zahyou;
     float Y_Vector;
     public GameObject m_Fire;
+    //FIRE_STATE OldFireState;
 
     bool Down = false;
     bool OldDown = false;
@@ -40,6 +41,8 @@ public class FireHassya : MonoBehaviour
         {
             Fire.instance.Y = Y_Zahyou;
             Fire.instance.FireState = FIRE_STATE.FIRE_NONE;
+
+            //OldFireState = Fire.instance.FireState;
         }
     }
         // Update is called once per frame
@@ -50,7 +53,10 @@ public class FireHassya : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+
         OldDown = Down;
+        //OldFireState = Fire.instance.FireState;
 
         Down = false;
         Vector2 LeftStick;
@@ -138,6 +144,11 @@ public class FireHassya : MonoBehaviour
             Fire.instance.FireState = FIRE_STATE.FIRE_AIR;
         }
     
+        //if(OldFireState != Fire.instance.FireState)
+        //{
+        //    Fire.instance.enabled = false;
+            
+        //}
 
     }
 }

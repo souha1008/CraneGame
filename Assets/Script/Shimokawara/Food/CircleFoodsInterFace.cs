@@ -406,8 +406,6 @@ public class CircleFoodsInterFace : MonoBehaviour
 
                     }
                 }
-                    
-
             }
             else if (other.gameObject.tag == "AttachFire")
             {
@@ -463,7 +461,64 @@ public class CircleFoodsInterFace : MonoBehaviour
         }
         
     }
+    private void OnTriggerStay(Collider other)
+    {//地上なら
+        //if(isGround)
+        {
+            if (other.gameObject.tag == "AttachFire")
+            {
+                //炎
+                if (other.GetComponent<Fire>().FireState == FIRE_STATE.FIRE_FIRE)
+                {
+                    Fire(other);
+                    if (isGround)
+                    {
+                        if (m_FireAction == FireAction.KOGE)
+                        {
+                            //ここ変更
+                            Debug.Log("焦げ関数呼ばれるかも？");
+                            //GetComponent<Renderer>().material.color = Color.black;
+                            if (GetComponent<Material_ColorTransfer>())
+                            {
+                                Debug.Log("呼ばれた");
+                                GetComponent<Material_ColorTransfer>().Scorch_Object(3.0f);
 
+                            }
+                            SoundManager.instance.SEPlay("焦げるSE");
+
+                            //煙りだす
+                            GameObject Smoke = (GameObject)Resources.Load("smoke_fx_001");
+
+                            Vector3 tempPos1 = transform.position;
+                            // Cubeプレハブを元に、インスタンスを生成、
+                            Smoke = Instantiate(Smoke, tempPos1, transform.rotation);
+                            Smoke.gameObject.transform.parent = this.transform;
+
+                            //変更
+                            //移動も回転もしないようにする
+                            //GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                            m_HummerAction = HummerAction.STAY;
+                            m_CutAction = CutAction.CANNOT;
+                            m_FireAction = FireAction.STAY;
+                            m_ChachAction = ChachAction.HARD;
+
+                            isNoAction = true;
+
+                            //Debug.Log("ハンマー2");
+                        }
+                    }
+                }
+                //風
+                if (other.GetComponent<Fire>().FireState == FIRE_STATE.FIRE_AIR)
+                {
+                    Air(other);
+                }
+
+
+            }
+        }
+
+    }
 
     public void ResetUnderVel()
     {

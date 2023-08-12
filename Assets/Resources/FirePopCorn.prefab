@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3371379316064485449}
   - component: {fileID: 7125398137040063346}
   - component: {fileID: -4168293415308628121}
-  - component: {fileID: 4567947407799544042}
+  - component: {fileID: -6220311790093327644}
   m_Layer: 0
-  m_Name: GroundEgg
+  m_Name: FirePopCorn
   m_TagString: Foods
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 9002339302543877557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
   - _Transfer_2nd
   isScorch: 0
   trans_time: 0
---- !u!114 &4567947407799544042
+--- !u!114 &-6220311790093327644
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,13 +147,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 9002339302543877557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 908312547c1fe06408a85920b7706186, type: 3}
+  m_Script: {fileID: 11500000, guid: ce2ff0a6434f457438199ae6d407ced6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ChachAction: 2
+  m_ChachAction: 0
   m_CutAction: 1
   m_HummerAction: 2
-  m_FireAction: 2
+  m_FireAction: 1
   isNoAction: 0
   isClear: 0
   RightArmBord: {fileID: 0}

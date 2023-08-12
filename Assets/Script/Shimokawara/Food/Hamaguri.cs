@@ -10,6 +10,8 @@ using UnityEditor;
 
 public class Hamaguri : CircleFoodsInterFace
 {
+
+    HamaguriPlate[] PlateArray;
     public int FireCnt = 0;
     bool FireFlag;
     public bool Open = false;
@@ -17,6 +19,11 @@ public class Hamaguri : CircleFoodsInterFace
     void Start()
     {
         FoodsStart();
+    }
+
+    private void OnEnable()
+    {
+        PlateArray = GameObject.FindObjectsOfType<HamaguriPlate>();
     }
 
     // Update is called once per frame
@@ -44,9 +51,16 @@ public class Hamaguri : CircleFoodsInterFace
 
         if(Open )
         {
-            //if (transform.position.x < ShikiriX)
+            for (int i = 0; i < PlateArray.Length; i++)
             {
-                isClear = true;
+                if (PlateArray[i])
+                {
+                    float VectorLength = (transform.position - PlateArray[i].transform.position).magnitude;
+                    if (VectorLength < 8)
+                    {
+                        isClear = true;
+                    }
+                }
             }
         }
 
@@ -56,6 +70,12 @@ public class Hamaguri : CircleFoodsInterFace
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "AttachFire")
-            FireFlag = true;
+        {
+            if (other.GetComponent<Fire>().FireState == FIRE_STATE.FIRE_FIRE)
+            {
+                FireFlag = true;
+            }
+        }
+          
     }
 }
