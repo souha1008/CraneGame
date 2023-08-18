@@ -145,6 +145,7 @@ public class ScoreData : MonoBehaviour
     {
         clearBorder = _value;
 
-        GameObject.Find("Meter").GetComponent<PhaseMeter>().SetBorder(_value);
+        GameObject.Find("ShimoCanvas").transform.FindChild("UILook").transform.FindChild("Meter")
+            .GetComponent<PhaseMeter>().SetBorder(_value);
     }
 }
