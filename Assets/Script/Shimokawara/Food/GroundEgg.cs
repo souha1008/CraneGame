@@ -1,28 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class GroundEgg : MonoBehaviour
+#if UNITY_EDITOR
+[CustomEditor(typeof(CircleFoodsInterFace))]
+#endif
+
+public class GroundEgg : CircleFoodsInterFace
 {
+
+    FlyPang[] FlyPangArray;
     // Start is called before the first frame update
     void Start()
     {
-        
+        FoodsStart();
+
+
     }
+
+    private void OnEnable()
+    {
+        FlyPangArray = GameObject.FindObjectsOfType<FlyPang>();
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        
+        FoodsUpdate();
     }
-    private void FixedUpdate()
+
+    void FixedUpdate()
     {
-        //エスカレート処理
-       // if (isGround)
+
+        for (int i = 0; i < FlyPangArray.Length; i++)
         {
-            Vector3 tempPos = transform.position;
-            tempPos.z -= 0.05f;
-            transform.position = tempPos;
+            if (FlyPangArray[i])
+            {
+                float VectorLength = (transform.position - FlyPangArray[i].transform.position).magnitude;
+                if (VectorLength < 8)
+                {
+                    isClear = true;
+                }
+            }
         }
+
+        FoodsFixedUpdate();
     }
 }

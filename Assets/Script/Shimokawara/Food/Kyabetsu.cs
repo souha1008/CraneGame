@@ -8,22 +8,21 @@ using UnityEditor;
 [CustomEditor(typeof(CircleFoodsInterFace))]
 #endif
 
-public class Hamaguri : CircleFoodsInterFace
+public class Kyabetsu: CircleFoodsInterFace
 {
-
-    HamaguriPlate[] PlateArray;
-    public int FireCnt = 0;
-    bool FireFlag;
-    public bool Open = false;
+    int CutCnt = 0;
+    KyabetsuPlate[] PlateArray;
 
     void Start()
     {
+        CutCnt = 0;
         FoodsStart();
-    }
 
+
+    }
     private void OnEnable()
     {
-        PlateArray = GameObject.FindObjectsOfType<HamaguriPlate>();
+        PlateArray = GameObject.FindObjectsOfType<KyabetsuPlate>();
     }
 
     // Update is called once per frame
@@ -34,22 +33,9 @@ public class Hamaguri : CircleFoodsInterFace
 
     void FixedUpdate()
     {
-        if(!isNoAction)
-        {
-            if(FireFlag)
-            {
-                FireCnt++;
+        FoodsFixedUpdate();
 
-                if(FireCnt > 40)
-                {
-                    m_HummerAction = HummerAction.STAY;
-                    Open = true;
-                }
-            }
-            FireFlag = false;
-        }
-
-        if(Open )
+        if(CutCnt >= 6)
         {
             for (int i = 0; i < PlateArray.Length; i++)
             {
@@ -63,19 +49,13 @@ public class Hamaguri : CircleFoodsInterFace
                 }
             }
         }
-
-        FoodsFixedUpdate();
     }
 
-    private void OnTriggerStay(Collider other)
+    public override void Cut(Collider other)
     {
-        if (other.gameObject.tag == "AttachFire")
+        if (!isNoAction /*&& isGround*/)
         {
-            if (other.GetComponent<Fire>().FireState == FIRE_STATE.FIRE_FIRE)
-            {
-                FireFlag = true;
-            }
+            CutCnt++;
         }
-          
     }
 }
