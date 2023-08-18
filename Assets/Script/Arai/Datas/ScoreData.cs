@@ -140,4 +140,11 @@ public class ScoreData : MonoBehaviour
         speedClear = false;
         finalResult = ResultEnum.RESULT.MAX;
     }
+
+    public void SetBorder(float _value)
+    {
+        clearBorder = _value;
+
+        GameObject.Find("Meter").GetComponent<PhaseMeter>().SetBorder(_value);
+    }
 }
