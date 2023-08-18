@@ -14,6 +14,9 @@ public class PhaseMeter : MonoBehaviour
     private Vector2 body_tf_defSize;
     private Image body_image;
 
+    [SerializeField]
+    private Image border;
+
     private float percent = 0;        // 現在割合
 
     private float nowvalue = 0;
@@ -130,5 +133,11 @@ public class PhaseMeter : MonoBehaviour
         body_tf.sizeDelta = new Vector2(0, body_tf_defSize.y);
         percent = 0;
         nowvalue = 0;
+    }
+
+    public void SetBorder(float _value)
+    {
+        var bt = border.GetComponent<RectTransform>();
+        bt.sizeDelta = new Vector2(bt.sizeDelta.x * _value, bt.sizeDelta.y);
     }
 }
