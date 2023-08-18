@@ -13,7 +13,7 @@ public class ClearBorder : MonoBehaviour
     {
         m_ScoreData = GameObject.Find("Datas").GetComponent<ScoreData>();
 
-        m_ScoreData.ClearBorder = Border;
+        m_ScoreData.SetBorder(Border);
     }
 
     // Update is called once per frame
