@@ -14,11 +14,18 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.anyKey)
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             foreach(var anim in anims)
             {
                 anim.Play();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            foreach(var anim in anims)
+            {
+                anim.Replay();
             }
         }
     }
