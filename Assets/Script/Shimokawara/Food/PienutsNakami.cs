@@ -10,7 +10,7 @@ using UnityEditor;
 
 public class PienutsNakami : CircleFoodsInterFace
 {
-
+    NutsPlate[] PlateArray;
     int Cnt = 0;
     void Start()
     {
@@ -21,6 +21,11 @@ public class PienutsNakami : CircleFoodsInterFace
 
 
         FoodsStart();
+    }
+
+    private void OnEnable()
+    {
+        PlateArray = GameObject.FindObjectsOfType<NutsPlate>();
     }
 
     // Update is called once per frame
@@ -38,9 +43,16 @@ public class PienutsNakami : CircleFoodsInterFace
             m_HummerAction = HummerAction.SCALE;//ŠÑ’Ê‚µ‚Ä‚Ù‚µ‚¢‚¾‚¯
             m_FireAction = FireAction.KOGE;
         }
-        if (transform.position.x < ShikiriX)
+        for (int i = 0; i < PlateArray.Length; i++)
         {
-            isClear = true;
+            if (PlateArray[i])
+            {
+                float VectorLength = (transform.position - PlateArray[i].transform.position).magnitude;
+                if (VectorLength < 8)
+                {
+                    isClear = true;
+                }
+            }
         }
         FoodsFixedUpdate();
     }

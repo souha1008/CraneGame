@@ -10,7 +10,7 @@ using UnityEditor;
 
 public class Kyabetsu: CircleFoodsInterFace
 {
-    int CutCnt = 0;
+    public int CutCnt = 0;
     KyabetsuPlate[] PlateArray;
 
     void Start()

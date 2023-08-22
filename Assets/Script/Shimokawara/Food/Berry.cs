@@ -50,21 +50,19 @@ public class Berry : CircleFoodsInterFace
 
         if (Dry)
         {
-            //if (transform.position.x < ShikiriX)
+            for (int i = 0; i < PlateArray.Length; i++)
             {
-                for (int i = 0; i < PlateArray.Length; i++)
+                if (PlateArray[i])
                 {
-                    if (PlateArray[i])
+                    float VectorLength = (transform.position - PlateArray[i].transform.position).magnitude;
+                    if (VectorLength < 8)
                     {
-                        float VectorLength = (transform.position - PlateArray[i].transform.position).magnitude;
-                        if (VectorLength < 8)
-                        {
-                            isClear = true;
-                        }
+                        isClear = true;
                     }
                 }
             }
         }
+        
 
         FoodsFixedUpdate();
     }

@@ -226,6 +226,7 @@ public class CookMoveManager : MonoBehaviour
         Player2.instance.ResetPlayer();
         AddScore();
         MoveObject();
+        if(myButton)
         myButton.ButtonReset();
 
         FazeNum++;
