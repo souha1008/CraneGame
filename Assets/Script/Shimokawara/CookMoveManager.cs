@@ -56,7 +56,7 @@ public class CookMoveManager : MonoBehaviour
     bool GameSetOnce = true;
 
     PhaseMeter m_PhaseMater;
-
+    public bool isTutreal;
     // Start is called before the first frame update
     void Start()
     {
@@ -154,7 +154,7 @@ public class CookMoveManager : MonoBehaviour
                 GameSetOnce = false;
             }
 
-            
+            if(!isTutreal)
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest", 1);
         }
         else

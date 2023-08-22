@@ -45,7 +45,15 @@ public class MyTutrialButton: CircleFoodsInterFace
 
         //FoodsFixedUpdate();
 
-        if(ButtonState && OnceOK && Cnt > 120)
+        //シーン遷移処理
+        if (Food.isNoAction)
+        {
+            //シーン繰り返し
+            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(SceneManager.GetActiveScene().name, 1);
+            Debug.Log("シーン繰り返し");
+        }
+
+        if (ButtonState && OnceOK && Cnt > 120)
         {
             OnceOK = false;
             //シーン遷移処理
@@ -56,7 +64,7 @@ public class MyTutrialButton: CircleFoodsInterFace
             SoundManager.instance.SEPlay("ボタン押下SE");
 
             //シーン遷移処理
-            if(Food)
+            if (Food)
             {
                 if (Food.isClear)
                 {
