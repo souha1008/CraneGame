@@ -7,6 +7,8 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     List<TutAnim> anims;
 
+    private bool down = false;
+
     void Start()
     {
         
@@ -14,8 +16,9 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (!down && (Input.GetKey(KeyCode.DownArrow) || Input.GetButton("Submit")))
         {
+            down = !down;
             foreach(var anim in anims)
             {
                 anim.Play();

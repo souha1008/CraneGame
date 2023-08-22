@@ -31,7 +31,7 @@ public class CircleGage : MonoBehaviour
             if ((param += speed) >= 1)
             {
                 Debug.Log("fin");
-                Destroy(this);
+                param = 0;
             }
         }
         else
