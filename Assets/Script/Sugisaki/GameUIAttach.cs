@@ -27,12 +27,20 @@ public class GameUIAttach : MonoBehaviour
             if (isActive)
             {
                 for (int i = 0; i < length; i++)
-                    gameObjects[i].SetActive(true);
+                {
+                    if (gameObjects[i])
+                        gameObjects[i].SetActive(true);
+                }
+                    
             }
             else
             {
                 for (int i = 0; i < length; i++)
-                    gameObjects[i].SetActive(false);
+                {
+                    if (gameObjects[i])
+                        gameObjects[i].SetActive(false);
+                }
+                   
             }
         }
         else
@@ -40,12 +48,18 @@ public class GameUIAttach : MonoBehaviour
             if (!isActive)
             {
                 for (int i = 0; i < length; i++)
-                    gameObjects[i].SetActive(true);
+                {
+                    if (gameObjects[i])
+                        gameObjects[i].SetActive(true);
+                }
             }
             else
             {
                 for (int i = 0; i < length; i++)
-                    gameObjects[i].SetActive(false);
+                {
+                    if (gameObjects[i])
+                        gameObjects[i].SetActive(false);
+                }
             }
         }
     }

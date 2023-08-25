@@ -312,7 +312,8 @@ public class CircleFoodsInterFace : MonoBehaviour
             if (underHit.collider.gameObject.tag == "EscarateUp" ||
                 underHit.collider.gameObject.tag == "EscarateRight" ||
                 underHit.collider.gameObject.tag == "EscarateDown" ||
-                underHit.collider.gameObject.tag == "EscarateNone")
+                underHit.collider.gameObject.tag == "EscarateNone" ||
+                underHit.collider.gameObject.tag == "FoodsSupport")
             {
                 float distance = underHit.distance; //レイの開始位置と当たったオブジェクトの距離を取得
                                                     //Debug.Log(distance);
@@ -465,6 +466,7 @@ public class CircleFoodsInterFace : MonoBehaviour
     {//地上なら
         //if(isGround)
         {
+            Debug.Log(other);
             if (other.gameObject.tag == "AttachFire")
             {
                 //炎

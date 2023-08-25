@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(CircleFoodsInterFace))]
 #endif
 
-public class MyButton: CircleFoodsInterFace
+public class MyTutrialButton: CircleFoodsInterFace
 {
     CookMoveManager cookMoveManager;
     bool ButtonState;
@@ -16,7 +17,9 @@ public class MyButton: CircleFoodsInterFace
     int Cnt = 0;
 
     public GameObject Button;
-    float DefaultY = 4.619977f; 
+    float DefaultY = 4.619977f;
+
+    public CircleFoodsInterFace Food;
 
     void Start()
     {
@@ -42,7 +45,15 @@ public class MyButton: CircleFoodsInterFace
 
         //FoodsFixedUpdate();
 
-        if(ButtonState && OnceOK && Cnt > 120)
+        //シーン遷移処理
+        if (Food.isNoAction)
+        {
+            //シーン繰り返し
+            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(SceneManager.GetActiveScene().name, 1);
+            Debug.Log("シーン繰り返し");
+        }
+
+        if (ButtonState && OnceOK && Cnt > 120)
         {
             OnceOK = false;
             //シーン遷移処理
@@ -51,6 +62,40 @@ public class MyButton: CircleFoodsInterFace
             Debug.Log("ボタンシーンチェンジ");
             SoundManager.instance.SEPlay("シャッター開閉SE");
             SoundManager.instance.SEPlay("ボタン押下SE");
+
+            //シーン遷移処理
+            if (Food)
+            {
+                if (Food.isClear)
+                {
+                    //次のシーンへ
+                    GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest", 1);
+
+                }
+                else
+                {
+                    //シーン繰り返し
+                    GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(SceneManager.GetActiveScene().name, 1);
+                    Debug.Log("シーン繰り返し");
+                }
+
+                if (Food.isNoAction)
+                {
+                    //シーン繰り返し
+                    GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(SceneManager.GetActiveScene().name, 1);
+                    Debug.Log("シーン繰り返し");
+                }
+
+            }
+            else
+            {
+                //次のシーンへ
+                GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest", 1);
+            }
+            
+
+            
+
         }
 
     }
@@ -66,6 +111,7 @@ public class MyButton: CircleFoodsInterFace
                     ButtonState = true;
                 }
             }
+        
             if (other.gameObject.tag == "AttachKnife")
             {
                 ButtonState = true;
