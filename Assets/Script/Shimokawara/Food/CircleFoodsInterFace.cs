@@ -466,7 +466,7 @@ public class CircleFoodsInterFace : MonoBehaviour
     {//ínè„Ç»ÇÁ
         //if(isGround)
         {
-            Debug.Log(other);
+            //Debug.Log(other);
             if (other.gameObject.tag == "AttachFire")
             {
                 //âä
