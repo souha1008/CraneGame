@@ -19,6 +19,9 @@ public class PopCorn : CircleFoodsInterFace
     public PopCorn[] PopCornArray;
     public PopCornSara Sara;
 
+    public GameObject Model1;
+    public GameObject Model2;
+
     void Start()
     {
         isFire = false;
@@ -53,6 +56,18 @@ public class PopCorn : CircleFoodsInterFace
             }
         }
         
+        if (isFire)
+        {
+            Model1.SetActive(true);
+            Model2.SetActive(false);
+
+        }
+        else
+        {
+            Model1.SetActive(false);
+            Model2.SetActive(true);
+        }
+
 
 
         //ƒNƒŠƒA”»’è
