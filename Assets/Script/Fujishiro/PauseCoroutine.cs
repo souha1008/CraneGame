@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseCoroutine : MonoBehaviour
 {
+    // マクロ定数
+    const int M_MAXSELECT = 3;
+    const int M_MINSELECT = 0;
+
     [SerializeField, ReadOnly] public bool mPaused = false;
     [SerializeField, ReadOnly] private float mPauseCooldown;
 
@@ -19,13 +23,14 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] [Tooltip("下キー")] KeyCode UpArrow = KeyCode.UpArrow;
 
     [SerializeField][Tooltip("選択中の色")] Color nowSelectColor = new Color(0, 255, 255);
-    [SerializeField] [Tooltip("選択してない色")] Color notSelectColor = Color.white;
+    [SerializeField][Tooltip("選択してない色")] Color notSelectColor = Color.white;
 
     [Header("UI系")]
     [SerializeField] Canvas Pause_Canvas = null;
     [SerializeField] Image Option;
     [SerializeField] Image Retry;
     [SerializeField] Image StageSelect;
+    [SerializeField] Image Oshinagaki;
 
     [SerializeField, ReadOnly] int MenuSelectCount = 0;
     [SerializeField, ReadOnly] int OptionSelectCount = 0;
@@ -34,6 +39,7 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] Animator animator_Oshinagaki;
     [SerializeField] Animator animator_Option_c;
     [SerializeField] string UI_anim_paramator;
+    [SerializeField] string Oshinagaki_anim_paramator;
 
     [Header("オプション内スライダー")]
     [SerializeField] GameObject Option_C;
@@ -50,6 +56,11 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] float C_Option_WaitFrame = 180;
     [SerializeField] float UpdateModeChange_WaitTime = 5;
 
+    [Header("おしながきステップ")]
+    public Oshinagaki_Icon[] use_Icon;
+
+    [SerializeField] bool DEBUG;
+
     public static PauseCoroutine instance { get; private set; } = new PauseCoroutine();
     public bool Update_isPause;
 
@@ -64,6 +75,7 @@ public class PauseCoroutine : MonoBehaviour
         Option = 0,
         Retry = 1,
         StageSelect = 2,
+        Oshinagaki = 3,
     };
 
     void SetIsPauseMenu(bool set)
@@ -98,6 +110,16 @@ public class PauseCoroutine : MonoBehaviour
         SE_Slider.value = SoundManager.instance.SE_Volume;
         Pause_Canvas.gameObject.SetActive(false);
         counddown_corutine = StartCoroutine(CoolDown());
+
+        for (int i = 0, j = 0; i < Pause_Oshinagaki.instance.oshinagaki_Icon.Length; i++)
+        {
+            if (Pause_Oshinagaki.instance.oshinagaki_Icon[i].isUse == true)
+            {
+                use_Icon[j] = Pause_Oshinagaki.instance.oshinagaki_Icon[i];
+                j++;
+            }
+        }
+        
     }
 
 
@@ -109,9 +131,19 @@ public class PauseCoroutine : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(pauseKey) && mPauseCooldown <= 0.0f && mPaused == false && ReadIsFade.instance.GetIsFade() == false)
+        if (!DEBUG)
         {
-            Pause();
+            if (Input.GetKeyDown(pauseKey) && mPauseCooldown <= 0.0f && mPaused == false && ReadIsFade.instance.GetIsFade() == false)
+            {
+                Pause();
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(pauseKey) && mPauseCooldown <= 0.0f && mPaused == false)
+            {
+                Pause();
+            }
         }
 
     }
@@ -131,19 +163,28 @@ public class PauseCoroutine : MonoBehaviour
                     Option.color = nowSelectColor;
                     Retry.color = notSelectColor;
                     StageSelect.color = notSelectColor;
-
+                    Oshinagaki.color = notSelectColor;
                     break;
 
                 case (int)SelectCorsor.Retry:
                     Option.color = notSelectColor;
                     Retry.color = nowSelectColor;
                     StageSelect.color = notSelectColor;
+                    Oshinagaki.color = notSelectColor;
                     break;
 
                 case (int)SelectCorsor.StageSelect:
                     Option.color = notSelectColor;
                     Retry.color = notSelectColor;
                     StageSelect.color = nowSelectColor;
+                    Oshinagaki.color = notSelectColor;
+                    break;
+
+                case (int)SelectCorsor.Oshinagaki:
+                    Option.color = notSelectColor;
+                    Retry.color = notSelectColor;
+                    StageSelect.color = notSelectColor;
+                    Oshinagaki.color = nowSelectColor;
                     break;
             }
         }
@@ -184,11 +225,16 @@ public class PauseCoroutine : MonoBehaviour
         StartCoroutine(PauseStart());
     }
 
-    void AnimSetBool(bool set)
+    void AnimSetBool(string anim_param, bool set)
     {
-        animator_Pause.SetBool(UI_anim_paramator, set);
-        animator_Oshinagaki.SetBool(UI_anim_paramator, set);
-        animator_Option_c.SetBool(UI_anim_paramator, set);
+        animator_Pause.SetBool(anim_param, set);
+        animator_Oshinagaki.SetBool(anim_param, set);
+        animator_Option_c.SetBool(anim_param, set);
+    }
+
+    void OshinagakiAnimSetBool(string anim_param, bool set)
+    {
+        animator_Oshinagaki.SetBool(anim_param, set);
     }
 
     IEnumerator PauseStart()
@@ -232,8 +278,8 @@ public class PauseCoroutine : MonoBehaviour
                         SoundManager.instance.SEPlay("選択SE");
                 }
 
-                if (MenuSelectCount > 2) MenuSelectCount = 0;   // 上にいく
-                if (MenuSelectCount < 0) MenuSelectCount = 2;   // 下に行く
+                if (MenuSelectCount > M_MAXSELECT) MenuSelectCount = M_MINSELECT;   // 上にいく
+                if (MenuSelectCount < M_MINSELECT) MenuSelectCount = M_MAXSELECT;   // 下に行く
 
                 // 入力無し
                 if (Input.GetAxis("Vertical") == 0)
@@ -246,13 +292,27 @@ public class PauseCoroutine : MonoBehaviour
 
                 switch (MenuSelectCount)
                 {
+                    case (int)SelectCorsor.Oshinagaki:
+                        // おしながきを選択
+                        if (Input.GetKeyDown(KetteiKey))
+                        {
+                            if (GameObject.Find("SoundManager"))
+                                SoundManager.instance.SEPlay("決定SE");
+                            OshinagakiAnimSetBool(Oshinagaki_anim_paramator, true);
+                            SetIsPauseMenu(false);
+                            StartCoroutine(C_Oshinagaki());
+                        }
+
+                        break;
+
                     case (int)SelectCorsor.Option:
+                        // オプションを選択
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.UnscaledTime));
                             if (GameObject.Find("SoundManager"))
                                 SoundManager.instance.SEPlay("決定SE");
-                            AnimSetBool(true);
+                            AnimSetBool(UI_anim_paramator, true);
                             SetIsPauseMenu(false);
                             StartCoroutine(C_Option());
                         }
@@ -378,7 +438,7 @@ public class PauseCoroutine : MonoBehaviour
             // ポーズメニューへ戻る
             if (Input.GetKeyDown(BackKey))
             {
-                AnimSetBool(false);
+                AnimSetBool(UI_anim_paramator, false);
                 SetIsOption_c(false);
                 SoundManager.instance.SEPlay("戻るSE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
@@ -388,6 +448,26 @@ public class PauseCoroutine : MonoBehaviour
             }
 
 
+            yield return null;
+        }
+    }
+
+    IEnumerator C_Oshinagaki()
+    {
+        while (true)
+        {
+            // おしながき処理
+
+
+            // ポーズメニューへ戻る
+            if (Input.GetKeyDown(BackKey))
+            {
+                OshinagakiAnimSetBool(Oshinagaki_anim_paramator, false);
+                SoundManager.instance.SEPlay("戻るSE");
+                SetIsPauseMenu(true);
+                OptionSelectCount = 0;
+                yield break;
+            }
             yield return null;
         }
     }
