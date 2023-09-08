@@ -8,7 +8,10 @@ using TMPro;
 public class PhaseScore : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI score;
+    private TextMeshProUGUI clearscore;
+
+    [SerializeField]
+    private TextMeshProUGUI missscore;
 
     [SerializeField]
     private Image image;
@@ -36,7 +39,7 @@ public class PhaseScore : MonoBehaviour
         defaultPosition = rt.anchoredPosition;
         rt.anchoredPosition = defaultPosition - offsetPosition;
 
-        score.color = new Color(score.color.r, score.color.g, score.color.b, alpha);
+        clearscore.color = new Color(clearscore.color.r, clearscore.color.g, clearscore.color.b, alpha);
         image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
     }
 
@@ -46,19 +49,23 @@ public class PhaseScore : MonoBehaviour
 
         rt.anchoredPosition += offsetPosition * alphaRatio;
 
-        score.color = new Color(score.color.r, score.color.g, score.color.b, alpha);
+        clearscore.color = new Color(clearscore.color.r, clearscore.color.g, clearscore.color.b, alpha);
         image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
 
         if (alpha >= 1)
         {
-            score.color = new Color(score.color.r, score.color.g, score.color.b, 1);
+            clearscore.color = new Color(clearscore.color.r, clearscore.color.g, clearscore.color.b, 1);
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
             Destroy(this);
         }
     }
 
-    public void SetScore(int _score)
+    public void SetClearScore(int _score)
     {
-        score.text = _score.ToString();
+        clearscore.text = _score.ToString();
+    }
+    public void SetMissScore(int _score)
+    {
+        missscore.text = _score.ToString();
     }
 }
