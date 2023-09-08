@@ -12,7 +12,7 @@ public class Kyabetsu: CircleFoodsInterFace
 {
     public int CutCnt = 0;
     KyabetsuPlate[] PlateArray;
-
+    public GameObject[] ModelArray;
     void Start()
     {
         CutCnt = 0;
@@ -35,7 +35,35 @@ public class Kyabetsu: CircleFoodsInterFace
     {
         FoodsFixedUpdate();
 
-        if(CutCnt >= 6)
+        switch (CutCnt)
+        {
+            case 0:
+                ResetModel();
+                ModelArray[0].SetActive(true) ;
+                break;
+
+            case 1:
+            case 2:
+                ResetModel();
+                ModelArray[1].SetActive(true);
+                break;
+            
+            case 3:
+            case 4:
+            case 5:
+                ResetModel();
+                ModelArray[2].SetActive(true);
+                break;
+
+            
+            case 6:
+                ResetModel();
+                ModelArray[3].SetActive(true);
+                break;
+        }
+
+
+        if (CutCnt >= 6)
         {
             for (int i = 0; i < PlateArray.Length; i++)
             {
@@ -56,6 +84,14 @@ public class Kyabetsu: CircleFoodsInterFace
         if (!isNoAction /*&& isGround*/)
         {
             CutCnt++;
+        }
+    }
+
+    void ResetModel()
+    {
+        for(int i = 0; i < ModelArray.Length;i++)
+        {
+            ModelArray[i].SetActive(false);
         }
     }
 }
