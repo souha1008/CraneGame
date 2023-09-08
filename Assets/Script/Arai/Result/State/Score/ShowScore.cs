@@ -59,6 +59,7 @@ public class ShowScore : ResultUI
 
             p.SetClearScore(data.GetScore(i));
             p.SetMissScore(data.GetMaxScore(i) - data.GetScore(i));
+            p.SetImage(i);
             p.SS = this;
         }
 

@@ -32,6 +32,10 @@ public class PhaseScore : MonoBehaviour
         set => ss = value;
     }
 
+    [SerializeField]
+    private Sprite[] images = new Sprite[Co.Const.FAZE_NUM];
+
+
     void Awake()
     {
         rt = gameObject.GetComponent<RectTransform>();
@@ -67,5 +71,10 @@ public class PhaseScore : MonoBehaviour
     public void SetMissScore(int _score)
     {
         missscore.text = _score.ToString();
+    }
+
+    public void SetImage(int _phase)
+    {
+        image.sprite = images[_phase];
     }
 }
