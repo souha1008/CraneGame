@@ -24,8 +24,9 @@ public class TutorialManager : MonoBehaviour
                 anim.Play();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (down && Input.GetKeyDown(KeyCode.UpArrow))
         {
+            down = !down;
             foreach(var anim in anims)
             {
                 anim.Replay();
