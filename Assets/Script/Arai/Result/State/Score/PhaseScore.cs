@@ -43,7 +43,7 @@ public class PhaseScore : MonoBehaviour
         defaultPosition = rt.anchoredPosition;
         rt.anchoredPosition = defaultPosition - offsetPosition;
 
-        clearscore.color = new Color(clearscore.color.r, clearscore.color.g, clearscore.color.b, alpha);
+        clearscore.color = missscore.color = new Color(clearscore.color.r, clearscore.color.g, clearscore.color.b, alpha);
         image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
     }
 
@@ -53,12 +53,12 @@ public class PhaseScore : MonoBehaviour
 
         rt.anchoredPosition += offsetPosition * alphaRatio;
 
-        clearscore.color = new Color(clearscore.color.r, clearscore.color.g, clearscore.color.b, alpha);
+        clearscore.color = missscore.color = new Color(clearscore.color.r, clearscore.color.g, clearscore.color.b, alpha);
         image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
 
         if (alpha >= 1)
         {
-            clearscore.color = new Color(clearscore.color.r, clearscore.color.g, clearscore.color.b, 1);
+            clearscore.color = missscore.color = new Color(clearscore.color.r, clearscore.color.g, clearscore.color.b, 1);
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
             Destroy(this);
         }
