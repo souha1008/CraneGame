@@ -11,7 +11,7 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        
+        Time.timeScale = 0;
     }
 
     void Update()
@@ -21,6 +21,7 @@ public class TutorialManager : MonoBehaviour
             down = !down;
             foreach(var anim in anims)
             {
+                Time.timeScale = 1;
                 anim.Play();
             }
         }
@@ -29,6 +30,7 @@ public class TutorialManager : MonoBehaviour
             down = !down;
             foreach(var anim in anims)
             {
+                Time.timeScale = 0;
                 anim.Replay();
             }
         }

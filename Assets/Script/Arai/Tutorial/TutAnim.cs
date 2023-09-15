@@ -13,6 +13,7 @@ public class TutAnim : MonoBehaviour
     void Start()
     {
         if (!anim) anim = gameObject.GetComponent<Animator>();
+        anim.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     public void Play()
