@@ -4,16 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-struct Oshinagaki_Icon
+public struct Oshinagaki_Icon
 {
     public bool isUse;
     public Image Icon;
+    public GameObject Step;
 }
 
 
 public class Pause_Oshinagaki : MonoBehaviour
 {
-    [SerializeField] Oshinagaki_Icon[] oshinagaki_Icon;
+    static public Pause_Oshinagaki instance;
+
+    [SerializeField] public Oshinagaki_Icon[] oshinagaki_Icon;
 
     [Header("使わないときの色")]
     [SerializeField] Color notUseColor = Color.gray;
@@ -21,6 +24,8 @@ public class Pause_Oshinagaki : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
+
         for(int i = 0; i < oshinagaki_Icon.Length; i++)
         {
             // 使わないなら色をつけない
