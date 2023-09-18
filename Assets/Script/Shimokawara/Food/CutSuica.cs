@@ -12,6 +12,7 @@ public class CutSuica : CircleFoodsInterFace
 {
 
     int Cnt = 0;
+    BerryPlate[] PlateArray;
     void Start()
     {
         m_ChachAction = ChachAction.HARD;
@@ -22,6 +23,12 @@ public class CutSuica : CircleFoodsInterFace
 
         FoodsStart();
     }
+
+    private void OnEnable()
+    {
+        PlateArray = GameObject.FindObjectsOfType<BerryPlate>();
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -39,9 +46,16 @@ public class CutSuica : CircleFoodsInterFace
             m_FireAction = FireAction.KOGE;
         }
 
-        if(transform.position.x < ShikiriX)
+        for (int i = 0; i < PlateArray.Length; i++)
         {
-            isClear = true;
+            if (PlateArray[i])
+            {
+                float VectorLength = (transform.position - PlateArray[i].transform.position).magnitude;
+                if (VectorLength < 8)
+                {
+                    isClear = true;
+                }
+            }
         }
 
         FoodsFixedUpdate();

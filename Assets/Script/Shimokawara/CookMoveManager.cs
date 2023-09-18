@@ -45,7 +45,7 @@ public class CookMoveManager : MonoBehaviour
     public bool[] isConvayor;
 
     float ConvayorModelPosY;
-    MyButton myButton;
+    MyButton[] myButton;
     ScoreData m_ScoreData;
 
     public int[] MAX_SCORE = new int[5];
@@ -64,7 +64,7 @@ public class CookMoveManager : MonoBehaviour
 
         isSyatta = true;
         instance = this;
-        myButton = GameObject.FindObjectOfType<MyButton>();
+        myButton = GameObject.FindObjectsOfType<MyButton>();
         ConvayorModelPosY = ConvayorModel.transform.localPosition.y;
         SyattaSleep = true;
 
@@ -226,8 +226,11 @@ public class CookMoveManager : MonoBehaviour
         Player2.instance.ResetPlayer();
         AddScore();
         MoveObject();
-        if(myButton)
-        myButton.ButtonReset();
+        for(int i = 0; i < myButton.Length;i++)
+        {
+            if (myButton[i])
+                myButton[i].ButtonReset();
+        }
 
         FazeNum++;
         if(FazeNum < isConvayor.Length)
