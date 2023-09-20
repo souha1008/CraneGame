@@ -9,30 +9,53 @@ public class TutorialManager : MonoBehaviour
 
     private bool down = false;
 
+    private bool begin = false;
+    private ReadIsFade sc;
+
     void Start()
     {
-        Time.timeScale = 0;
+        sc = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
     }
 
     void Update()
     {
-        if (!down && (Input.GetKey(KeyCode.DownArrow) || Input.GetButton("Submit")))
+        if (!begin && !sc.GetIsFade())
         {
-            down = !down;
-            foreach(var anim in anims)
+            begin = true;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            if (!down && (Input.GetKey(KeyCode.DownArrow) || Input.GetButton("Submit")))
             {
-                Time.timeScale = 1;
-                anim.Play();
+                TutStart();
+            }
+            else if (down && Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                TutEnd();
             }
         }
-        else if (down && Input.GetKeyDown(KeyCode.UpArrow))
+    }
+
+    private void TutStart()
+    {
+        down = !down;
+
+        foreach(var anim in anims)
         {
-            down = !down;
-            foreach(var anim in anims)
-            {
-                Time.timeScale = 0;
-                anim.Replay();
-            }
+            Time.timeScale = 1;
+            anim.Play();
+        }
+    }
+
+    private void TutEnd()
+    {
+        down = !down;
+        
+        foreach(var anim in anims)
+        {
+            Time.timeScale = 0;
+            anim.Replay();
         }
     }
 }
