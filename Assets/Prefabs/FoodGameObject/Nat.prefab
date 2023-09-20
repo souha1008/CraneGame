@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 1017760197869150489}
+  skinnedMeshRenderer: {fileID: 0}
   Transfer:
   - 1
   - 0
@@ -243,6 +244,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Nat_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165057520566376394, guid: d9bb58f020b4fe347971a8993116d41a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9bb58f020b4fe347971a8993116d41a, type: 3}

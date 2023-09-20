@@ -77,6 +77,12 @@ public class PopCorn : CircleFoodsInterFace
 
             for(int i = 0; i < PopCornArray.Length; i++)
             {
+                if(!PopCornArray[i])
+                {
+                    TempClearFlag = false;
+                    continue;
+                }
+
                 //Ä‚¯”»’è
                 if(!PopCornArray[i].isFire)
                 {

@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 8138143060414644865}
+  skinnedMeshRenderer: {fileID: 0}
   Transfer:
   - 1
   - 0
@@ -172,6 +173,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lemon_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998600050313931164, guid: 2716d7755e762d142bf166c1c8355e32,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5626483503211639590, guid: 2716d7755e762d142bf166c1c8355e32,
         type: 3}

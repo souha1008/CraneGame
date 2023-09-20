@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 1714079708583861845}
+  skinnedMeshRenderer: {fileID: 0}
   Transfer:
   - 1
   - 0
@@ -242,6 +243,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tomato_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2013212165837629235, guid: 180b4ecb8e14c644d9d47f4f615370fa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 180b4ecb8e14c644d9d47f4f615370fa, type: 3}
