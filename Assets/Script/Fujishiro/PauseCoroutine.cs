@@ -115,7 +115,7 @@ public class PauseCoroutine : MonoBehaviour
         {
             if (Pause_Oshinagaki.instance.oshinagaki_Icon[i].isUse == true)
             {
-                use_Icon[j] = Pause_Oshinagaki.instance.oshinagaki_Icon[i];
+                //use_Icon[j] = Pause_Oshinagaki.instance.oshinagaki_Icon[i];
                 j++;
             }
         }

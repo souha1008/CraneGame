@@ -13,7 +13,7 @@ public class StakeLeftSingle : CircleFoodsInterFace
     public int FireCnt = 0;
     bool FireFlag;
 
-    public bool isFire = false;
+    public bool isFire;
     public int Number;
 
     public bool TempClear = false;
@@ -25,6 +25,8 @@ public class StakeLeftSingle : CircleFoodsInterFace
     private void OnEnable()
     {
         PlateArray = GameObject.FindObjectsOfType<StakePlate>();
+        
+        
     }
     // Update is called once per frame
     void Update()
@@ -46,6 +48,7 @@ public class StakeLeftSingle : CircleFoodsInterFace
                     if (FireCnt > 10)
                     {
                         isFire = true;
+                        GetComponent<stake_ColorTransfer>().ZeroToOne(0.02f);
                     }
                 }
 
