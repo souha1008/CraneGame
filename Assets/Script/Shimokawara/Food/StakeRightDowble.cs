@@ -20,7 +20,6 @@ public class StakeRightDowble : CircleFoodsInterFace
     {
         FoodsStart();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -40,6 +39,7 @@ public class StakeRightDowble : CircleFoodsInterFace
                     if (FireCnt > 10)
                     {
                         isFire = true;
+                        GetComponent<stake_ColorTransfer>().ZeroToOne(0.02f);
                     }
                 }
 
@@ -71,10 +71,14 @@ public class StakeRightDowble : CircleFoodsInterFace
                 Cut1 = Instantiate(Cut1, tempPos1, transform.rotation);
                 Cut1.GetComponent<StakeRightSingle>().Vel = new Vector3(0.3f, 0.1f, 0);
                 Cut1.GetComponent<StakeRightSingle>().isFire = isFire;
+                if (Cut1.GetComponent<StakeRightSingle>().isFire)
+                    Cut1.GetComponent<stake_ColorTransfer>().SetParm(1);
                 Cut1.GetComponent<StakeRightSingle>().Number = Number;
                 Cut2 = Instantiate(Cut2, tempPos2, transform.rotation);
                 Cut2.GetComponent<StakeCenterSingle>().Vel = new Vector3(-0.3f, 0.1f, 0);
                 Cut2.GetComponent<StakeCenterSingle>().isFire = isFire;
+                if (Cut2.GetComponent<StakeCenterSingle>().isFire)
+                    Cut2.GetComponent<stake_ColorTransfer>().SetParm(1);
                 Cut2.GetComponent<StakeCenterSingle>().Number = Number;
 
                 SoundManager.instance.SEPlay("Ç®Ç‡ÇøÇ·êÿífSE");
