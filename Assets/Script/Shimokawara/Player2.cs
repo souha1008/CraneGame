@@ -114,7 +114,7 @@ public class Player2 : MonoBehaviour
         MIN_X = LeftMax.transform.position.x;
         MAX_X = RightMax.transform.position.x;
 
-        NextAttachType = MyAttach.type;
+        //NextAttachType = MyAttach.type;
     }
 
     void Update()
