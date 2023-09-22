@@ -66,6 +66,7 @@ public class General_ColorTransfer : MonoBehaviour
         nowparam = init;
 
         trans_inc = true;
+        Debug.Log("TransferäJénÅI");
     }
 
     public void OneToZero(float speedf, string sg_name = "_Transfer_1st",  float init = 1) 
@@ -75,5 +76,14 @@ public class General_ColorTransfer : MonoBehaviour
         nowparam = init;
 
         trans_dec = true;
+    }
+
+    public void SetParm(float value, string sg_name = "_Transfer_1st")
+    {
+        if (meshRenderer != null)
+            meshRenderer.material.SetFloat(sg_name, value);
+
+        if (skinnedMeshRenderer != null)
+            skinnedMeshRenderer.material.SetFloat(sg_name, value);
     }
 }

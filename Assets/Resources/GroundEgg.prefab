@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7085618501758683477}
   - component: {fileID: 3371379316064485449}
   - component: {fileID: 7125398137040063346}
-  - component: {fileID: -4168293415308628121}
   - component: {fileID: 4567947407799544042}
+  - component: {fileID: 6076043438446346324}
   m_Layer: 0
   m_Name: GroundEgg
   m_TagString: Foods
@@ -117,28 +117,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &-4168293415308628121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9002339302543877557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 980fca926efe07347bb83f82b71ae609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  skinnedMeshRenderer: {fileID: 0}
-  Transfer:
-  - 1
-  - 0
-  SG_name:
-  - _Transfer_1st
-  - _Transfer_2nd
-  isScorch: 0
-  trans_time: 0
 --- !u!114 &4567947407799544042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +140,20 @@ MonoBehaviour:
   Vel: {x: 0, y: 0, z: 0}
   isGround: 0
   FoodsArmState: 0
+--- !u!114 &6076043438446346324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002339302543877557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f617e16863dd34eb3a230625e33f14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 5144950594247139356}
+  skinnedMeshRenderer: {fileID: 0}
 --- !u!1001 &3634510881451561767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -249,6 +241,12 @@ PrefabInstance:
 --- !u!4 &1977274069518440320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2954590232953652391, guid: c25a2f67132c3c143bb1f8cc2706f7b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3634510881451561767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5144950594247139356 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8437187333693862715, guid: c25a2f67132c3c143bb1f8cc2706f7b4,
     type: 3}
   m_PrefabInstance: {fileID: 3634510881451561767}
   m_PrefabAsset: {fileID: 0}

@@ -12,6 +12,7 @@ public class GroundEgg : CircleFoodsInterFace
 
     FlyPang[] FlyPangArray;
     // Start is called before the first frame update
+    bool OnceAnim = true;
     void Start()
     {
         FoodsStart();
@@ -42,6 +43,11 @@ public class GroundEgg : CircleFoodsInterFace
                 if (VectorLength < 8)
                 {
                     isClear = true;
+                    if(OnceAnim)
+                    {
+                        GetComponent<General_ColorTransfer>().OneToZero(0.1f);
+                        OnceAnim = false;
+                    }
                 }
             }
         }

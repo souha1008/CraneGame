@@ -36,7 +36,14 @@ public class Mochi : CircleFoodsInterFace
     {
         FoodsFixedUpdate();
 
-        if(HummerCnt >= 3)
+        if (HummerCnt == 1)
+            GetComponent<General_ColorTransfer>().SetParm(0.33f);
+        else if (HummerCnt == 2)
+            GetComponent<General_ColorTransfer>().SetParm(0.66f);
+        else if(HummerCnt >= 3)
+            GetComponent<General_ColorTransfer>().SetParm(1.0f);
+
+        if (HummerCnt >= 3)
         {
             for (int i = 0; i < PlateArray.Length; i++)
             {
