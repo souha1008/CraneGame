@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutCatButton : TutModule
+public class TutBunEx : TutModule
 {
     void Start()
     {
-        Time.timeScale = 0;
         system.NextActivate(true);
     }
 
     void Update()
     {
-        if (Input.GetButton("Debug Multiplier"))
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetButton("Submit"))
         {
-            Time.timeScale = 1;
             system.NextActivate(false);
             CallFin();
             this.enabled = false;

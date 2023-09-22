@@ -29,6 +29,9 @@ public class TutorialSystem : MonoBehaviour
     [SerializeField]
     private Image ok;
 
+    [SerializeField]
+    private Image finish;
+
     void Awake()
     {
         foreach(var mod in modules)
@@ -73,5 +76,10 @@ public class TutorialSystem : MonoBehaviour
     public void OKActivate(bool _value)
     {
         ok.gameObject.SetActive(_value);
+    }
+
+    public void FinishActivate(bool _value)
+    {
+        finish.gameObject.SetActive(_value);
     }
 }

@@ -46,7 +46,6 @@ public class TutModule : MonoBehaviour
         {
             system.image.gameObject.SetActive(true);
             system.image.sprite = myimage;
-            system.image.SetNativeSize();
         }
         else
         {
@@ -57,7 +56,7 @@ public class TutModule : MonoBehaviour
     /// <summary>
     /// 動作終了
     /// </summary>
-    private void CallFin()
+    protected void CallFin()
     {
         system.ChangeModule();
     }

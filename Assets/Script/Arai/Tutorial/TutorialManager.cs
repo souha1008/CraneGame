@@ -37,7 +37,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void TutStart()
+    public void TutStart()
     {
         down = !down;
 
@@ -48,7 +48,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void TutEnd()
+    public void TutEnd()
     {
         down = !down;
         

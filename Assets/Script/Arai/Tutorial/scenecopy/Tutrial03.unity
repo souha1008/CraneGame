@@ -4979,13 +4979,43 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 712710832}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2093085cf34bb4a98331131b7e53e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myex: {fileID: 21300000, guid: 89f109071199ec24087e79ff716c5b6b, type: 3}
   myimage: {fileID: -1028426990, guid: a46ce8e5a4493854184d5b39e5911719, type: 3}
+  waittime: 2
+--- !u!114 &712710838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712710832}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2ff87cea2ba37499558e23d523629d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myex: {fileID: 21300000, guid: 7a7293e8ba612c54f92d58a9b3e9eb7c, type: 3}
+  myimage: {fileID: -1028426990, guid: a46ce8e5a4493854184d5b39e5911719, type: 3}
+  waittime: 2
+--- !u!114 &712710839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712710832}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108b0e25667e39e48b1f0225e41f65ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myex: {fileID: 0}
+  myimage: {fileID: 0}
   waittime: 2
 --- !u!1 &722004215
 GameObject:
@@ -10368,12 +10398,20 @@ PrefabInstance:
       objectReference: {fileID: 38554545}
     - target: {fileID: 248741214, guid: c63cef80e2451c747935340e98682f42, type: 3}
       propertyPath: modules.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 248741214, guid: c63cef80e2451c747935340e98682f42, type: 3}
       propertyPath: modules.Array.data[0]
       value: 
+      objectReference: {fileID: 712710838}
+    - target: {fileID: 248741214, guid: c63cef80e2451c747935340e98682f42, type: 3}
+      propertyPath: modules.Array.data[1]
+      value: 
       objectReference: {fileID: 712710835}
+    - target: {fileID: 248741214, guid: c63cef80e2451c747935340e98682f42, type: 3}
+      propertyPath: modules.Array.data[2]
+      value: 
+      objectReference: {fileID: 712710839}
     - target: {fileID: 306503846669106290, guid: c63cef80e2451c747935340e98682f42,
         type: 3}
       propertyPath: m_Color.a
