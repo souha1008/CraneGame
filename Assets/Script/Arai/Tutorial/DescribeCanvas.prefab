@@ -50,12 +50,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modules: []
+  index: 0
   food: {fileID: 0}
   ex: {fileID: 2464572833130884983}
   image: {fileID: 2464572833825820796}
   next: {fileID: 2050834327}
   ok: {fileID: 2464572834228121651}
   finish: {fileID: 798855535053543932}
+  observerOBJ: {fileID: 5451328061205252757, guid: dee38811ce807594c8bb2f7ea5ec0afd,
+    type: 3}
+  manager: {fileID: 2464572833695654151}
 --- !u!1 &521580908
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2464572833130884982
 RectTransform:
   m_ObjectHideFlags: 0
@@ -576,7 +580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2464572833825820799
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1356,6 +1360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967466667272252490, guid: 305618d8a382aaf479cd658b3c997614,
+        type: 3}
+      propertyPath: ButtonName
+      value: Debug Multiplier
       objectReference: {fileID: 0}
     - target: {fileID: 8928569876114554628, guid: 305618d8a382aaf479cd658b3c997614,
         type: 3}

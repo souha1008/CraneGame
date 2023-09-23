@@ -12,7 +12,7 @@ public class TutCatButton : TutModule
 
     void Update()
     {
-        if (Input.GetButton("Debug Multiplier"))
+        if (Input.GetKeyDown("joystick button 1"))
         {
             Time.timeScale = 1;
             system.NextActivate(false);

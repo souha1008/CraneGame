@@ -9,6 +9,11 @@ public class TutCatCatch : TutModule
 
     private bool wait = false;
 
+    [SerializeField]
+    private GameObject tutcanvas;
+
+    private PointerCatcher pointer;
+
     void Start()
     {
         manager.TutEnd();
@@ -17,16 +22,29 @@ public class TutCatCatch : TutModule
 
     void Update()
     {
-        if (wait && Input.GetKey(KeyCode.I))
+        if (wait && pointer.Clear)
         {
-            manager.TutStart();
-            Fin();
+            Destroy(pointer.transform.parent.gameObject);
+            Fin(manager);
         }
     }
 
     private IEnumerator Wait()
     {
         yield return new WaitForSecondsRealtime(2.5f);
+
+        GameObject obj = Instantiate(tutcanvas, transform.parent);
+
+        var pointers = obj.GetComponentsInChildren<PointerCatcher>();
+
+        foreach(var pointa in pointers)
+        {
+            if (pointa)
+            {
+                pointer = pointa;
+                break;
+            }
+        }
 
         wait = true;
 

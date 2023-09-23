@@ -61,7 +61,7 @@ public class TutModule : MonoBehaviour
         system.ChangeModule();
     }
 
-    private IEnumerator Finish()
+    private IEnumerator Finish(TutorialManager _value)
     {
         var time = new WaitForSecondsRealtime(waittime);
 
@@ -70,6 +70,7 @@ public class TutModule : MonoBehaviour
         yield return time;
 
         system.OKActivate(false);
+        if (_value) _value.TutStart();
 
         CallFin();
 
@@ -79,9 +80,9 @@ public class TutModule : MonoBehaviour
     /// <summary>
     /// OK表示
     /// </summary>
-    protected void Fin()
+    protected void Fin(TutorialManager _value = null)
     {
-        StartCoroutine(Finish());
+        StartCoroutine(Finish(_value));
         this.enabled = false;
     }
 }

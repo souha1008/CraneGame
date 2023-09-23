@@ -8,6 +8,7 @@ public class TutorialSystem : MonoBehaviour
     [SerializeField]
     private TutModule[] modules;
 
+    [SerializeField]
     private int index = 0;
 
     [SerializeField]
@@ -32,6 +33,17 @@ public class TutorialSystem : MonoBehaviour
     [SerializeField]
     private Image finish;
 
+    [SerializeField]
+    private TutorialObserver observerOBJ;
+
+    private TutorialObserver observer;
+
+    [SerializeField]
+    private TutorialManager manager;
+
+    private ReadIsFade sc;
+    private bool once = false;
+
     void Awake()
     {
         foreach(var mod in modules)
@@ -42,13 +54,31 @@ public class TutorialSystem : MonoBehaviour
 
     void Start()
     {
-        modules[index].enabled = true;
-        modules[index].Init();
+        var obj = GameObject.Find("TutorialObserver(Clone)");
+
+        if (!obj)   observer = Instantiate(observerOBJ);
+        else        observer = obj.GetComponent<TutorialObserver>();
+        
+        sc = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
     }
 
     void Update()
     {
+        if (!once && !sc.GetIsFade())
+        {
+            once = true;
 
+            index = observer.Index;
+
+            modules[index].enabled = true;
+            modules[index].Init();
+
+            if (index != 0)
+            {
+                Debug.Log("no zero");
+                manager.TutStart();
+            }
+        }
     }
 
     /// <summary>
@@ -58,10 +88,11 @@ public class TutorialSystem : MonoBehaviour
     {
         if (modules.Length == ++index)
         {
-            Debug.Log("modfin");
+            Finish();
         }
         else
         {
+            observer.Index = index;
             modules[index].enabled = true;
             modules[index].Init();
         }
@@ -81,5 +112,11 @@ public class TutorialSystem : MonoBehaviour
     public void FinishActivate(bool _value)
     {
         finish.gameObject.SetActive(_value);
+    }
+
+    public void Finish()
+    {
+        Debug.Log("modfin");
+        Destroy(observer.gameObject);
     }
 }

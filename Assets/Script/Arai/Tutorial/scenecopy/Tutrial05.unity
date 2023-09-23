@@ -10318,7 +10318,7 @@ PrefabInstance:
     - target: {fileID: 248741214, guid: c63cef80e2451c747935340e98682f42, type: 3}
       propertyPath: modules.Array.data[0]
       value: 
-      objectReference: {fileID: 1597258613}
+      objectReference: {fileID: 1597258618}
     - target: {fileID: 248741214, guid: c63cef80e2451c747935340e98682f42, type: 3}
       propertyPath: modules.Array.data[1]
       value: 
@@ -10491,21 +10491,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1597258611}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1597258613
+--- !u!114 &1597258613 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2464572833695654151, guid: c63cef80e2451c747935340e98682f42,
+    type: 3}
+  m_PrefabInstance: {fileID: 1597258611}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1597258612}
-  m_Enabled: 0
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0320a8e12cac1a4d9f4ece8df6befdf, type: 3}
+  m_Script: {fileID: 11500000, guid: 24e7d721a1e28ae4cb83c4fe9ba4ca5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myex: {fileID: 21300000, guid: f34fe14193d0aa94ebbd2553d9df7d4f, type: 3}
-  myimage: {fileID: -1028426990, guid: a46ce8e5a4493854184d5b39e5911719, type: 3}
-  waittime: 2
 --- !u!114 &1597258616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10536,6 +10533,22 @@ MonoBehaviour:
   myex: {fileID: 0}
   myimage: {fileID: 0}
   waittime: 2
+--- !u!114 &1597258618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597258612}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba40392f1f18a041aba7d8b9a6bbe6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myex: {fileID: 21300000, guid: f34fe14193d0aa94ebbd2553d9df7d4f, type: 3}
+  myimage: {fileID: -1028426990, guid: a46ce8e5a4493854184d5b39e5911719, type: 3}
+  waittime: 2
+  manager: {fileID: 1597258613}
 --- !u!1 &1597703030
 GameObject:
   m_ObjectHideFlags: 0

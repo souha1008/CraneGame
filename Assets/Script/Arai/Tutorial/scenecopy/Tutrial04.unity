@@ -1323,7 +1323,7 @@ PrefabInstance:
     - target: {fileID: 248741214, guid: c63cef80e2451c747935340e98682f42, type: 3}
       propertyPath: modules.Array.data[0]
       value: 
-      objectReference: {fileID: 145035441}
+      objectReference: {fileID: 145035445}
     - target: {fileID: 248741214, guid: c63cef80e2451c747935340e98682f42, type: 3}
       propertyPath: modules.Array.data[1]
       value: 
@@ -1492,21 +1492,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 145035439}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &145035441
+--- !u!114 &145035441 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2464572833695654151, guid: c63cef80e2451c747935340e98682f42,
+    type: 3}
+  m_PrefabInstance: {fileID: 145035439}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 145035440}
-  m_Enabled: 0
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504daee445c9c384091d728fdca7ef6f, type: 3}
+  m_Script: {fileID: 11500000, guid: 24e7d721a1e28ae4cb83c4fe9ba4ca5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myex: {fileID: 21300000, guid: 658dffc10fe1a07458fdbb3c401840e2, type: 3}
-  myimage: {fileID: -1028426990, guid: a46ce8e5a4493854184d5b39e5911719, type: 3}
-  waittime: 2
 --- !u!114 &145035444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1522,6 +1519,22 @@ MonoBehaviour:
   myex: {fileID: 21300000, guid: 8fc81975a18ea7142958902d858bb34a, type: 3}
   myimage: {fileID: -1028426990, guid: a46ce8e5a4493854184d5b39e5911719, type: 3}
   waittime: 2
+--- !u!114 &145035445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145035440}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba40392f1f18a041aba7d8b9a6bbe6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myex: {fileID: 21300000, guid: 658dffc10fe1a07458fdbb3c401840e2, type: 3}
+  myimage: {fileID: -1028426990, guid: a46ce8e5a4493854184d5b39e5911719, type: 3}
+  waittime: 2
+  manager: {fileID: 145035441}
 --- !u!1001 &148184125
 PrefabInstance:
   m_ObjectHideFlags: 0

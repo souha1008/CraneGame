@@ -22,39 +22,34 @@ public class TutorialManager : MonoBehaviour
         if (!begin && !sc.GetIsFade())
         {
             begin = true;
-            Time.timeScale = 0;
-        }
-        else
-        {
-            if (!down && (Input.GetKey(KeyCode.DownArrow) || Input.GetButton("Submit")))
-            {
-                TutStart();
-            }
-            else if (down && Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                TutEnd();
-            }
+
+            if (GameObject.Find("TutorialObserver(Clone)").GetComponent<TutorialObserver>().Index == 0)
+                Time.timeScale = 0;
         }
     }
 
     public void TutStart()
     {
+        Debug.Log("call play");
+
         down = !down;
+        Time.timeScale = 1;
 
         foreach(var anim in anims)
         {
-            Time.timeScale = 1;
             anim.Play();
         }
     }
 
     public void TutEnd()
     {
+        Debug.Log("call replay");
+
         down = !down;
+        Time.timeScale = 0;
         
         foreach(var anim in anims)
         {
-            Time.timeScale = 0;
             anim.Replay();
         }
     }

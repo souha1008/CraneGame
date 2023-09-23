@@ -19,69 +19,50 @@ public class TutCatMove : TutModule
         {
             inputs[i] = false;
         }
-
-        system.NextActivate(true);
     }
 
     void Update()
     {
-        if (getinput)
+        if (!getinput)
         {
-            bool check = true;
-
+            // 入力確認
+            var stickHor = Input.GetAxis("Horizontal");
+            var stickVer = Input.GetAxis("Vertical");
+            if (!inputs[(int)DIRECTION.UP] && (int)stickVer > 0)
+            {
+                inputs[(int)DIRECTION.UP] = true;
+            }
+            if (!inputs[(int)DIRECTION.DOWN] && (int)stickVer < 0)
+            {
+                inputs[(int)DIRECTION.DOWN] = true;
+            }
+            if (!inputs[(int)DIRECTION.LEFT] && (int)stickHor < 0)
+            {
+                inputs[(int)DIRECTION.LEFT] = true;
+            }
+            if (!inputs[(int)DIRECTION.RIGHT] && (int)stickHor > 0)
+            {
+                inputs[(int)DIRECTION.RIGHT] = true;
+            }
+                
             // オールグリーンチェック
             foreach(var input in inputs)
             {
-                if (check && !input)
+                if (!input)
                 {
-                    check = false;
+                    getinput = false;
                     break;
                 }
-            }
-
-            if (check)
-            {
-                getinput = false;
-            }
-            else
-            {
-                // 入力確認
-                var stickHor = Input.GetAxis("Horizontal");
-                var stickVer = Input.GetAxis("Vertical");
-
-                if (!inputs[(int)DIRECTION.UP] && (int)stickVer > 0)
+                else
                 {
-                    inputs[(int)DIRECTION.UP] = true;
-                }
-                if (!inputs[(int)DIRECTION.DOWN] && (int)stickVer < 0)
-                {
-                    inputs[(int)DIRECTION.DOWN] = true;
-                }
-                if (!inputs[(int)DIRECTION.LEFT] && (int)stickHor < 0)
-                {
-                    inputs[(int)DIRECTION.LEFT] = true;
-                }
-                if (!inputs[(int)DIRECTION.RIGHT] && (int)stickHor > 0)
-                {
-                    inputs[(int)DIRECTION.RIGHT] = true;
+                    getinput = true;
                 }
             }
 
         }
         else
         {
-            if (!inputs[(int)DIRECTION.UP])
-            {
-                if (Input.GetKey(KeyCode.DownArrow) || Input.GetButton("Submit"))
-                {
-                    getinput = true;
-                    system.NextActivate(false);
-                }
-            }
-            else
-            {
-                Fin();
-            }
+            Fin();
         }
     }
 }

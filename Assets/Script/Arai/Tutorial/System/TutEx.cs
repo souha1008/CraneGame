@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutBunEx : TutModule
+public class TutEx : TutModule
 {
+    [SerializeField]
+    private TutorialManager manager;
+
     void Start()
     {
         system.NextActivate(true);
@@ -11,8 +14,9 @@ public class TutBunEx : TutModule
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKeyDown("joystick button 1"))
+        if (Input.GetKeyDown("joystick button 1"))
         {
+            manager.TutStart();
             system.NextActivate(false);
             CallFin();
             this.enabled = false;

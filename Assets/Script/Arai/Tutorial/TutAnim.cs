@@ -18,14 +18,12 @@ public class TutAnim : MonoBehaviour
 
     public void Play()
     {
-        Debug.Log("call play");
         anim.SetFloat("Speed", 1);
         anim.Play(animname, 0, 0);
     }
 
     public void Replay()
     {
-        Debug.Log("call replay");
         anim.SetFloat("Speed", -1);
         anim.Play(animname, 0, 1);
     }
