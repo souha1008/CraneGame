@@ -13,18 +13,17 @@ public class TutAnim : MonoBehaviour
     void Start()
     {
         if (!anim) anim = gameObject.GetComponent<Animator>();
+        anim.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     public void Play()
     {
-        Debug.Log("call play");
         anim.SetFloat("Speed", 1);
         anim.Play(animname, 0, 0);
     }
 
     public void Replay()
     {
-        Debug.Log("call replay");
         anim.SetFloat("Speed", -1);
         anim.Play(animname, 0, 1);
     }

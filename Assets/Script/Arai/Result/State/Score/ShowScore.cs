@@ -57,7 +57,9 @@ public class ShowScore : ResultUI
             p.GetComponent<RectTransform>().anchoredPosition
                 = new Vector2(defaultPos.x + offpos.x, defaultPos.y + offpos.y - distanceY * i);
 
-            p.SetScore(data.GetScore(i));
+            p.SetClearScore(data.GetScore(i));
+            p.SetMissScore(data.GetMaxScore(i) - data.GetScore(i));
+            p.SetImage(i);
             p.SS = this;
         }
 

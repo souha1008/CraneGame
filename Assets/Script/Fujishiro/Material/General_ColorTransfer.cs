@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.iOS;
 
 public class General_ColorTransfer : MonoBehaviour
 {
@@ -19,28 +18,27 @@ public class General_ColorTransfer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         if (meshRenderer != null)
-             meshRenderer.material.SetFloat(trans_param_name, nowparam);
+            meshRenderer.material.SetFloat(trans_param_name, nowparam);
 
         if (skinnedMeshRenderer != null)
             skinnedMeshRenderer.material.SetFloat(trans_param_name, nowparam);
+        
 
         if(trans_inc)
         {
             nowparam += speed;
-
             if (meshRenderer != null)
                 meshRenderer.material.SetFloat(trans_param_name, nowparam);
 
             if (skinnedMeshRenderer != null)
                 skinnedMeshRenderer.material.SetFloat(trans_param_name, nowparam);
-            
 
             if(nowparam > 1)
                 trans_inc = false;
@@ -49,14 +47,11 @@ public class General_ColorTransfer : MonoBehaviour
         if(trans_dec)
         {
             nowparam -= speed;
-
-
             if (meshRenderer != null)
                 meshRenderer.material.SetFloat(trans_param_name, nowparam);
 
             if (skinnedMeshRenderer != null)
                 skinnedMeshRenderer.material.SetFloat(trans_param_name, nowparam);
-            
 
             if (nowparam < 0)
                 trans_dec = false;
@@ -71,6 +66,7 @@ public class General_ColorTransfer : MonoBehaviour
         nowparam = init;
 
         trans_inc = true;
+        Debug.Log("TransferŠJŽnI");
     }
 
     public void OneToZero(float speedf, string sg_name = "_Transfer_1st",  float init = 1) 
@@ -80,5 +76,14 @@ public class General_ColorTransfer : MonoBehaviour
         nowparam = init;
 
         trans_dec = true;
+    }
+
+    public void SetParm(float value, string sg_name = "_Transfer_1st")
+    {
+        if (meshRenderer != null)
+            meshRenderer.material.SetFloat(sg_name, value);
+
+        if (skinnedMeshRenderer != null)
+            skinnedMeshRenderer.material.SetFloat(sg_name, value);
     }
 }

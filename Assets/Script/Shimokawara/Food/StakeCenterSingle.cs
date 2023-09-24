@@ -26,6 +26,7 @@ public class StakeCenterSingle : CircleFoodsInterFace
 
     private void OnEnable()
     {
+        
         PlateArray = GameObject.FindObjectsOfType<StakePlate>();
     }
 
@@ -47,6 +48,7 @@ public class StakeCenterSingle : CircleFoodsInterFace
 
                     if (FireCnt > 10)
                     {
+                        GetComponent<stake_ColorTransfer>().ZeroToOne(0.02f);
                         isFire = true;
                     }
                 }
@@ -109,11 +111,6 @@ public class StakeCenterSingle : CircleFoodsInterFace
         isClear = TempClear;
 
 
-
-        if (transform.position.x < ShikiriX)
-        {
-            isClear = true;
-        }
         FoodsFixedUpdate();
     }
 

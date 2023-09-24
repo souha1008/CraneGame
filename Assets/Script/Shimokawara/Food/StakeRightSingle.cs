@@ -13,7 +13,7 @@ public class StakeRightSingle : CircleFoodsInterFace
     public int FireCnt = 0;
     bool FireFlag;
 
-    public bool isFire = false;
+    public bool isFire;
     public int Number;
     public bool TempClear = false;
     StakePlate[] PlateArray;
@@ -45,6 +45,8 @@ public class StakeRightSingle : CircleFoodsInterFace
                     if (FireCnt > 10)
                     {
                         isFire = true;
+                        GetComponent<stake_ColorTransfer>().ZeroToOne(0.02f);
+                        Debug.Log("TransfaråƒÇ—èoÇµ  ");
                     }
                 }
 
