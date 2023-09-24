@@ -17,7 +17,5 @@ namespace Co
         public static readonly int STAGE_NUM = 5;
 
         public static readonly Color CLEAR = new Color(1, 1, 1, 0);
-
-        public static readonly float TUT_WAITTIME_DEF = 2.0f;
     }
 }

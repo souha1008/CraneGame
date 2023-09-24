@@ -47,13 +47,7 @@ public class PopCorn : CircleFoodsInterFace
                     if (FireCnt > 10)
                     {
                         isFire = true;
-                        float Value = UnityEngine.Random.Range(0.0f,6.24f);
-                        float MoveX = Mathf.Cos(Value) * 0.3f;
-                        float MoveZ = Mathf.Sin(Value) * 0.3f;
-                        Debug.Log(MoveX );
-                        Debug.Log( MoveZ);
-
-                        Vel = new Vector3(MoveX, 0.2f, MoveZ);
+                        Vel = new Vector3(0, 0.2f, 0);
 
                         //Destroy(gameObject);
                     }

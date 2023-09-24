@@ -15,7 +15,7 @@ public class test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SuccessManager.instance.Success_UIActive();
+            GetComponent<General_ColorTransfer>().ZeroToOne(0.01f);
         }
     }
 }

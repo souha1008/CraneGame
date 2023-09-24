@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 using UnityEngine.UI;
 
@@ -15,9 +14,6 @@ public class Logo : MonoBehaviour
     private float waittime = 1;
 
     private bool skip = false;
-
-    [SerializeField]
-    private int logowaitframe = 60;
 
     void Awake()
     {
@@ -53,33 +49,9 @@ public class Logo : MonoBehaviour
                 if (!skip) yield return wait;
         }
         
-        if (!skip)wait.Reset();
+        yield return new WaitForSecondsRealtime(waittime);
 
-        int cnt = 0;
-        while(true)
-        {
-            if ((++cnt) >= logowaitframe)
-                break;
-            else
-                if (!skip) yield return wait;
-        }
-
-        if (!skip)wait.Reset();
-
-        while(true)
-        {
-            logo.color = Color.Lerp(Co.Const.CLEAR, Color.white, param);
-            param -= 0.016f;
-
-            if (logo.color.a <= 0)
-                break;
-            else
-                if (!skip) yield return wait;
-        }
-
-        logo.color = new Color(1f, 1f, 1f, 0f);
-
-        SceneManager.LoadScene("kurentei_cut_02");
+        GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
         yield break;
     }
 }

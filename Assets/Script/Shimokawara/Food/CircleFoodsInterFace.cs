@@ -427,11 +427,6 @@ public class CircleFoodsInterFace : MonoBehaviour
                                 GetComponent<Material_ColorTransfer>().Scorch_Object(3.0f);
 
                             }
-                            else if (GetComponent<General_ColorTransfer>())
-                            {
-                                Debug.Log("åƒÇŒÇÍÇΩ");
-                                GetComponent<General_ColorTransfer>().ZeroToOne(0.1f, "_Transfer_2nd");
-                            }
                             SoundManager.instance.SEPlay("è≈Ç∞ÇÈSE");
 
                             //âåÇËÇæÇ∑
@@ -490,11 +485,6 @@ public class CircleFoodsInterFace : MonoBehaviour
                                 Debug.Log("åƒÇŒÇÍÇΩ");
                                 GetComponent<Material_ColorTransfer>().Scorch_Object(3.0f);
 
-                            }
-                            else if(GetComponent<General_ColorTransfer>())
-                            {
-                                Debug.Log("åƒÇŒÇÍÇΩ");
-                                GetComponent<General_ColorTransfer>().ZeroToOne(0.1f, "_Transfer_2nd");
                             }
                             SoundManager.instance.SEPlay("è≈Ç∞ÇÈSE");
 

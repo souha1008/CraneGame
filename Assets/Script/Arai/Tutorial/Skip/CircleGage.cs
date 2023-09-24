@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CircleGage : MonoBehaviour
 {
     [SerializeField]
-    private string ButtonName = "Debug Multiplier";
+    private string ButtonName = "Cancel";
 
     private Image image;
 
@@ -16,12 +16,14 @@ public class CircleGage : MonoBehaviour
     [SerializeField]
     private float speed = 0.05f;
 
+    // Start is called before the first frame update
     void Start()
     {
         image = gameObject.GetComponent<Image>();
         image.fillAmount = param;
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (Input.GetButton(ButtonName))
@@ -29,7 +31,7 @@ public class CircleGage : MonoBehaviour
             if ((param += speed) >= 1)
             {
                 Debug.Log("fin");
-                param = 0;
+                Destroy(this);
             }
         }
         else

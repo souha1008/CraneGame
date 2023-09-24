@@ -94,16 +94,6 @@ public class ScoreData : MonoBehaviour
     }
 
     /// <summary>
-    /// 最大スコア取得
-    /// </summary>
-    /// <param name="_index">フェーズ数</param>
-    /// <returns>スコア値</returns>
-    public int GetMaxScore(int _index)
-    {
-        return maxScore[_index];
-    }
-
-    /// <summary>
     /// 合計スコア割合取得
     /// </summary>
     /// <returns>スコア値</returns>

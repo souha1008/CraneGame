@@ -77,13 +77,4 @@ public class stake_ColorTransfer : MonoBehaviour
 
         trans_dec = true;
     }
-
-    public void SetParm(float value, string sg_name = "_Transfer_1st" )
-    {
-        for (int i = 0; i < meshRenderer.Length; i++)
-        {
-            if (meshRenderer[0] != null)
-                meshRenderer[i].material.SetFloat(sg_name, value);
-        }
-    }
 }

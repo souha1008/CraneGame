@@ -4,6 +4,7 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor.Build.Content;
 
 public class PauseCoroutine : MonoBehaviour
 {
@@ -58,6 +59,8 @@ public class PauseCoroutine : MonoBehaviour
 
     [Header("おしながきステップ")]
     public Oshinagaki_Icon[] use_Icon;
+    int nowSelect = 0;
+    int usecount = 0;
 
     [SerializeField] bool DEBUG;
 
@@ -115,7 +118,7 @@ public class PauseCoroutine : MonoBehaviour
         {
             if (Pause_Oshinagaki.instance.oshinagaki_Icon[i].isUse == true)
             {
-                //use_Icon[j] = Pause_Oshinagaki.instance.oshinagaki_Icon[i];
+                use_Icon[j] = Pause_Oshinagaki.instance.oshinagaki_Icon[i];
                 j++;
             }
         }
@@ -454,16 +457,69 @@ public class PauseCoroutine : MonoBehaviour
 
     IEnumerator C_Oshinagaki()
     {
+        nowSelect = 0;
+        for(int i = 0; i < use_Icon.Length; i++)
+        {
+            if (use_Icon[i].isUse == false)
+            {
+                break;
+            }
+            // アルファ値リセット
+            GameObject pa = use_Icon[i].Step;
+            Image[] com = pa.GetComponentsInChildren<Image>();
+            foreach (Image component in com)
+            {
+                component.color = new Color(255, 255, 255, 255);
+            }
+            usecount++;
+        }
+        GameObject parent = use_Icon[nowSelect].Step;
+        Image[] components = parent.GetComponentsInChildren<Image>();
+        foreach (Image component in components) 
+        {
+            component.color = new Color(1, 1, 1, 0);
+        }
+        yield return new WaitForSecondsRealtime(1.3f);
+        StartCoroutine(Alphakasan(parent));
+
+
         while (true)
         {
-            // おしながき処理
 
+            // おしながき処理
+            use_Icon[nowSelect].Step.SetActive(true);
+
+            // 次へ行く
+            if(Input.GetKeyDown(DownArrow))
+            {
+                use_Icon[nowSelect].Step.SetActive(false);
+                nowSelect++;
+            }
+            // 戻る
+            if (Input.GetKeyDown(UpArrow))
+            {
+                use_Icon[nowSelect].Step.SetActive(false);
+                nowSelect--;
+            }
+
+            // ループ処理
+            if (nowSelect > usecount - 1)
+            {
+                nowSelect = 0;
+            }
+            if(nowSelect < 0)
+            {
+                nowSelect = usecount - 1;
+            }
 
             // ポーズメニューへ戻る
             if (Input.GetKeyDown(BackKey))
             {
+                StartCoroutine(Alphagensui(use_Icon[nowSelect].Step));
                 OshinagakiAnimSetBool(Oshinagaki_anim_paramator, false);
                 SoundManager.instance.SEPlay("戻るSE");
+                yield return new WaitForSecondsRealtime(C_Option_WaitTime);
+                use_Icon[nowSelect].Step.SetActive(false);
                 SetIsPauseMenu(true);
                 OptionSelectCount = 0;
                 yield break;
@@ -471,4 +527,47 @@ public class PauseCoroutine : MonoBehaviour
             yield return null;
         }
     }
+    IEnumerator Alphagensui(GameObject parent)
+    {
+        Image[] components = parent.GetComponentsInChildren<Image>();
+
+        while (true)
+        {
+            foreach (Image component in components)
+            {
+                var inc = 0.1f;
+                component.color -= new Color(0, 0, 0, inc);
+                
+                if (component.color.a < 0.0)
+                {
+                    yield break;
+                }
+            }
+            yield return null;
+        }
+        
+    }
+
+    IEnumerator Alphakasan(GameObject parent)
+    {
+        Image[] components = parent.GetComponentsInChildren<Image>();
+
+        while (true)
+        {
+            foreach (Image component in components)
+            {
+                var inc = 0.1f;
+                component.color += new Color(0, 0, 0, inc);
+                
+                if (component.color.a > 1)
+                {
+                    yield break;
+                }
+            }
+            yield return null;
+        }
+        
+    }
 }
+
+

@@ -23,7 +23,6 @@ public class Berry : CircleFoodsInterFace
     private void OnEnable()
     {
         PlateArray = GameObject.FindObjectsOfType<BerryPlate>();
-        GetComponent<General_ColorTransfer>().SetParm(1);
     }
 
     // Update is called once per frame
@@ -43,8 +42,6 @@ public class Berry : CircleFoodsInterFace
                 if (AirCnt > 40)
                 {
                     m_HummerAction = HummerAction.STAY;
-                    GetComponent<General_ColorTransfer>().OneToZero(0.1f);
-                    Debug.Log("Š£‘‡");
                     Dry = true;
                 }
             }

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7799637840275063043}
   - component: {fileID: 7799637840275063040}
   - component: {fileID: 7799637840275063041}
+  - component: {fileID: 7799637840275063046}
   - component: {fileID: 7799637840275063047}
-  - component: {fileID: 8894935424042097866}
   m_Layer: 0
   m_Name: Berry
   m_TagString: Foods
@@ -117,6 +117,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!114 &7799637840275063046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7799637840275063044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980fca926efe07347bb83f82b71ae609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 0}
+  skinnedMeshRenderer: {fileID: 0}
+  Transfer:
+  - 1
+  - 0
+  SG_name:
+  - _Transfer_1st
+  - _Transfer_2nd
+  isScorch: 0
+  trans_time: 0
 --- !u!114 &7799637840275063047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,20 +164,6 @@ MonoBehaviour:
   FoodsArmState: 0
   AirCnt: 0
   Dry: 0
---- !u!114 &8894935424042097866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7799637840275063044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1f617e16863dd34eb3a230625e33f14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 8062188893005368557}
-  skinnedMeshRenderer: {fileID: 0}
 --- !u!1001 &2346623416469501481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -243,12 +251,6 @@ PrefabInstance:
 --- !u!4 &1478791237753832822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3753004115332969311, guid: 99bba596bdaf0874ca6d29bdacf00ddc,
-    type: 3}
-  m_PrefabInstance: {fileID: 2346623416469501481}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &8062188893005368557 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5724716714238180036, guid: 99bba596bdaf0874ca6d29bdacf00ddc,
     type: 3}
   m_PrefabInstance: {fileID: 2346623416469501481}
   m_PrefabAsset: {fileID: 0}
