@@ -1,0 +1,227 @@
+diff a/Assets/Script/Fujishiro/PauseCoroutine.cs b/Assets/Script/Fujishiro/PauseCoroutine.cs	(rejected hunks)
+@@ -1,32 +1,31 @@
+ using System.Collections;
+ using System.Collections.Generic;
+ using System.ComponentModel;
+ using UnityEngine;
+ using UnityEngine.UI;
+ using UnityEngine.SceneManagement;
+-using UnityEditor.Build.Content;
+ 
+ public class PauseCoroutine : MonoBehaviour
+ {
+     // �}�N���萔
+     const int M_MAXSELECT = 3;
+     const int M_MINSELECT = 0;
+ 
+     [SerializeField, ReadOnly] public bool mPaused = false;
+     [SerializeField, ReadOnly] private float mPauseCooldown;
+ 
+     [SerializeField][Tooltip("�|�[�Y�̃N�[���^�C��")] float pauseCoolTime;
+ 
+     [SerializeField][Tooltip("��������|�[�Y����{�^��")] KeyCode pauseKey = KeyCode.P;
+     [SerializeField][Tooltip("�������猈�肷��")] KeyCode KetteiKey = KeyCode.Space;
+     [SerializeField][Tooltip("��������L�����Z��")] KeyCode BackKey = KeyCode.Z;
+     [SerializeField] [Tooltip("���L�[")] KeyCode DownArrow = KeyCode.DownArrow;
+     [SerializeField] [Tooltip("���L�[")] KeyCode UpArrow = KeyCode.UpArrow;
+ 
+     [SerializeField][Tooltip("�I�𒆂̐F")] Color nowSelectColor = new Color(0, 255, 255);
+     [SerializeField][Tooltip("�I����ĂȂ��F")] Color notSelectColor = Color.white;
+ 
+     [Header("UI�n")]
+     [SerializeField] Canvas Pause_Canvas = null;
+     [SerializeField] Image Option;
+     [SerializeField] Image Retry;
+@@ -37,52 +36,50 @@
+     [SerializeField, ReadOnly] int OptionSelectCount = 0;
+ 
+     [SerializeField] Animator animator_Pause;
+     [SerializeField] Animator animator_Oshinagaki;
+     [SerializeField] Animator animator_Option_c;
+     [SerializeField] string UI_anim_paramator;
+     [SerializeField] string Oshinagaki_anim_paramator;
+ 
+     [Header("�I�v�V������X���C�_�[")]
+     [SerializeField] GameObject Option_C;
+     [SerializeField] Image TI_BGM;
+     [SerializeField] Image TI_SE;
+     [SerializeField] Slider BGM_Slider;
+     [SerializeField] Slider SE_Slider;
+     [SerializeField] float slider_rate = 0.1f;
+     [SerializeField] float slider_coolfrate = 35;
+     private float slider_nowcoolframe;
+ 
+     [Header("�R���[�`���p�ϐ�")]
+     [SerializeField] float C_Option_WaitTime = 1.5f;
+     [SerializeField] float C_Option_WaitFrame = 180;
+     [SerializeField] float UpdateModeChange_WaitTime = 5;
+ 
+     [Header("�����Ȃ����X�e�b�v")]
+     public Oshinagaki_Icon[] use_Icon;
+-    int nowSelect = 0;
+-    int usecount = 0;
+ 
+     [SerializeField] bool DEBUG;
+ 
+     public static PauseCoroutine instance { get; private set; } = new PauseCoroutine();
+     public bool Update_isPause;
+ 
+     // �v���C�x�[�g�ϐ�
+     private bool isPauseMenu = false;
+     private bool isOption_c = false;
+     private float prevAxis = 0;
+     private Coroutine counddown_corutine;
+ 
+     enum SelectCorsor
+     {
+         Option = 0,
+         Retry = 1,
+         StageSelect = 2,
+         Oshinagaki = 3,
+     };
+ 
+     void SetIsPauseMenu(bool set)
+     {
+         isPauseMenu = set;
+     }
+ 
+@@ -435,139 +432,43 @@
+                     SoundManager.instance.ChangeSEVolume(nowslider.value);
+ 
+                 slider_nowcoolframe = 0;
+             }
+             slider_nowcoolframe += 1;
+ 
+             // �|�[�Y���j���[�֖߂�
+             if (Input.GetKeyDown(BackKey))
+             {
+                 AnimSetBool(UI_anim_paramator, false);
+                 SetIsOption_c(false);
+                 SoundManager.instance.SEPlay("�߂�SE");
+                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
+                 SetIsPauseMenu(true);
+                 OptionSelectCount = 0;
+                 yield break;
+             }
+ 
+ 
+             yield return null;
+         }
+     }
+ 
+     IEnumerator C_Oshinagaki()
+     {
+-        nowSelect = 0;
+-        for(int i = 0; i < use_Icon.Length; i++)
+-        {
+-            if (use_Icon[i].isUse == false)
+-            {
+-                break;
+-            }
+-            // �A���t�@�l���Z�b�g
+-            GameObject pa = use_Icon[i].Step;
+-            Image[] com = pa.GetComponentsInChildren<Image>();
+-            foreach (Image component in com)
+-            {
+-                component.color = new Color(255, 255, 255, 255);
+-            }
+-            usecount++;
+-        }
+-        GameObject parent = use_Icon[nowSelect].Step;
+-        Image[] components = parent.GetComponentsInChildren<Image>();
+-        foreach (Image component in components) 
+-        {
+-            component.color = new Color(1, 1, 1, 0);
+-        }
+-        yield return new WaitForSecondsRealtime(1.3f);
+-        StartCoroutine(Alphakasan(parent));
+-
+-
+         while (true)
+         {
+-
+             // �����Ȃ�������
+-            use_Icon[nowSelect].Step.SetActive(true);
+-
+-            // ���֍s��
+-            if(Input.GetKeyDown(DownArrow))
+-            {
+-                use_Icon[nowSelect].Step.SetActive(false);
+-                nowSelect++;
+-            }
+-            // �߂�
+-            if (Input.GetKeyDown(UpArrow))
+-            {
+-                use_Icon[nowSelect].Step.SetActive(false);
+-                nowSelect--;
+-            }
+ 
+-            // ���[�v����
+-            if (nowSelect > usecount - 1)
+-            {
+-                nowSelect = 0;
+-            }
+-            if(nowSelect < 0)
+-            {
+-                nowSelect = usecount - 1;
+-            }
+ 
+             // �|�[�Y���j���[�֖߂�
+             if (Input.GetKeyDown(BackKey))
+             {
+-                StartCoroutine(Alphagensui(use_Icon[nowSelect].Step));
+                 OshinagakiAnimSetBool(Oshinagaki_anim_paramator, false);
+                 SoundManager.instance.SEPlay("�߂�SE");
+-                yield return new WaitForSecondsRealtime(C_Option_WaitTime);
+-                use_Icon[nowSelect].Step.SetActive(false);
+                 SetIsPauseMenu(true);
+                 OptionSelectCount = 0;
+                 yield break;
+             }
+             yield return null;
+         }
+     }
+-    IEnumerator Alphagensui(GameObject parent)
+-    {
+-        Image[] components = parent.GetComponentsInChildren<Image>();
+-
+-        while (true)
+-        {
+-            foreach (Image component in components)
+-            {
+-                var inc = 0.1f;
+-                component.color -= new Color(0, 0, 0, inc);
+-                
+-                if (component.color.a < 0.0)
+-                {
+-                    yield break;
+-                }
+-            }
+-            yield return null;
+-        }
+-        
+-    }
+-
+-    IEnumerator Alphakasan(GameObject parent)
+-    {
+-        Image[] components = parent.GetComponentsInChildren<Image>();
+-
+-        while (true)
+-        {
+-            foreach (Image component in components)
+-            {
+-                var inc = 0.1f;
+-                component.color += new Color(0, 0, 0, inc);
+-                
+-                if (component.color.a > 1)
+-                {
+-                    yield break;
+-                }
+-            }
+-            yield return null;
+-        }
+-        
+-    }
+ }
+-
+-
