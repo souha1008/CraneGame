@@ -16,9 +16,15 @@ public class StakeRightDowble : CircleFoodsInterFace
 
     public bool isFire = false;
     public int Number;
+    public GameObject Effect;
     void Start()
     {
         FoodsStart();
+    }
+
+    private void OnEnable()
+    {
+        Effect.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -30,6 +36,7 @@ public class StakeRightDowble : CircleFoodsInterFace
     {
         if (!isFire)
         {
+            
             if (!isNoAction)
             {
                 if (FireFlag)
@@ -46,6 +53,12 @@ public class StakeRightDowble : CircleFoodsInterFace
             }
         }
         FireFlag = false;
+
+        if(isFire)
+        {
+            Effect.SetActive(true);
+        }
+            
         FoodsFixedUpdate();
     }
 
