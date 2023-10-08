@@ -16,13 +16,17 @@ public class Stake : CircleFoodsInterFace
     public bool isFire = false;
     public int Number;
     static int StaticNumber = 0;
-
+    public GameObject Effect;
     void Start()
     {
         FoodsStart();
         Number = StaticNumber;
         StaticNumber++;
 
+    }
+    private void OnEnable()
+    {
+        Effect.SetActive(false);
     }
 
     // Update is called once per frame
@@ -51,6 +55,11 @@ public class Stake : CircleFoodsInterFace
             }
         }
         FireFlag = false;
+
+        if (isFire)
+        {
+            Effect.SetActive(true);
+        }
 
         FoodsFixedUpdate();
     }

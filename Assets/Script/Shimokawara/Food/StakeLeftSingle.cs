@@ -17,6 +17,7 @@ public class StakeLeftSingle : CircleFoodsInterFace
     public int Number;
 
     public bool TempClear = false;
+    public GameObject Effect;
     StakePlate[] PlateArray;
     void Start()
     {
@@ -25,8 +26,8 @@ public class StakeLeftSingle : CircleFoodsInterFace
     private void OnEnable()
     {
         PlateArray = GameObject.FindObjectsOfType<StakePlate>();
-        
-        
+        Effect.SetActive(false);
+
     }
     // Update is called once per frame
     void Update()
@@ -39,6 +40,7 @@ public class StakeLeftSingle : CircleFoodsInterFace
 
         if (!isFire)
         {
+         
             if (!isNoAction)
             {
                 if (FireFlag)
@@ -59,6 +61,7 @@ public class StakeLeftSingle : CircleFoodsInterFace
 
         if (isFire)
         {
+            Effect.SetActive(true);
             for (int i = 0; i < PlateArray.Length; i++)
             {
                 if (PlateArray[i])
