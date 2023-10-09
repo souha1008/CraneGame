@@ -21,6 +21,9 @@ public class MyTutrialButton: CircleFoodsInterFace
 
     public CircleFoodsInterFace Food;
 
+    [SerializeField]
+    private string nextSceneName;
+
     void Start()
     {
         //DefaultY = Button.transform.position.y;
@@ -45,52 +48,52 @@ public class MyTutrialButton: CircleFoodsInterFace
 
         //FoodsFixedUpdate();
 
-        //ƒV[ƒ“‘JˆÚˆ—
+        //ï¿½Vï¿½[ï¿½ï¿½ï¿½Jï¿½Úï¿½ï¿½ï¿½
         if (Food.isNoAction)
         {
-            //ƒV[ƒ“ŒJ‚è•Ô‚µ
+            //ï¿½Vï¿½[ï¿½ï¿½ï¿½Jï¿½ï¿½Ô‚ï¿½
             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(SceneManager.GetActiveScene().name, 1);
-            Debug.Log("ƒV[ƒ“ŒJ‚è•Ô‚µ");
+            Debug.Log("ï¿½Vï¿½[ï¿½ï¿½ï¿½Jï¿½ï¿½Ô‚ï¿½");
         }
 
         if (ButtonState && OnceOK && Cnt > 120)
         {
             OnceOK = false;
-            //ƒV[ƒ“‘JˆÚˆ—
+            //ï¿½Vï¿½[ï¿½ï¿½ï¿½Jï¿½Úï¿½ï¿½ï¿½
             Button.transform.position = new Vector3(Button.transform.position.x, DefaultY - 0.7f, Button.transform.position.z);
             cookMoveManager.ChangeSign();
-            Debug.Log("ƒ{ƒ^ƒ“ƒV[ƒ“ƒ`ƒFƒ“ƒW");
-            SoundManager.instance.SEPlay("ƒVƒƒƒbƒ^[ŠJ•ÂSE");
-            SoundManager.instance.SEPlay("ƒ{ƒ^ƒ“‰Ÿ‰ºSE");
+            Debug.Log("ï¿½{ï¿½^ï¿½ï¿½ï¿½Vï¿½[ï¿½ï¿½ï¿½`ï¿½Fï¿½ï¿½ï¿½W");
+            SoundManager.instance.SEPlay("ï¿½Vï¿½ï¿½ï¿½bï¿½^ï¿½[ï¿½Jï¿½ï¿½SE");
+            SoundManager.instance.SEPlay("ï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SE");
 
-            //ƒV[ƒ“‘JˆÚˆ—
+            //ï¿½Vï¿½[ï¿½ï¿½ï¿½Jï¿½Úï¿½ï¿½ï¿½
             if (Food)
             {
                 if (Food.isClear)
                 {
-                    //Ÿ‚ÌƒV[ƒ“‚Ö
-                    GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest", 1);
+                    //ï¿½ï¿½ï¿½ÌƒVï¿½[ï¿½ï¿½ï¿½ï¿½
+                    GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(nextSceneName, 1);
 
                 }
                 else
                 {
-                    //ƒV[ƒ“ŒJ‚è•Ô‚µ
+                    //ï¿½Vï¿½[ï¿½ï¿½ï¿½Jï¿½ï¿½Ô‚ï¿½
                     GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(SceneManager.GetActiveScene().name, 1);
-                    Debug.Log("ƒV[ƒ“ŒJ‚è•Ô‚µ");
+                    Debug.Log("ï¿½Vï¿½[ï¿½ï¿½ï¿½Jï¿½ï¿½Ô‚ï¿½");
                 }
 
                 if (Food.isNoAction)
                 {
-                    //ƒV[ƒ“ŒJ‚è•Ô‚µ
+                    //ï¿½Vï¿½[ï¿½ï¿½ï¿½Jï¿½ï¿½Ô‚ï¿½
                     GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(SceneManager.GetActiveScene().name, 1);
-                    Debug.Log("ƒV[ƒ“ŒJ‚è•Ô‚µ");
+                    Debug.Log("ï¿½Vï¿½[ï¿½ï¿½ï¿½Jï¿½ï¿½Ô‚ï¿½");
                 }
 
             }
             else
             {
-                //Ÿ‚ÌƒV[ƒ“‚Ö
-                GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("ResultTest", 1);
+                //ï¿½ï¿½ï¿½ÌƒVï¿½[ï¿½ï¿½ï¿½ï¿½
+                GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(nextSceneName, 1);
             }
             
 
@@ -100,7 +103,7 @@ public class MyTutrialButton: CircleFoodsInterFace
 
     }
 
-    private void OnTriggerStay(Collider other)//Œ³ƒGƒ“ƒ^[
+    private void OnTriggerStay(Collider other)//ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½^ï¿½[
     {
         if (Cnt > 120)
         {

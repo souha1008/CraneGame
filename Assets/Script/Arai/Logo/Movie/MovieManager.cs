@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MovieManager : MonoBehaviour
 {
@@ -14,7 +14,9 @@ public class MovieManager : MonoBehaviour
     [SerializeField]
     private int waittime = 10;
 
-    bool wait = false;
+    private bool wait = false;
+
+    private bool once = false;
 
     void Start()
     {
@@ -28,25 +30,33 @@ public class MovieManager : MonoBehaviour
             if(wait) StopCoroutine(Wait());
             SceneChange();
         }
-        else if (image.anchoredPosition.y <= 0)
+        else if (once && image.anchoredPosition.y <= 0)
         {
             wait = true;
             StartCoroutine(Wait());
         }
+        else once = true;
     }
 
-    private void SceneChange()
+    private void SceneChange(bool _rerode = false)
     {
-        camera.gameObject.name = new string("Main Camera");
-        GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
-        this.enabled = false;
+        if (_rerode)
+        {
+            SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            camera.gameObject.name = new string("Main Camera");
+            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("TitleTest");
+            this.enabled = false;
+        }
     }
 
     private IEnumerator Wait()
     {
         yield return new WaitForSecondsRealtime(waittime);
 
-        SceneChange();
+        SceneChange(true);
 
         yield break;
     }

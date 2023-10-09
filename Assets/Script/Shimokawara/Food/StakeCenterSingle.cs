@@ -18,6 +18,7 @@ public class StakeCenterSingle : CircleFoodsInterFace
     public int Number;
 
     StakePlate[] PlateArray;
+    public GameObject Effect;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class StakeCenterSingle : CircleFoodsInterFace
 
     private void OnEnable()
     {
-        
+        Effect.SetActive(false);
         PlateArray = GameObject.FindObjectsOfType<StakePlate>();
     }
 
@@ -57,7 +58,10 @@ public class StakeCenterSingle : CircleFoodsInterFace
         }
         FireFlag = false;
 
-
+        if (isFire)
+        {
+            Effect.SetActive(true);
+        }
 
 
 

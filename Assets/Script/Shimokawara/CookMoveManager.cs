@@ -295,7 +295,7 @@ public class CookMoveManager : MonoBehaviour
                 if (Foods[i].GetComponent<CircleFoodsInterFace>().isClear)
                 {
                     m_ScoreData.SetScore(FazeNum, m_ScoreData.GetScore(FazeNum) + 1);
-                    m_PhaseMater.AddMeter(10);
+                    m_PhaseMater.AddMeter(1);
                 }
                 //Destroy(Foods[i]);
             }
@@ -335,7 +335,7 @@ public class CookMoveManager : MonoBehaviour
                     if (FoodsSupport[i].GetComponent<FoodsSupportInterFace>().isClear)
                     {
                         m_ScoreData.SetScore(FazeNum, m_ScoreData.GetScore(FazeNum) + 10);
-                        m_PhaseMater.AddMeter(10);
+                        m_PhaseMater.AddMeter(1);
                     }
 
                 }

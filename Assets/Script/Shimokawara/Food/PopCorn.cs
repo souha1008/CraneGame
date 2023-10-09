@@ -21,6 +21,7 @@ public class PopCorn : CircleFoodsInterFace
 
     public GameObject Model1;
     public GameObject Model2;
+    public GameObject Effect;
 
     void Start()
     {
@@ -66,6 +67,13 @@ public class PopCorn : CircleFoodsInterFace
         {
             Model1.SetActive(true);
             Model2.SetActive(false);
+
+            if (Effect)
+            {
+                Effect.SetActive(true);
+                Effect.gameObject.transform.parent = null;
+                Effect = null;
+            }
 
         }
         else

@@ -19,5 +19,10 @@ namespace Co
         public static readonly Color CLEAR = new Color(1, 1, 1, 0);
 
         public static readonly float TUT_WAITTIME_DEF = 2.0f;
+
+        public static readonly int TUT_NUM = 4;
+        public static readonly int[] TUT_WORLD_NUM = new int[4]{0,0,1,1};
+        public static readonly int[] TUT_STAGE_NUM = new int[4]{0,2,0,2};
+        public static readonly string[] TUT_STAGE_NAME = new string[4]{"Tutrial01","Tutrial02","Tutrial03","Tutrial04"};
     }
 }

@@ -16,6 +16,9 @@ public class CircleGage : MonoBehaviour
     [SerializeField]
     private float speed = 0.05f;
 
+    [SerializeField]
+    private string nextSceneName;
+
     void Start()
     {
         image = gameObject.GetComponent<Image>();
@@ -29,6 +32,9 @@ public class CircleGage : MonoBehaviour
             if ((param += speed) >= 1)
             {
                 Debug.Log("fin");
+                GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(nextSceneName);
+                Time.timeScale = 1;
+                this.enabled = false;
                 param = 0;
             }
         }

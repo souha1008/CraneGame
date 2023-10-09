@@ -48,10 +48,12 @@ public class Meter : ResultUI
         var data = GameObject.Find("Datas").GetComponent<ScoreData>();
 
         var bt = border.GetComponent<RectTransform>();
-        bt.sizeDelta = new Vector2(bt.sizeDelta.x * data.ClearBorder, bt.sizeDelta.y);
 
         body_tf     = body.GetComponent<RectTransform>();
         body_image  = body.GetComponent<Image>();
+        
+        bt.anchoredPosition = 
+            new Vector2(body_tf.anchoredPosition.x + body_tf.sizeDelta.x * data.ClearBorder, bt.anchoredPosition.y);
 
         body_tf_defSize = body_tf.sizeDelta;
         body_image.sprite = pct[pctIndex].sprite;

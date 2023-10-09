@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Co;
 using UnityEngine;
 
 public class IconManager : MonoBehaviour
@@ -97,9 +98,26 @@ public class IconManager : MonoBehaviour
 
     public void Pushed()
     {
-        var data = GameObject.Find("Datas").GetComponent<ScoreData>();
+        var dataobj = GameObject.Find("Datas");
+        var data = dataobj.GetComponent<ScoreData>();
         data.SetIndexs(worldIndex, stageIndex);
-        GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene((worldIndex + 1) + "-" + (stageIndex + 1));
+
+        bool tut = false;
+        for (int i = 0; i < Const.TUT_NUM; ++i)
+        {
+            if (Const.TUT_WORLD_NUM[i] == worldIndex &&
+                Const.TUT_STAGE_NUM[i] == stageIndex &&
+                stageIndexLimit == stageIndex)
+                {
+                    Debug.Log("First");
+                    GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(Const.TUT_STAGE_NAME[i]);
+                    tut = true;
+                }
+        }
+        
+        if (!tut)
+            GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene((worldIndex + 1) + "-" + (stageIndex + 1));
+
         SoundManager.instance.BGMStop();
         return;
     }
