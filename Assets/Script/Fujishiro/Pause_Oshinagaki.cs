@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public struct Oshinagaki_Icon
     public bool isUse;
     public Image Icon;
     public GameObject Step;
+    public Animator animator;
 }
 
 

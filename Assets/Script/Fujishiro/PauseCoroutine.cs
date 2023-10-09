@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEditor.Build.Content;
+using UnityEngine.Rendering;
 
 public class PauseCoroutine : MonoBehaviour
 {
@@ -119,6 +120,12 @@ public class PauseCoroutine : MonoBehaviour
             if (Pause_Oshinagaki.instance.oshinagaki_Icon[i].isUse == true)
             {
                 use_Icon[j] = Pause_Oshinagaki.instance.oshinagaki_Icon[i];
+                GameObject pa = use_Icon[j].Step;
+                Image[] com = pa.GetComponentsInChildren<Image>();
+                foreach (Image component in com)
+                {
+                    component.color = new Color(1, 1, 1, 0);
+                }
                 j++;
             }
         }
@@ -238,6 +245,16 @@ public class PauseCoroutine : MonoBehaviour
     void OshinagakiAnimSetBool(string anim_param, bool set)
     {
         animator_Oshinagaki.SetBool(anim_param, set);
+        use_Icon[nowSelect].animator.SetBool(anim_param, set);
+        //for (int i = 0; i < use_Icon.Length; i++)
+        //{
+        //    GameObject pa = use_Icon[i].Step;
+        //    Image[] com = pa.GetComponentsInChildren<Image>();
+        //    foreach (Image component in com)
+        //    { 
+        //        component.color = new Color(1, 1, 1, 255);
+        //    }
+        //}
     }
 
     IEnumerator PauseStart()
@@ -301,6 +318,8 @@ public class PauseCoroutine : MonoBehaviour
                         {
                             if (GameObject.Find("SoundManager"))
                                 SoundManager.instance.SEPlay("決定SE");
+
+                            use_Icon[nowSelect].Step.SetActive(true);
                             OshinagakiAnimSetBool(Oshinagaki_anim_paramator, true);
                             SetIsPauseMenu(false);
                             StartCoroutine(C_Oshinagaki());
@@ -477,10 +496,10 @@ public class PauseCoroutine : MonoBehaviour
         Debug.Log(usecount);
         GameObject parent = use_Icon[nowSelect].Step;
         Image[] components = parent.GetComponentsInChildren<Image>();
-        foreach (Image component in components) 
-        {
-            component.color = new Color(1, 1, 1, 0);
-        }
+        //foreach (Image component in components) 
+        //{
+        //    component.color = new Color(1, 1, 1, 0);
+        //}
         yield return new WaitForSecondsRealtime(1.3f);
         StartCoroutine(Alphakasan(parent));
 
@@ -500,7 +519,6 @@ public class PauseCoroutine : MonoBehaviour
                 {
                     nowSelect = 0;
                 }
-                Debug.Log(nowSelect);
             }
             // 戻る
             if (Input.GetKeyDown(UpArrow))
@@ -511,7 +529,6 @@ public class PauseCoroutine : MonoBehaviour
                 {
                     nowSelect = usecount - 1;
                 }
-                Debug.Log(nowSelect);
             }
 
             // ループ処理
@@ -521,7 +538,7 @@ public class PauseCoroutine : MonoBehaviour
             // ポーズメニューへ戻る
             if (Input.GetKeyDown(BackKey))
             {
-                StartCoroutine(Alphagensui(use_Icon[nowSelect].Step));
+                //StartCoroutine(Alphagensui(use_Icon[nowSelect].Step));
                 OshinagakiAnimSetBool(Oshinagaki_anim_paramator, false);
                 SoundManager.instance.SEPlay("戻るSE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
@@ -537,15 +554,13 @@ public class PauseCoroutine : MonoBehaviour
     {
         Image[] components = parent.GetComponentsInChildren<Image>();
 
-        Debug.Log(components[0]);
-        Debug.Log(components[1]);
-        Debug.Log(components[2]);
+        Debug.Log(components.Length);
         while (true)
         {
-            foreach (Image component in components)
+            for(int i = 0; i < components.Length; i++) 
             {
                 var inc = 0.1f;
-                component.color -= new Color(0, 0, 0, inc);
+                components[i].color -= new Color(0, 0, 0, inc); 
             }
             if (components[components.Length - 1].color.a < 0.0)
             {
