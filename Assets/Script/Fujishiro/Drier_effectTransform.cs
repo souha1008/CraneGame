@@ -23,7 +23,7 @@ public class Drier_effectTransform : MonoBehaviour
 
     }
 
-    void PlayDrier(float tuyosa)
+    public void PlayDrier(float tuyosa)
     {
         if (tuyosa <= 0f)
         {

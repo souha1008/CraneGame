@@ -124,8 +124,8 @@ public class FireHassya : MonoBehaviour
 
 
         //“¡‘ãŒN
-        Effect_Buner.Instance.BunerSize = ZeroToOne;
-
+        //Effect_Buner.Instance.BunerSize = ZeroToOne;
+        
 
         //Fire.instance.Y = Y_Zahyou;
         Fire.instance.Y = 2;
@@ -134,14 +134,17 @@ public class FireHassya : MonoBehaviour
         if(bFire)
         {
             Fire.instance.FireState = FIRE_STATE.FIRE_FIRE;
+            Drier_effectTransform.instance.PlayDrier(1);
         }
         else if(ZeroToOne<0.2f)
         {
             Fire.instance.FireState = FIRE_STATE.FIRE_NONE;
+            Drier_effectTransform.instance.PlayDrier(0);
         }
         else
         {
             Fire.instance.FireState = FIRE_STATE.FIRE_AIR;
+            Drier_effectTransform.instance.PlayDrier(0.5f);
         }
     
         //if(OldFireState != Fire.instance.FireState)
