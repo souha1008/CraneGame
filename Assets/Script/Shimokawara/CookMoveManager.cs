@@ -75,6 +75,8 @@ public class CookMoveManager : MonoBehaviour
         
         AllTime = 0;
         CovayorChange(isConvayor[0]);
+        if(SpotLightManager.instans)
+        SpotLightManager.instans.LightChange(SpotLightManager.instans.LightArray[0]);
 
         GameSetOnce = true;
 
@@ -236,6 +238,8 @@ public class CookMoveManager : MonoBehaviour
         if(FazeNum < isConvayor.Length)
         {
             CovayorChange(isConvayor[FazeNum]);
+            if (SpotLightManager.instans)
+                SpotLightManager.instans.LightChange(SpotLightManager.instans.LightArray[FazeNum]);
         }
 
         SoundManager.instance.SEPlay("シャッター開閉SE");
@@ -245,8 +249,8 @@ public class CookMoveManager : MonoBehaviour
     void ConvayorOn()
     {
         ConvayorObj.SetActive(true);
-        ConvayorModel.transform.position = new Vector3(ConvayorModel.transform.position.x, ConvayorModelPosY, ConvayorModel.transform.position.z);
-        PlaneModel.transform.position = new Vector3(PlaneModel.transform.position.x, ConvayorModelPosY - 20, PlaneModel.transform.position.z);
+        ConvayorModel.transform.position = new Vector3(ConvayorModel.transform.position.x, ConvayorModelPosY + 1, ConvayorModel.transform.position.z);
+        //PlaneModel.transform.position = new Vector3(PlaneModel.transform.position.x, ConvayorModelPosY - 20, PlaneModel.transform.position.z);
     }
 
     void ConvayorOff()

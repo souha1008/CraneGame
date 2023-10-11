@@ -15,6 +15,8 @@ public class CandleGimmick : MonoBehaviour
     [Header("デバッグ用")]
     [SerializeField] bool debug = false;
 
+    public bool isLight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,10 @@ public class CandleGimmick : MonoBehaviour
         {
             obj_candle.intensity -= Rate_Intensity;
         }
+        else
+        {
+            isLight = false;
+        }
 
         if(debug)
         {
@@ -41,6 +47,7 @@ public class CandleGimmick : MonoBehaviour
 
     public void CandleLighting()
     {
+        isLight = true;
         StartCoroutine(lighting());
     }
 

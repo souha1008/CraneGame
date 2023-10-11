@@ -57,8 +57,14 @@ public class Candle : CircleFoodsInterFace
             
             if(!OldIsFire)
             {
+                CandleGimmick.instance.CandleLighting();
                 SoundManager.instance.SEPlay("‚ë‚¤‚»‚­’…‰ÎSE");
             }
+        }
+
+        if(!CandleGimmick.instance.isLight)
+        {
+            Effect.SetActive(false);
         }
 
     }
