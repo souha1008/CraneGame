@@ -38,7 +38,7 @@ public class SpotLightManager : MonoBehaviour
     {
         for(int i = 0; i < LightArray.Length; i++)
         {
-            if (LightArray[i] == null)
+            if (LightArray[i] != null)
                 LightArray[i].SetActive(true);
         }
     }
@@ -47,7 +47,7 @@ public class SpotLightManager : MonoBehaviour
     {
         for (int i = 0; i < LightArray.Length; i++)
         {
-            if (LightArray[i] == null)
+            if (LightArray[i] != null)
                 LightArray[i].SetActive(false);
         }
     }
