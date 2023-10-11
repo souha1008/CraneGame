@@ -26,7 +26,7 @@ public class FallEgg : CircleFoodsInterFace
     void FixedUpdate()
     {
         FoodsFixedUpdate();
-        if(transform.position.y < 5)
+        if(transform.position.y < 6)
         {
             GameObject Cut1 = (GameObject)Resources.Load("GroundEgg");
 
