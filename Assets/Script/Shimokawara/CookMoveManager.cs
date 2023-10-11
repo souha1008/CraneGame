@@ -249,8 +249,8 @@ public class CookMoveManager : MonoBehaviour
     void ConvayorOn()
     {
         ConvayorObj.SetActive(true);
-        ConvayorModel.transform.position = new Vector3(ConvayorModel.transform.position.x, ConvayorModelPosY, ConvayorModel.transform.position.z);
-        PlaneModel.transform.position = new Vector3(PlaneModel.transform.position.x, ConvayorModelPosY - 20, PlaneModel.transform.position.z);
+        ConvayorModel.transform.position = new Vector3(ConvayorModel.transform.position.x, ConvayorModelPosY + 1, ConvayorModel.transform.position.z);
+        //PlaneModel.transform.position = new Vector3(PlaneModel.transform.position.x, ConvayorModelPosY - 20, PlaneModel.transform.position.z);
     }
 
     void ConvayorOff()
