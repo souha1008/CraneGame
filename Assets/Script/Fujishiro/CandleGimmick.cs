@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CandleGimmick : MonoBehaviour
 {
+    public static CandleGimmick instance;
+
     [SerializeField] Light obj_candle;
 
     [SerializeField] float Max_Intensity = 30.0f;
@@ -16,7 +18,7 @@ public class CandleGimmick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class CandleGimmick : MonoBehaviour
         }
     }
 
-    void CandleLighting()
+    public void CandleLighting()
     {
         StartCoroutine(lighting());
     }
