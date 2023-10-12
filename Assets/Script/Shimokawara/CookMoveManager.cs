@@ -76,7 +76,7 @@ public class CookMoveManager : MonoBehaviour
         AllTime = 0;
         CovayorChange(isConvayor[0]);
         if(SpotLightManager.instans)
-        SpotLightManager.instans.LightChange(SpotLightManager.instans.LightArray[0]);
+        SpotLightManager.instans.LightChange(SpotLightManager.instans.isCandle[0]);
 
         GameSetOnce = true;
 
@@ -239,7 +239,7 @@ public class CookMoveManager : MonoBehaviour
         {
             CovayorChange(isConvayor[FazeNum]);
             if (SpotLightManager.instans)
-                SpotLightManager.instans.LightChange(SpotLightManager.instans.LightArray[FazeNum]);
+                SpotLightManager.instans.LightChange(SpotLightManager.instans.isCandle[FazeNum]);
         }
 
         SoundManager.instance.SEPlay("シャッター開閉SE");
@@ -249,7 +249,7 @@ public class CookMoveManager : MonoBehaviour
     void ConvayorOn()
     {
         ConvayorObj.SetActive(true);
-        ConvayorModel.transform.position = new Vector3(ConvayorModel.transform.position.x, ConvayorModelPosY + 1, ConvayorModel.transform.position.z);
+        ConvayorModel.transform.position = new Vector3(ConvayorModel.transform.position.x, 1.2758f, ConvayorModel.transform.position.z);
         //PlaneModel.transform.position = new Vector3(PlaneModel.transform.position.x, ConvayorModelPosY - 20, PlaneModel.transform.position.z);
     }
 

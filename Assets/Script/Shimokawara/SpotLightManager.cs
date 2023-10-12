@@ -41,6 +41,7 @@ public class SpotLightManager : MonoBehaviour
             if (LightArray[i] != null)
                 LightArray[i].SetActive(true);
         }
+        Debug.Log("ライトオン");
     }
 
     void LightOff()
@@ -50,5 +51,6 @@ public class SpotLightManager : MonoBehaviour
             if (LightArray[i] != null)
                 LightArray[i].SetActive(false);
         }
+        Debug.Log("ライトオフ");
     }
 }

@@ -72,6 +72,9 @@ public class Candle : CircleFoodsInterFace
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "AttachFire")
-            FireAburareFlag = true;
+        {
+            if (other.GetComponent<Fire>().FireState == FIRE_STATE.FIRE_FIRE)
+                FireAburareFlag = true;
+        }
     }
 }
