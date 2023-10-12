@@ -2110,7 +2110,7 @@ MonoBehaviour:
   ConvayorModel: {fileID: 716271309}
   PlaneModel: {fileID: 304989417}
   isConvayor: 0100000100
-  MAX_SCORE: 14000000280000000a000000320000001e000000
+  MAX_SCORE: 0200000005000000020000000400000005000000
   AllTime: 0
   isTutreal: 0
 --- !u!4 &244182721
@@ -2314,6 +2314,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sarada (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676685964034430604, guid: efdb1d4326d87534982947c9c48ece03,
+        type: 3}
+      propertyPath: NatArray.Array.size
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efdb1d4326d87534982947c9c48ece03, type: 3}
@@ -8465,7 +8470,7 @@ PrefabInstance:
     - target: {fileID: 5566662547377769173, guid: 4a5ebf148f37da14cb2c6ed5fcb4ddd2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5482275
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 5566662547377769173, guid: 4a5ebf148f37da14cb2c6ed5fcb4ddd2,
         type: 3}
@@ -9337,22 +9342,22 @@ PrefabInstance:
     - target: {fileID: 4219836674663786035, guid: 12f580a00b11515498c81a51856a6f4a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4219836675486698880, guid: 12f580a00b11515498c81a51856a6f4a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4533212076526989166, guid: 12f580a00b11515498c81a51856a6f4a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4533212076566243925, guid: 12f580a00b11515498c81a51856a6f4a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4533212077140968884, guid: 12f580a00b11515498c81a51856a6f4a,
         type: 3}
@@ -9367,7 +9372,7 @@ PrefabInstance:
     - target: {fileID: 6447844783045254384, guid: 12f580a00b11515498c81a51856a6f4a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6447844785040237106, guid: 12f580a00b11515498c81a51856a6f4a,
         type: 3}
@@ -10847,6 +10852,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4059853505340030069, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f22f95f14f7ccc04d9be8ed4cfbfe3e5, type: 3}
