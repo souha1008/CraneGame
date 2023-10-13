@@ -18,22 +18,43 @@ public class MovieManager : MonoBehaviour
 
     private bool once = false;
 
+    private SoundManager manager;
+    private float volume = 0;
+
+    void OnDestroy()
+    {
+        manager.BGM_Volume = volume;
+    }
+
     void Start()
     {
-        
+        GameObject.FindAnyObjectByType<BGMPlayer>().BGMPlaying();
+
+        manager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+
+        volume = manager.BGM_Volume;
+        manager.BGM_Volume = 0;
+        StartCoroutine(VolumFadeIn());
     }
 
     void Update()
     {
         if (Input.GetButton("Debug Multiplier"))
         {
-            if(wait) StopCoroutine(Wait());
+            if(wait)
+            {
+                StopCoroutine(Wait());
+                StopCoroutine(VolumFadeIn());
+                StopCoroutine(VolumFadeOut());
+            }
+
             SceneChange();
         }
-        else if (once && image.anchoredPosition.y <= 0)
+        else if (once && !wait && image.anchoredPosition.y <= 0)
         {
             wait = true;
             StartCoroutine(Wait());
+            StartCoroutine(VolumFadeOut());
         }
         else once = true;
     }
@@ -59,5 +80,41 @@ public class MovieManager : MonoBehaviour
         SceneChange(true);
 
         yield break;
+    }
+
+    private IEnumerator VolumFadeIn()
+    {
+        WaitForSecondsRealtime wait = new WaitForSecondsRealtime(0.5f);
+
+        float targetVol = volume;
+        float val = volume / waittime;
+
+        while(true)
+        {
+            manager.BGM_Volume += val;
+
+            if (manager.BGM_Volume >= targetVol)
+                yield break;
+            else
+                yield return wait;
+        }
+    }
+
+    private IEnumerator VolumFadeOut()
+    {
+        WaitForSecondsRealtime wait = new WaitForSecondsRealtime(1);
+
+        float targetVol = 0;
+        float val = volume / waittime;
+
+        while(true)
+        {
+            manager.BGM_Volume -= val;
+
+            if (manager.BGM_Volume <= targetVol)
+                yield break;
+            else
+                yield return wait;
+        }
     }
 }
