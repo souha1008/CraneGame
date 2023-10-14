@@ -17,11 +17,11 @@ public class PauseCoroutine : MonoBehaviour
 
     [SerializeField][Tooltip("ポーズのクールタイム")] float pauseCoolTime;
 
-    [SerializeField][Tooltip("押したらポーズするボタン")] KeyCode pauseKey = KeyCode.P;
-    [SerializeField][Tooltip("押したら決定する")] KeyCode KetteiKey = KeyCode.Space;
-    [SerializeField][Tooltip("押したらキャンセル")] KeyCode BackKey = KeyCode.Z;
-    [SerializeField] [Tooltip("下キー")] KeyCode DownArrow = KeyCode.DownArrow;
-    [SerializeField] [Tooltip("下キー")] KeyCode UpArrow = KeyCode.UpArrow;
+    [SerializeField][Tooltip("押したらポーズするボタン")] KeyCode pauseKey = KeyCode.JoystickButton8;
+    [SerializeField][Tooltip("押したら決定する")] KeyCode KetteiKey = KeyCode.JoystickButton2;
+    [SerializeField][Tooltip("押したらキャンセル")] KeyCode BackKey = KeyCode.JoystickButton1;
+    [SerializeField] [Tooltip("下キー")] KeyCode DownArrow = KeyCode.JoystickButton13;
+    [SerializeField] [Tooltip("上キー")] KeyCode UpArrow = KeyCode.JoystickButton15;
 
     [SerializeField][Tooltip("選択中の色")] Color nowSelectColor = new Color(0, 255, 255);
     [SerializeField][Tooltip("選択してない色")] Color notSelectColor = Color.white;
@@ -492,10 +492,11 @@ public class PauseCoroutine : MonoBehaviour
             use_Icon[nowSelect].Step.SetActive(true);
 
             // 次へ行く
-            if(Input.GetKeyDown(DownArrow))
+            if(Input.GetKeyDown(DownArrow) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
             {
                 use_Icon[nowSelect].Step.SetActive(false);
                 nowSelect++;
+                prevAxis = Input.GetAxis("Vertical");
                 if (nowSelect > usecount - 1)
                 {
                     nowSelect = 0;
@@ -503,15 +504,22 @@ public class PauseCoroutine : MonoBehaviour
                 Debug.Log(nowSelect);
             }
             // 戻る
-            if (Input.GetKeyDown(UpArrow))
+            if (Input.GetKeyDown(UpArrow) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
             {
                 use_Icon[nowSelect].Step.SetActive(false);
                 nowSelect--;
+                prevAxis = Input.GetAxis("Vertical");
                 if (nowSelect < 0)
                 {
                     nowSelect = usecount - 1;
                 }
                 Debug.Log(nowSelect);
+            }
+
+            // 入力無し
+            if (Input.GetAxis("Vertical") == 0)
+            {
+                prevAxis = 0;
             }
 
             // ループ処理
@@ -521,11 +529,11 @@ public class PauseCoroutine : MonoBehaviour
             // ポーズメニューへ戻る
             if (Input.GetKeyDown(BackKey))
             {
+                use_Icon[nowSelect].Step.SetActive(false);
                 StartCoroutine(Alphagensui(use_Icon[nowSelect].Step));
                 OshinagakiAnimSetBool(Oshinagaki_anim_paramator, false);
                 SoundManager.instance.SEPlay("戻るSE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
-                use_Icon[nowSelect].Step.SetActive(false);
                 SetIsPauseMenu(true);
                 OptionSelectCount = 0;
                 yield break;

@@ -34,6 +34,7 @@ public class CandleGimmick : MonoBehaviour
         else
         {
             isLight = false;
+            obj_candle.gameObject.SetActive(false);
         }
 
         if(debug)
@@ -48,6 +49,7 @@ public class CandleGimmick : MonoBehaviour
     public void CandleLighting()
     {
         isLight = true;
+        obj_candle.gameObject.SetActive(true);
         StartCoroutine(lighting());
     }
 
