@@ -14,7 +14,7 @@ public class CookTut : MonoBehaviour
     }
 
     [SerializeField]
-    private Image image01, image02;
+    private Image image01, image02, bg;
 
     [SerializeField]
     private List<Cook> cooks = new List<Cook>();
@@ -49,6 +49,7 @@ public class CookTut : MonoBehaviour
         
         image01.color = new Color(1,1,1,0);
         image02.color = new Color(1,1,1,0);
+        bg.color = new Color(1,1,1,0);
 
         bgmtitle = GameObject.FindAnyObjectByType<BGMPlayer>().selectplayTitle;
     }
@@ -83,6 +84,7 @@ public class CookTut : MonoBehaviour
         image01.sprite = cooks[index].sprites[0];
         image01.color = new Color(1,1,1,1);
         image02.color = new Color(1,1,1,0);
+        bg.color = new Color(1,1,1,1);
 
         if (cooks[index].sprites.Length != 1)
         {
@@ -101,6 +103,7 @@ public class CookTut : MonoBehaviour
         
         image01.color = new Color(1,1,1,0);
         image02.color = new Color(1,1,1,0);
+        bg.color = new Color(1,1,1,0);
         
         ++index;
         param = 0;
