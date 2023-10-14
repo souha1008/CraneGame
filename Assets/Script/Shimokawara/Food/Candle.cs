@@ -64,6 +64,7 @@ public class Candle : CircleFoodsInterFace
 
         if(!CandleGimmick.instance.isLight)
         {
+            isFire = false;
             Effect.SetActive(false);
         }
 
