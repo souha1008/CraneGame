@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class TutorialManager : MonoBehaviour
 
     private bool begin = false;
     private ReadIsFade sc;
+
+    private void OnDestroy()
+    {
+        GameObject.Find("Datas").GetComponent<ScoreData>().SetScore(0, 0);
+    }
 
     void Start()
     {
