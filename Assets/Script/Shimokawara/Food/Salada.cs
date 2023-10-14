@@ -38,7 +38,7 @@ public class Salada : FoodsSupportInterFace
             
         }
 
-        isClear = tempClear;
+        //isClear = tempClear;
     }
 
 
