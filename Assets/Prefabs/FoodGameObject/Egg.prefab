@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1117646133858540341}
   - component: {fileID: 1117646133858540365}
   - component: {fileID: 6060068371012720895}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Egg
   m_TagString: Foods
   m_Icon: {fileID: 0}
@@ -239,10 +239,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2709553259841220210, guid: 3ae145540b3d1eb4281eccfa7f589a01,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5362324773731430120, guid: 3ae145540b3d1eb4281eccfa7f589a01,
         type: 3}
       propertyPath: m_Name
       value: egg_all_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5362324773731430120, guid: 3ae145540b3d1eb4281eccfa7f589a01,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637548789200304560, guid: 3ae145540b3d1eb4281eccfa7f589a01,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ae145540b3d1eb4281eccfa7f589a01, type: 3}
