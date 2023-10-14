@@ -15,7 +15,7 @@ public class Kyabetsu: CircleFoodsInterFace
     public GameObject[] ModelArray;
     void Start()
     {
-        CutCnt = 0;
+        //CutCnt = 0;
         FoodsStart();
 
 
