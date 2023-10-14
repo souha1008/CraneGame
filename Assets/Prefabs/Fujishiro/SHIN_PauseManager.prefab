@@ -586,11 +586,11 @@ MonoBehaviour:
   mPaused: 0
   mPauseCooldown: 0
   pauseCoolTime: 30
-  pauseKey: 112
-  KetteiKey: 97
-  BackKey: 115
-  DownArrow: 274
-  UpArrow: 273
+  pauseKey: 337
+  KetteiKey: 331
+  BackKey: 330
+  DownArrow: 347
+  UpArrow: 348
   nowSelectColor: {r: 0.012682426, g: 0.8962264, b: 0.8962264, a: 1}
   notSelectColor: {r: 1, g: 1, b: 1, a: 1}
   Pause_Canvas: {fileID: 4339279120790522495}
@@ -646,6 +646,8 @@ MonoBehaviour:
   - isUse: 0
     Icon: {fileID: 0}
     Step: {fileID: 0}
+  nowSelect: 0
+  usecount: 0
   DEBUG: 1
   Update_isPause: 0
 --- !u!114 &9086896220687303407
@@ -1206,6 +1208,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Step_kai
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106932583307728674, guid: cab04aefcb1f68245949abc7124861ad,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106932583589572526, guid: cab04aefcb1f68245949abc7124861ad,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106932583897809654, guid: cab04aefcb1f68245949abc7124861ad,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106932584698062466, guid: cab04aefcb1f68245949abc7124861ad,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6106932584835938536, guid: cab04aefcb1f68245949abc7124861ad,
         type: 3}
