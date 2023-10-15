@@ -13,11 +13,12 @@ public class Mochi : CircleFoodsInterFace
     Usu[] UsuArray;
     MochiPlate[] PlateArray;
     int HummerCnt = 0;
-
+    int OldHummerCnt = 0;
     private void OnEnable()
     {
         UsuArray = GameObject.FindObjectsOfType<Usu>();
-        PlateArray = GameObject.FindObjectsOfType<MochiPlate>();   
+        PlateArray = GameObject.FindObjectsOfType<MochiPlate>();
+        GetComponent<General_ColorTransfer>().SetParm(0f);
     }
 
     void Start()
@@ -34,6 +35,8 @@ public class Mochi : CircleFoodsInterFace
 
     void FixedUpdate()
     {
+        OldHummerCnt = HummerCnt;
+
         FoodsFixedUpdate();
 
         if (HummerCnt == 1)
@@ -57,6 +60,15 @@ public class Mochi : CircleFoodsInterFace
                 }
             }
         }
+
+        if(OldHummerCnt != HummerCnt)
+        {
+            if(HummerCnt <= 3)
+            {
+                SoundManager.instance.SEPlay("–Ý‚Â‚«SE");
+            }
+        }
+
     }
 
     public override void Hummer(Collider other)

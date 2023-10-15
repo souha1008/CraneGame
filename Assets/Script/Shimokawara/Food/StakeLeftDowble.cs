@@ -12,7 +12,7 @@ public class StakeLeftDowble : CircleFoodsInterFace
 {
     public int FireCnt = 0;
     bool FireFlag;
-
+    bool OldIsFire;
     public bool isFire = false;
     public int Number;
     public GameObject Effect;
@@ -35,6 +35,8 @@ public class StakeLeftDowble : CircleFoodsInterFace
 
     void FixedUpdate()
     {
+
+        OldIsFire = isFire;
         if (!isFire)
         {
             
@@ -58,6 +60,12 @@ public class StakeLeftDowble : CircleFoodsInterFace
             Effect.SetActive(true);
         }
         FireFlag = false;
+
+        if (OldIsFire != isFire)
+        {
+            SoundManager.instance.SEPlay("ì˜èƒÇØÇÈSE");
+        }
+
         FoodsFixedUpdate();
     }
 

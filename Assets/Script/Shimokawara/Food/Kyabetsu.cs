@@ -11,6 +11,7 @@ using UnityEditor;
 public class Kyabetsu: CircleFoodsInterFace
 {
     public int CutCnt = 0;
+    int OldCutCnt = 0;
     KyabetsuPlate[] PlateArray;
     public GameObject[] ModelArray;
     void Start()
@@ -33,6 +34,8 @@ public class Kyabetsu: CircleFoodsInterFace
 
     void FixedUpdate()
     {
+        OldCutCnt = CutCnt;
+
         FoodsFixedUpdate();
 
         switch (CutCnt)
@@ -75,6 +78,14 @@ public class Kyabetsu: CircleFoodsInterFace
                         isClear = true;
                     }
                 }
+            }
+        }
+
+        if(OldCutCnt != CutCnt)
+        {
+            if(CutCnt <= 6)
+            {
+                SoundManager.instance.SEPlay("‚«‚á‚×‚ÂØ‚èçØ‚èSE");
             }
         }
     }
