@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEditor.Build.Content;
+using System.Data;
 
 public class PauseCoroutine : MonoBehaviour
 {
@@ -75,10 +76,10 @@ public class PauseCoroutine : MonoBehaviour
 
     enum SelectCorsor
     {
-        Option = 0,
-        Retry = 1,
-        StageSelect = 2,
-        Oshinagaki = 3,
+        Oshinagaki = 0,
+        Option = 1,
+        Retry = 2,
+        StageSelect = 3,
     };
 
     void SetIsPauseMenu(bool set)
@@ -333,6 +334,10 @@ public class PauseCoroutine : MonoBehaviour
                         {
                             Time.timeScale = 1.0f;
                             SoundManager.instance.SEPlay("Œˆ’èSE");
+                            for(int i = 0; i < 5; i++)
+                            {
+                                GameObject.Find("Datas").GetComponent<ScoreData>().SetScore(i, 0);
+                            }
                             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(SceneManager.GetActiveScene().name);
                             yield return new WaitForSecondsRealtime(3);
                             yield break;
