@@ -40,7 +40,6 @@ public class PhaseMeter : MonoBehaviour
 
     void Start()
     {
-        
         body_tf     = body.GetComponent<RectTransform>();
         body_image  = body.GetComponent<Image>();
 
@@ -138,6 +137,8 @@ public class PhaseMeter : MonoBehaviour
     public void SetBorder(float _value)
     {
         var bt = border.GetComponent<RectTransform>();
-        bt.sizeDelta = new Vector2(bt.sizeDelta.x * _value, bt.sizeDelta.y);
+ //       bt.sizeDelta = new Vector2(bt.sizeDelta.x * _value, bt.sizeDelta.y);
+        bt.anchoredPosition = 
+            new Vector2(body_tf.anchoredPosition.x + body_tf_defSize.x * _value, bt.anchoredPosition.y);
     }
 }
