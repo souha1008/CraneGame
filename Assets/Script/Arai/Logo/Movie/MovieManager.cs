@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MovieManager : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class MovieManager : MonoBehaviour
     private SoundManager manager;
     private float volume = 0;
 
+    [SerializeField]
+    Image skipimage;
+    private bool showskip = false;
+
     void OnDestroy()
     {
         manager.BGM_Volume = volume;
@@ -32,6 +37,8 @@ public class MovieManager : MonoBehaviour
 
         manager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
 
+        skipimage.gameObject.SetActive(false);
+
         volume = manager.BGM_Volume;
         manager.BGM_Volume = 0;
         StartCoroutine(VolumFadeIn());
@@ -39,24 +46,32 @@ public class MovieManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Debug Multiplier"))
+        if (!showskip && Input.anyKey)
         {
-            if(wait)
+            skipimage.gameObject.SetActive(true);
+            showskip = true;
+        }
+        else
+        {
+            if (Input.GetButton("Debug Multiplier"))
             {
-                StopCoroutine(Wait());
-                StopCoroutine(VolumFadeIn());
-                StopCoroutine(VolumFadeOut());
+                if(wait)
+                {
+                    StopCoroutine(Wait());
+                    StopCoroutine(VolumFadeIn());
+                    StopCoroutine(VolumFadeOut());
+                }
+    
+                SceneChange();
             }
-
-            SceneChange();
+            else if (once && !wait && image.anchoredPosition.y <= 0)
+            {
+                wait = true;
+                StartCoroutine(Wait());
+                StartCoroutine(VolumFadeOut());
+            }
+            else once = true;
         }
-        else if (once && !wait && image.anchoredPosition.y <= 0)
-        {
-            wait = true;
-            StartCoroutine(Wait());
-            StartCoroutine(VolumFadeOut());
-        }
-        else once = true;
     }
 
     private void SceneChange(bool _rerode = false)
