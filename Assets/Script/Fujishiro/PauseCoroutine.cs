@@ -4,29 +4,28 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor.Build.Content;
 using System.Data;
 
 public class PauseCoroutine : MonoBehaviour
 {
-    // ƒ}ƒNƒ’è”
+    // ï¿½}ï¿½Nï¿½ï¿½ï¿½è”
     const int M_MAXSELECT = 3;
     const int M_MINSELECT = 0;
 
     [SerializeField, ReadOnly] public bool mPaused = false;
     [SerializeField, ReadOnly] private float mPauseCooldown;
 
-    [SerializeField][Tooltip("ƒ|[ƒY‚ÌƒN[ƒ‹ƒ^ƒCƒ€")] float pauseCoolTime;
+    [SerializeField][Tooltip("ï¿½|ï¿½[ï¿½Yï¿½ÌƒNï¿½[ï¿½ï¿½ï¿½^ï¿½Cï¿½ï¿½")] float pauseCoolTime;
 
-    [SerializeField][Tooltip("‰Ÿ‚µ‚½‚çƒ|[ƒY‚·‚éƒ{ƒ^ƒ“")] KeyCode pauseKey = KeyCode.JoystickButton8;
-    [SerializeField][Tooltip("‰Ÿ‚µ‚½‚çŒˆ’è‚·‚é")] KeyCode KetteiKey = KeyCode.JoystickButton2;
-    [SerializeField][Tooltip("‰Ÿ‚µ‚½‚çƒLƒƒƒ“ƒZƒ‹")] KeyCode BackKey = KeyCode.JoystickButton1;
+    [SerializeField][Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½ï¿½{ï¿½^ï¿½ï¿½")] KeyCode pauseKey = KeyCode.JoystickButton8;
+    [SerializeField][Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çŒˆï¿½è‚·ï¿½ï¿½")] KeyCode KetteiKey = KeyCode.JoystickButton2;
+    [SerializeField][Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½")] KeyCode BackKey = KeyCode.JoystickButton1;
     [SerializeField][Tooltip("DPAD")] string DPAD_hori = "JuujiKeyY";
 
-    [SerializeField][Tooltip("‘I‘ğ’†‚ÌF")] Color nowSelectColor = new Color(0, 255, 255);
-    [SerializeField][Tooltip("‘I‘ğ‚µ‚Ä‚È‚¢F")] Color notSelectColor = Color.white;
+    [SerializeField][Tooltip("ï¿½Iï¿½ğ’†‚ÌF")] Color nowSelectColor = new Color(0, 255, 255);
+    [SerializeField][Tooltip("ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ä‚È‚ï¿½ï¿½F")] Color notSelectColor = Color.white;
 
-    [Header("UIŒn")]
+    [Header("UIï¿½n")]
     [SerializeField] Canvas Pause_Canvas = null;
     [SerializeField] Image Option;
     [SerializeField] Image Retry;
@@ -42,7 +41,7 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] string UI_anim_paramator;
     [SerializeField] string Oshinagaki_anim_paramator;
 
-    [Header("ƒIƒvƒVƒ‡ƒ““àƒXƒ‰ƒCƒ_[")]
+    [Header("ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Cï¿½_ï¿½[")]
     [SerializeField] GameObject Option_C;
     [SerializeField] Image TI_BGM;
     [SerializeField] Image TI_SE;
@@ -52,12 +51,12 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] float slider_coolfrate = 35;
     private float slider_nowcoolframe;
 
-    [Header("ƒRƒ‹[ƒ`ƒ“—p•Ï”")]
+    [Header("ï¿½Rï¿½ï¿½ï¿½[ï¿½`ï¿½ï¿½ï¿½pï¿½Ïï¿½")]
     [SerializeField] float C_Option_WaitTime = 1.5f;
     [SerializeField] float C_Option_WaitFrame = 180;
     [SerializeField] float UpdateModeChange_WaitTime = 5;
 
-    [Header("‚¨‚µ‚È‚ª‚«ƒXƒeƒbƒv")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½bï¿½v")]
     public Oshinagaki_Icon[] use_Icon;
     public int nowSelect = 0;
     public int usecount = 0;
@@ -67,7 +66,7 @@ public class PauseCoroutine : MonoBehaviour
     public static PauseCoroutine instance { get; private set; } = new PauseCoroutine();
     public bool Update_isPause;
 
-    // ƒvƒ‰ƒCƒx[ƒg•Ï”
+    // ï¿½vï¿½ï¿½ï¿½Cï¿½xï¿½[ï¿½gï¿½Ïï¿½
     private bool isPauseMenu = false;
     private bool isOption_c = false;
     private float prevAxis = 0;
@@ -212,17 +211,17 @@ public class PauseCoroutine : MonoBehaviour
 
     void Pause()
     {
-        if(GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ƒ|[ƒYŠJ‚­SE");
-        // ƒvƒ‰ƒCƒx[ƒg•Ï”‰Šú‰»
+        if(GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ï¿½|ï¿½[ï¿½Yï¿½Jï¿½ï¿½SE");
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½xï¿½[ï¿½gï¿½Ïï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         prevAxis = 0;
         MenuSelectCount = 0;
 
-        // ‰¹ºƒXƒgƒbƒv
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½bï¿½v
         if (GameObject.Find("SoundManager")) SoundManager.instance.SELoopStop();
 
         SetPause(true);
         Update_isPause = true;
-        Debug.Log("ƒ|[ƒY‚µ‚½YO");
+        Debug.Log("ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½ï¿½YO");
         Pause_Canvas.gameObject.SetActive(true);
         Time.timeScale = 0;
         SetIsPauseMenu(true);
@@ -243,15 +242,15 @@ public class PauseCoroutine : MonoBehaviour
 
     IEnumerator PauseStart()
     {
-        Debug.Log("ƒ|[ƒY’†");
+        Debug.Log("ï¿½|ï¿½[ï¿½Yï¿½ï¿½");
         StartCoroutine(PauseMenu());
         yield return new WaitUntil(() => Input.GetKeyDown(BackKey) && isPauseMenu == true && mPauseCooldown >= pauseCoolTime);
 
-        Debug.Log("ƒ|[ƒY‰ğœ");
+        Debug.Log("ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½ï¿½");
         MenuSelectCount = 0;
         StopCoroutine(PauseMenu());
         SetPause(false);
-        if (GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ƒ|[ƒY•Â‚¶‚éSE");
+        if (GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ï¿½|ï¿½[ï¿½Yï¿½Â‚ï¿½ï¿½ï¿½SE");
         Update_isPause = false;
         Pause_Canvas.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
@@ -266,28 +265,28 @@ public class PauseCoroutine : MonoBehaviour
             {
                 if ((Input.GetAxis(DPAD_hori) >= 0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
                 {
-                    Debug.Log("ã");
+                    Debug.Log("ï¿½ï¿½");
                     MenuSelectCount--;
                     prevAxis = Input.GetAxis("Vertical");
                     DPADAxis = Input.GetAxis(DPAD_hori);
                     if (GameObject.Find("SoundManager"))
-                        SoundManager.instance.SEPlay("‘I‘ğSE");
+                        SoundManager.instance.SEPlay("ï¿½Iï¿½ï¿½SE");
                 }
 
                 if ((Input.GetAxis(DPAD_hori) <= -0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
                 {
-                    Debug.Log("‰º");
+                    Debug.Log("ï¿½ï¿½");
                     MenuSelectCount++;
                     prevAxis = Input.GetAxis("Vertical");
                     DPADAxis = Input.GetAxis(DPAD_hori);
                     if (GameObject.Find("SoundManager"))
-                        SoundManager.instance.SEPlay("‘I‘ğSE");
+                        SoundManager.instance.SEPlay("ï¿½Iï¿½ï¿½SE");
                 }
 
-                if (MenuSelectCount > M_MAXSELECT) MenuSelectCount = M_MINSELECT;   // ã‚É‚¢‚­
-                if (MenuSelectCount < M_MINSELECT) MenuSelectCount = M_MAXSELECT;   // ‰º‚És‚­
+                if (MenuSelectCount > M_MAXSELECT) MenuSelectCount = M_MINSELECT;   // ï¿½ï¿½É‚ï¿½ï¿½ï¿½
+                if (MenuSelectCount < M_MINSELECT) MenuSelectCount = M_MAXSELECT;   // ï¿½ï¿½ï¿½Ésï¿½ï¿½
 
-                // “ü—Í–³‚µ
+                // ï¿½ï¿½ï¿½Í–ï¿½ï¿½ï¿½
                 if (Input.GetAxis("Vertical") == 0)
                 {
                     prevAxis = 0;
@@ -303,11 +302,11 @@ public class PauseCoroutine : MonoBehaviour
                 switch (MenuSelectCount)
                 {
                     case (int)SelectCorsor.Oshinagaki:
-                        // ‚¨‚µ‚È‚ª‚«‚ğ‘I‘ğ
+                        // ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             if (GameObject.Find("SoundManager"))
-                                SoundManager.instance.SEPlay("Œˆ’èSE");
+                                SoundManager.instance.SEPlay("ï¿½ï¿½ï¿½ï¿½SE");
                             OshinagakiAnimSetBool(Oshinagaki_anim_paramator, true);
                             SetIsPauseMenu(false);
                             StartCoroutine(C_Oshinagaki());
@@ -316,12 +315,12 @@ public class PauseCoroutine : MonoBehaviour
                         break;
 
                     case (int)SelectCorsor.Option:
-                        // ƒIƒvƒVƒ‡ƒ“‚ğ‘I‘ğ
+                        // ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.UnscaledTime));
                             if (GameObject.Find("SoundManager"))
-                                SoundManager.instance.SEPlay("Œˆ’èSE");
+                                SoundManager.instance.SEPlay("ï¿½ï¿½ï¿½ï¿½SE");
                             AnimSetBool(UI_anim_paramator, true);
                             SetIsPauseMenu(false);
                             StartCoroutine(C_Option());
@@ -329,11 +328,11 @@ public class PauseCoroutine : MonoBehaviour
                         break;
 
                     case (int)SelectCorsor.Retry:
-                        // ƒŠƒgƒ‰ƒC‚ğ‘I‘ğ‚µ‚½‚Ìˆ—‚ğ‘‚­
+                        // ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Cï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             Time.timeScale = 1.0f;
-                            SoundManager.instance.SEPlay("Œˆ’èSE");
+                            SoundManager.instance.SEPlay("ï¿½ï¿½ï¿½ï¿½SE");
                             for(int i = 0; i < 5; i++)
                             {
                                 GameObject.Find("Datas").GetComponent<ScoreData>().SetScore(i, 0);
@@ -345,11 +344,11 @@ public class PauseCoroutine : MonoBehaviour
                         break;
 
                     case (int)SelectCorsor.StageSelect:
-                        // ƒXƒe[ƒWƒZƒŒƒNƒg‚ğ‘I‘ğ‚µ‚½‚Ìˆ—‚ğ‘‚­
+                        // ï¿½Xï¿½eï¿½[ï¿½Wï¿½Zï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             Time.timeScale = 1.0f;
-                            SoundManager.instance.SEPlay("Œˆ’èSE");
+                            SoundManager.instance.SEPlay("ï¿½ï¿½ï¿½ï¿½SE");
                             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
                             yield break;
                         }
@@ -387,25 +386,25 @@ public class PauseCoroutine : MonoBehaviour
 
         while (true)
         {
-            // ã
+            // ï¿½ï¿½
             if ((Input.GetAxis(DPAD_hori) >= 0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
             {
-                SoundManager.instance.SEPlay("‘I‘ğSE");
+                SoundManager.instance.SEPlay("ï¿½Iï¿½ï¿½SE");
                 OptionSelectCount--;
                 prevAxis = Input.GetAxis("Vertical");
                 DPADAxis = Input.GetAxis("JuujiKeyY");
                 if (OptionSelectCount < 0) OptionSelectCount = 1;
             }
-            // ‰º
+            // ï¿½ï¿½
             if ((Input.GetAxis(DPAD_hori) <= -0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
             {
-                SoundManager.instance.SEPlay("‘I‘ğSE");
+                SoundManager.instance.SEPlay("ï¿½Iï¿½ï¿½SE");
                 OptionSelectCount++;
                 prevAxis = Input.GetAxis("Vertical");
                 DPADAxis = Input.GetAxis("JuujiKeyY");
                 if (OptionSelectCount > 1) OptionSelectCount = 0;
             }
-            // “ü—Í–³‚µ
+            // ï¿½ï¿½ï¿½Í–ï¿½ï¿½ï¿½
             if (Input.GetAxis("Vertical") == 0)
             {
                 prevAxis = 0;
@@ -430,7 +429,7 @@ public class PauseCoroutine : MonoBehaviour
             if(value > 0.3f && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("‰¹—Ê’²®SE");
+                    SoundManager.instance.SEPlay("ï¿½ï¿½ï¿½Ê’ï¿½ï¿½ï¿½SE");
                 nowslider.value += slider_rate;
 
                 if (nowslider == BGM_Slider)
@@ -443,7 +442,7 @@ public class PauseCoroutine : MonoBehaviour
             if(value < -0.3f && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("‰¹—Ê’²®SE");
+                    SoundManager.instance.SEPlay("ï¿½ï¿½ï¿½Ê’ï¿½ï¿½ï¿½SE");
                 nowslider.value -= slider_rate;
 
                 if(nowslider == BGM_Slider)
@@ -455,12 +454,12 @@ public class PauseCoroutine : MonoBehaviour
             }
             slider_nowcoolframe += 1;
 
-            // ƒ|[ƒYƒƒjƒ…[‚Ö–ß‚é
+            // ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½jï¿½ï¿½ï¿½[ï¿½Ö–ß‚ï¿½
             if (Input.GetKeyDown(BackKey))
             {
                 AnimSetBool(UI_anim_paramator, false);
                 SetIsOption_c(false);
-                SoundManager.instance.SEPlay("–ß‚éSE");
+                SoundManager.instance.SEPlay("ï¿½ß‚ï¿½SE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
                 OptionSelectCount = 0;
@@ -482,7 +481,7 @@ public class PauseCoroutine : MonoBehaviour
             {
                 break;
             }
-            // ƒAƒ‹ƒtƒ@’lƒŠƒZƒbƒg
+            // ï¿½Aï¿½ï¿½ï¿½tï¿½@ï¿½lï¿½ï¿½ï¿½Zï¿½bï¿½g
             GameObject pa = use_Icon[i].Step;
             Image[] com = pa.GetComponentsInChildren<Image>();
             foreach (Image component in com)
@@ -505,10 +504,10 @@ public class PauseCoroutine : MonoBehaviour
         while (true)
         {
 
-            // ‚¨‚µ‚È‚ª‚«ˆ—
+            // ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             use_Icon[nowSelect].Step.SetActive(true);
 
-            // Ÿ‚Ös‚­
+            // ï¿½ï¿½ï¿½Ösï¿½ï¿½
             if((Input.GetAxis(DPAD_hori) <= -0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
             {
                 use_Icon[nowSelect].Step.SetActive(false);
@@ -521,7 +520,7 @@ public class PauseCoroutine : MonoBehaviour
                 }
                 Debug.Log(nowSelect);
             }
-            // –ß‚é
+            // ï¿½ß‚ï¿½
             if ((Input.GetAxis(DPAD_hori) >= 0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
             {
                 use_Icon[nowSelect].Step.SetActive(false);
@@ -535,7 +534,7 @@ public class PauseCoroutine : MonoBehaviour
                 Debug.Log(nowSelect);
             }
 
-            // “ü—Í–³‚µ
+            // ï¿½ï¿½ï¿½Í–ï¿½ï¿½ï¿½
             if (Input.GetAxis("Vertical") == 0)
             {
                 prevAxis = 0;
@@ -545,17 +544,17 @@ public class PauseCoroutine : MonoBehaviour
                 DPADAxis = 0;
             }
 
-            // ƒ‹[ƒvˆ—
+            // ï¿½ï¿½ï¿½[ï¿½vï¿½ï¿½ï¿½ï¿½
 
 
 
-            // ƒ|[ƒYƒƒjƒ…[‚Ö–ß‚é
+            // ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½jï¿½ï¿½ï¿½[ï¿½Ö–ß‚ï¿½
             if (Input.GetKeyDown(BackKey))
             {
                 use_Icon[nowSelect].Step.SetActive(false);
                 StartCoroutine(Alphagensui(use_Icon[nowSelect].Step));
                 OshinagakiAnimSetBool(Oshinagaki_anim_paramator, false);
-                SoundManager.instance.SEPlay("–ß‚éSE");
+                SoundManager.instance.SEPlay("ï¿½ß‚ï¿½SE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
                 OptionSelectCount = 0;
