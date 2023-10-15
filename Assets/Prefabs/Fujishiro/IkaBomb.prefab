@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 3653603082403678622}
   m_Layer: 0
   m_Name: ikaBomb_Obj
-  m_TagString: FoodsSupport
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -675,6 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a674bfd1295e4fe4e93148d5fc2c86e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bomb: {fileID: 3653603081440085507}
 --- !u!1 &3653603083017957242
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +800,7 @@ PrefabInstance:
     - target: {fileID: 7539468944695487927, guid: be9bfb3302ec3a44cbca85f1568a5bf4,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7539468944695487927, guid: be9bfb3302ec3a44cbca85f1568a5bf4,
         type: 3}
@@ -809,12 +810,12 @@ PrefabInstance:
     - target: {fileID: 7539468944695487927, guid: be9bfb3302ec3a44cbca85f1568a5bf4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7539468944695487927, guid: be9bfb3302ec3a44cbca85f1568a5bf4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7539468944695487927, guid: be9bfb3302ec3a44cbca85f1568a5bf4,
         type: 3}
@@ -824,7 +825,7 @@ PrefabInstance:
     - target: {fileID: 7539468944695487927, guid: be9bfb3302ec3a44cbca85f1568a5bf4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7539468944695487927, guid: be9bfb3302ec3a44cbca85f1568a5bf4,
         type: 3}

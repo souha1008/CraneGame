@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class S_IkaBomb : MonoBehaviour
 {
-
+    [SerializeField]
+    private IkaBomb_Maneger bomb;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,6 @@ public class S_IkaBomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IkaBomb_Maneger.instance.Bomb(other);
+        bomb.Bomb(other);
     }
 }

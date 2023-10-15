@@ -5,8 +5,6 @@ using UnityEditor.UI;
 
 public class IkaBomb_Maneger : MonoBehaviour
 {
-    static public IkaBomb_Maneger instance;
-
     [SerializeField] SpriteRenderer[] Sprite_sumi;
 
     [SerializeField] float alpha_value;
@@ -15,7 +13,6 @@ public class IkaBomb_Maneger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
         for (int i = 0; i < Sprite_sumi.Length; i++)
         {
             Sprite_sumi[i].color = new Color(0, 0, 0, 0);
@@ -25,7 +22,7 @@ public class IkaBomb_Maneger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ™X‚É–n‚ªŒ©‚¦‚È‚­‚È‚é
+        // ï¿½ï¿½ï¿½Xï¿½É–nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½È‚ï¿½
         if (UseSumi)
         {
             for (int i = 0; i < Sprite_sumi.Length; i++)
@@ -46,7 +43,7 @@ public class IkaBomb_Maneger : MonoBehaviour
         if (other.gameObject.tag == "AttachKnife")
         {
             UseSumi = true;
-            // ƒiƒCƒt‚ª“–‚½‚Á‚½ˆ—
+            // ï¿½iï¿½Cï¿½tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             for (int i = 0; i < Sprite_sumi.Length; i++)
             {
                 Sprite_sumi[i].color = new Color(1, 1, 1, 5);

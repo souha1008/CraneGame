@@ -44,6 +44,8 @@ public class TutorialSystem : MonoBehaviour
     private ReadIsFade sc;
     private bool once = false;
 
+    private SoundManager sound;
+
     void Awake()
     {
         foreach(var mod in modules)
@@ -60,6 +62,8 @@ public class TutorialSystem : MonoBehaviour
         else        observer = obj.GetComponent<TutorialObserver>();
         
         sc = GameObject.Find("ReadIsFade").GetComponent<ReadIsFade>();
+        
+        sound = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
     void Update()
@@ -106,6 +110,7 @@ public class TutorialSystem : MonoBehaviour
 
     public void OKActivate(bool _value)
     {
+        if (_value) sound.SEPlay("チュートリアルのOKSE");
         ok.gameObject.SetActive(_value);
     }
 
