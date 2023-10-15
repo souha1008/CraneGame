@@ -87,6 +87,11 @@ public class Candle : CircleFoodsInterFace
             isFire = false;
             Effect.SetActive(false);
         }
+
+        if(OldIsFire == true && isFire == false)
+        {
+            SoundManager.instance.SEPlay("ÇÎÇ§ÇªÇ≠è¡Ç¶ÇÈSE");
+        }
     }
 
     private void OnTriggerStay(Collider other)
