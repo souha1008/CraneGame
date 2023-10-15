@@ -1087,6 +1087,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 8757650095231564045, guid: 1c8bb252cab2c674480181c1f53a252e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c8bb252cab2c674480181c1f53a252e, type: 3}
 --- !u!4 &137191388 stripped
@@ -2186,7 +2191,7 @@ MonoBehaviour:
   - {fileID: 1781873757}
   - {fileID: 1855098180}
   FazeTime: 18000
-  SPEED_CLEAR_TIME: 110
+  SPEED_CLEAR_TIME: 220
   FPS_Time: 0
   START_STOP_FLAME: 240
   SYATTA_STOP_FLAME: 14
@@ -2196,7 +2201,7 @@ MonoBehaviour:
   ConvayorModel: {fileID: 716271309}
   PlaneModel: {fileID: 304989417}
   isConvayor: 0000000000
-  MAX_SCORE: 0200000002000000020000000400000003000000
+  MAX_SCORE: 0300000002000000020000000400000003000000
   AllTime: 0
   isTutreal: 0
 --- !u!4 &244182721
