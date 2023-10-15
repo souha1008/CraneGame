@@ -17,10 +17,20 @@ public class Candle : CircleFoodsInterFace
     bool OldIsFire = false;
 
     public GameObject Effect;
+
+    private bool once = false;
+
+    private string bgmtitle;
+
+    private CandleGimmick gimmick;
+
     void Start()
     {
         FoodsStart();
         Effect.SetActive(false);
+        
+        gimmick = GetComponent<CandleGimmick>();
+        bgmtitle = GameObject.FindAnyObjectByType<BGMPlayer>().selectplayTitle;
     }
 
     // Update is called once per frame
@@ -33,6 +43,16 @@ public class Candle : CircleFoodsInterFace
     {
         OldIsFire = isFire;
 
+        if (!once)
+        {
+            if (SoundManager.instance.CheckPlayBGM(bgmtitle) && transform.position.z >= 0)
+            {
+                once = true;
+                isFire = true;
+                gimmick.CandleLighting();
+            }
+        }
+
         if (!isNoAction)
         {
             if (FireAburareFlag)
@@ -43,6 +63,7 @@ public class Candle : CircleFoodsInterFace
                 {
                     m_HummerAction = HummerAction.STAY;
                     isFire = true;
+                    gimmick.CandleLighting();
                 }
             }
             FireAburareFlag = false;
@@ -54,20 +75,18 @@ public class Candle : CircleFoodsInterFace
         {
             Effect.SetActive(true);
             
-            
             if(!OldIsFire)
             {
-                CandleGimmick.instance.CandleLighting();
+                //gimmick.CandleLighting();
                 SoundManager.instance.SEPlay("‚ë‚¤‚»‚­’…‰ÎSE");
             }
         }
-
-        if(!CandleGimmick.instance.isLight)
+        
+        if(!gimmick.isLight)
         {
             isFire = false;
             Effect.SetActive(false);
         }
-
     }
 
     private void OnTriggerStay(Collider other)
