@@ -36,14 +36,19 @@ public class PhaseMeter : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-
-    void Start()
-    {
+        
         body_tf     = body.GetComponent<RectTransform>();
         body_image  = body.GetComponent<Image>();
 
         body_tf_defSize = body_tf.sizeDelta;
+    }
+
+    void Start()
+    {
+        //body_tf     = body.GetComponent<RectTransform>();
+        //body_image  = body.GetComponent<Image>();
+
+        //body_tf_defSize = body_tf.sizeDelta;
 
         body_tf.sizeDelta = new Vector2(0, body_tf_defSize.y);
     }
