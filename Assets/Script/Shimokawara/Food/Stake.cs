@@ -27,6 +27,7 @@ public class Stake : CircleFoodsInterFace
     private void OnEnable()
     {
         Effect.SetActive(false);
+        GetComponent<stake_ColorTransfer>().SetParm(0);
     }
 
     // Update is called once per frame
