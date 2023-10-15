@@ -6506,100 +6506,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862301986}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &870047141
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1265822061656860077, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_Name
-      value: Button (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265822061656860077, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_TagString
-      value: FoodsSupport
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265822061656860087, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 67
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265822061656860087, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 126.46
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265822061656860087, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.684822
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265822061656860087, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -193.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265822061656860087, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265822061656860087, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265822061656860087, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265822061656860087, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265822061656860087, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265822061656860087, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265822061656860087, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409924290383073524, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_CutAction
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409924290383073524, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_FireAction
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409924290383073524, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_ChachAction
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4409924290383073524, guid: d1736d29d2123f249bae411e0eab78f6,
-        type: 3}
-      propertyPath: m_HummerAction
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d1736d29d2123f249bae411e0eab78f6, type: 3}
 --- !u!1001 &871642708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11129,7 +11035,7 @@ MonoBehaviour:
   m_Arm: {fileID: 1871770197}
   MAX_SPEED: 18
   isSlow: 0
-  NextAttachType: 2
+  NextAttachType: 0
   cameraObj: {fileID: 963194225}
   StickMoveType: 0
   MoveInputType: 0
