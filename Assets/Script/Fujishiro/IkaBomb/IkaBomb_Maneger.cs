@@ -47,7 +47,7 @@ public class IkaBomb_Maneger : MonoBehaviour
             for (int i = 0; i < Sprite_sumi.Length; i++)
             {
                 Sprite_sumi[i].color = new Color(1, 1, 1, 5);
-
+                SoundManager.instance.SEPlay("インクSE");
             }
 
         }
