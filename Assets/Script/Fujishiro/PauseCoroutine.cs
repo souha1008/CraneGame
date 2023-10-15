@@ -8,7 +8,6 @@ using System.Data;
 
 public class PauseCoroutine : MonoBehaviour
 {
-    // �}�N���萔
     const int M_MAXSELECT = 3;
     const int M_MINSELECT = 0;
 
@@ -23,7 +22,7 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField][Tooltip("DPAD")] string DPAD_hori = "JuujiKeyY";
 
     [SerializeField][Tooltip("�I�𒆂̐F")] Color nowSelectColor = new Color(0, 255, 255);
-    [SerializeField][Tooltip("�I�����ĂȂ��F")] Color notSelectColor = Color.white;
+    [SerializeField][Tooltip("�I����ĂȂ��F")] Color notSelectColor = Color.white;
 
     [Header("UI�n")]
     [SerializeField] Canvas Pause_Canvas = null;
@@ -41,7 +40,7 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] string UI_anim_paramator;
     [SerializeField] string Oshinagaki_anim_paramator;
 
-    [Header("�I�v�V�������X���C�_�[")]
+    [Header("�I�v�V������X���C�_�[")]
     [SerializeField] GameObject Option_C;
     [SerializeField] Image TI_BGM;
     [SerializeField] Image TI_SE;
@@ -246,7 +245,7 @@ public class PauseCoroutine : MonoBehaviour
         StartCoroutine(PauseMenu());
         yield return new WaitUntil(() => Input.GetKeyDown(BackKey) && isPauseMenu == true && mPauseCooldown >= pauseCoolTime);
 
-        Debug.Log("�|�[�Y����");
+        Debug.Log("�|�[�Y���");
         MenuSelectCount = 0;
         StopCoroutine(PauseMenu());
         SetPause(false);
@@ -328,7 +327,7 @@ public class PauseCoroutine : MonoBehaviour
                         break;
 
                     case (int)SelectCorsor.Retry:
-                        // ���g���C��I���������̏���������
+                        // ���g���C��I��������̏��������
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             Time.timeScale = 1.0f;
@@ -344,7 +343,7 @@ public class PauseCoroutine : MonoBehaviour
                         break;
 
                     case (int)SelectCorsor.StageSelect:
-                        // �X�e�[�W�Z���N�g��I���������̏���������
+                        // �X�e�[�W�Z���N�g��I��������̏��������
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             Time.timeScale = 1.0f;
