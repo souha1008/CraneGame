@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5566662547377769174}
   - component: {fileID: 5566662547377769177}
   - component: {fileID: -4388199448793159279}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: Numa
   m_TagString: FoodsSupport
   m_Icon: {fileID: 0}
@@ -228,6 +228,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5566662547377769173}
     m_Modifications:
+    - target: {fileID: 70498773821581802, guid: 159252dfd98a51f45b0262aa769e9ce9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252982157075226124, guid: 159252dfd98a51f45b0262aa769e9ce9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3762100255465438784, guid: 159252dfd98a51f45b0262aa769e9ce9,
         type: 3}
       propertyPath: m_RootOrder
@@ -302,6 +312,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: kanban_doku_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575229044892378362, guid: 159252dfd98a51f45b0262aa769e9ce9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 159252dfd98a51f45b0262aa769e9ce9, type: 3}
