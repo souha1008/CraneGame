@@ -108,6 +108,7 @@ public class PauseCoroutine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(Pause_Oshinagaki.instance.oshinagaki_Icon.Length);
         BGM_Slider.value = SoundManager.instance.BGM_Volume;
         SE_Slider.value = SoundManager.instance.SE_Volume;
         Pause_Canvas.gameObject.SetActive(false);
