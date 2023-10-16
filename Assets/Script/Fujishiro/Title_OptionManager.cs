@@ -51,7 +51,7 @@ public class Title_OptionManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             Option_Canvas.SetActive(true);
-            if (GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("�|�[�Y�J��SE");
+            if (GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ポーズ開くSE");
             StartCoroutine(C_Option());
         }
     }
@@ -85,21 +85,19 @@ public class Title_OptionManager : MonoBehaviour
         {
             if (Input.GetKeyDown(UpArrow) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
             {
-                Debug.Log("��");
                 OptionSelectCount--;
                 prevAxis = Input.GetAxis("Vertical");
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("�I��SE");
+                    SoundManager.instance.SEPlay("選択SE");
                 if (OptionSelectCount < 0) OptionSelectCount = 1;
             }
 
             if (Input.GetKeyDown(DownArrow) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
             {
-                Debug.Log("��");
                 OptionSelectCount++;
                 prevAxis = Input.GetAxis("Vertical");
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("�I��SE");
+                    SoundManager.instance.SEPlay("選択SE");
                 if (OptionSelectCount > 1) OptionSelectCount = 0;
             }
 
@@ -114,7 +112,7 @@ public class Title_OptionManager : MonoBehaviour
             {
                 Option_Canvas.SetActive(false);
                 isOption = false;
-                SoundManager.instance.SEPlay("�߂�SE");
+                SoundManager.instance.SEPlay("戻るSE");
                 OptionSelectCount = 0;
                 Time.timeScale = 1;
                 yield break;
@@ -132,11 +130,10 @@ public class Title_OptionManager : MonoBehaviour
                     break;
             }
 
-            var value = Input.GetAxis("Horizontal");
-            if (value > 0.3f && slider_nowcoolframe >= slider_coolfrate)
+            if ((Input.GetAxis("JuujiKeyX") >= 0.8f || Input.GetAxis("Horizontal") > 0.3f) && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("���ʒ���SE");
+                    SoundManager.instance.SEPlay("音量調整SE");
                 nowslider.value += slider_rate;
 
                 if (nowslider == BGM_slider)
@@ -146,10 +143,10 @@ public class Title_OptionManager : MonoBehaviour
 
                 slider_nowcoolframe = 0;
             }
-            if (value < -0.3f && slider_nowcoolframe >= slider_coolfrate)
+            if ((Input.GetAxis("JuujiKeyX") <= -0.8f || Input.GetAxis("Horizontal") < -0.3f) && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("���ʒ���SE");
+                    SoundManager.instance.SEPlay("音量調整SE");
                 nowslider.value -= slider_rate;
 
                 if (nowslider == BGM_slider)

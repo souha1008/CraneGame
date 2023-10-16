@@ -420,8 +420,8 @@ public class PauseCoroutine : MonoBehaviour
                     break;
             }
 
-            var value = Input.GetAxis("Horizontal");
-            if(value > 0.3f && slider_nowcoolframe >= slider_coolfrate)
+            // Option Slider
+            if((Input.GetAxis("JuujiKeyX") >= 0.8f || Input.GetAxis("Horizontal") > 0.3f) && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
                     SoundManager.instance.SEPlay("音量調整SE");
@@ -434,7 +434,7 @@ public class PauseCoroutine : MonoBehaviour
 
                 slider_nowcoolframe = 0;
             }
-            if(value < -0.3f && slider_nowcoolframe >= slider_coolfrate)
+            if((Input.GetAxis("JuujiKeyX") <= -0.8f || Input.GetAxis("Horizontal") < -0.3f) && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
                     SoundManager.instance.SEPlay("音量調整SE");
@@ -546,7 +546,7 @@ public class PauseCoroutine : MonoBehaviour
             if (Input.GetKeyDown(BackKey))
             {
                 use_Icon[nowSelect].Step.SetActive(false);
-                StartCoroutine(Alphagensui(use_Icon[nowSelect].Step));
+                //StartCoroutine(Alphagensui(use_Icon[nowSelect].Step));
                 OshinagakiAnimSetBool(Oshinagaki_anim_paramator, false);
                 SoundManager.instance.SEPlay("戻るSE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
