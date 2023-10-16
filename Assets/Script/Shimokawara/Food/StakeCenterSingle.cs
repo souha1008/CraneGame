@@ -15,6 +15,7 @@ public class StakeCenterSingle : CircleFoodsInterFace
     bool FireFlag;
 
     public bool isFire = false;
+    bool OldIsFire;
     public int Number;
 
     StakePlate[] PlateArray;
@@ -39,6 +40,8 @@ public class StakeCenterSingle : CircleFoodsInterFace
 
     void FixedUpdate()
     {
+        OldIsFire = isFire;
+
         if (!isFire)
         {
             if (!isNoAction)
@@ -114,6 +117,11 @@ public class StakeCenterSingle : CircleFoodsInterFace
 
         isClear = TempClear;
 
+
+        if (OldIsFire != isFire)
+        {
+            SoundManager.instance.SEPlay("ì˜èƒÇØÇÈSE");
+        }
 
         FoodsFixedUpdate();
     }

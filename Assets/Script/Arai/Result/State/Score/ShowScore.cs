@@ -49,7 +49,7 @@ public class ShowScore : ResultUI
             if (!skip)
             {
                 yield return wfs;
-                manager.Sound.SEPlay("スコア表示SE");
+                manager.Sound.SEPlay("リザルトのフェーズSE");
             }
 
             var p = Instantiate(score, this.transform);

@@ -12,7 +12,7 @@ public class StakeRightSingle : CircleFoodsInterFace
 {
     public int FireCnt = 0;
     bool FireFlag;
-
+    bool OldIsFire;
     public bool isFire;
     public int Number;
     public bool TempClear = false;
@@ -37,6 +37,8 @@ public class StakeRightSingle : CircleFoodsInterFace
 
     void FixedUpdate()
     {
+        OldIsFire = isFire;
+
         if (!isFire)
         {
             if (!isNoAction)
@@ -73,6 +75,11 @@ public class StakeRightSingle : CircleFoodsInterFace
                     }
                 }
             }
+        }
+
+        if (OldIsFire != isFire)
+        {
+            SoundManager.instance.SEPlay("ì˜èƒÇØÇÈSE");
         }
 
         FoodsFixedUpdate();

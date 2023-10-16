@@ -10,7 +10,7 @@ using UnityEditor;
 
 public class CutTomato : CircleFoodsInterFace
 {
-    TomatoPlate[] PlateArray;
+    Salada[] PlateArray;
     int Cnt = 0;
     void Start()
     {
@@ -24,7 +24,7 @@ public class CutTomato : CircleFoodsInterFace
     }
     private void OnEnable()
     {
-        PlateArray = GameObject.FindObjectsOfType<TomatoPlate>();
+        PlateArray = GameObject.FindObjectsOfType<Salada>();
     }
 
 

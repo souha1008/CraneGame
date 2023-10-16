@@ -14,6 +14,7 @@ public class Stake : CircleFoodsInterFace
     bool FireFlag;
 
     public bool isFire = false;
+    bool OldIsFire;
     public int Number;
     static int StaticNumber = 0;
     public GameObject Effect;
@@ -27,6 +28,7 @@ public class Stake : CircleFoodsInterFace
     private void OnEnable()
     {
         Effect.SetActive(false);
+        GetComponent<stake_ColorTransfer>().SetParm(0);
     }
 
     // Update is called once per frame
@@ -37,6 +39,8 @@ public class Stake : CircleFoodsInterFace
 
     void FixedUpdate()
     {
+        OldIsFire = isFire;
+
         if (!isFire)
         {
             if (!isNoAction)
@@ -59,6 +63,11 @@ public class Stake : CircleFoodsInterFace
         if (isFire)
         {
             Effect.SetActive(true);
+        }
+
+        if(OldIsFire != isFire)
+        {
+            SoundManager.instance.SEPlay("ì˜èƒÇØÇÈSE");
         }
 
         FoodsFixedUpdate();

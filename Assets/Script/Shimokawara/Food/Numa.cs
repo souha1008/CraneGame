@@ -23,6 +23,7 @@ public class Numa : MonoBehaviour
             if(other.GetComponent<CircleFoodsInterFace>().isGround)
             {
                 Destroy(other.gameObject);
+                SoundManager.instance.SEPlay("ì≈è¿Ç…êZÇ©ÇÈSE");
             }
         }
     }

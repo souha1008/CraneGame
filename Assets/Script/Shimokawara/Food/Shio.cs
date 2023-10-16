@@ -23,8 +23,22 @@ public class Shio : MonoBehaviour
     {
         if (other.gameObject.tag == "AttachHummer")
         {
+            switch (HitCnt)
+            {
+                case 0:
+                    SoundManager.instance.SEPlay("V_‰–Š˜Ä’@‚«SE");
+                    break;
+                case 1:
+                    SoundManager.instance.SEPlay("‰–Š˜Ä‚«Ó‚¯SE");
+                    break;
+
+            }
+
+
             HitCnt = Mathf.Min(HitCnt + 1, 2);
             Debug.Log("‰–ƒqƒbƒg");
+
+            
         }
         
         if(HitCnt == 2)

@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 6001681120736938419}
   - component: {fileID: 6001681120736938418}
   - component: {fileID: 6001681120736938421}
-  m_Layer: 0
+  - component: {fileID: 6276452467433584296}
+  m_Layer: 6
   m_Name: Mochi
   m_TagString: Foods
   m_Icon: {fileID: 0}
@@ -162,6 +163,20 @@ MonoBehaviour:
   Vel: {x: 0, y: 0, z: 0}
   isGround: 0
   FoodsArmState: 0
+--- !u!114 &6276452467433584296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6001681120736938420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f617e16863dd34eb3a230625e33f14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 8919080121031770221}
+  skinnedMeshRenderer: {fileID: 0}
 --- !u!1001 &6001681119351060451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -173,6 +188,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ricecake_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6326634676245492786, guid: 18e7f9913769a2a40804cbea058f100e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8494868619216708365, guid: 18e7f9913769a2a40804cbea058f100e,
         type: 3}
@@ -249,6 +269,12 @@ PrefabInstance:
 --- !u!4 &2785924069807150318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8494868619216708365, guid: 18e7f9913769a2a40804cbea058f100e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6001681119351060451}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8919080121031770221 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2921905092591253390, guid: 18e7f9913769a2a40804cbea058f100e,
     type: 3}
   m_PrefabInstance: {fileID: 6001681119351060451}
   m_PrefabAsset: {fileID: 0}

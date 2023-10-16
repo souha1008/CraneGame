@@ -61,6 +61,8 @@ public class Egg : CircleFoodsInterFace
             Cut2.GetComponent<EggKara>().Vel = new Vector3(-0.3f, 0.1f, 0);
             Cut2.GetComponent<EggKara>().FoodsStart();
 
+            SoundManager.instance.SEPlay("—‘Šk‚ªŠ„‚ê‚éSE");
+
             Destroy(gameObject);
         }
     }

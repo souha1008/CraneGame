@@ -4,30 +4,27 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor.Build.Content;
-using UnityEngine.Rendering;
+using System.Data;
 
 public class PauseCoroutine : MonoBehaviour
 {
-    // ƒ}ƒNƒ’è”
     const int M_MAXSELECT = 3;
     const int M_MINSELECT = 0;
 
     [SerializeField, ReadOnly] public bool mPaused = false;
     [SerializeField, ReadOnly] private float mPauseCooldown;
 
-    [SerializeField][Tooltip("ƒ|[ƒY‚ÌƒN[ƒ‹ƒ^ƒCƒ€")] float pauseCoolTime;
+    [SerializeField] float pauseCoolTime;
 
-    [SerializeField][Tooltip("‰Ÿ‚µ‚½‚çƒ|[ƒY‚·‚éƒ{ƒ^ƒ“")] KeyCode pauseKey = KeyCode.P;
-    [SerializeField][Tooltip("‰Ÿ‚µ‚½‚çŒˆ’è‚·‚é")] KeyCode KetteiKey = KeyCode.Space;
-    [SerializeField][Tooltip("‰Ÿ‚µ‚½‚çƒLƒƒƒ“ƒZƒ‹")] KeyCode BackKey = KeyCode.Z;
-    [SerializeField] [Tooltip("‰ºƒL[")] KeyCode DownArrow = KeyCode.DownArrow;
-    [SerializeField] [Tooltip("‰ºƒL[")] KeyCode UpArrow = KeyCode.UpArrow;
+    [SerializeField] KeyCode pauseKey = KeyCode.JoystickButton8;
+    [SerializeField] KeyCode KetteiKey = KeyCode.JoystickButton2;
+    [SerializeField] KeyCode BackKey = KeyCode.JoystickButton1;
+    [SerializeField] string DPAD_hori = "JuujiKeyY";
 
-    [SerializeField][Tooltip("‘I‘ğ’†‚ÌF")] Color nowSelectColor = new Color(0, 255, 255);
-    [SerializeField][Tooltip("‘I‘ğ‚µ‚Ä‚È‚¢F")] Color notSelectColor = Color.white;
+    [SerializeField] Color nowSelectColor = new Color(0, 255, 255);
+    [SerializeField] Color notSelectColor = Color.white;
 
-    [Header("UIŒn")]
+    [Header("UI")]
     [SerializeField] Canvas Pause_Canvas = null;
     [SerializeField] Image Option;
     [SerializeField] Image Retry;
@@ -43,7 +40,7 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] string UI_anim_paramator;
     [SerializeField] string Oshinagaki_anim_paramator;
 
-    [Header("ƒIƒvƒVƒ‡ƒ““àƒXƒ‰ƒCƒ_[")]
+    [Header("Option")]
     [SerializeField] GameObject Option_C;
     [SerializeField] Image TI_BGM;
     [SerializeField] Image TI_SE;
@@ -53,12 +50,12 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] float slider_coolfrate = 35;
     private float slider_nowcoolframe;
 
-    [Header("ƒRƒ‹[ƒ`ƒ“—p•Ï”")]
+    [Header("Option Animation")]
     [SerializeField] float C_Option_WaitTime = 1.5f;
     [SerializeField] float C_Option_WaitFrame = 180;
     [SerializeField] float UpdateModeChange_WaitTime = 5;
 
-    [Header("‚¨‚µ‚È‚ª‚«ƒXƒeƒbƒv")]
+    [Header("Oshinagaki")]
     public Oshinagaki_Icon[] use_Icon;
     public int nowSelect = 0;
     public int usecount = 0;
@@ -68,18 +65,19 @@ public class PauseCoroutine : MonoBehaviour
     public static PauseCoroutine instance { get; private set; } = new PauseCoroutine();
     public bool Update_isPause;
 
-    // ƒvƒ‰ƒCƒx[ƒg•Ï”
+    // private value
     private bool isPauseMenu = false;
     private bool isOption_c = false;
     private float prevAxis = 0;
+    private float DPADAxis = 0;
     private Coroutine counddown_corutine;
 
     enum SelectCorsor
     {
-        Option = 0,
-        Retry = 1,
-        StageSelect = 2,
-        Oshinagaki = 3,
+        Oshinagaki = 0,
+        Option = 1,
+        Retry = 2,
+        StageSelect = 3,
     };
 
     void SetIsPauseMenu(bool set)
@@ -110,6 +108,7 @@ public class PauseCoroutine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(Pause_Oshinagaki.instance.oshinagaki_Icon.Length);
         BGM_Slider.value = SoundManager.instance.BGM_Volume;
         SE_Slider.value = SoundManager.instance.SE_Volume;
         Pause_Canvas.gameObject.SetActive(false);
@@ -120,12 +119,6 @@ public class PauseCoroutine : MonoBehaviour
             if (Pause_Oshinagaki.instance.oshinagaki_Icon[i].isUse == true)
             {
                 use_Icon[j] = Pause_Oshinagaki.instance.oshinagaki_Icon[i];
-                GameObject pa = use_Icon[j].Step;
-                Image[] com = pa.GetComponentsInChildren<Image>();
-                foreach (Image component in com)
-                {
-                    component.color = new Color(1, 1, 1, 0);
-                }
                 j++;
             }
         }
@@ -218,17 +211,17 @@ public class PauseCoroutine : MonoBehaviour
 
     void Pause()
     {
-        if(GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ƒ|[ƒYŠJ‚­SE");
-        // ƒvƒ‰ƒCƒx[ƒg•Ï”‰Šú‰»
+        if(GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ãƒãƒ¼ã‚ºé–‹ãSE");
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½xï¿½[ï¿½gï¿½Ïï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         prevAxis = 0;
+        DPADAxis = 0;
         MenuSelectCount = 0;
 
-        // ‰¹ºƒXƒgƒbƒv
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½bï¿½v
         if (GameObject.Find("SoundManager")) SoundManager.instance.SELoopStop();
 
         SetPause(true);
         Update_isPause = true;
-        Debug.Log("ƒ|[ƒY‚µ‚½YO");
         Pause_Canvas.gameObject.SetActive(true);
         Time.timeScale = 0;
         SetIsPauseMenu(true);
@@ -245,29 +238,17 @@ public class PauseCoroutine : MonoBehaviour
     void OshinagakiAnimSetBool(string anim_param, bool set)
     {
         animator_Oshinagaki.SetBool(anim_param, set);
-        use_Icon[nowSelect].animator.SetBool(anim_param, set);
-        //for (int i = 0; i < use_Icon.Length; i++)
-        //{
-        //    GameObject pa = use_Icon[i].Step;
-        //    Image[] com = pa.GetComponentsInChildren<Image>();
-        //    foreach (Image component in com)
-        //    { 
-        //        component.color = new Color(1, 1, 1, 255);
-        //    }
-        //}
     }
 
     IEnumerator PauseStart()
     {
-        Debug.Log("ƒ|[ƒY’†");
         StartCoroutine(PauseMenu());
         yield return new WaitUntil(() => Input.GetKeyDown(BackKey) && isPauseMenu == true && mPauseCooldown >= pauseCoolTime);
 
-        Debug.Log("ƒ|[ƒY‰ğœ");
         MenuSelectCount = 0;
         StopCoroutine(PauseMenu());
         SetPause(false);
-        if (GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ƒ|[ƒY•Â‚¶‚éSE");
+        if (GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ãƒãƒ¼ã‚ºé–‰ã˜ã‚‹SE");
         Update_isPause = false;
         Pause_Canvas.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
@@ -280,31 +261,35 @@ public class PauseCoroutine : MonoBehaviour
         {
             if (isPauseMenu)
             {
-                if (Input.GetKeyDown(UpArrow) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
+                if ((Input.GetAxis(DPAD_hori) >= 0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
                 {
-                    Debug.Log("ã");
                     MenuSelectCount--;
                     prevAxis = Input.GetAxis("Vertical");
+                    DPADAxis = Input.GetAxis(DPAD_hori);
                     if (GameObject.Find("SoundManager"))
-                        SoundManager.instance.SEPlay("‘I‘ğSE");
+                        SoundManager.instance.SEPlay("é¸æŠSE");
                 }
 
-                if (Input.GetKeyDown(DownArrow) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
+                if ((Input.GetAxis(DPAD_hori) <= -0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
                 {
-                    Debug.Log("‰º");
                     MenuSelectCount++;
                     prevAxis = Input.GetAxis("Vertical");
+                    DPADAxis = Input.GetAxis(DPAD_hori);
                     if (GameObject.Find("SoundManager"))
-                        SoundManager.instance.SEPlay("‘I‘ğSE");
+                        SoundManager.instance.SEPlay("é¸æŠSE");
                 }
 
-                if (MenuSelectCount > M_MAXSELECT) MenuSelectCount = M_MINSELECT;   // ã‚É‚¢‚­
-                if (MenuSelectCount < M_MINSELECT) MenuSelectCount = M_MAXSELECT;   // ‰º‚És‚­
+                if (MenuSelectCount > M_MAXSELECT) MenuSelectCount = M_MINSELECT; 
+                if (MenuSelectCount < M_MINSELECT) MenuSelectCount = M_MAXSELECT;  
 
-                // “ü—Í–³‚µ
+                // ï¿½ï¿½ï¿½Í–ï¿½ï¿½ï¿½
                 if (Input.GetAxis("Vertical") == 0)
                 {
                     prevAxis = 0;
+                }
+                if(Input.GetAxis(DPAD_hori) == 0)
+                {
+                    DPADAxis = 0;
                 }
 
 
@@ -313,13 +298,11 @@ public class PauseCoroutine : MonoBehaviour
                 switch (MenuSelectCount)
                 {
                     case (int)SelectCorsor.Oshinagaki:
-                        // ‚¨‚µ‚È‚ª‚«‚ğ‘I‘ğ
+                        // ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             if (GameObject.Find("SoundManager"))
-                                SoundManager.instance.SEPlay("Œˆ’èSE");
-
-                            use_Icon[nowSelect].Step.SetActive(true);
+                                SoundManager.instance.SEPlay("æ±ºå®šSE");
                             OshinagakiAnimSetBool(Oshinagaki_anim_paramator, true);
                             SetIsPauseMenu(false);
                             StartCoroutine(C_Oshinagaki());
@@ -328,12 +311,12 @@ public class PauseCoroutine : MonoBehaviour
                         break;
 
                     case (int)SelectCorsor.Option:
-                        // ƒIƒvƒVƒ‡ƒ“‚ğ‘I‘ğ
+                        // ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.UnscaledTime));
                             if (GameObject.Find("SoundManager"))
-                                SoundManager.instance.SEPlay("Œˆ’èSE");
+                                SoundManager.instance.SEPlay("æ±ºå®šSE");
                             AnimSetBool(UI_anim_paramator, true);
                             SetIsPauseMenu(false);
                             StartCoroutine(C_Option());
@@ -341,11 +324,15 @@ public class PauseCoroutine : MonoBehaviour
                         break;
 
                     case (int)SelectCorsor.Retry:
-                        // ƒŠƒgƒ‰ƒC‚ğ‘I‘ğ‚µ‚½‚Ìˆ—‚ğ‘‚­
+                        // ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Cï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             Time.timeScale = 1.0f;
-                            SoundManager.instance.SEPlay("Œˆ’èSE");
+                            SoundManager.instance.SEPlay("æ±ºå®šSE");
+                            for(int i = 0; i < 5; i++)
+                            {
+                                GameObject.Find("Datas").GetComponent<ScoreData>().SetScore(i, 0);
+                            }
                             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene(SceneManager.GetActiveScene().name);
                             yield return new WaitForSecondsRealtime(3);
                             yield break;
@@ -353,11 +340,11 @@ public class PauseCoroutine : MonoBehaviour
                         break;
 
                     case (int)SelectCorsor.StageSelect:
-                        // ƒXƒe[ƒWƒZƒŒƒNƒg‚ğ‘I‘ğ‚µ‚½‚Ìˆ—‚ğ‘‚­
+                        // ï¿½Xï¿½eï¿½[ï¿½Wï¿½Zï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             Time.timeScale = 1.0f;
-                            SoundManager.instance.SEPlay("Œˆ’èSE");
+                            SoundManager.instance.SEPlay("æ±ºå®šSE");
                             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
                             yield break;
                         }
@@ -395,26 +382,32 @@ public class PauseCoroutine : MonoBehaviour
 
         while (true)
         {
-            // ã
-            if (Input.GetKeyDown(UpArrow) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
+            // ï¿½ï¿½
+            if ((Input.GetAxis(DPAD_hori) >= 0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
             {
-                SoundManager.instance.SEPlay("‘I‘ğSE");
+                SoundManager.instance.SEPlay("é¸æŠSE");
                 OptionSelectCount--;
                 prevAxis = Input.GetAxis("Vertical");
+                DPADAxis = Input.GetAxis("JuujiKeyY");
                 if (OptionSelectCount < 0) OptionSelectCount = 1;
             }
-            // ‰º
-            if(Input.GetKeyDown(DownArrow) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
+            // ï¿½ï¿½
+            if ((Input.GetAxis(DPAD_hori) <= -0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
             {
-                SoundManager.instance.SEPlay("‘I‘ğSE");
+                SoundManager.instance.SEPlay("é¸æŠSE");
                 OptionSelectCount++;
                 prevAxis = Input.GetAxis("Vertical");
+                DPADAxis = Input.GetAxis("JuujiKeyY");
                 if (OptionSelectCount > 1) OptionSelectCount = 0;
             }
-            // “ü—Í–³‚µ
+            // ï¿½ï¿½ï¿½Í–ï¿½ï¿½ï¿½
             if (Input.GetAxis("Vertical") == 0)
             {
                 prevAxis = 0;
+            }
+            if(Input.GetAxis(DPAD_hori) == 0)
+            {
+                DPADAxis = 0;
             }
 
             switch (OptionSelectCount)
@@ -428,11 +421,11 @@ public class PauseCoroutine : MonoBehaviour
                     break;
             }
 
-            var value = Input.GetAxis("Horizontal");
-            if(value > 0.3f && slider_nowcoolframe >= slider_coolfrate)
+            // Option Slider
+            if((Input.GetAxis("JuujiKeyX") >= 0.8f || Input.GetAxis("Horizontal") > 0.3f) && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("‰¹—Ê’²®SE");
+                    SoundManager.instance.SEPlay("éŸ³é‡èª¿æ•´SE");
                 nowslider.value += slider_rate;
 
                 if (nowslider == BGM_Slider)
@@ -442,10 +435,10 @@ public class PauseCoroutine : MonoBehaviour
 
                 slider_nowcoolframe = 0;
             }
-            if(value < -0.3f && slider_nowcoolframe >= slider_coolfrate)
+            if((Input.GetAxis("JuujiKeyX") <= -0.8f || Input.GetAxis("Horizontal") < -0.3f) && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("‰¹—Ê’²®SE");
+                    SoundManager.instance.SEPlay("éŸ³é‡èª¿æ•´SE");
                 nowslider.value -= slider_rate;
 
                 if(nowslider == BGM_Slider)
@@ -457,12 +450,12 @@ public class PauseCoroutine : MonoBehaviour
             }
             slider_nowcoolframe += 1;
 
-            // ƒ|[ƒYƒƒjƒ…[‚Ö–ß‚é
+            // ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½jï¿½ï¿½ï¿½[ï¿½Ö–ß‚ï¿½
             if (Input.GetKeyDown(BackKey))
             {
                 AnimSetBool(UI_anim_paramator, false);
                 SetIsOption_c(false);
-                SoundManager.instance.SEPlay("–ß‚éSE");
+                SoundManager.instance.SEPlay("æˆ»ã‚‹SE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
                 OptionSelectCount = 0;
@@ -484,65 +477,80 @@ public class PauseCoroutine : MonoBehaviour
             {
                 break;
             }
-            // ƒAƒ‹ƒtƒ@’lƒŠƒZƒbƒg
-            GameObject pa = use_Icon[i].Step;
-            Image[] com = pa.GetComponentsInChildren<Image>();
-            foreach (Image component in com)
-            {
-                component.color = new Color(255, 255, 255, 255);
-            }
+            // ï¿½Aï¿½ï¿½ï¿½tï¿½@ï¿½lï¿½ï¿½ï¿½Zï¿½bï¿½g
+            //GameObject pa = use_Icon[i].Step;
+            //Image[] com = pa.GetComponentsInChildren<Image>();
+            //foreach (Image component in com)
+            //{
+            //    component.color = new Color(255, 255, 255, 255);
+            //}
             usecount++;
         }
-        Debug.Log(usecount);
-        GameObject parent = use_Icon[nowSelect].Step;
-        Image[] components = parent.GetComponentsInChildren<Image>();
+        //GameObject parent = use_Icon[nowSelect].Step;
+        //Image[] components = parent.GetComponentsInChildren<Image>();
         //foreach (Image component in components) 
         //{
         //    component.color = new Color(1, 1, 1, 0);
         //}
         yield return new WaitForSecondsRealtime(1.3f);
-        StartCoroutine(Alphakasan(parent));
+        //StartCoroutine(Alphakasan(parent));
 
 
         while (true)
         {
 
-            // ‚¨‚µ‚È‚ª‚«ˆ—
+            // ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             use_Icon[nowSelect].Step.SetActive(true);
 
-            // Ÿ‚Ös‚­
-            if(Input.GetKeyDown(DownArrow))
+            // ï¿½ï¿½ï¿½Ösï¿½ï¿½
+            if((Input.GetAxis(DPAD_hori) <= -0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
             {
                 use_Icon[nowSelect].Step.SetActive(false);
                 nowSelect++;
+                prevAxis = Input.GetAxis("Vertical");
+                DPADAxis = Input.GetAxis("JuujiKeyY");
                 if (nowSelect > usecount - 1)
                 {
                     nowSelect = 0;
                 }
+                Debug.Log(nowSelect);
             }
-            // –ß‚é
-            if (Input.GetKeyDown(UpArrow))
+            // ï¿½ß‚ï¿½
+            if ((Input.GetAxis(DPAD_hori) >= 0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
             {
                 use_Icon[nowSelect].Step.SetActive(false);
                 nowSelect--;
+                prevAxis = Input.GetAxis("Vertical");
+                DPADAxis = Input.GetAxis("JuujiKeyY");
                 if (nowSelect < 0)
                 {
                     nowSelect = usecount - 1;
                 }
+                Debug.Log(nowSelect);
             }
 
-            // ƒ‹[ƒvˆ—
+            // ï¿½ï¿½ï¿½Í–ï¿½ï¿½ï¿½
+            if (Input.GetAxis("Vertical") == 0)
+            {
+                prevAxis = 0;
+            }
+            if(Input.GetAxis(DPAD_hori) == 0)
+            {
+                DPADAxis = 0;
+            }
+
+            // ï¿½ï¿½ï¿½[ï¿½vï¿½ï¿½ï¿½ï¿½
 
 
 
-            // ƒ|[ƒYƒƒjƒ…[‚Ö–ß‚é
+            // ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½jï¿½ï¿½ï¿½[ï¿½Ö–ß‚ï¿½
             if (Input.GetKeyDown(BackKey))
             {
+                use_Icon[nowSelect].Step.SetActive(false);
                 //StartCoroutine(Alphagensui(use_Icon[nowSelect].Step));
                 OshinagakiAnimSetBool(Oshinagaki_anim_paramator, false);
-                SoundManager.instance.SEPlay("–ß‚éSE");
+                SoundManager.instance.SEPlay("æˆ»ã‚‹SE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
-                use_Icon[nowSelect].Step.SetActive(false);
                 SetIsPauseMenu(true);
                 OptionSelectCount = 0;
                 yield break;
@@ -554,13 +562,15 @@ public class PauseCoroutine : MonoBehaviour
     {
         Image[] components = parent.GetComponentsInChildren<Image>();
 
-        Debug.Log(components.Length);
+        Debug.Log(components[0]);
+        Debug.Log(components[1]);
+        Debug.Log(components[2]);
         while (true)
         {
-            for(int i = 0; i < components.Length; i++) 
+            foreach (Image component in components)
             {
                 var inc = 0.1f;
-                components[i].color -= new Color(0, 0, 0, inc); 
+                component.color -= new Color(0, 0, 0, inc);
             }
             if (components[components.Length - 1].color.a < 0.0)
             {

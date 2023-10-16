@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2119800828166179082}
   - component: {fileID: 7595749572667770102}
   - component: {fileID: 2512589918453951262}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: stake_left_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 990837389799845598}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: stake_group_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: -6832720775625410579}
   - component: {fileID: -6963502201375540185}
   - component: {fileID: 3167567035526201870}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StakeLeftSingle
   m_TagString: Foods
   m_Icon: {fileID: 0}
@@ -305,6 +305,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8680986046390158925}
     m_Modifications:
+    - target: {fileID: 1969483330044749623, guid: 1c4fb5465cfb2b34d9affd54b1eacb2e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3541362746630108660, guid: 1c4fb5465cfb2b34d9affd54b1eacb2e,
         type: 3}
       propertyPath: m_RootOrder
@@ -379,6 +384,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: stakesmoke_fx_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543334026383008540, guid: 1c4fb5465cfb2b34d9affd54b1eacb2e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124847747164588600, guid: 1c4fb5465cfb2b34d9affd54b1eacb2e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6260799205862339326, guid: 1c4fb5465cfb2b34d9affd54b1eacb2e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958760072781271277, guid: 1c4fb5465cfb2b34d9affd54b1eacb2e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c4fb5465cfb2b34d9affd54b1eacb2e, type: 3}

@@ -17,10 +17,20 @@ public class Candle : CircleFoodsInterFace
     bool OldIsFire = false;
 
     public GameObject Effect;
+
+    private bool once = false;
+
+    private string bgmtitle;
+
+    private CandleGimmick gimmick;
+
     void Start()
     {
         FoodsStart();
         Effect.SetActive(false);
+        
+        gimmick = GetComponent<CandleGimmick>();
+        bgmtitle = GameObject.FindAnyObjectByType<BGMPlayer>().selectplayTitle;
     }
 
     // Update is called once per frame
@@ -33,6 +43,16 @@ public class Candle : CircleFoodsInterFace
     {
         OldIsFire = isFire;
 
+        if (!once)
+        {
+            if (SoundManager.instance.CheckPlayBGM(bgmtitle) && transform.position.z >= 0)
+            {
+                once = true;
+                isFire = true;
+                gimmick.CandleLighting();
+            }
+        }
+
         if (!isNoAction)
         {
             if (FireAburareFlag)
@@ -43,6 +63,7 @@ public class Candle : CircleFoodsInterFace
                 {
                     m_HummerAction = HummerAction.STAY;
                     isFire = true;
+                    gimmick.CandleLighting();
                 }
             }
             FireAburareFlag = false;
@@ -54,18 +75,31 @@ public class Candle : CircleFoodsInterFace
         {
             Effect.SetActive(true);
             
-            
             if(!OldIsFire)
             {
+                //gimmick.CandleLighting();
                 SoundManager.instance.SEPlay("ÇÎÇ§ÇªÇ≠íÖâŒSE");
             }
         }
+        
+        if(!gimmick.isLight)
+        {
+            isFire = false;
+            Effect.SetActive(false);
+        }
 
+        if(OldIsFire == true && isFire == false)
+        {
+            SoundManager.instance.SEPlay("ÇÎÇ§ÇªÇ≠è¡Ç¶ÇÈSE");
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "AttachFire")
-            FireAburareFlag = true;
+        {
+            if (other.GetComponent<Fire>().FireState == FIRE_STATE.FIRE_FIRE)
+                FireAburareFlag = true;
+        }
     }
 }

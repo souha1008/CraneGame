@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5566662547377769174}
   - component: {fileID: 5566662547377769177}
   - component: {fileID: 4234314994460985753}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Usu
   m_TagString: FoodsSupport
   m_Icon: {fileID: 0}
@@ -132,6 +132,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5566662547377769173}
     m_Modifications:
+    - target: {fileID: 308997348148937226, guid: 3d07ac7a12b779844bed3819dcffa4db,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ed7830ea8ebfa24dbcfadb41dd838ef, type: 2}
+    - target: {fileID: 4115521101948599511, guid: 3d07ac7a12b779844bed3819dcffa4db,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -4377192859081099375, guid: 97caacf20dadc5a418e42a155a2d8f1d,
+        type: 3}
     - target: {fileID: 6763095612602354322, guid: 3d07ac7a12b779844bed3819dcffa4db,
         type: 3}
       propertyPath: m_RootOrder
@@ -140,17 +151,17 @@ PrefabInstance:
     - target: {fileID: 6763095612602354322, guid: 3d07ac7a12b779844bed3819dcffa4db,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.9686308
+      value: 0.6699022
       objectReference: {fileID: 0}
     - target: {fileID: 6763095612602354322, guid: 3d07ac7a12b779844bed3819dcffa4db,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 166.3178
+      value: 3.7520602
       objectReference: {fileID: 0}
     - target: {fileID: 6763095612602354322, guid: 3d07ac7a12b779844bed3819dcffa4db,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.9686308
+      value: 0.6699022
       objectReference: {fileID: 0}
     - target: {fileID: 6763095612602354322, guid: 3d07ac7a12b779844bed3819dcffa4db,
         type: 3}
@@ -160,7 +171,7 @@ PrefabInstance:
     - target: {fileID: 6763095612602354322, guid: 3d07ac7a12b779844bed3819dcffa4db,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.5
+      value: -0.93
       objectReference: {fileID: 0}
     - target: {fileID: 6763095612602354322, guid: 3d07ac7a12b779844bed3819dcffa4db,
         type: 3}
@@ -206,6 +217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: plate_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8115982119555994293, guid: 3d07ac7a12b779844bed3819dcffa4db,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d07ac7a12b779844bed3819dcffa4db, type: 3}

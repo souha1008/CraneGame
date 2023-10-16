@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2676685964034430605}
   - component: {fileID: 2676685964034430594}
   - component: {fileID: 2676685964034430604}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sarada
   m_TagString: FoodsSupport
   m_Icon: {fileID: 0}
@@ -126,8 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClear: 0
-  NatArray:
-  - {fileID: 0}
+  NatArray: []
 --- !u!1001 &5983065609927396482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -195,6 +194,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: salad_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 816748461819202269, guid: 8f2fdebe383c5ba4b81ac8f9bccb762b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f2fdebe383c5ba4b81ac8f9bccb762b, type: 3}

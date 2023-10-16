@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MovieManager : MonoBehaviour
 {
@@ -18,24 +19,59 @@ public class MovieManager : MonoBehaviour
 
     private bool once = false;
 
+    private SoundManager manager;
+    private float volume = 0;
+
+    [SerializeField]
+    Image skipimage;
+    private bool showskip = false;
+
+    void OnDestroy()
+    {
+        manager.BGM_Volume = volume;
+    }
+
     void Start()
     {
-        
+        GameObject.FindAnyObjectByType<BGMPlayer>().BGMPlaying();
+
+        manager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+
+        skipimage.gameObject.SetActive(false);
+
+        volume = manager.BGM_Volume;
+        manager.BGM_Volume = 0;
+        StartCoroutine(VolumFadeIn());
     }
 
     void Update()
     {
-        if (Input.GetButton("Debug Multiplier"))
+        if (!showskip && Input.anyKey)
         {
-            if(wait) StopCoroutine(Wait());
-            SceneChange();
+            skipimage.gameObject.SetActive(true);
+            showskip = true;
         }
-        else if (once && image.anchoredPosition.y <= 0)
+        else
         {
-            wait = true;
-            StartCoroutine(Wait());
+            if (Input.GetButton("Debug Multiplier"))
+            {
+                if(wait)
+                {
+                    StopCoroutine(Wait());
+                    StopCoroutine(VolumFadeIn());
+                    StopCoroutine(VolumFadeOut());
+                }
+    
+                SceneChange();
+            }
+            else if (once && !wait && image.anchoredPosition.y <= 0)
+            {
+                wait = true;
+                StartCoroutine(Wait());
+                StartCoroutine(VolumFadeOut());
+            }
+            else once = true;
         }
-        else once = true;
     }
 
     private void SceneChange(bool _rerode = false)
@@ -59,5 +95,41 @@ public class MovieManager : MonoBehaviour
         SceneChange(true);
 
         yield break;
+    }
+
+    private IEnumerator VolumFadeIn()
+    {
+        WaitForSecondsRealtime wait = new WaitForSecondsRealtime(0.5f);
+
+        float targetVol = volume;
+        float val = volume / waittime;
+
+        while(true)
+        {
+            manager.BGM_Volume += val;
+
+            if (manager.BGM_Volume >= targetVol)
+                yield break;
+            else
+                yield return wait;
+        }
+    }
+
+    private IEnumerator VolumFadeOut()
+    {
+        WaitForSecondsRealtime wait = new WaitForSecondsRealtime(1);
+
+        float targetVol = 0;
+        float val = volume / waittime;
+
+        while(true)
+        {
+            manager.BGM_Volume -= val;
+
+            if (manager.BGM_Volume <= targetVol)
+                yield break;
+            else
+                yield return wait;
+        }
     }
 }
