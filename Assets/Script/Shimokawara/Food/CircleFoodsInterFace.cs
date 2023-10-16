@@ -432,6 +432,11 @@ public class CircleFoodsInterFace : MonoBehaviour
                                 Debug.Log("åƒÇŒÇÍÇΩ");
                                 GetComponent<General_ColorTransfer>().ZeroToOne(0.1f, "_Transfer_2nd");
                             }
+                            else if (GetComponent<Kyabetsu_ColorTransfer>())
+                            {
+                                Debug.Log("åƒÇŒÇÍÇΩ");
+                                GetComponent<Kyabetsu_ColorTransfer>().ZeroToOne(0.1f, "_Transfer_2nd");
+                            }
                             SoundManager.instance.SEPlay("è≈Ç∞ÇÈSE");
 
                             //âåÇËÇæÇ∑
@@ -495,6 +500,11 @@ public class CircleFoodsInterFace : MonoBehaviour
                             {
                                 Debug.Log("åƒÇŒÇÍÇΩ");
                                 GetComponent<General_ColorTransfer>().ZeroToOne(0.1f, "_Transfer_2nd");
+                            }
+                            else if (GetComponent<Kyabetsu_ColorTransfer>())
+                            {
+                                Debug.Log("åƒÇŒÇÍÇΩ");
+                                GetComponent<Kyabetsu_ColorTransfer>().ZeroToOne(0.1f, "_Transfer_2nd");
                             }
                             SoundManager.instance.SEPlay("è≈Ç∞ÇÈSE");
 
