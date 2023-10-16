@@ -108,22 +108,30 @@ public class PauseCoroutine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(Pause_Oshinagaki.instance.oshinagaki_Icon.Length);
         BGM_Slider.value = SoundManager.instance.BGM_Volume;
         SE_Slider.value = SoundManager.instance.SE_Volume;
         Pause_Canvas.gameObject.SetActive(false);
         counddown_corutine = StartCoroutine(CoolDown());
 
-        for (int i = 0, j = 0; i < Pause_Oshinagaki.instance.oshinagaki_Icon.Length; i++)
+
+        if (Pause_Oshinagaki.instance != null)
         {
-            if (Pause_Oshinagaki.instance.oshinagaki_Icon[i].isUse == true)
+            for (int i = 0, j = 0; i < Pause_Oshinagaki.instance.oshinagaki_Icon.Length; i++)
             {
-                use_Icon[j] = Pause_Oshinagaki.instance.oshinagaki_Icon[i];
-                j++;
+                if (Pause_Oshinagaki.instance.oshinagaki_Icon[i].isUse == true)
+                {
+                    use_Icon[j] = Pause_Oshinagaki.instance.oshinagaki_Icon[i];
+                    j++;
+                }
             }
         }
-        
+        else
+        {
+            Debug.Log("インスタンス無し");
+        }
     }
+
+    
 
 
     // Update is called once per frame
@@ -134,6 +142,18 @@ public class PauseCoroutine : MonoBehaviour
 
     private void Update()
     {
+        if(use_Icon[0].Icon == null)
+        {
+            for (int i = 0, j = 0; i < Pause_Oshinagaki.instance.oshinagaki_Icon.Length; i++)
+            {
+                if (Pause_Oshinagaki.instance.oshinagaki_Icon[i].isUse == true)
+                {
+                    use_Icon[j] = Pause_Oshinagaki.instance.oshinagaki_Icon[i];
+                    j++;
+                }
+            }
+        }
+
         if (!DEBUG)
         {
             if (Input.GetKeyDown(pauseKey) && mPauseCooldown <= 0.0f && mPaused == false && ReadIsFade.instance.GetIsFade() == false)
