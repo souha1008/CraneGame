@@ -14,17 +14,17 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField, ReadOnly] public bool mPaused = false;
     [SerializeField, ReadOnly] private float mPauseCooldown;
 
-    [SerializeField][Tooltip("�|�[�Y�̃N�[���^�C��")] float pauseCoolTime;
+    [SerializeField] float pauseCoolTime;
 
-    [SerializeField][Tooltip("��������|�[�Y����{�^��")] KeyCode pauseKey = KeyCode.JoystickButton8;
-    [SerializeField][Tooltip("�������猈�肷��")] KeyCode KetteiKey = KeyCode.JoystickButton2;
-    [SerializeField][Tooltip("��������L�����Z��")] KeyCode BackKey = KeyCode.JoystickButton1;
-    [SerializeField][Tooltip("DPAD")] string DPAD_hori = "JuujiKeyY";
+    [SerializeField] KeyCode pauseKey = KeyCode.JoystickButton8;
+    [SerializeField] KeyCode KetteiKey = KeyCode.JoystickButton2;
+    [SerializeField] KeyCode BackKey = KeyCode.JoystickButton1;
+    [SerializeField] string DPAD_hori = "JuujiKeyY";
 
-    [SerializeField][Tooltip("�I�𒆂̐F")] Color nowSelectColor = new Color(0, 255, 255);
-    [SerializeField][Tooltip("�I����ĂȂ��F")] Color notSelectColor = Color.white;
+    [SerializeField] Color nowSelectColor = new Color(0, 255, 255);
+    [SerializeField] Color notSelectColor = Color.white;
 
-    [Header("UI�n")]
+    [Header("UI")]
     [SerializeField] Canvas Pause_Canvas = null;
     [SerializeField] Image Option;
     [SerializeField] Image Retry;
@@ -40,7 +40,7 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] string UI_anim_paramator;
     [SerializeField] string Oshinagaki_anim_paramator;
 
-    [Header("�I�v�V������X���C�_�[")]
+    [Header("Option")]
     [SerializeField] GameObject Option_C;
     [SerializeField] Image TI_BGM;
     [SerializeField] Image TI_SE;
@@ -50,12 +50,12 @@ public class PauseCoroutine : MonoBehaviour
     [SerializeField] float slider_coolfrate = 35;
     private float slider_nowcoolframe;
 
-    [Header("�R���[�`���p�ϐ�")]
+    [Header("Option Animation")]
     [SerializeField] float C_Option_WaitTime = 1.5f;
     [SerializeField] float C_Option_WaitFrame = 180;
     [SerializeField] float UpdateModeChange_WaitTime = 5;
 
-    [Header("�����Ȃ����X�e�b�v")]
+    [Header("Oshinagaki")]
     public Oshinagaki_Icon[] use_Icon;
     public int nowSelect = 0;
     public int usecount = 0;
@@ -65,7 +65,7 @@ public class PauseCoroutine : MonoBehaviour
     public static PauseCoroutine instance { get; private set; } = new PauseCoroutine();
     public bool Update_isPause;
 
-    // �v���C�x�[�g�ϐ�
+    // private value
     private bool isPauseMenu = false;
     private bool isOption_c = false;
     private float prevAxis = 0;
@@ -210,9 +210,10 @@ public class PauseCoroutine : MonoBehaviour
 
     void Pause()
     {
-        if(GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("�|�[�Y�J��SE");
+        if(GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ポーズ開くSE");
         // �v���C�x�[�g�ϐ�������
         prevAxis = 0;
+        DPADAxis = 0;
         MenuSelectCount = 0;
 
         // �����X�g�b�v
@@ -220,7 +221,6 @@ public class PauseCoroutine : MonoBehaviour
 
         SetPause(true);
         Update_isPause = true;
-        Debug.Log("�|�[�Y����YO");
         Pause_Canvas.gameObject.SetActive(true);
         Time.timeScale = 0;
         SetIsPauseMenu(true);
@@ -241,15 +241,13 @@ public class PauseCoroutine : MonoBehaviour
 
     IEnumerator PauseStart()
     {
-        Debug.Log("�|�[�Y��");
         StartCoroutine(PauseMenu());
         yield return new WaitUntil(() => Input.GetKeyDown(BackKey) && isPauseMenu == true && mPauseCooldown >= pauseCoolTime);
 
-        Debug.Log("�|�[�Y���");
         MenuSelectCount = 0;
         StopCoroutine(PauseMenu());
         SetPause(false);
-        if (GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("�|�[�Y����SE");
+        if (GameObject.Find("SoundManager")) SoundManager.instance.SEPlay("ポーズ閉じるSE");
         Update_isPause = false;
         Pause_Canvas.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
@@ -264,26 +262,24 @@ public class PauseCoroutine : MonoBehaviour
             {
                 if ((Input.GetAxis(DPAD_hori) >= 0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
                 {
-                    Debug.Log("��");
                     MenuSelectCount--;
                     prevAxis = Input.GetAxis("Vertical");
                     DPADAxis = Input.GetAxis(DPAD_hori);
                     if (GameObject.Find("SoundManager"))
-                        SoundManager.instance.SEPlay("�I��SE");
+                        SoundManager.instance.SEPlay("選択SE");
                 }
 
                 if ((Input.GetAxis(DPAD_hori) <= -0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
                 {
-                    Debug.Log("��");
                     MenuSelectCount++;
                     prevAxis = Input.GetAxis("Vertical");
                     DPADAxis = Input.GetAxis(DPAD_hori);
                     if (GameObject.Find("SoundManager"))
-                        SoundManager.instance.SEPlay("�I��SE");
+                        SoundManager.instance.SEPlay("選択SE");
                 }
 
-                if (MenuSelectCount > M_MAXSELECT) MenuSelectCount = M_MINSELECT;   // ��ɂ���
-                if (MenuSelectCount < M_MINSELECT) MenuSelectCount = M_MAXSELECT;   // ���ɍs��
+                if (MenuSelectCount > M_MAXSELECT) MenuSelectCount = M_MINSELECT; 
+                if (MenuSelectCount < M_MINSELECT) MenuSelectCount = M_MAXSELECT;  
 
                 // ���͖���
                 if (Input.GetAxis("Vertical") == 0)
@@ -305,7 +301,7 @@ public class PauseCoroutine : MonoBehaviour
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             if (GameObject.Find("SoundManager"))
-                                SoundManager.instance.SEPlay("����SE");
+                                SoundManager.instance.SEPlay("決定SE");
                             OshinagakiAnimSetBool(Oshinagaki_anim_paramator, true);
                             SetIsPauseMenu(false);
                             StartCoroutine(C_Oshinagaki());
@@ -319,7 +315,7 @@ public class PauseCoroutine : MonoBehaviour
                         {
                             //StartCoroutine(Animator_UpdateModeChange(AnimatorUpdateMode.UnscaledTime));
                             if (GameObject.Find("SoundManager"))
-                                SoundManager.instance.SEPlay("����SE");
+                                SoundManager.instance.SEPlay("決定SE");
                             AnimSetBool(UI_anim_paramator, true);
                             SetIsPauseMenu(false);
                             StartCoroutine(C_Option());
@@ -331,7 +327,7 @@ public class PauseCoroutine : MonoBehaviour
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             Time.timeScale = 1.0f;
-                            SoundManager.instance.SEPlay("����SE");
+                            SoundManager.instance.SEPlay("決定SE");
                             for(int i = 0; i < 5; i++)
                             {
                                 GameObject.Find("Datas").GetComponent<ScoreData>().SetScore(i, 0);
@@ -347,7 +343,7 @@ public class PauseCoroutine : MonoBehaviour
                         if (Input.GetKeyDown(KetteiKey))
                         {
                             Time.timeScale = 1.0f;
-                            SoundManager.instance.SEPlay("����SE");
+                            SoundManager.instance.SEPlay("決定SE");
                             GameObject.Find("SceneChange").GetComponent<SceneChange>().LoadScene("StageSelect");
                             yield break;
                         }
@@ -388,7 +384,7 @@ public class PauseCoroutine : MonoBehaviour
             // ��
             if ((Input.GetAxis(DPAD_hori) >= 0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") > 0.3f && prevAxis == 0))
             {
-                SoundManager.instance.SEPlay("�I��SE");
+                SoundManager.instance.SEPlay("選択SE");
                 OptionSelectCount--;
                 prevAxis = Input.GetAxis("Vertical");
                 DPADAxis = Input.GetAxis("JuujiKeyY");
@@ -397,7 +393,7 @@ public class PauseCoroutine : MonoBehaviour
             // ��
             if ((Input.GetAxis(DPAD_hori) <= -0.8f && DPADAxis == 0) || (Input.GetAxis("Vertical") < -0.3f && prevAxis == 0))
             {
-                SoundManager.instance.SEPlay("�I��SE");
+                SoundManager.instance.SEPlay("選択SE");
                 OptionSelectCount++;
                 prevAxis = Input.GetAxis("Vertical");
                 DPADAxis = Input.GetAxis("JuujiKeyY");
@@ -428,7 +424,7 @@ public class PauseCoroutine : MonoBehaviour
             if(value > 0.3f && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("���ʒ���SE");
+                    SoundManager.instance.SEPlay("音量調整SE");
                 nowslider.value += slider_rate;
 
                 if (nowslider == BGM_Slider)
@@ -441,7 +437,7 @@ public class PauseCoroutine : MonoBehaviour
             if(value < -0.3f && slider_nowcoolframe >= slider_coolfrate)
             {
                 if (GameObject.Find("SoundManager"))
-                    SoundManager.instance.SEPlay("���ʒ���SE");
+                    SoundManager.instance.SEPlay("音量調整SE");
                 nowslider.value -= slider_rate;
 
                 if(nowslider == BGM_Slider)
@@ -458,7 +454,7 @@ public class PauseCoroutine : MonoBehaviour
             {
                 AnimSetBool(UI_anim_paramator, false);
                 SetIsOption_c(false);
-                SoundManager.instance.SEPlay("�߂�SE");
+                SoundManager.instance.SEPlay("戻るSE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
                 OptionSelectCount = 0;
@@ -481,23 +477,22 @@ public class PauseCoroutine : MonoBehaviour
                 break;
             }
             // �A���t�@�l���Z�b�g
-            GameObject pa = use_Icon[i].Step;
-            Image[] com = pa.GetComponentsInChildren<Image>();
-            foreach (Image component in com)
-            {
-                component.color = new Color(255, 255, 255, 255);
-            }
+            //GameObject pa = use_Icon[i].Step;
+            //Image[] com = pa.GetComponentsInChildren<Image>();
+            //foreach (Image component in com)
+            //{
+            //    component.color = new Color(255, 255, 255, 255);
+            //}
             usecount++;
         }
-        Debug.Log(usecount);
-        GameObject parent = use_Icon[nowSelect].Step;
-        Image[] components = parent.GetComponentsInChildren<Image>();
-        foreach (Image component in components) 
-        {
-            component.color = new Color(1, 1, 1, 0);
-        }
+        //GameObject parent = use_Icon[nowSelect].Step;
+        //Image[] components = parent.GetComponentsInChildren<Image>();
+        //foreach (Image component in components) 
+        //{
+        //    component.color = new Color(1, 1, 1, 0);
+        //}
         yield return new WaitForSecondsRealtime(1.3f);
-        StartCoroutine(Alphakasan(parent));
+        //StartCoroutine(Alphakasan(parent));
 
 
         while (true)
@@ -553,7 +548,7 @@ public class PauseCoroutine : MonoBehaviour
                 use_Icon[nowSelect].Step.SetActive(false);
                 StartCoroutine(Alphagensui(use_Icon[nowSelect].Step));
                 OshinagakiAnimSetBool(Oshinagaki_anim_paramator, false);
-                SoundManager.instance.SEPlay("�߂�SE");
+                SoundManager.instance.SEPlay("戻るSE");
                 yield return new WaitForSecondsRealtime(C_Option_WaitTime);
                 SetIsPauseMenu(true);
                 OptionSelectCount = 0;
