@@ -50,13 +50,11 @@ public class PienutsNakami : CircleFoodsInterFace
                 float VectorLength = (transform.position - PlateArray[i].transform.position).magnitude;
                 if (VectorLength < 8)
                 {
+                    if(!isClear) SoundManager.instance.SEPlay("ナッツがミックスナッツに乗った時のSE");
                     isClear = true;
                 }
             }
         }
         FoodsFixedUpdate();
     }
-
-
-
 }

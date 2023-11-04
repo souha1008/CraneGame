@@ -43,6 +43,7 @@ public class Hamaguri : CircleFoodsInterFace
                 if(FireCnt > 40)
                 {
                     m_HummerAction = HummerAction.STAY;
+                    if (!Open) SoundManager.instance.SEPlay("ŠL‚ªŠJ‚¢‚½Žž‚ÌSE");
                     Open = true;
                 }
             }

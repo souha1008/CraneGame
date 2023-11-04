@@ -31,6 +31,7 @@ public class Karaage : FoodsSupportInterFace
         //Debug.Log("‚È‚ñ‚©‚ ‚½‚Á‚½");
         if(other.GetComponent<LemonJIru>())
         {
+            if(!isClear) SoundManager.instance.SEPlay("ƒŒƒ‚ƒ“`‚ª“‚—g‚°‚É‚©‚©‚Á‚½‚ÌSE");
             isClear = true;
             Effect.SetActive(true);
         }

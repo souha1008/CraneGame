@@ -48,7 +48,7 @@ public class Lemon : CircleFoodsInterFace
 
                 GameObject LemonJIru = (GameObject)Resources.Load("LemonJIru");
                 Instantiate(LemonJIru, transform.position, transform.rotation);
-
+                SoundManager.instance.SEPlay("ƒŒƒ‚ƒ“i‚Á‚Ä‚é‚ÌSE");
             }
               
         }

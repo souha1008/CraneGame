@@ -44,6 +44,7 @@ public class Berry : CircleFoodsInterFace
                 {
                     m_HummerAction = HummerAction.STAY;
                     GetComponent<General_ColorTransfer>().OneToZero(0.1f);
+                    if(!Dry) SoundManager.instance.SEPlay("ドライフルーツになった時のSE");
                     Debug.Log("乾燥");
                     Dry = true;
                 }

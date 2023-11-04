@@ -75,6 +75,7 @@ public class Kyabetsu: CircleFoodsInterFace
                     float VectorLength = (transform.position - PlateArray[i].transform.position).magnitude;
                     if (VectorLength < 8)
                     {
+                        if(!isClear)SoundManager.instance.SEPlay("‚Æ‚ñ‚©‚Â‚ÉƒLƒƒƒxƒc‚ªæ‚Á‚½Žž‚ÌSE");
                         isClear = true;
                     }
                 }
@@ -94,6 +95,10 @@ public class Kyabetsu: CircleFoodsInterFace
     {
         if (!isNoAction /*&& isGround*/)
         {
+            if(CutCnt < 6)
+            {
+                SoundManager.instance.SEPlay("‚«‚á‚×‚ÂØ‚èçØ‚èSE");
+            }
             CutCnt++;
         }
     }

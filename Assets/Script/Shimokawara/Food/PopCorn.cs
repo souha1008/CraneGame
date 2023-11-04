@@ -47,6 +47,7 @@ public class PopCorn : CircleFoodsInterFace
 
                     if (FireCnt > 10)
                     {
+                        SoundManager.instance.SEPlay("ƒR[ƒ“’e‚¯‚éSE");
                         isFire = true;
                         float Value = UnityEngine.Random.Range(0.0f,6.24f);
                         float MoveX = Mathf.Cos(Value) * 0.3f;

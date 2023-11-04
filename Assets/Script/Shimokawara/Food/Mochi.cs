@@ -80,6 +80,10 @@ public class Mochi : CircleFoodsInterFace
                 float VectorLength = (transform.position - UsuArray[i].transform.position).magnitude;
                 if (VectorLength < 8)
                 {
+                    if(HummerCnt < 3)
+                    {
+                        SoundManager.instance.SEPlay("–Ý‚Â‚«SE");
+                    }
                     HummerCnt++;
                 }
             }
